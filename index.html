@@ -49,7 +49,9 @@
     nav a { color: var(--muted); text-decoration: none; }
     nav a:hover { color: var(--text); text-decoration: underline; }
 
-    .theme-toggle { cursor: pointer; font-size: 16px; user-select: none; color: var(--muted); }
+    .theme-toggle i { color: var(--muted); font-size: 18px; }
+
+    .theme-toggle:hover i { color: var(--text); }
 
     h1 { font-size: clamp(24px, 5vw, 48px); margin: 0 0 16px; }
     p { margin: 0 0 20px; }
@@ -84,24 +86,26 @@
         <a href="/me/">/me</a>
         <a href="/projects/">/projects</a>
         <a href="/blog/">/blog</a>
-        <a href="https://github.com/your-github" rel="me noopener">/github</a>
+        <a href="https://github.com/fmmaciej" rel="me noopener">/github</a>
         <a href="/music/">/music</a>
-        <span class="theme-toggle" id="themeToggle" title="Toggle theme">[◎]</span>
+        <span class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </span>
       </nav>
       <div style="clear:both"></div>
     </header>
 
     <main style="padding:40px 0;">
       <div class="terminal-box">
-        <div class="terminal-line"><span class="prompt">fm@unix:~$ </span><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></div>
+        <div class="terminal-line"><span class="prompt">fm@void:~$ </span><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></div>
       </div>
 
       <p>I’m <strong>FM</strong>, a software engineer who enjoys building lean, reliable tools.<br>
-         My work often blends Linux, C++, Rust and networking.<br>
+         My work often blends Linux, C++, Python, Rust, TypeScript and networking.<br>
          I like clean architectures, fast builds and efficient binaries.</p>
       <p>This site is minimal on purpose. Check out my <a href="/projects/">projects</a>,
          some <a href="/blog/">notes</a>, my CV under <a href="/me/">/me</a>,
-         and <a href="/music/">music</a>. The Listify app lives at <a href="/listify/">/listify</a>.</p>
+         and <a href="/music/">music</a> I do care about. The Listify app lives at <a href="/listify/">/listify</a>.</p>
     </main>
 
     <footer>
@@ -117,10 +121,16 @@
   </div>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
     const toggle = document.getElementById('themeToggle');
     toggle.addEventListener('click', () => {
       document.body.classList.toggle('light-theme');
-      toggle.textContent = document.body.classList.contains('light-theme') ? '[○]' : '[◎]';
+      const icon = toggle.querySelector('i');
+      if (document.body.classList.contains('light-theme')) {
+        icon.className = 'fas fa-sun';
+      } else {
+        icon.className = 'fas fa-moon';
+      }
     });
 
     // Typing effect with random lines from external file
