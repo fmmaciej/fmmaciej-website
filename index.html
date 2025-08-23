@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FM — Software Engineer</title>
+  <meta name="description" content="FM — software engineer. Minimal terminal-style personal site." />
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="8" width="64" height="64" fill="%23000"/><text x="50%" y="56%" text-anchor="middle" font-family="monospace" font-size="26" fill="white">FM</text></svg>' />
+  <style>
+    :root {
+      --bg: #000;
+      --text: #eaeaea;
+      --muted: #8a8a8a;
+      --border: #1a1a1a;
+      --cursor: #eaeaea;
+      --link: #fff;
+      --link-hover: #9f9f9f;
+    }
+    .light-theme {
+      --bg: #fff;
+      --text: #111;
+      --muted: #666;
+      --border: #eaeaea;
+      --cursor: #111;
+      --link: #000;
+      --link-hover: #444;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 16px;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--link); text-decoration: underline; transition: color 0.3s; }
+    a:hover, a:focus-visible { color: var(--link-hover); }
+
+    header, footer { border-bottom: 1px solid var(--border); padding: 12px 0; transition: border-color 0.3s; }
+    footer { border-top: 1px solid var(--border); border-bottom: none; font-size: 13px; color: var(--muted); margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+
+    nav { float: right; display: flex; align-items: center; gap: 14px; }
+    nav a { color: var(--muted); text-decoration: none; }
+    nav a:hover { color: var(--text); text-decoration: underline; }
+
+    .theme-toggle { cursor: pointer; font-size: 16px; user-select: none; color: var(--muted); }
+
+    h1 { font-size: clamp(24px, 5vw, 48px); margin: 0 0 16px; }
+    p { margin: 0 0 20px; }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1em;
+      background: var(--cursor);
+      margin-left: 2px;
+      vertical-align: bottom;
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .prompt { color: var(--muted); margin-bottom: 8px; }
+    .terminal-box { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 18px; margin-bottom: 28px; }
+    .terminal-line { margin: 0 0 6px; white-space: pre; }
+    .typed { display: inline-block; }
+
+    .social-icons { display: flex; gap: 14px; }
+    .social-icons a { color: var(--muted); font-size: 18px; text-decoration: none; }
+    .social-icons a:hover { color: var(--text); }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <strong>FM</strong>
+      <nav>
+        <a href="/me/">/me</a>
+        <a href="/projects/">/projects</a>
+        <a href="/blog/">/blog</a>
+        <a href="https://github.com/your-github" rel="me noopener">/github</a>
+        <a href="/music/">/music</a>
+        <span class="theme-toggle" id="themeToggle" title="Toggle theme">[◎]</span>
+      </nav>
+      <div style="clear:both"></div>
+    </header>
+
+    <main style="padding:40px 0;">
+      <div class="terminal-box">
+        <div class="terminal-line"><span class="prompt">fm@unix:~$ </span><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></div>
+      </div>
+
+      <p>I’m <strong>FM</strong>, a software engineer who enjoys building lean, reliable tools.<br>
+         My work often blends Linux, C++, Rust and networking.<br>
+         I like clean architectures, fast builds and efficient binaries.</p>
+      <p>This site is minimal on purpose. Check out my <a href="/projects/">projects</a>,
+         some <a href="/blog/">notes</a>, my CV under <a href="/me/">/me</a>,
+         and <a href="/music/">music</a>. The Listify app lives at <a href="/listify/">/listify</a>.</p>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> FM — served plain & simple</div>
+      <div class="social-icons">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" title="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      toggle.textContent = document.body.classList.contains('light-theme') ? '[○]' : '[◎]';
+    });
+
+    // Typing effect with random lines from external file
+    const typed = document.getElementById('typedText');
+
+    async function fetchLines() {
+      try {
+        const resp = await fetch('/terminal_lines.txt', { cache: 'no-cache' });
+        if (!resp.ok) throw new Error('fetch failed');
+        const text = await resp.text();
+        return text.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+      } catch (e) {
+        return ['echo "Hello"'];
+      }
+    }
+
+    function typeLine(line) {
+      typed.textContent = '';
+      let i = 0;
+      function typeChar() {
+        if (i < line.length) {
+          typed.textContent += line.charAt(i);
+          i++;
+          setTimeout(typeChar, 100);
+        }
+      }
+      typeChar();
+    }
+
+    async function loop() {
+      const lines = await fetchLines();
+      function pickLine() { return lines[Math.floor(Math.random()*lines.length)]; }
+      function cycle() {
+        typeLine(pickLine());
+        setTimeout(cycle, 10000 + Math.floor(Math.random()*5000));
+      }
+      cycle();
+    }
+
+    loop();
+  </script>
+</body>
+</html>
