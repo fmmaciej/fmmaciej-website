@@ -18,6 +18,12 @@ Desktop.ini
 .vscode/
 .idea/
 *.swp
+fmmaciej.code-workspace
 
 # Git
 .git-ftp-ignore
+
+# Build dir
+www/
+node_modules/
+notes/

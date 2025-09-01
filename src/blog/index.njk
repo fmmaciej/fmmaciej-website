@@ -1,0 +1,28 @@
+---
+title: FM — /blog
+layout: layout.njk
+pagination:
+    data: collections.blog
+    size: 5                # 5 wpisów na stronę
+    alias: posts
+permalink: "blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+terminalFile: /assets/terminal/blog.txt
+---
+
+<h2><a href="/blog/">/blog</a></h2>
+
+<ul>
+    {% for post in posts %}
+        <li style="margin: 14px 0">
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+        <div style="color:var(--muted);font-size:13px">{{ post.date | blogDate }}</div>
+        {% if post.data.description %}<div>{{ post.data.description }}</div>{% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<nav style="margin-top:16px">
+    {% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">← nowsze</a>{% endif %}
+    {% if pagination.href.previous and pagination.href.next %} · {% endif %}
+    {% if pagination.href.next %}<a href="{{ pagination.href.next }}">starsze →</a>{% endif %}
+</nav>

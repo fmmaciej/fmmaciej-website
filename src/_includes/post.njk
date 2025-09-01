@@ -1,0 +1,15 @@
+{% extends "layout.njk" %}
+{% block content %}
+<article>
+    <header style="margin-bottom:16px">
+        <h1>{{ title }}</h1>
+        <p style="color:var(--muted);font-size:14px">
+        {{ date | blogDate }}
+        {% if tags and tags.length %} • Tags: {{ tags | join(", ") }}{% endif %}
+        </p>
+        {% if description %}<p>{{ description }}</p>{% endif %}
+        <hr style="border:0;border-top:1px solid var(--border)">
+    </header>
+    {{ content | safe }}
+</article>
+{% endblock %}

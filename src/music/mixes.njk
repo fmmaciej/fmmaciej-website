@@ -1,0 +1,299 @@
+---
+title: FM — /music/mixes
+layout: layout.njk
+terminalFile: /assets/terminal/mixes.txt
+
+# Grupy (kolejność wyświetlania)
+groups:
+  - YouTube
+  - Mixcloud
+  - SoundCloud
+  - Other
+
+# Linki (group opcjonalne; brak => Other)
+items:
+  - url: "https://www.youtube.com/watch?v=8WGoxI1bvI8"
+    title: "SKFF b2b FM | Proper Techno DJ Mix"
+    date: "22.04.2025"
+    duration: "3h 03min"
+    genre: "Techno"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=i8qnjaO5ioU" 
+    title: "FM | 12\"/h | Czwórka Polskie Radio"
+    date: "11.04.2024"
+    duration: "50min"
+    genre: "Electro"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=zTmuI3wd87I" 
+    title: "SKFF b2b FM | Techno vinyl set"
+    date: "24.02.2024"
+    duration: "2h 09min"
+    genre: "Techno"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=ErBoL8aMYNI&t=3517s"
+    img: "/assets/music/mixes/20231201_01.png"
+    title: "FM | G-Sound x FM | Broken Mindz Radio"
+    date: "01.12.2023"
+    duration: "47min"
+    genre: "Electro"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=_jUz4UOfRuo&t=1051s"
+    img: "/assets/music/mixes/20201217_01.jpg"
+    title: "FM | FM & Vyti Tauta [Samogęste] | Broken Mindz Radio"
+    date: "17.12.2020"
+    duration: "43min"
+    genre: "Techno"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=NWcc7OoCQOk&t=4647s"
+    img: "/assets/music/mixes/20170627_01.png"
+    title: "FM | Shari Vari & FM | Broken Mindz Radio"
+    date: "27.06.2017"
+    duration: "43min"
+    genre: "Techno"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=ylrcjMI5boA"
+    img: "/assets/music/mixes/20161008_01.png"
+    title: "FM | Underground Session Ring"
+    date: "08.10.2016"
+    duration: "10min"
+    genre: "Drum and bass"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=81xn9T4oq0M&t=108s"
+    title: "FM | Techno vs. Drum'n'Bass | Broken Mindz Radio"
+    img: "/assets/music/mixes/20151115_01.png"
+    date: "15.11.2015"
+    duration: "43min"
+    genre: "Techno & Drum and bass"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=thXcaFg9Rso"
+    title: "FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session"
+    img: "/assets/music/mixes/20131231_01.png"
+    date: "31.12.2013"
+    duration: "2min"
+    genre: "Drum and bass"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=M5CKKZp4TWQ"
+    img: "/assets/music/mixes/20131231_02.png"
+    title: "FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session"
+    date: "31.12.2013"
+    duration: "2min"
+    genre: "Drum and bass"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=dcpu6-HDbno"
+    img: "/assets/music/mixes/20130510_01.png"
+    title: "FM b2b Gibo | Harem aka Orphanage"
+    date: "10.05.2013"
+    duration: "3min"
+    genre: Drum and bass"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=DeboTWBlWZc"
+    img: "/assets/music/mixes/20121123_01.png"
+    title: "FM b2b Gibo | Underground Session"
+    date: "23.11.2012"
+    duration: "1h 22min"
+    genre: "Drum and bass"
+    group: "YouTube"
+
+  - url: "https://www.youtube.com/watch?v=VHxSpNusDio"
+    img: "/assets/music/mixes/2011_01.png"
+    title: "FM | DNB PL Dj Battle 2011 | dnb.pl"
+    date: "2011"
+    duration: "43min"
+    genre: "Drum and bass"
+    group: "YouTube"
+
+
+  - url: "https://mixcloud.com/fmmaciej/some-mix"
+    title: "Warehouse Pulse"
+    desc: "90 min • techno"
+    group: "Mixcloud"
+    img: "/assets/music/mixes/mix1.jpg"
+
+  - url: "https://mixcloud.com/fmmaciej/another-mix"
+    title: "Night Drive"
+    desc: "70 min • electro"
+    group: "Mixcloud"
+    img: "/assets/music/mixes/mix1.jpg"
+
+  - url: "https://soundcloud.com/fmmaciej/some-track"
+    title: "Downtempo Journey"
+    desc: "120 min  ambient"
+    group: "SoundCloud"
+    img: "/assets/music/mixes/mix1.jpg"
+
+  - url: "https://example.com/custom"
+    title: "Custom Link"
+    desc: "bez grupy → Other"
+---
+
+<h2 id="mixesBreadcrumb">
+  <a href="/music/">/music</a><a href="/music/mixes">/mixes</a><span id="groupSuffix"></span>
+</h2>
+
+<style>
+  .group{border:1px solid var(--border);border-radius:10px;margin:16px 0;overflow:hidden;background:var(--bg)}
+  .group>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:600;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);user-select:none}
+  .group>summary::-webkit-details-marker{display:none}
+  .group summary .badge{margin-left:auto;font-size:12px;color:var(--muted);border:1px solid var(--border);padding:2px 6px;border-radius:999px}
+  .mix-list{display:flex;flex-direction:column;gap:14px;padding:12px}
+  .mix-item{display:flex;align-items:center;gap:20px;border:1px solid var(--border);border-radius:10px;padding:12px;text-decoration:none;background:var(--bg);transition:border-color .2s,transform .2s}
+  .mix-item:hover{border-color:var(--muted);transform:translateY(-2px)}
+  .mix-item img{width:200px;height:120px;object-fit:cover;border-radius:6px;flex-shrink:0}
+  .mix-item figcaption{color:var(--text);font-size:1rem;line-height:1.4}
+  .mix-item small{color:var(--muted);display:block;margin-top:6px;font-size:.9rem}
+  @media (max-width:600px){
+    .mix-item{flex-direction:column;align-items:flex-start}
+    .mix-item img{width:100%;height:auto;max-height:240px}
+    .mix-item figcaption{margin-top:10px}
+  }
+</style>
+
+{% macro mixItem(url, title, desc, img="", date="", duration="", genre="") %}
+    {% set yt = url | ytThumb %}
+    {# PRIORYTET: najpierw img (ręcznie nadane), potem yt, inaczej brak #}
+    {% set imgUrl = img or yt %}
+
+    <a class="mix-item" href="{{ url }}" target="_blank" rel="noopener">
+        {% if imgUrl %}<img src="{{ imgUrl }}" alt="Thumbnail for {{ title }}">{% endif %}
+        <figcaption>
+        {{ title }}
+
+        {# meta: date | duration | genre #}
+        {% if date or duration or genre %}
+            <small>
+            {% set first = true %}
+            {% if date %}{{ date }}{% set first = false %}{% endif %}
+            {% if duration %}{% if not first %} | {% endif %}{{ duration }}{% set first = false %}{% endif %}
+            {% if genre %}{% if not first %} | {% endif %}{{ genre }}{% endif %}
+            </small>
+        {% endif %}
+
+        {% if desc %}<small>{{ desc }}</small>{% endif %}
+        </figcaption>
+    </a>
+{% endmacro %}
+
+{% set groups = groups or ["Other"] %}
+{% set items = items or [] %}
+
+{% for g in groups %}
+    {% set slug = g | lower | replace(" ", "-") %}
+    {% set count = 0 %}
+    {% for it in items %}{% set grp = it.group or "Other" %}{% if grp == g %}{% set count = count + 1 %}{% endif %}{% endfor %}
+
+    {% if count > 0 %}
+        <details class="group" id="group-{{ slug }}" data-group="{{ g }}" data-slug="{{ slug }}">
+            <summary>{{ g }} <span class="badge">{{ count }}</span></summary>
+            <div class="mix-list">
+                {% for it in items %}
+                {% set grp = it.group or "Other" %}
+                {% if grp == g %}
+                    {{ mixItem(it.url, it.title, it.desc, it.img, it.date, it.duration, it.genre) }}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </details>
+    {% endif %}
+{% endfor %}
+
+<script>
+    (function() {
+        const heading = document.getElementById('mixesBreadcrumb');   // <h2 id="mixesBreadcrumb">/music/mixes <span id="groupSuffix"></span>
+        const suffix  = document.getElementById('groupSuffix');
+        if (!heading || !suffix) return;
+
+        // helpers
+        const fmt = (slug, label) => 
+            slug ? `<a href="/music/mixes#${slug}">/${label || slug}</a>` : '';
+
+        const setBreadcrumb = (slug, label) => {
+            suffix.innerHTML = slug ? fmt(slug, label) : '';
+            if (slug) history.replaceState(null, '', '#' + slug);
+            else history.replaceState(null, '', location.pathname);
+        };
+
+        const groups = Array.from(document.querySelectorAll('details.group'));
+        let activeId = null;
+
+        // highlight active group
+        const setActive = (el) => {
+            groups.forEach(g => g.classList.remove('is-active'));
+            if (el) el.classList.add('is-active');
+        };
+
+        // Click on summary → update breadcrumb immediately
+        document.querySelectorAll('details.group > summary').forEach(sum => {
+            sum.addEventListener('click', () => {
+                const wrap  = sum.parentElement;
+                const slug  = wrap?.dataset?.slug;
+                const label = (wrap?.dataset?.group || '').toLowerCase();
+                // odrocz minimalnie, by <details> zdążył się rozwinąć/zwinąć
+                setTimeout(() => {
+                    // jeśli zwinięte po kliknięciu → wróć do /music/mixes (bez sufiksu)
+                    if (!wrap.open) { setBreadcrumb(null, null); setActive(null); return; }
+                    setBreadcrumb(slug, label);
+                    setActive(wrap);
+                }, 0);
+            });
+        });
+
+        // IntersectionObserver → wybierz sekcję w kadrze
+        const io = new IntersectionObserver((entries) => {
+            // bierzemy tylko te w kadrze i sortujemy po największym udziale
+            const visible = entries.filter(en => en.isIntersecting)
+                                .sort((a,b) => (b.intersectionRatio||0) - (a.intersectionRatio||0));
+            if (visible.length) {
+                const top   = visible[0].target;
+                const slug  = top.dataset.slug;
+                const label = (top.dataset.group || '').toLowerCase();
+
+                // tylko jeśli sekcja jest faktycznie rozwinięta
+                if (top.open && top.id !== activeId) {
+                    activeId = top.id;
+                    setBreadcrumb(slug, label);
+                    setActive(top);
+                }
+            } else {
+                // nic nie jest w kadrze → cofamy suffix (np. po zwinięciu wszystkiego)
+                setBreadcrumb(null, null);
+                setActive(null);
+                activeId = null;
+            }
+        }, {
+            root: null,
+            rootMargin: '-20% 0px -40% 0px',
+            threshold: [0.2, 0.4, 0.6, 0.8]
+        });
+
+        groups.forEach(g => io.observe(g));
+
+        // Start: domyślnie TYLKO /music/mixes; jeśli jest hash → rozwiń i ustaw
+        const initFromHash = () => {
+            const slug = (location.hash || '').replace(/^#/, '');
+            if (!slug) { setBreadcrumb(null, null); return; }
+
+            const el = document.getElementById('group-' + slug);
+            if (el) {
+                if (!el.open) el.open = true;
+                el.scrollIntoView({ behavior: 'instant', block: 'start' });
+                setBreadcrumb(slug, (el.dataset.group || '').toLowerCase());
+                setActive(el);
+            } else {
+                setBreadcrumb(null, null);
+            }
+        };
+
+        initFromHash();
+    })();
+</script>

@@ -1,5 +1,0 @@
-echo "Hello, world"
-uname -a
-cowsay "Listify ships playlists"
-cmatrix -u 3
-ls -l
