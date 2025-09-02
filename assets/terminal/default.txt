@@ -1,0 +1,15 @@
+echo "Hello, world!"
+htop
+ping -c 3 archlinux.org
+cowsay "Use the source, Luke"
+cmatrix
+sl
+fortune
+figlet "This is fun"
+fortune | cowsay
+rev <<< "stressed"
+yes "ALL WORK AND NO PLAY MAKES JACK A DULL BOY"
+dmesg | tail -n 5
+neofetch
+echo 'alias mail="cat > /dev/null"' >> $HOME/.bashrc
+echo "Mail me at: /dev/null"

@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FM — /music/mixes</title>
+    <meta name="description" content="FM - software engineer. Minimal terminal-style personal site." />
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="8" width="64" height="64" fill="%23000"/><text x="50%" y="56%" text-anchor="middle" font-family="monospace" font-size="26" fill="white">FM</text></svg>' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/gig.css">
+    <style>
+        :root {
+        --bg: #000;
+        --text: #eaeaea;
+        --muted: #8a8a8a;
+        --border: #1a1a1a; 
+        --cursor: #eaeaea;
+        --link: #fff;
+        --link-hover: #9f9f9f; 
+        --scrim: rgba(0,0,0,.6);
+        }
+
+        .light-theme {
+        --bg:#fff; 
+        --text:#111; 
+        --muted:#666; 
+        --border:#eaeaea; 
+        --cursor:#111; 
+        --link:#000; 
+        --link-hover:#444; 
+        --scrim: rgba(0,0,0,.25);
+        }
+
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{margin:0;background:var(--bg);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:16px;line-height:1.6;transition:background .3s,color .3s}
+        a{color:var(--link);text-decoration:underline;transition:color .3s}
+        a:hover,a:focus-visible{color:var(--link-hover)}
+
+        header,footer{border-bottom:1px solid var(--border);padding:12px 0;transition:border-color .3s}
+        footer{border-top:1px solid var(--border);border-bottom:none;font-size:13px;color:var(--muted);margin-top:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+
+        .wrap{max-width:880px;margin:0 auto;padding:0 20px}
+
+        /* Desktop nav */
+        nav.primary{float:right;display:flex;align-items:center;gap:14px}
+        nav.primary a{color:var(--muted);text-decoration:none}
+        nav.primary a:hover{color:var(--text);text-decoration:underline}
+
+        .theme-toggle{cursor:pointer;font-size:18px;user-select:none;color:var(--muted);display:inline-flex;align-items:center}
+        .theme-toggle i { color:currentColor }
+
+        .theme-toggle:hover i { color: var(--text); }
+
+        /* Hamburger (shown on small screens) */
+        .hamburger{display:none;appearance:none;background:none;border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:6px;cursor:pointer}
+        .hamburger:focus-visible{outline:2px dotted var(--muted)}
+
+        .hamburger:hover i { color: var(--text); }
+
+        /* Mobile drawer */
+        .backdrop{position:fixed;inset:0;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .2s}
+        .drawer{position:fixed;top:0;left:0;height:100%;width:min(82vw,300px);background:var(--bg);border-right:1px solid var(--border);transform:translateX(-100%);transition:transform .2s;display:flex;flex-direction:column}
+        .drawer header{padding:14px 16px;border-bottom:1px solid var(--border)}
+        .drawer nav{display:flex;flex-direction:column;padding:10px}
+        .drawer nav a{color:var(--text);text-decoration:none;padding:10px 8px;border-radius:6px}
+        .drawer nav a:hover{background:rgba(255,255,255,.06)}
+        .drawer .close{margin-left:auto;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
+
+        .drawer-open .backdrop{opacity:1;pointer-events:auto}
+        .drawer-open .drawer{transform:translateX(0)}
+
+        h1{font-size:clamp(24px,5vw,48px);margin:0 0 16px}
+        p{margin:0 0 20px}
+
+        .cursor{display:inline-block;width:10px;height:1em;background:var(--cursor);margin-left:2px;vertical-align:bottom;animation:blink 1s step-start infinite}
+        @keyframes blink{ 50%{ opacity:0 } }
+        .prompt{color:var(--muted);margin-bottom:8px}
+        .terminal-box{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:18px;margin-bottom:28px}
+        .terminal-line{ 
+            margin:0 0 6px;
+            white-space:normal 
+        }
+        .typed{
+            display:inline-block
+            white-space:pre 
+        }
+
+        .social-icons{display:flex;gap:14px}
+        .social-icons a{color:var(--muted);font-size:18px;text-decoration:none}
+        .social-icons a:hover{color:var(--text)}
+
+        /* Responsive: small screens */
+        @media (max-width: 720px){
+            .primary-links{
+                display:none
+            }
+            .hamburger{
+                display:inline-flex;
+                align-items:left;
+                gap:8px
+            }
+            .wrap{
+                padding:0 16px
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+    <header>
+        <strong>FM</strong>
+        <nav class="primary" aria-label="Primary navigation">
+            <div class="primary-links">
+                <a href="/">/me</a>
+                <a href="/projects/">/projects</a>
+                <a href="/blog/">/blog</a>
+                <a href="https://github.com/fmmaciej" rel="me noopener">/github</a>
+                <a href="/music/">/music</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-controls="mobileDrawer" aria-expanded="false" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+            <span class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></span>
+        </nav>
+        <div style="clear:both"></div>
+    </header>
+
+    
+    <div class="terminal-box"  data-terminal="/assets/terminal/mixes.txt">
+        <div class="terminal-line">
+            <span class="prompt">fm@voidlinux:~$ </span> 
+            <span id="typedText" class="typed"></span> 
+            <span id="cursor" class="cursor"></span>
+        </div>
+    </div>
+    
+
+    <main style="padding:40px 0;">
+        
+<h2 id="mixesBreadcrumb">
+  <a href="/music/">/music</a><a href="/music/mixes">/mixes</a><span id="groupSuffix"></span>
+</h2>
+
+<style>
+  .group{border:1px solid var(--border);border-radius:10px;margin:16px 0;overflow:hidden;background:var(--bg)}
+  .group>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:600;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);user-select:none}
+  .group>summary::-webkit-details-marker{display:none}
+  .group summary .badge{margin-left:auto;font-size:12px;color:var(--muted);border:1px solid var(--border);padding:2px 6px;border-radius:999px}
+  .mix-list{display:flex;flex-direction:column;gap:14px;padding:12px}
+  .mix-item{display:flex;align-items:center;gap:20px;border:1px solid var(--border);border-radius:10px;padding:12px;text-decoration:none;background:var(--bg);transition:border-color .2s,transform .2s}
+  .mix-item:hover{border-color:var(--muted);transform:translateY(-2px)}
+  .mix-item img{width:200px;height:120px;object-fit:cover;border-radius:6px;flex-shrink:0}
+  .mix-item figcaption{color:var(--text);font-size:1rem;line-height:1.4}
+  .mix-item small{color:var(--muted);display:block;margin-top:6px;font-size:.9rem}
+  @media (max-width:600px){
+    .mix-item{flex-direction:column;align-items:flex-start}
+    .mix-item img{width:100%;height:auto;max-height:240px}
+    .mix-item figcaption{margin-top:10px}
+  }
+</style>
+
+
+
+
+
+
+
+    
+    
+    
+
+    
+        <details class="group" id="group-youtube" data-group="YouTube" data-slug="youtube">
+            <summary>YouTube <span class="badge">14</span></summary>
+            <div class="mix-list">
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=8WGoxI1bvI8" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/8WGoxI1bvI8/hqdefault.jpg" alt="Thumbnail for SKFF b2b FM | Proper Techno DJ Mix">
+        <figcaption>
+        SKFF b2b FM | Proper Techno DJ Mix
+
+        
+        
+            <small>
+            
+            22.04.2025
+             | 3h 03min
+             | Techno
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=i8qnjaO5ioU" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/i8qnjaO5ioU/hqdefault.jpg" alt="Thumbnail for FM | 12&quot;/h | Czwórka Polskie Radio">
+        <figcaption>
+        FM | 12&quot;/h | Czwórka Polskie Radio
+
+        
+        
+            <small>
+            
+            11.04.2024
+             | 50min
+             | Electro
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=zTmuI3wd87I" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/zTmuI3wd87I/hqdefault.jpg" alt="Thumbnail for SKFF b2b FM | Techno vinyl set">
+        <figcaption>
+        SKFF b2b FM | Techno vinyl set
+
+        
+        
+            <small>
+            
+            24.02.2024
+             | 2h 09min
+             | Techno
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=ErBoL8aMYNI&amp;t=3517s" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20231201_01.png" alt="Thumbnail for FM | G-Sound x FM | Broken Mindz Radio">
+        <figcaption>
+        FM | G-Sound x FM | Broken Mindz Radio
+
+        
+        
+            <small>
+            
+            01.12.2023
+             | 47min
+             | Electro
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=_jUz4UOfRuo&amp;t=1051s" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20201217_01.jpg" alt="Thumbnail for FM | FM &amp; Vyti Tauta [Samogęste] | Broken Mindz Radio">
+        <figcaption>
+        FM | FM &amp; Vyti Tauta [Samogęste] | Broken Mindz Radio
+
+        
+        
+            <small>
+            
+            17.12.2020
+             | 43min
+             | Techno
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=NWcc7OoCQOk&amp;t=4647s" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20170627_01.png" alt="Thumbnail for FM | Shari Vari &amp; FM | Broken Mindz Radio">
+        <figcaption>
+        FM | Shari Vari &amp; FM | Broken Mindz Radio
+
+        
+        
+            <small>
+            
+            27.06.2017
+             | 43min
+             | Techno
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=06RXqcR_tns" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/06RXqcR_tns/hqdefault.jpg" alt="Thumbnail for FM | NfSoP PODCAST #28 | Neurofunk Society of Poland">
+        <figcaption>
+        FM | NfSoP PODCAST #28 | Neurofunk Society of Poland
+
+        
+        
+            <small>
+            
+            10.2016
+             | 1h 02min
+             | Drum and bass
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=ylrcjMI5boA" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20161008_01.png" alt="Thumbnail for FM | Underground Session Ring">
+        <figcaption>
+        FM | Underground Session Ring
+
+        
+        
+            <small>
+            
+            08.10.2016
+             | 10min
+             | Drum and bass
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=81xn9T4oq0M&amp;t=108s" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20151115_01.png" alt="Thumbnail for FM | Techno vs. Drum&#39;n&#39;Bass | Broken Mindz Radio">
+        <figcaption>
+        FM | Techno vs. Drum&#39;n&#39;Bass | Broken Mindz Radio
+
+        
+        
+            <small>
+            
+            15.11.2015
+             | 43min
+             | Techno &amp; Drum and bass
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=thXcaFg9Rso" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20131231_01.png" alt="Thumbnail for FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session">
+        <figcaption>
+        FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session
+
+        
+        
+            <small>
+            
+            31.12.2013
+             | 2min
+             | Drum and bass
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=M5CKKZp4TWQ" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20131231_02.png" alt="Thumbnail for FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session">
+        <figcaption>
+        FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session
+
+        
+        
+            <small>
+            
+            31.12.2013
+             | 2min
+             | Drum and bass
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=dcpu6-HDbno" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20130510_01.png" alt="Thumbnail for FM b2b Gibo | Harem aka Orphanage">
+        <figcaption>
+        FM b2b Gibo | Harem aka Orphanage
+
+        
+        
+            <small>
+            
+            10.05.2013
+             | 3min
+             | Drum and bass&quot;
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=DeboTWBlWZc" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/20121123_01.png" alt="Thumbnail for FM b2b Gibo | Underground Session">
+        <figcaption>
+        FM b2b Gibo | Underground Session
+
+        
+        
+            <small>
+            
+            23.11.2012
+             | 1h 22min
+             | Drum and bass
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://www.youtube.com/watch?v=VHxSpNusDio" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/2011_01.png" alt="Thumbnail for FM | DNB PL Dj Battle 2011 | dnb.pl">
+        <figcaption>
+        FM | DNB PL Dj Battle 2011 | dnb.pl
+
+        
+        
+            <small>
+            
+            2011
+             | 43min
+             | Drum and bass
+            </small>
+        
+
+        
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </details>
+    
+
+    
+    
+    
+
+    
+        <details class="group" id="group-mixcloud" data-group="Mixcloud" data-slug="mixcloud">
+            <summary>Mixcloud <span class="badge">2</span></summary>
+            <div class="mix-list">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://mixcloud.com/fmmaciej/some-mix" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/mix1.jpg" alt="Thumbnail for Warehouse Pulse">
+        <figcaption>
+        Warehouse Pulse
+
+        
+        
+
+        <small>90 min • techno</small>
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://mixcloud.com/fmmaciej/another-mix" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/mix1.jpg" alt="Thumbnail for Night Drive">
+        <figcaption>
+        Night Drive
+
+        
+        
+
+        <small>70 min • electro</small>
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </details>
+    
+
+    
+    
+    
+
+    
+        <details class="group" id="group-soundcloud" data-group="SoundCloud" data-slug="soundcloud">
+            <summary>SoundCloud <span class="badge">1</span></summary>
+            <div class="mix-list">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://soundcloud.com/fmmaciej/some-track" target="_blank" rel="noopener">
+        <img src="/assets/music/mixes/mix1.jpg" alt="Thumbnail for Downtempo Journey">
+        <figcaption>
+        Downtempo Journey
+
+        
+        
+
+        <small>120 min  ambient</small>
+        </figcaption>
+    </a>
+
+                
+                
+                
+                
+                
+            </div>
+        </details>
+    
+
+    
+    
+    
+
+    
+        <details class="group" id="group-other" data-group="Other" data-slug="other">
+            <summary>Other <span class="badge">1</span></summary>
+            <div class="mix-list">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    
+    
+    
+    
+
+    <a class="mix-item" href="https://example.com/custom" target="_blank" rel="noopener">
+        
+        <figcaption>
+        Custom Link
+
+        
+        
+
+        <small>bez grupy → Other</small>
+        </figcaption>
+    </a>
+
+                
+                
+            </div>
+        </details>
+    
+
+
+<script>
+    (function() {
+        const heading = document.getElementById('mixesBreadcrumb');   // <h2 id="mixesBreadcrumb">/music/mixes <span id="groupSuffix"></span>
+        const suffix  = document.getElementById('groupSuffix');
+        if (!heading || !suffix) return;
+
+        // helpers
+        const fmt = (slug, label) => 
+            slug ? `<a href="/music/mixes#${slug}">/${label || slug}</a>` : '';
+
+        const setBreadcrumb = (slug, label) => {
+            suffix.innerHTML = slug ? fmt(slug, label) : '';
+            if (slug) history.replaceState(null, '', '#' + slug);
+            else history.replaceState(null, '', location.pathname);
+        };
+
+        const groups = Array.from(document.querySelectorAll('details.group'));
+        let activeId = null;
+
+        // highlight active group
+        const setActive = (el) => {
+            groups.forEach(g => g.classList.remove('is-active'));
+            if (el) el.classList.add('is-active');
+        };
+
+        // Click on summary → update breadcrumb immediately
+        document.querySelectorAll('details.group > summary').forEach(sum => {
+            sum.addEventListener('click', () => {
+                const wrap  = sum.parentElement;
+                const slug  = wrap?.dataset?.slug;
+                const label = (wrap?.dataset?.group || '').toLowerCase();
+                // odrocz minimalnie, by <details> zdążył się rozwinąć/zwinąć
+                setTimeout(() => {
+                    // jeśli zwinięte po kliknięciu → wróć do /music/mixes (bez sufiksu)
+                    if (!wrap.open) { setBreadcrumb(null, null); setActive(null); return; }
+                    setBreadcrumb(slug, label);
+                    setActive(wrap);
+                }, 0);
+            });
+        });
+
+        // IntersectionObserver → wybierz sekcję w kadrze
+        const io = new IntersectionObserver((entries) => {
+            // bierzemy tylko te w kadrze i sortujemy po największym udziale
+            const visible = entries.filter(en => en.isIntersecting)
+                                .sort((a,b) => (b.intersectionRatio||0) - (a.intersectionRatio||0));
+            if (visible.length) {
+                const top   = visible[0].target;
+                const slug  = top.dataset.slug;
+                const label = (top.dataset.group || '').toLowerCase();
+
+                // tylko jeśli sekcja jest faktycznie rozwinięta
+                if (top.open && top.id !== activeId) {
+                    activeId = top.id;
+                    setBreadcrumb(slug, label);
+                    setActive(top);
+                }
+            } else {
+                // nic nie jest w kadrze → cofamy suffix (np. po zwinięciu wszystkiego)
+                setBreadcrumb(null, null);
+                setActive(null);
+                activeId = null;
+            }
+        }, {
+            root: null,
+            rootMargin: '-20% 0px -40% 0px',
+            threshold: [0.2, 0.4, 0.6, 0.8]
+        });
+
+        groups.forEach(g => io.observe(g));
+
+        // Start: domyślnie TYLKO /music/mixes; jeśli jest hash → rozwiń i ustaw
+        const initFromHash = () => {
+            const slug = (location.hash || '').replace(/^#/, '');
+            if (!slug) { setBreadcrumb(null, null); return; }
+
+            const el = document.getElementById('group-' + slug);
+            if (el) {
+                if (!el.open) el.open = true;
+                el.scrollIntoView({ behavior: 'instant', block: 'start' });
+                setBreadcrumb(slug, (el.dataset.group || '').toLowerCase());
+                setActive(el);
+            } else {
+                setBreadcrumb(null, null);
+            }
+        };
+
+        initFromHash();
+    })();
+</script>
+
+    </main>
+
+    <footer>
+    <div>© <span id="year"></span> FM - served plain & simple</div>
+    <div class="social-icons">
+        <a href="https://instagram.com/fm.maciej" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/organisciak-maciej/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://stackoverflow.com/users/8387639/maciej-fm" title="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+        <a href="https://www.mixcloud.com/fmmaciej" title="MixCloud"><i class="fa-brands fa-mixcloud"></i></a>
+        <a href="https://www.soundcloud.com/fmmaciej" title="SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
+    </div>
+    </footer>
+    </div>
+
+    <!-- Drawer + backdrop -->
+    <div class="backdrop" id="backdrop" hidden></div>
+    <aside class="drawer" id="mobileDrawer" aria-hidden="true" aria-label="Mobile menu">
+        <header>
+        <strong>Menu</strong>
+        <button class="close" id="closeDrawer" aria-label="Close menu">×</button>
+        </header>
+        <nav>
+        <a href="/">/me</a>
+        <a href="/projects/">/projects</a>
+        <a href="/blog/">/blog</a>
+        <a href="https://github.com/fmmaciej" rel="me noopener">/github</a>
+        <a href="/music/">/music</a>
+        </nav>
+    </aside>
+
+    <script>
+        // Footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme toggle (monochrome FA icon)
+        const toggle = document.getElementById('themeToggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const icon = toggle.querySelector('i');
+            icon.className = document.body.classList.contains('light-theme') ? 'fas fa-sun' : 'fas fa-moon';
+        });
+
+        // Mobile drawer
+        const body = document.body;
+        const hamburger = document.getElementById('hamburger');
+        const drawer = document.getElementById('mobileDrawer');
+        const backdrop = document.getElementById('backdrop');
+        const closeBtn = document.getElementById('closeDrawer');
+
+        function openDrawer(){
+            body.classList.add('drawer-open');
+            drawer.setAttribute('aria-hidden','false');
+            backdrop.hidden = false;
+            hamburger.setAttribute('aria-expanded','true');
+            drawer.focus();
+        }
+
+        function closeDrawer(){
+            body.classList.remove('drawer-open');
+            drawer.setAttribute('aria-hidden','true');
+            backdrop.hidden = true;
+            hamburger.setAttribute('aria-expanded','false');
+            hamburger.focus();
+        }
+
+        hamburger.addEventListener('click', openDrawer);
+        closeBtn.addEventListener('click', closeDrawer);
+        backdrop.addEventListener('click', closeDrawer);
+        window.addEventListener('keydown', (e) => { if(e.key==='Escape') closeDrawer(); });
+
+        const typed = document.getElementById('typedText');
+        const cursorEl = document.getElementById('cursor');
+
+        // uruchamiaj tylko tam, gdzie jest terminal
+        if (typed) {
+            // znajdź najbliższy kontener z atrybutem data-terminal
+            const terminalBox = typed.closest('.terminal-box');
+            const fileFromPage = terminalBox?.dataset?.terminal;
+
+            // fallback na globalny plik, jeśli strona nie podała własnego
+            const DEFAULT_FILE = '/assets/terminal/default.txt';
+            const sourceFile = fileFromPage || DEFAULT_FILE;
+
+            async function fetchLines(filePath) {
+                try {
+                    const resp = await fetch(filePath, { cache: 'no-cache' });
+                    if (!resp.ok) throw new Error('fetch failed: ' + filePath);
+                    const text = await resp.text();
+                    return text
+                        .split(/\r?\n/)
+                        .map(l => l.trim())
+                        .filter(l => l && !l.startsWith('#'));
+                } catch (e) {
+                    return ['echo "Hello"'];
+                }
+            }
+
+            function typeLine(line) {
+                typed.textContent = '';
+                const clean = (line || '').replace(/\r?\n/g, '').trim();
+                let i = 0;
+                const speed = 100;
+
+                // upewnij się, że kursor stoi za tekstem
+                if (cursorEl && cursorEl.parentElement !== typed.parentElement) {
+                    typed.after(cursorEl);
+                }
+
+                (function t() {
+                if (i < clean.length) {
+                    typed.textContent += clean.charAt(i++);
+                    setTimeout(t, speed);
+                }
+                })();
+            }
+
+            (async function loop() {
+                    const lines = await fetchLines(sourceFile);
+                    const cycle = () => {
+                        typeLine(lines[Math.floor(Math.random() * lines.length)]);
+                        setTimeout(cycle, 10000 + Math.floor(Math.random() * 5000));
+                    };
+                    cycle();
+                })();
+        }
+
+    </script>
+</body>
+</html>

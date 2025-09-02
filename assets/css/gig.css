@@ -1,0 +1,9 @@
+.gig-meta{
+    padding:8px 10px;border-top:1px solid var(--border);
+    font-size:14px;color:var(--text);
+    display:flex;flex-direction:column;gap:2px;
+}
+
+.gig-meta .gig-date{font-weight:600;color:var(--muted);font-size:13px;}
+.gig-meta .gig-name{font-size:15px;font-weight:500;color:var(--text);}
+.gig-meta .gig-count{font-size:13px;color:var(--muted);}
