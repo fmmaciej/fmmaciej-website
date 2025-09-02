@@ -1,7 +1,9 @@
 module.exports = function(eleventyConfig) {
-    eleventyConfig.addPassthroughCopy({ "terminal_lines.txt": "terminal_lines.txt" });
-    eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
-    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs": "assets/music/gigs" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_display": "assets/music/gigs/_display" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_thumbs": "assets/music/gigs/_thumbs" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/mixes": "assets/music/mixes" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/terminal": "assets/terminal" });
 
     // BLOG
     eleventyConfig.addCollection("blog", (collection) => {

@@ -41,10 +41,10 @@ permalink: "/music/gigs/{{ event.year }}/{{ event.key }}/"
 
 <div class="gig-grid">
 {% for it in event.items %}
-<a class="gig-card" href="{{ it.src }}" target="_blank" rel="noopener">
+<a class="gig-card" href="{{ it.display1600 }}" target="_blank" rel="noopener">
     <img
-        src="{{ it.thumb480 or it.thumb or it.src }}"
-        srcset="{{ it.thumb480 or it.thumb or it.src }} 480w, {{ it.thumb960 or it.src }} 960w"
+        src="{{ it.thumb480 or it.thumb or it.display1600 }}"
+        srcset="{{ it.thumb480 or it.thumb or it.display1600 }} 480w, {{ it.thumb960 or it.display1600 }} 960w"
         sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
         alt="{{ it.alt }}"
         width="{{ it.thumb_w or 480 }}"
