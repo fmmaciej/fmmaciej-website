@@ -9,7 +9,7 @@
     "scripts": {
         "dev": "eleventy --serve",
         "build": "eleventy",
-        "gigs": "tools/.venv/bin/python tools/build_gigs_json.py --thumbs"
+        "gigs": "tools/.venv/bin/python tools/build_gigs_json.py --thumbs --display --clean --report --parallel 4"
     },
     "repository": {
         "type": "git",

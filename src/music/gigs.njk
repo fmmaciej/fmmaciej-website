@@ -84,9 +84,9 @@ terminalFile: /assets/terminal/gigs.txt
                         {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
                         decoding="async">
                     <div class="gig-meta">
-                    <div class="gig-date">{{ ev.date }}</div>
-                    <div class="gig-name">{% if ev.name %}{{ ev.name }}{% else %}&nbsp;{% endif %}</div>
-                    <div class="gig-count">{{ ev.count }} photo{% if ev.count > 1 %}s{% endif %}</div>
+                        <div class="gig-date">{{ ev.date }}</div>
+                        <div class="gig-name">{% if ev.name %}{{ ev.name }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="gig-count">{{ ev.count }} photo{% if ev.count > 1 %}s{% endif %}</div>
                     </div>
                 </a>
             {% endif %}
