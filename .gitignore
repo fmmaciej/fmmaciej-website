@@ -23,7 +23,9 @@ fmmaciej.code-workspace
 # Git
 .git-ftp-ignore
 
-# Build dir
+src/assets/music/gigs/incoming/
+
 www/
 node_modules/
 notes/
+tools/

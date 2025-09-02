@@ -1,6 +1,7 @@
 module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "terminal_lines.txt": "terminal_lines.txt" });
     eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs": "assets/music/gigs" });
 
     // BLOG
     eleventyConfig.addCollection("blog", (collection) => {

@@ -1,0 +1,60 @@
+---
+layout: layout.njk
+terminal: false
+pagination:
+  data: gigEvents
+  size: 1
+  alias: event
+permalink: "/music/gigs/{{ event.year }}/{{ event.key }}/"
+---
+
+<h2><a href="/music/">/music</a><a href="/music/gigs/">/gigs</a><a href="/music/gigs#y-{{ event.year }}">/{{ event.year }}</a>/{% if event.name %}{{ event.name }}{% else %}{{ event.date }}{% endif %}
+</h2>
+
+<style>
+    .gig-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+    }
+
+    .gig-card {
+        display:block;
+        border:1px solid var(--border);
+        border-radius:10px;
+        overflow:hidden;
+        background:var(--bg);
+        transition:transform .15s ease,border-color .15s ease;
+        text-decoration:none;
+        color:var(--text);
+    }
+
+    .gig-card:hover { transform: translateY(-2px); border-color: var(--muted); }
+    .gig-card img { width:100%; height:300px; object-fit:cover; display:block; }
+    @media (max-width: 600px){ .gig-card img { height:52vw; max-height:360px; } }
+</style>
+
+{% macro fmtDate(iso) %}
+    {% set y = iso.slice(0,4) %}{% set m = iso.slice(5,7) %}{% set d = iso.slice(8,10) %}
+    {{ y }}-{{ m }}-{{ d }}
+{% endmacro %}
+
+<div class="gig-grid">
+{% for it in event.items %}
+<a class="gig-card" href="{{ it.src }}" target="_blank" rel="noopener">
+    <img
+        src="{{ it.thumb480 or it.thumb or it.src }}"
+        srcset="{{ it.thumb480 or it.thumb or it.src }} 480w, {{ it.thumb960 or it.src }} 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="{{ it.alt }}"
+        width="{{ it.thumb_w or 480 }}"
+        height="{{ it.thumb_h or 300 }}"
+        loading="lazy" decoding="async">
+    <div class="gig-meta">
+        <span class="dot">{{ fmtDate(it.date) }}</span>
+        {% if event.name %}<span class="dot">{{ event.name }}</span>{% endif %}
+        {% if it.seq %}<span class="dot">#{{ it.seq }}</span>{% endif %}
+    </div>
+</a>
+{% endfor %}
+</div>
