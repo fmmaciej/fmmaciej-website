@@ -1,0 +1,24 @@
+* text=auto eol=lf
+
+*.webp binary
+*.avif binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.heic binary
+*.tif  binary
+*.tiff binary
+
+*.webp merge=ours
+*.avif merge=ours
+*.jpg  merge=ours
+*.jpeg merge=ours
+*.png  merge=ours
+*.gif  merge=ours
+*.heic merge=ours
+*.tif  merge=ours
+*.tiff merge=ours
+
+src/assets/music/gigs/_thumbs/** linguist-generated
+src/assets/music/gigs/_display/** linguist-generated

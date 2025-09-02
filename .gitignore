@@ -16,16 +16,25 @@ Desktop.ini
 
 # IDE / edytory
 .vscode/
+!.vscode/settings.json
 .idea/
 *.swp
 fmmaciej.code-workspace
+
+# Build caches
+.cache/
+.eleventy.js.cache/
 
 # Git
 .git-ftp-ignore
 
 src/assets/music/gigs/incoming/
-
 www/
 node_modules/
-notes/
 tools/
+
+# Node / JS
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
