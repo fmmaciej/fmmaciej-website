@@ -56,7 +56,7 @@ Music is my second language.
 All mixes and gigs are archived here.  
 
 <p class="booking">
-  → Booking / inquiries: <a href="mailto:booking@twojadomena.com" class="booking-link">fm@fmmaciej.com</a>
+  → Booking / inquiries: <a href="mailto:fm@fmmaciej.com" class="booking-link">fm@fmmaciej.com</a>
 </p>
 
 <ul class="music-list">
