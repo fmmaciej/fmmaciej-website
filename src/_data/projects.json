@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Listify",
+        "desc": "Event-driven C++ app to sync playlists across Spotify / YouTube / etc.",
+        "year": 2025,
+        "stack": ["C++20", "Qt/QML", "CMake", "libcurl", "nlohmann/json", "spdlog", "fmt", "GTest"],
+        "links": {
+            "repo": "https://github.com/fmmaciej/listify",
+            "docs": "/listify/",
+            "download": "/listify/downloads/"
+        },
+        "status": "In development"
+    },
+    {
+        "name": "DiscogsUpdate",
+        "desc": "Python script that gathers records that I bought accross different websites and updates my record collection on discogs.",
+        "year": 2021,
+        "stack": ["Python"],
+        "links": {
+            "repo": "https://github.com/fmmaciej/discogsupdate"
+        },
+        "status": "Prototype"
+    }
+]

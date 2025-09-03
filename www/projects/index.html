@@ -115,7 +115,6 @@
                 <a href="/">/me</a>
                 <a href="/projects/">/projects</a>
                 <a href="/blog/">/blog</a>
-                <a href="https://github.com/fmmaciej" rel="me noopener">/github</a>
                 <a href="/music/">/music</a>
                 <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffie</a>
             </div>
@@ -136,11 +135,185 @@
     
 
     <main style="padding:40px 0;">
-        <h2>/projects</h2>
-<ul>
-  <li><strong>Listify</strong> - narzędzie do zarządzania playlistami.</li>
-  <li><strong>Inne projekty</strong> — miejsce na kolejne wpisy.</li>
-</ul>
+        
+<style>
+    .proj-list{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        margin-top:12px
+    }
+
+    .proj-item{
+        display:flex;
+        flex-direction:column;
+        gap:8px;
+        border:1px solid var(--border);
+        border-radius:10px;
+        background:var(--bg);
+        padding:14px;
+        transition:transform .15s,border-color .15s
+    }
+    .proj-item:hover{
+        transform:translateY(-2px);
+        border-color:var(--muted)}
+
+    .proj-head{
+        display:flex;
+        gap:10px;
+        align-items:baseline;
+        justify-content:space-between
+    }
+
+    .proj-name{
+        font-weight:700
+    }
+
+    .proj-year{
+        color:var(--muted);
+        font-size:13px;
+        white-space:nowrap;
+        margin-left:12px
+    }
+
+    .proj-desc{
+        margin:0
+    }
+
+    .proj-meta{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .tags{
+        display:flex;
+        flex-wrap:wrap;
+        gap:6px
+    }
+    .tag{
+        border:1px solid var(--border);
+        border-radius:999px;
+        padding:2px 8px;
+        font-size:12px;
+        color:var(--muted)
+    }
+
+    .links{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 14px;
+        align-items: center;
+    }
+    .links a{
+        text-decoration: none;
+        border-bottom: 1px dotted var(--muted);
+    }
+    .links a:hover{
+        border-bottom-color: var(--link-hover);
+    }
+
+    .status{
+        color: var(--muted);
+        font-size: 12px;
+    }
+
+    @media (max-width:700px){
+        .proj-meta{
+            flex-direction:column;
+            align-items:flex-start;
+            gap:10px
+        }
+    }
+
+    .gh-link a{
+        border-bottom:1px dotted var(--muted);
+        text-decoration:none
+    }
+    .gh-link a:hover{
+        border-bottom-color:var(--link-hover)
+    }
+</style>
+
+<h2><a href="/projects/">/projects</a></h2>
+
+<p class="gh-link">
+    More projects live on <a href="https://github.com/your-gh" target="_blank" rel="noopener">GitHub</a>.
+</p>
+
+
+
+
+<div class="proj-list">
+
+    <article class="proj-item">
+        <div class="proj-head">
+            <div class="proj-name">Listify</div>
+            <div class="proj-year">2025</div>
+        </div>
+
+        <p class="proj-desc">Event-driven C++ app to sync playlists across Spotify / YouTube / etc.</p>
+
+        <div class="proj-meta">
+            
+                <div class="tags">
+                    <span class="tag">C++20</span><span class="tag">Qt/QML</span><span class="tag">CMake</span><span class="tag">libcurl</span><span class="tag">nlohmann/json</span><span class="tag">spdlog</span><span class="tag">fmt</span><span class="tag">GTest</span>
+                </div>
+            
+
+            <div class="links">
+                
+                    <a href="https://github.com/fmmaciej/listify" target="_blank" rel="noopener">repo</a>
+                
+
+                
+                    <a href="/listify/">docs</a>
+                
+
+                
+                    <a href="/listify/downloads/">download</a>
+                
+
+                
+                    <span class="status">— In development</span>
+                
+            </div>
+        </div>
+    </article>
+
+    <article class="proj-item">
+        <div class="proj-head">
+            <div class="proj-name">DiscogsUpdate</div>
+            <div class="proj-year">2021</div>
+        </div>
+
+        <p class="proj-desc">Python script that gathers records that I bought accross different websites and updates my record collection on discogs.</p>
+
+        <div class="proj-meta">
+            
+                <div class="tags">
+                    <span class="tag">Python</span>
+                </div>
+            
+
+            <div class="links">
+                
+                    <a href="https://github.com/fmmaciej/discogsupdate" target="_blank" rel="noopener">repo</a>
+                
+
+                
+
+                
+
+                
+                    <span class="status">— Prototype</span>
+                
+            </div>
+        </div>
+    </article>
+
+</div>
     </main>
 
     <footer>
