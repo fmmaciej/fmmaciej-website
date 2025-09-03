@@ -52,7 +52,7 @@ terminalFile: /assets/terminal/music.txt
     }
 </style>
 
-Music is my second language.  
+Two things that really drew me to vinyl were the expense and the inconvenience.  
 All mixes and gigs are archived here.  
 
 <p class="booking">

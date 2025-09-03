@@ -141,21 +141,100 @@
 </h2>
 
 <style>
-  .group{border:1px solid var(--border);border-radius:10px;margin:16px 0;overflow:hidden;background:var(--bg)}
-  .group>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:600;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);user-select:none}
-  .group>summary::-webkit-details-marker{display:none}
-  .group summary .badge{margin-left:auto;font-size:12px;color:var(--muted);border:1px solid var(--border);padding:2px 6px;border-radius:999px}
-  .mix-list{display:flex;flex-direction:column;gap:14px;padding:12px}
-  .mix-item{display:flex;align-items:center;gap:20px;border:1px solid var(--border);border-radius:10px;padding:12px;text-decoration:none;background:var(--bg);transition:border-color .2s,transform .2s}
-  .mix-item:hover{border-color:var(--muted);transform:translateY(-2px)}
-  .mix-item img{width:200px;height:120px;object-fit:cover;border-radius:6px;flex-shrink:0}
-  .mix-item figcaption{color:var(--text);font-size:1rem;line-height:1.4}
-  .mix-item small{color:var(--muted);display:block;margin-top:6px;font-size:.9rem}
-  @media (max-width:600px){
-    .mix-item{flex-direction:column;align-items:flex-start}
-    .mix-item img{width:100%;height:auto;max-height:240px}
-    .mix-item figcaption{margin-top:10px}
-  }
+    .group{
+        border:1px solid var(--border);
+        border-radius:10px;
+        margin:16px 0;
+        overflow:hidden;
+        background:var(--bg)
+    }
+
+    .group>summary{
+        list-style:none;
+        cursor:pointer;
+        padding:12px 14px;
+        font-weight:600;
+        display:flex;
+        align-items:center;
+        gap:10px;
+        border-bottom:1px solid var(--border);
+        user-select:none
+    }
+    .group>summary::-webkit-details-marker{
+        display:none
+    }
+
+    .group summary .badge{
+        margin-left:auto;
+        font-size:12px;
+        color:var(--muted);
+        border:1px solid var(--border);
+        padding:2px 6px;
+        border-radius:999px
+    }
+
+    .mix-list{
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        padding:12px
+    }
+
+    .mix-item {
+        display:flex;
+        align-items:center;
+        gap:20px;
+        border:1px solid var(--border);
+        border-radius:10px;
+        padding:12px;
+        text-decoration:none;
+        background:var(--bg);
+        transition:border-color .2s;
+        overflow: hidden;
+    }
+    .mix-item:hover {
+        border-color:var(--muted);
+    }
+
+    .mix-item img {
+        width:200px;
+        height:120px;
+        object-fit:cover;
+        border-radius:6px;
+        flex-shrink:0;
+        transition: transform 0.3s ease;
+    }
+    .mix-item:hover img {
+        transform: scale(1.05);
+    }
+
+    .mix-item figcaption{
+        color:var(--text);
+        font-size:1rem;
+        line-height:1.4
+    }
+
+    .mix-item small{
+        color:var(--muted);
+        display:block;
+        margin-top:6px;
+        font-size:.9rem
+    }
+
+    @media (max-width:600px){
+        .mix-item{
+            flex-direction:column;
+            align-items:flex-start
+        }
+        .mix-item img{
+            width:100%;
+            height:auto;
+            max-height:240px
+        }
+        .mix-item figcaption{
+            margin-top:10px
+        }
+    }
 </style>
 
 
@@ -163,694 +242,965 @@
 
 
 
+    
+
+
+
+
 
     
     
     
-
-    
-        <details class="group" id="group-youtube" data-group="YouTube" data-slug="youtube">
-            <summary>YouTube <span class="badge">14</span></summary>
-            <div class="mix-list">
-                
-                
-                
-                    
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=8WGoxI1bvI8" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/8WGoxI1bvI8/hqdefault.jpg" alt="Thumbnail for SKFF b2b FM | Proper Techno DJ Mix">
-        <figcaption>
-        SKFF b2b FM | Proper Techno DJ Mix
-
         
         
-            <small>
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+        <details class="group" data-key="youtube">
+        <summary>YouTube <span class="badge">14</span></summary>
+
+        <div class="mix-list">
             
-            22.04.2025
-             | 3h 03min
-             | Techno
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
-                    
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=i8qnjaO5ioU" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/i8qnjaO5ioU/hqdefault.jpg" alt="Thumbnail for FM | 12&quot;/h | Czwórka Polskie Radio">
-        <figcaption>
-        FM | 12&quot;/h | Czwórka Polskie Radio
-
-        
-        
-            <small>
             
-            11.04.2024
-             | 50min
-             | Electro
-            </small>
-        
+            <a class="mix-item" href="https://www.youtube.com/watch?v=8WGoxI1bvI8" target="_blank" rel="noopener">
+                <img src="https://img.youtube.com/vi/8WGoxI1bvI8/hqdefault.jpg" alt="Thumbnail for SKFF b2b FM | Proper Techno DJ Mix">
 
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
+                <figcaption>
+                    SKFF b2b FM | Proper Techno DJ Mix
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=zTmuI3wd87I" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/zTmuI3wd87I/hqdefault.jpg" alt="Thumbnail for SKFF b2b FM | Techno vinyl set">
-        <figcaption>
-        SKFF b2b FM | Techno vinyl set
-
-        
-        
-            <small>
-            
-            24.02.2024
-             | 2h 09min
-             | Techno
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=ErBoL8aMYNI&amp;t=3517s" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20231201_01.png" alt="Thumbnail for FM | G-Sound x FM | Broken Mindz Radio">
-        <figcaption>
-        FM | G-Sound x FM | Broken Mindz Radio
-
-        
-        
-            <small>
-            
-            01.12.2023
-             | 47min
-             | Electro
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=_jUz4UOfRuo&amp;t=1051s" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20201217_01.jpg" alt="Thumbnail for FM | FM &amp; Vyti Tauta [Samogęste] | Broken Mindz Radio">
-        <figcaption>
-        FM | FM &amp; Vyti Tauta [Samogęste] | Broken Mindz Radio
-
-        
-        
-            <small>
-            
-            17.12.2020
-             | 43min
-             | Techno
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=NWcc7OoCQOk&amp;t=4647s" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20170627_01.png" alt="Thumbnail for FM | Shari Vari &amp; FM | Broken Mindz Radio">
-        <figcaption>
-        FM | Shari Vari &amp; FM | Broken Mindz Radio
-
-        
-        
-            <small>
-            
-            27.06.2017
-             | 43min
-             | Techno
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
+                    <small>22.04.2025 | 3h 03min | Techno</small>
                     
-    
-    
-    
+                </figcaption>
 
-    <a class="mix-item" href="https://www.youtube.com/watch?v=06RXqcR_tns" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/06RXqcR_tns/hqdefault.jpg" alt="Thumbnail for FM | NfSoP PODCAST #28 | Neurofunk Society of Poland">
-        <figcaption>
-        FM | NfSoP PODCAST #28 | Neurofunk Society of Poland
-
-        
-        
-            <small>
+            </a>
             
-            10.2016
-             | 1h 02min
-             | Drum and bass
-            </small>
-        
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=i8qnjaO5ioU" target="_blank" rel="noopener">
+                <img src="https://img.youtube.com/vi/i8qnjaO5ioU/hqdefault.jpg" alt="Thumbnail for FM | 12&quot;/h | Czwórka Polskie Radio">
 
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
+                <figcaption>
+                    FM | 12&quot;/h | Czwórka Polskie Radio
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=ylrcjMI5boA" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20161008_01.png" alt="Thumbnail for FM | Underground Session Ring">
-        <figcaption>
-        FM | Underground Session Ring
-
-        
-        
-            <small>
-            
-            08.10.2016
-             | 10min
-             | Drum and bass
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=81xn9T4oq0M&amp;t=108s" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20151115_01.png" alt="Thumbnail for FM | Techno vs. Drum&#39;n&#39;Bass | Broken Mindz Radio">
-        <figcaption>
-        FM | Techno vs. Drum&#39;n&#39;Bass | Broken Mindz Radio
-
-        
-        
-            <small>
-            
-            15.11.2015
-             | 43min
-             | Techno &amp; Drum and bass
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=thXcaFg9Rso" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20131231_01.png" alt="Thumbnail for FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session">
-        <figcaption>
-        FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session
-
-        
-        
-            <small>
-            
-            31.12.2013
-             | 2min
-             | Drum and bass
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=M5CKKZp4TWQ" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20131231_02.png" alt="Thumbnail for FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session">
-        <figcaption>
-        FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session
-
-        
-        
-            <small>
-            
-            31.12.2013
-             | 2min
-             | Drum and bass
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
+                    <small>11.04.2024 | 50min | Electro</small>
                     
-    
-    
-    
+                </figcaption>
 
-    <a class="mix-item" href="https://www.youtube.com/watch?v=dcpu6-HDbno" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20130510_01.png" alt="Thumbnail for FM b2b Gibo | Harem aka Orphanage">
-        <figcaption>
-        FM b2b Gibo | Harem aka Orphanage
-
-        
-        
-            <small>
+            </a>
             
-            10.05.2013
-             | 3min
-             | Drum and bass&quot;
-            </small>
-        
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=zTmuI3wd87I" target="_blank" rel="noopener">
+                <img src="https://img.youtube.com/vi/zTmuI3wd87I/hqdefault.jpg" alt="Thumbnail for SKFF b2b FM | Techno vinyl set">
 
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
+                <figcaption>
+                    SKFF b2b FM | Techno vinyl set
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://www.youtube.com/watch?v=DeboTWBlWZc" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/20121123_01.png" alt="Thumbnail for FM b2b Gibo | Underground Session">
-        <figcaption>
-        FM b2b Gibo | Underground Session
-
-        
-        
-            <small>
-            
-            23.11.2012
-             | 1h 22min
-             | Drum and bass
-            </small>
-        
-
-        
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
                     
-    
-    
-    
+                    
+                    
+                    <small>24.02.2024 | 2h 09min | Techno</small>
+                    
+                </figcaption>
 
-    <a class="mix-item" href="https://www.youtube.com/watch?v=VHxSpNusDio" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/2011_01.png" alt="Thumbnail for FM | DNB PL Dj Battle 2011 | dnb.pl">
-        <figcaption>
-        FM | DNB PL Dj Battle 2011 | dnb.pl
-
-        
-        
-            <small>
+            </a>
             
-            2011
-             | 43min
-             | Drum and bass
-            </small>
-        
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=ErBoL8aMYNI&amp;t=3517s" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20231201_01.png" alt="Thumbnail for FM | G-Sound x FM | Broken Mindz Radio">
 
-        
-        </figcaption>
-    </a>
+                <figcaption>
+                    FM | G-Sound x FM | Broken Mindz Radio
+                    
+                    
+                    
+                    
+                    <small>01.12.2023 | 47min | Electro</small>
+                    
+                </figcaption>
 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            </div>
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=_jUz4UOfRuo&amp;t=1051s" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20201217_01.jpg" alt="Thumbnail for FM | FM &amp; Vyti Tauta [Samogęste] | Broken Mindz Radio">
+
+                <figcaption>
+                    FM | FM &amp; Vyti Tauta [Samogęste] | Broken Mindz Radio
+                    
+                    
+                    
+                    
+                    <small>17.12.2020 | 43min | Techno</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=NWcc7OoCQOk&amp;t=4647s" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20170627_01.png" alt="Thumbnail for FM | Shari Vari &amp; FM | Broken Mindz Radio">
+
+                <figcaption>
+                    FM | Shari Vari &amp; FM | Broken Mindz Radio
+                    
+                    
+                    
+                    
+                    <small>27.06.2017 | 43min | Techno</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=06RXqcR_tns" target="_blank" rel="noopener">
+                <img src="https://img.youtube.com/vi/06RXqcR_tns/hqdefault.jpg" alt="Thumbnail for FM | NfSoP PODCAST #28 | Neurofunk Society of Poland">
+
+                <figcaption>
+                    FM | NfSoP PODCAST #28 | Neurofunk Society of Poland
+                    
+                    
+                    
+                    
+                    <small>10.2016 | 1h 02min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=ylrcjMI5boA" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20161008_01.png" alt="Thumbnail for FM | Underground Session Ring">
+
+                <figcaption>
+                    FM | Underground Session Ring
+                    
+                    
+                    
+                    
+                    <small>08.10.2016 | 10min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=81xn9T4oq0M&amp;t=108s" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20151115_01.png" alt="Thumbnail for FM | Techno vs. Drum&#39;n&#39;Bass | Broken Mindz Radio">
+
+                <figcaption>
+                    FM | Techno vs. Drum&#39;n&#39;Bass | Broken Mindz Radio
+                    
+                    
+                    
+                    
+                    <small>15.11.2015 | 43min | Techno &amp; Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=thXcaFg9Rso" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20131231_01.png" alt="Thumbnail for FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session">
+
+                <figcaption>
+                    FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session
+                    
+                    
+                    
+                    
+                    <small>31.12.2013 | 2min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=M5CKKZp4TWQ" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20131231_02.png" alt="Thumbnail for FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session">
+
+                <figcaption>
+                    FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session
+                    
+                    
+                    
+                    
+                    <small>31.12.2013 | 2min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=dcpu6-HDbno" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20130510_01.png" alt="Thumbnail for FM b2b Gibo | Harem aka Orphanage">
+
+                <figcaption>
+                    FM b2b Gibo | Harem aka Orphanage
+                    
+                    
+                    
+                    
+                    <small>10.05.2013 | 3min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=DeboTWBlWZc" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20121123_01.png" alt="Thumbnail for FM b2b Gibo | Underground Session">
+
+                <figcaption>
+                    FM b2b Gibo | Underground Session
+                    
+                    
+                    
+                    
+                    <small>23.11.2012 | 1h 22min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.youtube.com/watch?v=VHxSpNusDio" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/2011_01.png" alt="Thumbnail for FM | DNB PL Dj Battle 2011 | dnb.pl">
+
+                <figcaption>
+                    FM | DNB PL Dj Battle 2011 | dnb.pl
+                    
+                    
+                    
+                    
+                    <small>2011 | 43min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+        </div>
         </details>
     
 
     
     
     
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
 
     
-        <details class="group" id="group-mixcloud" data-group="Mixcloud" data-slug="mixcloud">
-            <summary>Mixcloud <span class="badge">2</span></summary>
-            <div class="mix-list">
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+        <details class="group" data-key="mixcloud">
+        <summary>MixCloud <span class="badge">10</span></summary>
+
+        <div class="mix-list">
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/30112017_1800_-_fm__elektrodisko_radio_żak/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/20171130_ElektrodiskoRadioZak_01_960.webp" alt="Thumbnail for FM | Elektrodisko | Radio Żak">
+
+                <figcaption>
+                    FM | Elektrodisko | Radio Żak
                     
-    
-    
-    
-
-    <a class="mix-item" href="https://mixcloud.com/fmmaciej/some-mix" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/mix1.jpg" alt="Thumbnail for Warehouse Pulse">
-        <figcaption>
-        Warehouse Pulse
-
-        
-        
-
-        <small>90 min • techno</small>
-        </figcaption>
-    </a>
-
-                
-                
-                
-                
                     
-    
-    
-    
+                    
+                    
+                    <small>30.11.2017 | 60min | Techno</small>
+                    
+                </figcaption>
 
-    <a class="mix-item" href="https://mixcloud.com/fmmaciej/another-mix" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/mix1.jpg" alt="Thumbnail for Night Drive">
-        <figcaption>
-        Night Drive
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/uds-podcast-vol-12/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/uds_logo.png" alt="Thumbnail for UDS podcast #12">
 
-        
-        
+                <figcaption>
+                    UDS podcast #12
+                    
+                    
+                    
+                    
+                    <small>12.2014 | 1h 18min | Drum and bass</small>
+                    
+                </figcaption>
 
-        <small>70 min • electro</small>
-        </figcaption>
-    </a>
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/fm-techstep-mix-4/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mix 4 (07.2014)">
 
-                
-                
-                
-                
-                
-                
-                
-                
-            </div>
+                <figcaption>
+                    Techstep mix 4 (07.2014)
+                    
+                    
+                    
+                    
+                    <small>07.2014 | 60min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/techbreak-16-20112012/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/techbreak_logo.png" alt="Thumbnail for FM | TechBreak | Radio Break.fm">
+
+                <figcaption>
+                    FM | TechBreak | Radio Break.fm
+                    
+                    
+                    
+                    
+                    <small>20.11.2012 | 60min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/techbreak-03-17042012/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/techbreak_logo.png" alt="Thumbnail for FM | TechBreak | Radio Break.fm">
+
+                <figcaption>
+                    FM | TechBreak | Radio Break.fm
+                    
+                    
+                    
+                    
+                    <small>17.04.2012 | 60min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/techstep-mix-3/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mix 3 (01.2012)">
+
+                <figcaption>
+                    Techstep mix 3 (01.2012)
+                    
+                    
+                    
+                    
+                    <small>01.2012 | 60min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/minitechstep-mix-2/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mini mix 2 (11.2011)">
+
+                <figcaption>
+                    Techstep mini mix 2 (11.2011)
+                    
+                    
+                    
+                    
+                    <small>11.2011 | 40min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/techstep-mix-2/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mix 2 (10.2011)">
+
+                <figcaption>
+                    Techstep mix 2 (10.2011)
+                    
+                    
+                    
+                    
+                    <small>10.2011 | 1h 00min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/1999-2003-techstep-mix/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mix (06.2011)">
+
+                <figcaption>
+                    Techstep mix (06.2011)
+                    
+                    
+                    
+                    
+                    <small>06.2011 | 52min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://www.mixcloud.com/fmmaciej/minitechstep-mix-1-012011-dnbpl/" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/2011_01.png" alt="Thumbnail for Techstep mini mix 1 (01.2011) (dnb.pl dj battle 2011)">
+
+                <figcaption>
+                    Techstep mini mix 1 (01.2011) (dnb.pl dj battle 2011)
+                    
+                    
+                    
+                    
+                    <small>01.2011 | 27min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+        </div>
         </details>
     
 
     
     
     
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+        
+        
+    
+        
+        
+    
 
     
-        <details class="group" id="group-soundcloud" data-group="SoundCloud" data-slug="soundcloud">
-            <summary>SoundCloud <span class="badge">1</span></summary>
-            <div class="mix-list">
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+        <details class="group" data-key="soundcloud">
+        <summary>SoundCloud <span class="badge">5</span></summary>
+
+        <div class="mix-list">
+            
+            
+            <a class="mix-item" href="https://soundcloud.com/fmmaciej/fm-uds-podcast-vol-12" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/uds_logo.png" alt="Thumbnail for UDS podcast #12">
+
+                <figcaption>
+                    UDS podcast #12
                     
-    
-    
-    
+                    
+                    
+                    
+                    <small>12.2014 | 1h 18min | Drum and bass</small>
+                    
+                </figcaption>
 
-    <a class="mix-item" href="https://soundcloud.com/fmmaciej/some-track" target="_blank" rel="noopener">
-        <img src="/assets/music/mixes/mix1.jpg" alt="Thumbnail for Downtempo Journey">
-        <figcaption>
-        Downtempo Journey
+            </a>
+            
+            
+            <a class="mix-item" href="https://soundcloud.com/fmmaciej/fm-techstep_mix_4-07-2014" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mix 4">
 
-        
-        
+                <figcaption>
+                    Techstep mix 4
+                    
+                    
+                    
+                    
+                    <small>07.2014 | 1h 09min | Drum and bass</small>
+                    
+                </figcaption>
 
-        <small>120 min  ambient</small>
-        </figcaption>
-    </a>
+            </a>
+            
+            
+            <a class="mix-item" href="https://soundcloud.com/fmmaciej/fm-techstep_mix_3-01-2012" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mix 3">
 
-                
-                
-                
-                
-                
-            </div>
+                <figcaption>
+                    Techstep mix 3
+                    
+                    
+                    
+                    
+                    <small>01.2012 | 1h 20min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://soundcloud.com/fmmaciej/fm-techstep_mix_2-10-2011" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mix 2">
+
+                <figcaption>
+                    Techstep mix 2
+                    
+                    
+                    
+                    
+                    <small>10.2011 | 1h 00min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+            
+            <a class="mix-item" href="https://soundcloud.com/fmmaciej/fm-techstep_mix" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/fm_01.jpeg" alt="Thumbnail for Techstep mix">
+
+                <figcaption>
+                    Techstep mix
+                    
+                    
+                    
+                    
+                    <small>06.2011 | 52min | Drum and bass</small>
+                    
+                </figcaption>
+
+            </a>
+            
+        </div>
         </details>
     
 
     
     
     
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+        
+        
+    
 
     
-        <details class="group" id="group-other" data-group="Other" data-slug="other">
-            <summary>Other <span class="badge">1</span></summary>
-            <div class="mix-list">
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+        <details class="group" data-key="other">
+        <summary>Other <span class="badge">1</span></summary>
+
+        <div class="mix-list">
+            
+            
+            <a class="mix-item" href="https://mixcloud.com/techbreak" target="_blank" rel="noopener">
+                <img src="/assets/music/mixes/techbreak_logo.png" alt="Thumbnail for TechBreak Archive | Break.fm">
+
+                <figcaption>
+                    TechBreak Archive | Break.fm
                     
-    
-    
-    
+                    
+                    
+                    
+                    <small>03.2012 - 03.2013 | Drum and bass</small>
+                    
+                </figcaption>
 
-    <a class="mix-item" href="https://example.com/custom" target="_blank" rel="noopener">
-        
-        <figcaption>
-        Custom Link
-
-        
-        
-
-        <small>bez grupy → Other</small>
-        </figcaption>
-    </a>
-
-                
-                
-            </div>
+            </a>
+            
+        </div>
         </details>
     
 

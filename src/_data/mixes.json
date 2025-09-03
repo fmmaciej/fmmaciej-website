@@ -1,0 +1,286 @@
+{
+    "groups": ["YouTube", "MixCloud", "SoundCloud", "Other"],
+    "items": [
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=8WGoxI1bvI8",
+            "title": "SKFF b2b FM | Proper Techno DJ Mix",
+            "date": "22.04.2025",
+            "duration": "3h 03min",
+            "genre": "Techno"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=i8qnjaO5ioU" ,
+            "title": "FM | 12\"/h | Czwórka Polskie Radio",
+            "date": "11.04.2024",
+            "duration": "50min",
+            "genre": "Electro"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=zTmuI3wd87I" ,
+            "title": "SKFF b2b FM | Techno vinyl set",
+            "date": "24.02.2024",
+            "duration": "2h 09min",
+            "genre": "Techno"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=ErBoL8aMYNI&t=3517s",
+            "img": "/assets/music/mixes/20231201_01.png",
+            "title": "FM | G-Sound x FM | Broken Mindz Radio",
+            "date": "01.12.2023",
+            "duration": "47min",
+            "genre": "Electro"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=_jUz4UOfRuo&t=1051s",
+            "img": "/assets/music/mixes/20201217_01.jpg",
+            "title": "FM | FM & Vyti Tauta [Samogęste] | Broken Mindz Radio",
+            "date": "17.12.2020",
+            "duration": "43min",
+            "genre": "Techno"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=NWcc7OoCQOk&t=4647s",
+            "img": "/assets/music/mixes/20170627_01.png",
+            "title": "FM | Shari Vari & FM | Broken Mindz Radio",
+            "date": "27.06.2017",
+            "duration": "43min",
+            "genre": "Techno"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=06RXqcR_tns",
+            "title": "FM | NfSoP PODCAST #28 | Neurofunk Society of Poland",
+            "date": "10.2016",
+            "duration": "1h 02min",
+            "genre": "Drum and bass"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=ylrcjMI5boA",
+            "img": "/assets/music/mixes/20161008_01.png",
+            "title": "FM | Underground Session Ring",
+            "date": "08.10.2016",
+            "duration": "10min",
+            "genre": "Drum and bass"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=81xn9T4oq0M&t=108s",
+            "title": "FM | Techno vs. Drum'n'Bass | Broken Mindz Radio",
+            "img": "/assets/music/mixes/20151115_01.png",
+            "date": "15.11.2015",
+            "duration": "43min",
+            "genre": "Techno & Drum and bass"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=thXcaFg9Rso",
+            "title": "FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session",
+            "img": "/assets/music/mixes/20131231_01.png",
+            "date": "31.12.2013",
+            "duration": "2min",
+            "genre": "Drum and bass"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=M5CKKZp4TWQ",
+            "img": "/assets/music/mixes/20131231_02.png",
+            "title": "FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session",
+            "date": "31.12.2013",
+            "duration": "2min",
+            "genre": "Drum and bass"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=dcpu6-HDbno",
+            "img": "/assets/music/mixes/20130510_01.png",
+            "title": "FM b2b Gibo | Harem aka Orphanage",
+            "date": "10.05.2013",
+            "duration": "3min",
+            "genre": "Drum and bass"
+        },
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=DeboTWBlWZc",
+            "img": "/assets/music/mixes/20121123_01.png",
+            "title": "FM b2b Gibo | Underground Session",
+            "date": "23.11.2012",
+            "duration": "1h 22min",
+            "genre": "Drum and bass"
+        },
+
+        {
+            "group": "YouTube",
+            "url": "https://www.youtube.com/watch?v=VHxSpNusDio",
+            "img": "/assets/music/mixes/2011_01.png",
+            "title": "FM | DNB PL Dj Battle 2011 | dnb.pl",
+            "date": "2011",
+            "duration": "43min",
+            "genre": "Drum and bass"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/30112017_1800_-_fm__elektrodisko_radio_żak/",
+            "title": "FM | Elektrodisko | Radio Żak",
+            "date": "30.11.2017",
+            "duration": "60min",
+            "genre": "Techno",
+            "img": "/assets/music/mixes/20171130_ElektrodiskoRadioZak_01_960.webp"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/uds-podcast-vol-12/",
+            "title": "UDS podcast #12",
+            "date": "12.2014",
+            "duration": "1h 18min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/uds_logo.png"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/fm-techstep-mix-4/",
+            "title": "Techstep mix 4 (07.2014)",
+            "date": "07.2014",
+            "duration": "60min",
+            "genre":"Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/techbreak-16-20112012/",
+            "title": "FM | TechBreak | Radio Break.fm",
+            "date": "20.11.2012",
+            "duration": "60min",
+            "genre":"Drum and bass",
+            "img": "/assets/music/mixes/techbreak_logo.png"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/techbreak-03-17042012/",
+            "title": "FM | TechBreak | Radio Break.fm",
+            "date": "17.04.2012",
+            "duration": "60min",
+            "genre":"Drum and bass",
+            "img": "/assets/music/mixes/techbreak_logo.png"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/techstep-mix-3/",
+            "title": "Techstep mix 3 (01.2012)",
+            "date": "01.2012",
+            "duration": "60min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/minitechstep-mix-2/",
+            "title": "Techstep mini mix 2 (11.2011)",
+            "date": "11.2011",
+            "duration": "40min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/techstep-mix-2/",
+            "title": "Techstep mix 2 (10.2011)",
+            "date": "10.2011",
+            "duration": "1h 00min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/1999-2003-techstep-mix/",
+            "title": "Techstep mix (06.2011)",
+            "date": "06.2011",
+            "duration": "52min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "group": "Mixcloud",
+            "url": "https://www.mixcloud.com/fmmaciej/minitechstep-mix-1-012011-dnbpl/",
+            "title": "Techstep mini mix 1 (01.2011) (dnb.pl dj battle 2011)",
+            "date": "01.2011",
+            "duration": "27min",
+            "genre":"Drum and bass",
+            "img": "/assets/music/mixes/2011_01.png"
+        },
+
+        {
+            "group": "SoundCloud",
+            "url": "https://soundcloud.com/fmmaciej/fm-uds-podcast-vol-12",
+            "title": "UDS podcast #12",
+            "date": "12.2014",
+            "duration": "1h 18min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/uds_logo.png"
+        },
+        
+        {
+            "group": "SoundCloud",
+            "url": "https://soundcloud.com/fmmaciej/fm-techstep_mix_4-07-2014",
+            "title": "Techstep mix 4",
+            "date": "07.2014",
+            "duration": "1h 09min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "group": "SoundCloud",
+            "url": "https://soundcloud.com/fmmaciej/fm-techstep_mix_3-01-2012",
+            "title": "Techstep mix 3",
+            "date": "01.2012",
+            "duration": "1h 20min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "group": "SoundCloud",
+            "url": "https://soundcloud.com/fmmaciej/fm-techstep_mix_2-10-2011",
+            "title": "Techstep mix 2",
+            "date": "10.2011",
+            "duration": "1h 00min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "group": "SoundCloud",
+            "url": "https://soundcloud.com/fmmaciej/fm-techstep_mix",
+            "title": "Techstep mix",
+            "date": "06.2011",
+            "duration": "52min",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/fm_01.jpeg"
+        },
+
+        {
+            "url": "https://mixcloud.com/techbreak",
+            "title": "TechBreak Archive | Break.fm",
+            "date": "03.2012 - 03.2013",
+            "genre": "Drum and bass",
+            "img": "/assets/music/mixes/techbreak_logo.png"
+        }
+    ]
+}
