@@ -24,6 +24,17 @@
     },
 
     {
+        "name": "CV",
+        "desc": "This repository contains the source files and build scripts to generate my CV using Pandoc and LaTeX.",
+        "year": 2025,
+        "stack": ["LaTeX", "Bash", "Pandoc", "CV"],
+        "links": {
+            "repo": "https://github.com/fmmaciej/fmmaciej-cv"
+        },
+        "status": "Stable"
+    },
+
+    {
         "name": "Netbox-cli",
         "desc": "Command-line tool for interacting with NetBox machine reservation system.",
         "year": 2024,
