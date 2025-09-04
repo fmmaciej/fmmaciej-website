@@ -8,7 +8,7 @@
     },
     "scripts": {
         "dev": "eleventy --serve",
-        "deploy": "npm run build && git subtree push --prefix=www origin ovh-deploy",
+        "deploy": "npm run build && git subtree split --prefix=www -b deploy-tmp && git push --force-with-lease origin deploy-tmp:ovh-deploy && git branch -D deploy-tmp",
         "build": "eleventy",
         "gigs": "tools/.venv/bin/python tools/build_gigs_json.py --thumbs --display --clean --report --parallel 4"
     },
