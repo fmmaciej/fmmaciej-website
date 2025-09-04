@@ -11,11 +11,56 @@
         },
         "status": "In development"
     },
+
+    {
+        "name": "PicturesForWeb",
+        "desc": "Python tool that prepares photos to be uploaded on my website. Performs image resizing to several formats and strips metadata.",
+        "year": 2025,
+        "stack": ["Python", "Pillow", "webp", "EXIF", "Dev-tool"],
+        "links": {
+            "repo": "https://github.com/fmmaciej/picturesforweb"
+        },
+        "status": "In development"
+    },
+
+    {
+        "name": "Netbox-cli",
+        "desc": "Command-line tool for interacting with NetBox machine reservation system.",
+        "year": 2024,
+        "stack": ["Python", "Netbox", "REST", "Dev-tool"],
+        "links": {
+            "repo": "https://github.com/fmmaciej/netbox-cli"
+        },
+        "status": "In development"
+    },
+
+    {
+        "name": "NetFrameTool",
+        "desc": "Python tool for generating specific L2/L3/L4 frames with predefined layer configurations.",
+        "year": 2024,
+        "stack": ["Python", "Ethernet", "Dev-tool"],
+        "links": {
+            "repo": "https://github.com/fmmaciej/netbox-cli"
+        },
+        "status": "In development"
+    },
+
+    {
+        "name": "RDMA Driver Tool",
+        "desc": "A Bash script that fetches RDMA network drivers from the designated network location and compiles them.",
+        "year": 2021,
+        "stack": ["Bash", "RDMA", "Dev-tool"],
+        "links": {
+            "repo": "https://github.com/fmmaciej/rdma-driver-tool"
+        },
+        "status": "In development"
+    },
+
     {
         "name": "DiscogsUpdate",
         "desc": "Python script that gathers records that I bought accross different websites and updates my record collection on discogs.",
         "year": 2021,
-        "stack": ["Python"],
+        "stack": ["Python", "REST"],
         "links": {
             "repo": "https://github.com/fmmaciej/discogsupdate"
         },

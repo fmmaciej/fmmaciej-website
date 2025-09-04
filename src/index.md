@@ -11,3 +11,12 @@ I like clean architectures, fast builds and efficient binaries.</p>
 <p>This site is minimal on purpose. Check out my <a href="/projects/">projects</a>,
 some notes on my <a href="/blog/">/blog</a>, my CV under <a href="/me/">/me</a>,
 and <a href="/music/">/music</a> I care about.</p>
+
+<h3>CV</h3>
+
+My CV is available for download below in both English and Polish versions.
+
+<ul class="music-list">
+    <li><a hrev="https://github.com/fmmaciej/fmmaciej-cv/blob/main/build/cv-en.pdf">English version (PDF)</a></li>
+    <li><a hrev="https://github.com/fmmaciej/fmmaciej-cv/blob/main/build/cv-pl.pdf">Polish version (PDF)</a></li>
+</ul>
