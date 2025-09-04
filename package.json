@@ -7,9 +7,10 @@
         "@11ty/eleventy": "^3.1.2"
     },
     "scripts": {
+        "clean": "rm -fr www/",
         "dev": "eleventy --serve",
-        "deploy": "npm run build && git subtree split --prefix=www -b deploy-tmp && git push --force-with-lease origin deploy-tmp:ovh-deploy && git branch -D deploy-tmp",
-        "build": "eleventy",
+        "deploy": "npm run build && git push --force-with-lease origin $(git subtree split --prefix=www HEAD):ovh-deploy",
+        "build": "npm run clean && eleventy",
         "gigs": "tools/.venv/bin/python tools/build_gigs_json.py --thumbs --display --clean --report --parallel 4"
     },
     "repository": {
