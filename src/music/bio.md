@@ -4,7 +4,7 @@ layout: layout.njk
 terminalFile: /assets/terminal/bio.txt
 ---
 
-<h2><a href="/music/">/music</a><a href="/music/bio">/bio</a></h2>
+<h3><a href="/music/">/music</a><a href="/music/bio">/bio</a></h3>
 
 <h3>one-liner</h3>
 <p>

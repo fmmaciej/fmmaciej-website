@@ -4,7 +4,9 @@ layout: layout.njk
 terminalFile: /assets/terminal/music.txt
 ---
 
-<h2><a href="/music/">/music</a></h2>
+<h3>
+    <a href="/music/">/music</a>
+</h2>
 
 <style>
     .music-list {
