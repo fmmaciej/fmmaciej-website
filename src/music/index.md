@@ -63,6 +63,7 @@ All mixes and gigs are archived here.
 
 <ul class="music-list">
   <li><a href="/music/bio/">/bio</a>    <span class="comment"># a few words about me as a DJ</span></li>
+  <li><a href="/music/rider/">/rider</a> <span class="comment"># basic technical requirements</span></li>
   <li><a href="/music/mixes/">/mixes</a> <span class="comment"># my sets to listen online</span></li>
   <li><a href="/music/gigs/">/gigs</a>   <span class="comment"># archive of parties and posters</span></li>
 </ul>
