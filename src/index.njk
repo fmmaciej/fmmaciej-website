@@ -35,39 +35,6 @@ terminal: /assets/terminal/me.txt
     }
 </style>
 
-<h3>/about</h3>
-
-<p>
-I’m <strong>FM</strong>, a software engineer who enjoys building lean, reliable tools.<br>
-My work often blends Linux, C++, Python, Rust, TypeScript and networking.<br>
-I like clean architectures, fast builds and efficient binaries.
-</p>
-
-<p>
-This site is minimal on purpose. Feel free to check out my <a href="/projects/">/projects</a>
-I'm working on, read some notes on my <a href="/blog/">/blog</a>, take a look on my CV, or
-explore the <a href="/music/">/music</a> I care about. If you'd like, you can 
-<a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
-to support my work.
-</p>
-
-<h3>/cv</h3>
-
-<p>
-My CV is available for download below in both English and Polish versions.
-</p>
-
-<ul class="file-list">
-    <li>
-        <a href="https://raw.githubusercontent.com/fmmaciej/fmmaciej-cv/main/build/cv-en.pdf" download>
-            <i class="fas fa-file-pdf"></i>
-            English version (PDF)
-        </a>
-    </li>
-    <li>
-        <a href="https://raw.githubusercontent.com/fmmaciej/fmmaciej-cv/main/build/cv-pl.pdf" download>
-            <i class="fas fa-file-pdf"></i>
-            Polish version (PDF)
-        </a>
-    </li>
-</ul>
+<div class="md-block">
+{% importMd "me/_content/me.md" %}
+</div>

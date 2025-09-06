@@ -53,11 +53,16 @@ module.exports = function(eleventyConfig) {
 
     const md = markdownIt({ html: true, linkify: true })
         .use(mdLinkAttrs, {
-            attrs: {
-                target: '_blank',
-                rel: 'noopener'
+                // external links (http/https)
+                // internal -> _blank
+                matcher(href) {
+                    return /^https?:\/\//i.test(href);
+            },
+                attrs: {
+                target: "_blank",
+                rel: "noopener"
             }
-        })
+        });
 
     eleventyConfig.setLibrary('md', md)
     eleventyConfig.addShortcode('importMd', file => {
