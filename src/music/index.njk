@@ -2,6 +2,7 @@
 title: FM — /music
 layout: layout.njk
 terminalFile: /assets/terminal/music.txt
+permalink: /music/index.html
 ---
 
 <h3>
@@ -9,6 +10,11 @@ terminalFile: /assets/terminal/music.txt
 </h2>
 
 <style>
+    main p {
+        color: var(--muted);
+        line-height: 1.6;
+    }
+
     .music-list {
         list-style: none;
         padding: 0;
@@ -40,6 +46,10 @@ terminalFile: /assets/terminal/music.txt
         font-size: 15px;
     }
 
+    main p.booking {
+        color: var(--text);
+    }
+
     .booking-link {
         color: var(--link);
         font-weight: 500;
@@ -54,16 +64,19 @@ terminalFile: /assets/terminal/music.txt
     }
 </style>
 
+<p>
 Two things that really drew me to vinyl were the expense and the inconvenience.  
+<br>
 All mixes and gigs are archived here.  
+</p>
 
 <p class="booking">
-  → Booking / inquiries: <a href="mailto:fm@fmmaciej.com" class="booking-link">fm@fmmaciej.com</a>
+    → Booking / inquiries: <a href="mailto:fm@fmmaciej.com" class="booking-link">fm@fmmaciej.com</a>
 </p>
 
 <ul class="music-list">
-  <li><a href="/music/bio/">/bio</a>    <span class="comment"># a few words about me as a DJ</span></li>
-  <li><a href="/music/rider/">/rider</a> <span class="comment"># basic technical requirements</span></li>
-  <li><a href="/music/mixes/">/mixes</a> <span class="comment"># my sets to listen online</span></li>
-  <li><a href="/music/gigs/">/gigs</a>   <span class="comment"># archive of parties and posters</span></li>
+    <li><a href="/music/bio/">/bio</a>    <span class="comment"># a few words about me as a DJ</span></li>
+    <li><a href="/music/rider/">/rider</a> <span class="comment"># basic technical requirements</span></li>
+    <li><a href="/music/mixes/">/mixes</a> <span class="comment"># my sets to listen online</span></li>
+    <li><a href="/music/gigs/">/gigs</a>   <span class="comment"># archive of parties and posters</span></li>
 </ul>

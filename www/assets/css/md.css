@@ -1,0 +1,31 @@
+.md-block p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.md-block h1 {
+    display: none;
+}
+
+.md-block h2 { 
+    text-transform: lowercase;
+    font-size: 1.17rem;
+    margin: 0 0 10px;
+}
+
+.md-block h2::before {
+    content: "/";
+}
+
+.md-block h3 { 
+    text-transform: lowercase;
+    margin: 0 0 10px;
+}
+
+.md-block h3::before {
+    content: "/";
+}
+
+.md-block li { 
+    color: var(--muted);
+}

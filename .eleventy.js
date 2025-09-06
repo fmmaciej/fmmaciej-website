@@ -45,6 +45,28 @@ module.exports = function(eleventyConfig) {
         new Intl.DateTimeFormat("pl-PL", { year:"numeric", month:"long", day:"2-digit" }).format(dateObj)
     );
 
+    // Include md into njk
+    const fs = require("fs");
+    const path = require("path");
+    const markdownIt = require("markdown-it");
+    const mdLinkAttrs = require("markdown-it-link-attributes");
+
+    const md = markdownIt({ html: true, linkify: true })
+        .use(mdLinkAttrs, {
+            attrs: {
+                target: '_blank',
+                rel: 'noopener'
+            }
+        })
+
+    eleventyConfig.setLibrary('md', md)
+    eleventyConfig.addShortcode('importMd', file => {
+        const fs = require('fs'), path = require('path')
+        const fullPath = path.join('src', file)
+        const content = fs.existsSync(fullPath) ? fs.readFileSync(fullPath, 'utf8') : ''
+        return md.render(content)
+    })
+
     return {
         dir: { 
             input: "src", 
