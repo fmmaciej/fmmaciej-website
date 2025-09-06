@@ -11,7 +11,8 @@
         "clean": "rm -fr www/",
         "build": "eleventy",
         "dev": "eleventy --serve",
-        "rebuild": "npm run clean && npm run build",
+        "press-kit": "./tools/build_press_kit.sh",
+        "rebuild": "npm run clean && npm run press-kit && npm run build",
         "push": "npm run rebuild && git push",
         "deploy": "npm run push && git push --force-with-lease origin $(git subtree split --prefix=www HEAD):ovh-deploy",
         "gigs": "tools/.venv/bin/python tools/build_gigs_json.py --thumbs --display --clean --report --parallel 4"
