@@ -1,4 +1,4 @@
-# Rider
+# FM Rider
 
 ## Technical
 
@@ -18,5 +18,3 @@
 
 - Still or sparkling mineral water, sufficient supply for the duration of the performance
 - No alcohol or additional hospitality requirements
-
-That’s all. Simple, reliable, effective.

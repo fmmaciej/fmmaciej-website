@@ -1,9 +1,118 @@
-.gig-meta{
-    padding:8px 10px;border-top:1px solid var(--border);
-    font-size:14px;color:var(--text);
-    display:flex;flex-direction:column;gap:2px;
+/* ── Breadcrumb ─────────────────────────────────────────────────────────────── */
+#gigsBreadcrumb a {
+    text-decoration: none;
+}
+#gigsBreadcrumb a:hover {
+    text-decoration: underline;
 }
 
-.gig-meta .gig-date{font-weight:600;color:var(--muted);font-size:13px;}
-.gig-meta .gig-name{font-size:15px;font-weight:500;color:var(--text);}
-.gig-meta .gig-count{font-size:13px;color:var(--muted);}
+/* ── Sekcje roczne (details + sticky header) ───────────────────────────────── */
+.year-details { 
+    border: 0;
+}
+
+.year-details > summary.year-header {
+    list-style: none;
+    cursor: pointer;
+    position: sticky;
+    top: 8px;
+    z-index: 1;
+    background: var(--bg);
+    padding: 6px 4px;
+    margin: 0 0 12px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border);
+}
+.year-details > summary.year-header::-webkit-details-marker { display: none; }
+
+.year-section {
+    color: var(--muted);
+    margin: 28px 0 18px;
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 800px;
+}
+
+.year-section.is-active .year-header {
+    border-bottom-color: var(--muted);
+    color: var(--text);
+}
+
+/* ── Badge z liczbą eventów ────────────────────────────────────────────────── */
+.year-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.year-badge {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 999px;
+    line-height: 1;
+}
+
+/* ── Siatka i karty wydarzeń ──────────────────────────────────────────────── */
+.gig-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.gig-card {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg);
+    transition: transform .15s ease, border-color .15s ease;
+    text-decoration: none;
+    color: var(--text);
+}
+.gig-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--muted);
+}
+
+.gig-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .gig-card img {
+        height: 52vw;
+        max-height: 360px;
+    }
+}
+
+/* ── Meta pod miniaturą ───────────────────────────────────────────────────── */
+.gig-meta {
+    padding: 8px 10px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.gig-meta .gig-date {
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.gig-meta .gig-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.gig-meta .gig-count {
+    font-size: 13px;
+    color: var(--muted);
+}

@@ -7,91 +7,47 @@ permalink: /music/gigs/index.html
 
 <h3 id="gigsBreadcrumb"><a href="/music/">/music</a><a href="/music/gigs/">/gigs</a><span id="yearSuffix"></span></h3>
 
-<style>
-    .year-details { border: 0; }
-    .year-details > summary.year-header {
-        list-style: none; cursor: pointer;
-        position: sticky; top: 8px; z-index: 1;
-        background: var(--bg);
-        padding: 6px 4px; margin: 0 0 12px;
-        font-weight: 700; border-bottom: 1px solid var(--border);
-    }
-    .year-details > summary.year-header::-webkit-details-marker { display: none; }
+<p>
+A collection of posters and flyers from events I’ve been part of.
+Sorted by year, they show where and when the music happened.
+</p>
 
-    .year-section { margin: 28px 0 18px; content-visibility: auto; contain-intrinsic-size: 1px 800px; }
-
-    .gig-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 14px;
-    }
-    .gig-card {
-        display: block; border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-        background: var(--bg); transition: transform .15s ease, border-color .15s ease;
-        text-decoration: none; color: var(--text);
-    }
-    .gig-card:hover { transform: translateY(-2px); border-color: var(--muted); }
-    .gig-card img { width: 100%; height: 300px; object-fit: cover; display: block; }
-    @media (max-width: 600px) { .gig-card img { height: 52vw; max-height: 360px; } }
-
-    .gig-meta {
-        padding: 8px 10px;
-        border-top: 1px solid var(--border);
-        font-size: 14px;
-        color: var(--text);
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-    }
-    .gig-meta .gig-date { font-weight: 600; color: var(--muted); font-size: 13px; }
-    .gig-meta .gig-name { font-size: 15px; font-weight: 500; color: var(--text); }
-    .gig-meta .gig-count { font-size: 13px; color: var(--muted); }
-
-    .year-section.is-active .year-header { border-bottom-color: var(--muted); color: var(--text); }
-    #gigsBreadcrumb a { text-decoration: none; }
-    #gigsBreadcrumb a:hover { text-decoration: underline; }
-</style>
-
-{# eventy z _data/gigEvents.js #}
-{% set events = gigEvents | default([]) %}
-
-{# --- lata malejąco --- #}
-{% set years = [] %}
-{% for ev in events %}
-  {% if ev.year not in years %}
-    {% set years = years.concat([ev.year]) %}
-  {% endif %}
-{% endfor %}
-{% set years = years | sort(true) %}
+{# --- zgrupowane dane z _data/gigData.js (korzysta z gigEvents.js) --- #}
+{% set groups = gigData.groups | default([]) %}
 
 {# --- render --- #}
-{% for y in years %}
-<section class="year-section" id="y-{{ y }}" data-year="{{ y }}">
-<details class="year-details" data-year="{{ y }}">
-    <summary class="year-header">{{ y }}</summary>
+{% for g in groups %}
+<section class="year-section" id="y-{{ g.year }}" data-year="{{ g.year }}">
+<details class="year-details" data-year="{{ g.year }}">
+
+    <summary class="year-header">
+        {{ g.year }}
+        <span class="year-badge" 
+            title="{{ g.photoCount }} photo{% if g.photoCount != 1 %}s{% endif %} total">
+            {{ g.count }}
+        </span>
+    </summary>
 
     <div class="gig-grid">
-        {% for ev in events %}
-            {% if ev.year == y %}
-                {% set eager = loop.index0 < 6 %}
-                <a class="gig-card" href="/music/gigs/{{ ev.year }}/{{ ev.key }}/" aria-label="{{ ev.cover.alt }}">
-                    <img
-                        src="{{ ev.cover.thumb480 }}"
-                        srcset="{{ ev.cover.thumb480 }} 480w, {{ ev.cover.thumb960 }} 960w"
-                        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                        alt="{{ ev.cover.alt }}"
-                        width="{{ ev.cover.w }}"
-                        height="{{ ev.cover.h }}"
-                        {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
-                        decoding="async">
-                    <div class="gig-meta">
-                        <div class="gig-date">{{ ev.date }}</div>
-                        <div class="gig-name">{% if ev.name %}{{ ev.name }}{% else %}&nbsp;{% endif %}</div>
-                        <div class="gig-count">{{ ev.count }} photo{% if ev.count > 1 %}s{% endif %}</div>
-                    </div>
-                </a>
-            {% endif %}
-        {% endfor %}
+    {% for ev in g.items %}
+        {% set eager = loop.index0 < 6 %}
+        <a class="gig-card" href="/music/gigs/{{ ev.year }}/{{ ev.key }}/" aria-label="{{ ev.cover.alt }}">
+            <img
+                src="{{ ev.cover.thumb480 }}"
+                srcset="{{ ev.cover.thumb480 }} 480w, {{ ev.cover.thumb960 }} 960w"
+                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                alt="{{ ev.cover.alt }}"
+                width="{{ ev.cover.w }}"
+                height="{{ ev.cover.h }}"
+                {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
+                decoding="async">
+            <div class="gig-meta">
+                <div class="gig-date">{{ ev.date }}</div>
+                <div class="gig-name">{% if ev.name %}{{ ev.name }}{% else %}&nbsp;{% endif %}</div>
+                <div class="gig-count">{{ ev.count }} photo{% if ev.count > 1 %}s{% endif %}</div>
+            </div>
+        </a>
+    {% endfor %}
     </div>
 
 </details>
@@ -99,7 +55,7 @@ permalink: /music/gigs/index.html
 {% endfor %}
 
 <script>
-    (function(){
+(function(){
     const suffix  = document.getElementById('yearSuffix');
     const details = Array.from(document.querySelectorAll('.year-details'));
 
@@ -113,16 +69,14 @@ permalink: /music/gigs/index.html
     };
 
     function topmostOpenYear(){
-        // wybierz otwarte details, najbliższe górnej krawędzi viewportu
         const open = details.filter(d => d.open);
         if (!open.length) return null;
-        open.sort((a,b) => 
-            Math.abs(a.getBoundingClientRect().top) - Math.abs(b.getBoundingClientRect().top));
+        open.sort((a,b) => Math.abs(a.getBoundingClientRect().top) - Math.abs(b.getBoundingClientRect().top));
 
         return open[0].dataset.year || null;
     }
 
-    // Reakcja na kliknięcia (rozwijanie/zamykanie)
+    // Klik: rozwijanie/zamykanie -> aktualizuj breadcrumb
     details.forEach(d => {
         d.addEventListener('toggle', () => {
             const y = d.open ? d.dataset.year : topmostOpenYear();
@@ -130,20 +84,19 @@ permalink: /music/gigs/index.html
         });
     });
 
-    // Start: zawsze /music/gigs (nic nie jest otwarte)
+    // Start: /music/gigs (nic otwartego)
     setCrumb(null);
 
-    // (opcjonalnie) jeśli przyjdziemy z #y-YYYY → otwórz ten rok
+    // Hash #y-YYYY -> otwórz dany rok
     const m = (location.hash || '').match(/^#y-(\d{4})$/);
     if (m) {
         const target = document.querySelector(`.year-details[data-year="${m[1]}"]`);
         if (target && !target.open) {
             target.open = true;
             setCrumb(m[1]);
-            // lekkie przewinięcie do sekcji
             const sec = document.getElementById('y-' + m[1]);
             if (sec) sec.scrollIntoView({ behavior: 'instant', block: 'start' });
         }
     }
-    })();
+})();
 </script>

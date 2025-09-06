@@ -9,12 +9,12 @@
     },
     "scripts": {
         "clean": "rm -fr www/",
-        "deploy": "npm run rebuild && git push --force-with-lease origin $(git subtree split --prefix=www HEAD):ovh-deploy",
-        "dev": "eleventy --serve",
         "build": "eleventy",
-        "gigs": "tools/.venv/bin/python tools/build_gigs_json.py --thumbs --display --clean --report --parallel 4",
+        "dev": "eleventy --serve",
+        "rebuild": "npm run clean && npm run build",
         "push": "npm run rebuild && git push",
-        "rebuild": "npm run clean && npm run build"
+        "deploy": "npm run push && git push --force-with-lease origin $(git subtree split --prefix=www HEAD):ovh-deploy",
+        "gigs": "tools/.venv/bin/python tools/build_gigs_json.py --thumbs --display --clean --report --parallel 4"
     },
     "repository": {
         "type": "git",
@@ -37,7 +37,6 @@
         "array-differ": "^1.0.0",
         "array-union": "^1.0.2",
         "array-uniq": "^1.0.3",
-        "arrify": "^1.0.1",
         "asap": "^2.0.6",
         "balanced-match": "^1.0.2",
         "bcp-47": "^2.1.0",
