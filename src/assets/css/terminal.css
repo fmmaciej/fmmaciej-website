@@ -2,15 +2,15 @@
     Ustawienia globalne (ciemny/jaśniejszy motyw)
 ────────────────────────────────────────────────────────── */
 :root{
-    --terminal-opacity: 0.20;
-    --overlay-bleed: 24px;
-    --overlay-offset: 64px;
+    --terminal-opacity: .16;
+    --overlay-bleed: 72px;
+    --overlay-offset: 72px;
     --footer-height: 64px;
 
     --scanlines-opacity: 0.07;   /* intensywność linii */
     --scanlines-speed: 18s;      /* czas pełnego przesunięcia (im więcej, tym wolniej) */
     --scanlines-gap: 4px;        /* odstęp między liniami */
-    --scanlines-thick: 1px;      /* grubość linii */
+    --scanlines-thick: 5px;      /* grubość linii */
 }
 
 [data-theme="light"]{
@@ -29,7 +29,7 @@
 
 /* rozmiar linii terminala (prompt + komenda + kursor) */
 .terminal-line{
-    font-size:24px;
+    font-size:18px;
     display:flex;
     align-items:baseline;
     gap:0;
@@ -60,7 +60,7 @@
 
 #cursor{
     display:inline-block;
-    width:0.6ch;           /* szerokość „cegiełki” kursora */
+    width:0.6ch;           /* szerokość bloku kursora */
     height:1em;
     background:var(--cursor);
     vertical-align:baseline;
@@ -93,7 +93,6 @@
    i dynamicznie ustawia top tak, by startowała ZA terminalem */
 .content-host .terminal-overlay{
     position:absolute;
-    opacity:var(--terminal-opacity);
     top:calc(-1 * var(--overlay-offset));
     bottom:var(--footer-height);
     left:calc(-1 * var(--overlay-bleed));
@@ -110,6 +109,7 @@
     font-size:32px;
     font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
     line-height:1.6;
+    opacity:var(--terminal-opacity);
 }
 
 /* scanlines */
@@ -122,9 +122,8 @@
 /* nałożone linie na overlay terminala */
 .content-host .terminal-overlay::after{
   content:"";
-  position:absolute; inset:0;
+  position:absolute;
   pointer-events:none;
-  /* delikatne poziome prążki */
   background:
     repeating-linear-gradient(
       to bottom,
@@ -138,7 +137,7 @@
 }
 
 /* odpowiednik dla jasnego motywu – ciemniejsze prążki */
-.light-theme .content-host .terminal-overlay::after{
+[data-theme="light"] .content-host .terminal-overlay::after{
   background:
     repeating-linear-gradient(
       to bottom,
@@ -154,10 +153,11 @@
     Responsywność / preferencje
 ────────────────────────────────────────────────────────── */
 @media (max-width:720px){
-    :root{ --overlay-bleed:10px; }
+    :root{
+        --overlay-bleed:16px;
+    }
     .content-host .terminal-overlay .layer{
-        font-size:18px;
-        line-height:1.4;
+        opacity: .8;
     }
 }
 
