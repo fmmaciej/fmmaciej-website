@@ -1,0 +1,14 @@
+{
+    "commands": [
+        {
+            "cmd": "cat ~/music/bio.md",
+            "type": "text",
+            "output": [
+                "FM — DJ & vinyl enthusiast",
+                "One-liner: Techno and electro sets with a raw edge.",
+                "Short: Active since 2008, collector, selector, DJ.",
+                "Extended: See /music/bio for full details."
+            ]
+        }
+    ]
+}

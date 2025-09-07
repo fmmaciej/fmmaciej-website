@@ -1,0 +1,25 @@
+{
+    "commands": [
+        {
+            "cmd": "ls ~/music/mixes",
+            "type": "text",
+            "output": [
+                "Mixes/",
+                "  ├─ warehouse_pulse.mp3",
+                "  ├─ night_drive.mp3",
+                "  ├─ downtempo_journey.mp3",
+                "  └─ rickroll_special.mp3"
+            ]
+        },
+        {
+            "cmd": "mpv warehouse_pulse.mp3",
+            "type": "text",
+            "output": [
+                "Playing: warehouse_pulse.mp3",
+                "Audio: 320 kbps • Techno • 90 min",
+                "Output: PulseAudio • Headphones",
+                "▶▶▶────────────────────────────── 00:00 / 1:30:00"
+            ]
+        }
+    ]
+}

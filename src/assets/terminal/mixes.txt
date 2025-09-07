@@ -1,4 +1,0 @@
-cat ~/music/mixes.txt | column -t -s '|'
-less ~/music/mixes.txt
-nl ~/music/mixes.txt
-awk -F'|' '{printf "%-12s %-8s %-15s %-20s\n",$1,$2,$3,$4}' ~/music/mixes.txt

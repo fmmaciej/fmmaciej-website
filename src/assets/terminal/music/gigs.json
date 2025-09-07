@@ -1,0 +1,24 @@
+{
+    "commands": [
+        {
+            "cmd": "ls ~/music/gigs",
+            "type": "text",
+            "output": [
+                "2025/",
+                "2024/",
+                "2023/",
+                "..."
+            ]
+        },
+
+        {
+            "cmd": "cat ~/music/gigs/2023",
+            "type": "text",
+            "output": [
+                "2023-07-15 • Willa Techno Dancing • 3 photos",
+                "2023-05-01 • Void Club • 2 photos",
+                "2023-03-11 • Electro District • 4 photos"
+            ]
+        }
+    ]
+}

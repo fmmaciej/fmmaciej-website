@@ -1,0 +1,8 @@
+{
+    "intervalMs": 5000,
+    "typingDelayMs": 25,
+    "preDelayMs": 200,
+    "charDelayMs": 1,
+    "linePauseMs": 110,
+    "random": false
+}

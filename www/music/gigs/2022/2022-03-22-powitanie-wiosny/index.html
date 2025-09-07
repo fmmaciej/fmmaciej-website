@@ -3,291 +3,63 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+        (function(){
+            var KEY='theme';
+            var saved = localStorage.getItem(KEY);
+            if(saved){
+                document.documentElement.setAttribute('data-theme', saved);
+            }else{
+                // brak wyboru – użyj systemowego
+                var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            }
+        })();
+    </script>
     <title>FM - Software Engineer</title>
     <meta name="description" content="FM - software engineer. Minimal terminal-style personal site." />
+
     <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="8" width="64" height="64" fill="%23000"/><text x="50%" y="56%" text-anchor="middle" font-family="monospace" font-size="26" fill="white">FM</text></svg>' />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" href="/assets/css/gig.css">
     <link rel="stylesheet" href="/assets/css/md.css">
-
-    <style>
-        :root {
-            --bg: #000;
-            --text: #eaeaea;
-            --muted: #8a8a8a;
-            --border: #1a1a1a; 
-            --cursor: #eaeaea;
-            --link: #fff;
-            --link-hover: #9f9f9f; 
-            --scrim: rgba(0,0,0,.6);
-        }
-
-        .light-theme {
-            --bg:#fff; 
-            --text:#111; 
-            --muted:#666; 
-            --border:#eaeaea; 
-            --cursor:#111; 
-            --link:#000; 
-            --link-hover:#444; 
-            --scrim: rgba(0,0,0,.25);
-        }
-
-        *{
-            box-sizing:border-box
-        }
-
-        html,body{
-            height:100%
-        }
-        body{
-            margin:0;
-            background:var(--bg);
-            color:var(--text);
-            font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
-            font-size:16px;
-            line-height:1.6;
-            transition:background .3s,color .3s
-        }
-        a{
-            color:var(--link);
-            text-decoration:underline;
-            transition:color .3s
-        }
-        a:hover,a:focus-visible{
-            color:var(--link-hover)
-        }
-
-        header,footer{
-            border-bottom:1px solid var(--border);
-            padding:12px 0;
-            transition:border-color .3s
-        }
-        footer{
-            border-top:1px solid var(--border);
-            border-bottom:none;
-            font-size:13px;
-            color:var(--muted);
-            margin-top:40px;
-            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px
-        }
-
-        .wrap{
-            max-width:880px;
-            margin:0 auto;
-            padding:0 20px
-        }
-
-        /* Desktop nav */
-        nav.primary{
-            float:right;
-            display:flex;
-            align-items:center;
-            gap:14px
-        }
-        nav.primary a{
-            color:var(--muted);
-            text-decoration:none
-        }
-        nav.primary a:hover{
-            color:var(--text);
-            text-decoration:underline
-        }
-
-        .theme-toggle{
-            cursor:pointer;
-            font-size:18px;
-            user-select:none;
-            color:var(--muted);
-            display:inline-flex;
-            align-items:center
-        }
-        .theme-toggle i {
-            color:currentColor
-        }
-
-        .theme-toggle:hover i {
-            color: var(--text); 
-        }
-
-        /* Hamburger (shown on small screens) */
-        .hamburger{
-            display:none;
-            appearance:none;
-            background:none;
-            border:1px solid var(--border);
-            color:var(--muted);
-            padding:6px 10px;border-radius:6px;cursor:pointer
-        }
-        .hamburger:focus-visible{
-            outline:2px dotted var(--muted)
-        }
-
-        .hamburger:hover i {
-            color: var(--text); 
-        }
-
-        /* Mobile drawer */
-        .backdrop{
-            position:fixed;
-            inset:0;
-            background:var(--scrim);
-            opacity:0;
-            pointer-events:none;
-            transition:opacity .2s
-        }
-
-        .drawer{
-            position:fixed;
-            top:0;
-            left:0;
-            height:100%;
-            width:min(82vw,300px);
-            background:var(--bg);border-right:1px solid var(--border);transform:translateX(-100%);transition:transform .2s;display:flex;flex-direction:column
-        }
-
-        .drawer header{
-            padding:14px 16px;
-            border-bottom:1px solid var(--border)
-        }
-
-        .drawer nav{
-            display:flex;
-            flex-direction:column;
-            padding:10px
-        }
-        .drawer nav a{
-            color:var(--text);
-            text-decoration:none;
-            padding:10px 8px;
-            border-radius:6px
-        }
-        .drawer nav a:hover{
-            background:rgba(255,255,255,.06)
-        }
-
-        .drawer .close{
-            margin-left:auto;
-            background:none;
-            border:none;
-            color:var(--muted);
-            font-size:20px;
-            cursor:pointer
-        }
-
-        .drawer-open .backdrop{
-            opacity:1;
-            pointer-events:auto
-        }
-        .drawer-open .drawer{
-            transform:translateX(0)
-        }
-
-        h1{
-            font-size:clamp(24px,5vw,48px);
-            margin:0 0 16px
-        }
-
-        p{
-            margin:0 0 20px
-        }
-
-        .cursor{
-            display:inline-block;
-            width:10px;
-            height:1em;
-            background:var(--cursor);
-            margin-left:2px;
-            vertical-align:bottom;animation:blink 1s step-start infinite
-        }
-        @keyframes blink{
-            50%{ 
-                opacity:0 
-            } 
-        }
-        .prompt{
-            color:var(--muted);
-            margin-bottom:8px
-        }
-
-        .terminal-box{
-            background:var(--bg);
-            border:1px solid var(--border);
-            border-radius:6px;
-            padding:18px;
-            margin-bottom:28px
-        }
-        .terminal-line{ 
-            margin:0 0 6px;
-            white-space:normal 
-        }
-
-        .typed{
-            display:inline-block;
-            white-space:pre 
-        }
-
-        .social-icons{
-            display:flex;gap:14px
-        }
-        .social-icons a{
-            color:var(--muted);
-            font-size:18px;
-            text-decoration:none
-        }
-        .social-icons a:hover{
-            color:var(--text)
-        }
-
-        /* Responsive: small screens */
-        @media (max-width: 720px){
-            .primary-links{
-                display:none
-            }
-            .hamburger{
-                display:inline-flex;
-                align-items:left;
-                gap:8px
-            }
-            .wrap{
-                padding:0 16px
-            }
-        }
-
-        .no-underline {
-            text-decoration: none;
-            color: inherit;
-            font-weight: normal;
-        }
-        .no-underline:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/terminal.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
 </head>
 
 <body>
     <div class="wrap">
 
     <header>
-        <a href="/" class="no-underline"><strong>FM</strong></a>
-        <nav class="primary" aria-label="Primary navigation">
-            <div class="primary-links">
-                <a href="/">/me</a>
-                <a href="/projects/">/projects</a>
-                <a href="/blog/">/blog</a>
-                <a href="/music/">/music</a>
-                <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
-            </div>
-            <button class="hamburger" id="hamburger" aria-controls="mobileDrawer" aria-expanded="false" aria-label="Open menu"><i class="fas fa-bars"></i></button>
-            <span class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></span>
-        </nav>
-        <div style="clear:both"></div>
+    <a href="/" class="no-underline"><strong>FM</strong></a>
+    <nav class="primary" aria-label="Primary navigation">
+        <div class="primary-links">
+            <a href="/">/me</a>
+            <a href="/projects/">/projects</a>
+            <a href="/blog/">/blog</a>
+            <a href="/music/">/music</a>
+            <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-controls="mobileDrawer" aria-expanded="false" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+        <span class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></span>
+    </nav>
+    <div style="clear:both"></div>
     </header>
 
     
+        <div class="terminal-box"  data-terminal="/assets/terminal/music/event.json">
+            <div class="terminal-line">
+                <span class="prompt">fm@void:~$</span>
+                <span class="cmd"><span id="typedText"></span><span id="cursor"></span></span>
+            </div>
+        </div>
+    
 
-    <main style="padding:40px 0;">
-        
+    <div class="content-host">
+        <main style="padding:0">
+            
 <h3>
     <a href="/music/">/music</a><a href="/music/gigs/">/gigs</a><a href="/music/gigs#y-2022">/2022</a>/Powitanie Wiosny
 </h3>
@@ -340,12 +112,13 @@
 
 </div>
 
-    </main>
+        </main>
+    </div>
 
     <footer>
         <div>© <span id="year"></span> FM - served plain & simple</div>
         <div class="social-icons">
-            <a href="https://instagram.com/fm.maciej" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://instagram.com/fmmaciej" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.linkedin.com/in/organisciak-maciej/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="https://stackoverflow.com/users/8387639/maciej-fm" title="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
             <a href="https://www.mixcloud.com/fmmaciej" title="MixCloud"><i class="fa-brands fa-mixcloud"></i></a>
@@ -371,16 +144,37 @@
     </aside>
 
     <script>
+        (() => {
+        const btn = document.getElementById('themeToggle');
+        if(!btn) return; // tylko kończymy TĘ funkcję, reszta skryptów żyje
+
+        const KEY = 'theme';
+        const root = document.documentElement;
+        const mql  = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function setTheme(t){
+            root.setAttribute('data-theme', t);
+            localStorage.setItem(KEY, t);
+            const icon = btn.querySelector('i');
+            if (icon) icon.className = (t === 'light') ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        function current(){ return root.getAttribute('data-theme') || 'dark'; }
+
+        // inicjalna ikona zgodna z atrybutem ustawionym w <head>
+        setTheme(localStorage.getItem(KEY) || root.getAttribute('data-theme') || (mql.matches?'dark':'light'));
+
+        btn.addEventListener('click', () => {
+            setTheme(current() === 'dark' ? 'light' : 'dark');
+        });
+
+        mql.addEventListener('change', e => {
+            if (!localStorage.getItem(KEY)) setTheme(e.matches ? 'dark' : 'light');
+        });
+        })();
+    </script>
+    <script>
         // Footer year
         document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Theme toggle (monochrome FA icon)
-        const toggle = document.getElementById('themeToggle');
-        toggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            const icon = toggle.querySelector('i');
-            icon.className = document.body.classList.contains('light-theme') ? 'fas fa-sun' : 'fas fa-moon';
-        });
 
         // Mobile drawer
         const body = document.body;
@@ -396,7 +190,6 @@
             hamburger.setAttribute('aria-expanded','true');
             drawer.focus();
         }
-
         function closeDrawer(){
             body.classList.remove('drawer-open');
             drawer.setAttribute('aria-hidden','true');
@@ -410,63 +203,26 @@
         backdrop.addEventListener('click', closeDrawer);
         window.addEventListener('keydown', (e) => { if(e.key==='Escape') closeDrawer(); });
 
+        // Upewnij się, że kursor stoi za tekstem (gdy terminal.js zmienia #typedText)
         const typed = document.getElementById('typedText');
         const cursorEl = document.getElementById('cursor');
-
-        // terminal
-        if (typed) {
-            // znajdź najbliższy kontener z atrybutem data-terminal
-            const terminalBox = typed.closest('.terminal-box');
-            const fileFromPage = terminalBox?.dataset?.terminal;
-
-            // fallback na globalny plik, jeśli strona nie podała własnego
-            const DEFAULT_FILE = '/assets/terminal/default.txt';
-            const sourceFile = fileFromPage || DEFAULT_FILE;
-
-            async function fetchLines(filePath) {
-                try {
-                    const resp = await fetch(filePath, { cache: 'no-cache' });
-                    if (!resp.ok) throw new Error('fetch failed: ' + filePath);
-                    const text = await resp.text();
-
-                    return text
-                        .split(/\r?\n/)
-                        .map(l => l.trim())
-                        .filter(l => l && !l.startsWith('#'));
-                } catch (e) {
-                    return ['echo "Hello"'];
-                }
-            }
-
-            function typeLine(line) {
-                typed.textContent = '';
-                const clean = (line || '').replace(/\r?\n/g, '').trim();
-                let i = 0;
-                const speed = 100;
-
-                // upewnij się, że kursor stoi za tekstem
-                if (cursorEl && cursorEl.parentElement !== typed.parentElement) {
-                    typed.after(cursorEl);
-                }
-
-                (function t() {
-                    if (i < clean.length) {
-                        typed.textContent += clean.charAt(i++);
-                        setTimeout(t, speed);
-                    }
-                })();
-            }
-
-            (async function loop() {
-                    const lines = await fetchLines(sourceFile);
-                    const cycle = () => {
-                        typeLine(lines[Math.floor(Math.random() * lines.length)]);
-                        setTimeout(cycle, 10000 + Math.floor(Math.random() * 5000));
-                    };
-                    cycle();
-                })();
+        if (typed && cursorEl && cursorEl.parentElement !== typed.parentElement) {
+            typed.after(cursorEl);
         }
 
-    </script>
+        const footer = document.querySelector('footer');
+        if (footer) {
+            const setFooterVar = () =>
+                document.documentElement.style.setProperty('--footer-height',
+                footer.getBoundingClientRect().height + 'px');
+                setFooterVar();
+                addEventListener('resize', setFooterVar);
+        }
+
+        </script>
+
+        <!-- Overlay terminal JSON → cały „output na tle” ogarnia ten plik: -->
+        <script src="/assets/js/terminal.js" defer></script>
+
 </body>
 </html>

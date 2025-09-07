@@ -1,0 +1,20 @@
+{
+    "commands": [
+        {
+            "cmd": "ls ~/music/gigs/2023-05-01-void-club",
+            "type": "text",
+            "output": [
+                "poster_01.jpg",
+                "poster_02.jpg"
+            ]
+        },
+        {
+            "cmd": "feh poster_01.jpg",
+            "type": "text",
+            "output": [
+                "[void-club-poster-01] JPEG 1200x1600 400KB",
+                "Displayed in new window..."
+            ]
+        }
+    ]
+}

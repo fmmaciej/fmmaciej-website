@@ -1,6 +1,0 @@
-cat ~/music/gigs.txt | cut -d'|' -f1 | cut -d'-' -f1 | sort | uniq -c
-awk -F'-' '{print $1}' ~/music/gigs.txt | sort | uniq -c
-cat ~/music/gigs.txt | awk -F'-' '{print $1}' | sort -u
-grep '^2023' ~/music/gigs.txt
-awk -F'-' '{print $1}' ~/music/gigs.txt | sort | uniq -c | awk '{print "Year " $2 ": " $1 " events"}'
-cut -d'-' -f1 ~/music/gigs.txt | sort | uniq -c | column -t

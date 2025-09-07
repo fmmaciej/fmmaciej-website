@@ -1,0 +1,17 @@
+{
+    "commands": [
+        {
+            "cmd": "cat ~/music/rider.md",
+            "type": "text",
+            "output": [
+                "Technical:",
+                "  - 2x Technics SL-1200/1210",
+                "  - High-quality DJ mixer",
+                "  - Optional CDJ/XDJ-1000mk2",
+                "Hospitality:",
+                "  - Still or sparkling water",
+                "  - No alcohol"
+            ]
+        }
+    ]
+}
