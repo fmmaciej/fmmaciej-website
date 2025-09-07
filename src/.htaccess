@@ -1,9 +1,8 @@
 RewriteEngine On
 
-# Wymuś HTTPS
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# Wymuś HTTPS i www
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\.fmmaciej\.com$ [NC]
+RewriteRule ^ https://www.fmmaciej.com%{REQUEST_URI} [R=301,L,NE]
 
-# Przekieruj domenę bez www -> na www
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+DirectoryIndex index.html index.htm
