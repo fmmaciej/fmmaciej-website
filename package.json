@@ -11,10 +11,16 @@
         "clean": "rm -fr www/",
         "build": "eleventy",
         "dev": "eleventy --serve",
+
         "press-kit": "./tools/build_press_kit.sh",
         "rebuild": "npm run clean && npm run press-kit && npm run build",
-        "push": "npm run rebuild && git push",
-        "deploy": "npm run push && git push --force-with-lease origin $(git subtree split --prefix=www HEAD):ovh-deploy",
+
+        "push:git": "git push origin main",
+        "push:ovh": "git push --force-with-lease origin \"$(git subtree split --prefix=www HEAD)\":refs/heads/ovh-deploy",
+
+        "deploy:check": "./tools/deploy_check.sh",
+        "deploy": "npm run deploy:check && npm run rebuild && npm run push:git && npm run push:ovh",
+
         "gigs": "tools/.venv/bin/python tools/build_gigs_json.py --thumbs --display --clean --report --parallel 4"
     },
     "repository": {
