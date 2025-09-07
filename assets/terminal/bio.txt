@@ -1,4 +1,0 @@
-cat ~/music/bio.md
-bat ~/music/bio.md
-less ~/music/bio.md
-nl ~/music/bio.md

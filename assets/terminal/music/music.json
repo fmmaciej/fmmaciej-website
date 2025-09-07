@@ -1,0 +1,160 @@
+{
+    "commands": [
+        {
+            "cmd": "ls -l mixes/",
+            "type": "text",
+            "output": [
+                "-rw-r--r--  1 fm staff  42103 Jan  3  2025 warehouse_pulse.mp3",
+                "-rw-r--r--  1 fm staff  39811 Jan  5  2025 night_drive.mp3",
+                "-rw-r--r--  1 fm staff  69420 Jan  5  2025 night_drive2.mp3",
+                "-rw-r--r--  1 fm staff  50420 Jan  7  2025 deep_voyage.mp3",
+                "-rw-r--r--  1 fm staff  28877 Jan  9  2025 sunrise_set.mp3",
+                "-rw-r--r--  1 fm staff  31642 Jan 11  2025 coldroom_session.mp3",
+                "-rw-r--r--  1 fm staff  22981 Jan 13  2025 darktechno_late.mp3",
+                "-rw-r--r--  1 fm staff  31642 Jan 11  2025 coldroom_session.mp3",
+                "-rw-r--r--  1 fm staff  22981 Jan 13  2025 darktechno_late.mp3",
+                "-rw-r--r--  1 fm staff  42213 Jan 13  2025 darktechno_late2.mp3",
+                "-rw-r--r--  1 fm staff  45670 Jan 15  2025 sunday_ambient.mp3"
+            ]
+        },
+
+        {
+            "cmd": "df -h /music",
+            "type": "text",
+            "output": [
+                "Filesystem      Size  Used Avail Use%",
+                "/dev/sda1       480G  312G  148G  68% /music",
+                "",
+                "Note: keep enough space for vinyl rips!"
+            ]
+        },
+
+        {
+            "cmd": "ps aux | grep mix",
+            "type": "text",
+            "output": [
+                "fm       1337  0.0  0.1  12532  2148 pts/1    S+   21:42   0:00 mix_player --file warehouse_pulse.mp3",
+                "fm       1441  0.0  0.1  12532  2148 pts/1    S+   21:45   0:00 mix_player --file deep_voyage.mp3",
+                "fm       1501  0.0  0.1  12532  2148 pts/1    S+   21:47   0:00 grep mix"
+            ]
+        },
+        {
+            "cmd": "hexdump -C sample.wav | head",
+            "type": "hex",
+            "output": [
+                "00000000  52 49 46 46 24 08 00 00  57 41 56 45 66 6d 74 20  |RIFF$...WAVEfmt |",
+                "00000010  10 00 00 00 01 00 02 00  44 ac 00 00 10 b1 02 00  |........D.......|",
+                "00000020  04 00 10 00 64 61 74 61  00 08 00 00              |....data....    |",
+                "00000030  7f 7f 00 80 81 7f 80 80  7e 7f 82 80 7f 80 80 7f  |........~.......|",
+                "00000040  80 7f 81 80 7f 80 80 80  7f 7f 82 80 7f 80 81 7f  |................|",
+                "00000050  80 7f 80 7f 7f 80 82 80  80 7f 7f 80 81 7f 80 80  |................|",
+                "00000060  7f 7f 80 7f 81 7f 80 80  7f 7f 81 80 80 7f 80 7f  |................|",
+                "00000070  81 80 80 7f 7f 80 80 7f  80 7f 81 7f 7f 7f 80 7f  |................|",
+                "00000080  7f 7f 82 80 7f 7f 81 80  7f 80 80 80 7f 7f 81 80  |................|",
+                "00000090  80 7f 80 80 7f 7f 80 7f  81 80 80 7f 7f 80 81 80  |................|",
+                "",
+                "... truncated ..."
+            ]
+        },
+
+        {
+            "cmd": "sonic-pi run jam_session.rb",
+            "type": "text",
+            "output": [
+                "==> Sonic Pi v4.3.0",
+                "loading 'jam_session.rb'...",
+                "-> live_loop :beat started",
+                "-> live_loop :bass started",
+                "-> live_loop :arp started",
+                "Now playing... [CTRL-C to stop]"
+            ]
+        },
+
+        {
+            "cmd": "cmus --status",
+            "type": "text",
+            "output": [
+                "status playing",
+                "file ~/music/ambient_mix01.mp3",
+                "tag artist DJ FM",
+                "tag title Oceanic Dreams",
+                "duration 5400s (01:30:00)",
+                "position 1020s (00:17:00)"
+            ]
+        },
+
+        {
+            "cmd": "mpg123 dj_set_berlin.flac",
+            "type": "text",
+            "output": [
+                "[mpg123] Decoding dj_set_berlin.flac...",
+                "Title: Void Night",
+                "Artist: FM",
+                "Length: 65:32",
+                "Playing... ██████████░░░░ 65%"
+            ]
+        },
+
+        {
+            "cmd": "alsamixer",
+            "type": "text",
+            "output": [
+                "┌─────────────────────────────── AlsaMixer v1.2.8 ───────────────────────────────┐",
+                "| Card: Built-in Audio                    F1:  Help                            |",
+                "| Chip: PulseAudio                        F2:  System information             |",
+                "| View: F3:[Playback] F4: Capture F5: All F6: Select sound card F7/F8: Move   |",
+                "| Item: Master [dB gain: 0.00, 0.00]                                           |",
+                "|                                                                              |",
+                "| ┌──┐                                                                          |",
+                "| │██│ Master                                                                    |",
+                "| │██│ Headphone                                                                 |",
+                "| │██│ PCM                                                                       |",
+                "└──────────────────────────────────────────────────────────────────────────────┘"
+            ]
+        },
+
+        {
+            "cmd": "cat playlist.m3u",
+            "type": "text",
+            "output": [
+                "#EXTM3U",
+                "#EXTINF:360,FM - Deep Ride",
+                "deep_ride.mp3",
+                "#EXTINF:420,FM - Night Streets",
+                "night_streets.flac",
+                "#EXTINF:280,FM - Vinyl Memories",
+                "vinyl_memories.wav"
+            ]
+        },
+
+        {
+            "cmd": "ffplay vinyl_rip_1998.wav",
+            "type": "text",
+            "output": [
+                "Input #0, wav, from 'vinyl_rip_1998.wav':",
+                "  Duration: 00:12:34.12, bitrate: 1411 kb/s",
+                "    Stream #0:0: Audio: pcm_s16le, 44100 Hz, 2 channels, s16, 1411 kb/s",
+                "Progress: ███████░░░░░░░░░░ 43%",
+                "Playing..."
+            ]
+        },
+
+        {
+            "cmd": "python3 synth.py",
+            "type": "text",
+            "output": [
+                "Loading synth definitions...",
+                "Oscillator: sine",
+                "Filter: low-pass, cutoff=1200Hz",
+                "Envelope: attack=50ms, release=500ms",
+                "Synth running. Press CTRL+C to exit."
+            ]
+        },
+
+        {
+            "cmd": "cmatrix -music",
+            "type": "matrix",
+            "durationMs": 3000
+        }
+    ]
+}

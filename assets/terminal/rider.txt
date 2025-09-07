@@ -1,4 +1,0 @@
-cat ~/music/rider.md
-less ~/music/rider.md
-bat ~/music/rider.md
-vim ~/music/rider.md

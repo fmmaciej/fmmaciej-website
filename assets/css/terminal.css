@@ -1,0 +1,170 @@
+/* ──────────────────────────────────────────────────────────
+    Ustawienia globalne (ciemny/jaśniejszy motyw)
+────────────────────────────────────────────────────────── */
+:root{
+    --terminal-opacity: 0.20;
+    --overlay-bleed: 24px;
+    --overlay-offset: 64px;
+    --footer-height: 64px;
+
+    --scanlines-opacity: 0.07;   /* intensywność linii */
+    --scanlines-speed: 18s;      /* czas pełnego przesunięcia (im więcej, tym wolniej) */
+    --scanlines-gap: 4px;        /* odstęp między liniami */
+    --scanlines-thick: 1px;      /* grubość linii */
+}
+
+[data-theme="light"]{
+    --terminal-opacity: 0.08;
+    --scanlines-opacity: 0.045;
+}
+
+/* ──────────────────────────────────────────────────────────
+    Terminal (pasek z promptem + komenda)
+────────────────────────────────────────────────────────── */
+@keyframes blink{
+    50%{
+        opacity:0
+    }
+}
+
+/* rozmiar linii terminala (prompt + komenda + kursor) */
+.terminal-line{
+    font-size:24px;
+    display:flex;
+    align-items:baseline;
+    gap:0;
+}
+
+.prompt{
+    color:var(--muted);
+    margin:0;
+    flex: 0 0 auto;
+    margin-right: .5em;
+}
+.prompt::after{
+    content:" ";           /* DOKŁADNIE jedna spacja po prompt */
+}
+
+.cmd{
+    flex:1 1 auto;
+    min-width:0;           /* pozwól się zawężać */
+    display:inline;
+    white-space:pre-wrap;  /* zachowuj spacje i łam wiersze */
+    overflow-wrap:anywhere;
+}
+
+#typedText{
+    white-space:inherit;   /* bierze z .cmd */
+    overflow-wrap:inherit;
+}
+
+#cursor{
+    display:inline-block;
+    width:0.6ch;           /* szerokość „cegiełki” kursora */
+    height:1em;
+    background:var(--cursor);
+    vertical-align:baseline;
+    transform:translateY(0.08em);
+    animation:blink 1s step-start infinite;
+}
+
+.terminal-box{
+    margin:24px 0;
+    padding:12px 0;
+    background:transparent;
+    border:none;
+}
+
+/* ──────────────────────────────────────────────────────────
+    Overlay z outputem (od końca terminala do stopki)
+────────────────────────────────────────────────────────── */
+.content-host{
+    position:relative;
+    isolation:isolate; /* własny stacking context, overlay pod treścią */
+}
+
+/* treść strony zawsze nad overlayem */
+.content-host > *{ 
+    position:relative;
+    z-index:1;
+}
+
+/* warstwa overlay — zakładamy, że JS wstawia ją na początek .content-host
+   i dynamicznie ustawia top tak, by startowała ZA terminalem */
+.content-host .terminal-overlay{
+    position:absolute;
+    opacity:var(--terminal-opacity);
+    top:calc(-1 * var(--overlay-offset));
+    bottom:var(--footer-height);
+    left:calc(-1 * var(--overlay-bleed));
+    right:calc(-1 * var(--overlay-bleed));
+    pointer-events:none;
+    background:transparent;
+    color:var(--muted);
+    white-space:pre-wrap;
+    z-index:0;
+}
+
+/* wygląd tekstu outputu */
+.content-host .terminal-overlay .layer{
+    font-size:32px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+    line-height:1.6;
+}
+
+/* scanlines */
+/* animacja: powolne przesuwanie tła w pionie */
+@keyframes scanScroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 var(--scanlines-gap); }
+}
+
+/* nałożone linie na overlay terminala */
+.content-host .terminal-overlay::after{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  /* delikatne poziome prążki */
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,var(--scanlines-opacity)) 0,
+      rgba(255,255,255,var(--scanlines-opacity)) var(--scanlines-thick),
+      transparent var(--scanlines-thick),
+      transparent var(--scanlines-gap)
+    );
+  mix-blend-mode: soft-light;
+  animation: scanScroll var(--scanlines-speed) linear infinite;
+}
+
+/* odpowiednik dla jasnego motywu – ciemniejsze prążki */
+.light-theme .content-host .terminal-overlay::after{
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,var(--scanlines-opacity)) 0,
+      rgba(0,0,0,var(--scanlines-opacity)) var(--scanlines-thick),
+      transparent var(--scanlines-thick),
+      transparent var(--scanlines-gap)
+    );
+}
+
+
+/* ──────────────────────────────────────────────────────────
+    Responsywność / preferencje
+────────────────────────────────────────────────────────── */
+@media (max-width:720px){
+    :root{ --overlay-bleed:10px; }
+    .content-host .terminal-overlay .layer{
+        font-size:18px;
+        line-height:1.4;
+    }
+}
+
+/* szanuj preferencję "mniej ruchu" */
+@media (prefers-reduced-motion: reduce){
+    .content-host .terminal-overlay::after{
+        animation: none;
+        opacity: .5; /* opcjonalnie trochę mocniej widoczne statycznie */
+    }
+}

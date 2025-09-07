@@ -1,0 +1,33 @@
+{
+    "commands": [
+        {
+            "cmd": "ls ~/blog",
+            "type": "text",
+            "output": [
+                "2025-09-01-initial-draft.md",
+                "2025-09-02-eleventy-setup.md",
+                "2025-09-03-terminal-tricks.md"
+            ]
+        },
+
+        {
+            "cmd": "cat ~/blog/2025-09-02-eleventy-setup.md",
+            "type": "text",
+            "output": [
+                "# Setting up Eleventy",
+                "",
+                "Minimal static site with Nunjucks layouts.",
+                "Includes blog collection, terminal widget, and press kit generator."
+            ]
+        },
+
+        {
+            "cmd": "grep -i 'eleventy' ~/blog/*.md",
+            "type": "text",
+            "output": [
+                "2025-09-02-eleventy-setup.md: Setting up Eleventy",
+                "2025-09-03-terminal-tricks.md: Using Eleventy with custom filters"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "commands": [
+        {
+            "cmd": "ls ~/projects",
+            "type": "text",
+            "output": [
+                "listify/       # Playlist manager",
+                "fmmaciej.com/  # Personal site",
+                "cv-builder/    # Pandoc + LaTeX CV generator"
+            ]
+        },
+
+        {
+            "cmd": "git clone https://github.com/fmmaciej/listify.git",
+            "type": "text",
+            "output": [
+                "Cloning into 'listify'...",
+                "remote: Enumerating objects: 2042, done.",
+                "remote: Counting objects: 100% (2042/2042), done.",
+                "Resolving deltas: 100% (1345/1345), done."
+            ]
+        },
+
+        {
+            "cmd": "tree -L 1 ~/projects/fmmaciej.com",
+            "type": "text",
+            "output": [
+                "fmmaciej.com/",
+                " ├─ src/",
+                " ├─ www/",
+                " ├─ tools/",
+                " └─ package.json"
+            ]
+        }
+    ]
+}
