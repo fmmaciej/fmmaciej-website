@@ -3,13 +3,23 @@
 ────────────────────────────────────────────────────────── */
 :root{
     --terminal-opacity: .24;
-    --overlay-bleed: 72px;
-    --overlay-offset: 24px;
-    --footer-height: 64px;
+    --overlay-bleed: 72px;      /* wylewanie sie po bokach */
+    --overlay-shift: 0px;       /* przesunięcie w poziomie */
+    --overlay-offset: 20px;     /* korekta w pionie */
 }
 
-[data-theme="light"]{
-    --terminal-opacity: 0.08;
+@media (max-width: 720px){
+    :root{
+        --terminal-opacity-mobile: .24;
+        --overlay-bleed-mobile: 4px;
+        --overlay-shift-mobile: 0px;
+        --overlay-offset-mobile: 20px;
+    }
+}
+
+:root[data-theme="light"]{
+    --terminal-opacity: 0.10;
+    --terminal-opacity-mobile: 0.10;
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -26,9 +36,9 @@
 }
 
 .terminal-viewport{
-  position: relative;
-  height: calc(var(--term-lines) * 1.2em);   /* spójne z line-height */
-  overflow: visible;                          /* pozwól „wystawać” */
+    position: relative;
+    height: calc(var(--term-lines) * 1.2em);    /* spójne z line-height */
+    overflow: visible;                          /* rozlewanie sie */
 }
 
 /* Linia jest absolutna wewnątrz viewportu, więc overflow nie zmienia layoutu */
@@ -79,6 +89,7 @@
 .content-host{
     position:relative;
     isolation:isolate; /* własny stacking context, overlay pod treścią */
+    overflow:hidden;
 }
 
 /* treść strony zawsze nad overlayem */
@@ -91,10 +102,12 @@
    i dynamicznie ustawia top tak, by startowała ZA terminalem */
 .content-host .terminal-overlay{
     position:absolute;
-    top:calc(-1 * var(--overlay-offset));
+
+    top: calc(var(--overlay-start, 0px) - var(--overlay-offset, 0px));
     bottom:var(--footer-height);
-    left:calc(-1 * var(--overlay-bleed));
-    right:calc(-1 * var(--overlay-bleed));
+    left:0;
+    right:0;
+
     pointer-events:none;
     background:transparent;
     color:var(--muted);
@@ -107,22 +120,50 @@
     font-size:32px;
     font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
     line-height:1.6;
-    opacity:var(--terminal-opacity);
+
+    opacity:var(--terminal-opacity, .24);
+
+    display: block;
+    overflow: hidden;
+    /* zwiększamy logiczną szerokość bleed po obu stronach */
+    width: calc(100% + 2 * var(--overlay-bleed));
+    /* pozycjonujemy przesunięciem */
+    transform: translateX(calc(-1 * var(--overlay-bleed) + var(--overlay-shift)));
 }
 
 /* ──────────────────────────────────────────────────────────
-    Responsywność / preferencje
+    Mobile
 ────────────────────────────────────────────────────────── */
 @media (max-width:720px){
-    :root{
-        --overlay-bleed:16px;
+    html, body {
+        overflow-x: hidden;
     }
 
     .terminal-line{
         font-size: 18px;
     }
 
+    .content-host {
+        overflow: hidden;
+    }
+
+    .content-host .terminal-overlay{
+        top: calc(var(--overlay-start, 0px) - var(--overlay-offset-mobile, 0px));
+    }
+
     .content-host .terminal-overlay .layer{
-        opacity: .24;
+        opacity: var(--terminal-opacity-mobile, .74);
+        width: calc(100% + 2 * var(--overlay-bleed-mobile));
+        transform: translateX(calc(-1 * var(--overlay-bleed-mobile) + var(--overlay-shift-mobile)));
+    }
+}
+
+@media (min-width: 721px){
+    .content-host {
+        overflow: visible;
+    }
+
+    .content-host .terminal-overlay {
+        white-space: pre-wrap;
     }
 }
