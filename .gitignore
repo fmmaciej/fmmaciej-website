@@ -29,6 +29,9 @@ fmmaciej.code-workspace
 .git-ftp-ignore
 
 src/assets/music/gigs/incoming/
+src/assets/music/mixes/incoming/
+src/assets/music/press_kit/incoming/
+
 node_modules/
 tools/
 
