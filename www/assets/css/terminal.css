@@ -2,7 +2,7 @@
     Ustawienia globalne (ciemny/jaśniejszy motyw)
 ────────────────────────────────────────────────────────── */
 :root{
-    --terminal-opacity: .22;
+    --terminal-opacity: .24;
     --overlay-bleed: 72px;
     --overlay-offset: 72px;
     --footer-height: 64px;
@@ -157,7 +157,7 @@
         --overlay-bleed:16px;
     }
     .content-host .terminal-overlay .layer{
-        opacity: .28;
+        opacity: .24;
     }
 }
 
