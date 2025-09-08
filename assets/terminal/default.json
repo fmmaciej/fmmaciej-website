@@ -14,7 +14,7 @@
         },
 
         {
-            "cmd": "g++ -std=c++20 main.cpp",
+            "cmd": "g++ -std=c++20 main.cpp -Wall -O2 -o main",
             "type": "text",
             "output": [
                 "main.cpp: In function ‘int main()’:",
@@ -55,9 +55,9 @@
             "cmd": "cargo build --release",
             "type": "text",
             "output": [
-                "   Compiling serde v1.0.209",
-                "   Compiling tokio v1.40.0",
-                "   Compiling myapp v0.1.0 (/home/fm/rust/myapp)",
+                "Compiling serde v1.0.209",
+                "Compiling tokio v1.40.0",
+                "Compiling myapp v0.1.0 (/home/fm/rust/myapp)",
                 "warning: unused import: `std::time::Duration`",
                 "    --> src/main.rs:5:5",
                 "     |",
@@ -95,12 +95,12 @@
             "cmd": "htop",
             "type": "text",
             "output": [
-                "  PID USER      PRI  NI  VIRT   RES   SHR S CPU% MEM%   TIME+  Command",
-                " 1243 fm        20   0 3240M  145M  8720 S  6.0  2.3  0:23.45 firefox",
-                " 1822 fm        20   0 1120M   92M  6532 S  3.3  1.5  0:08.15 alacritty",
-                " 2023 fm        20   0 2560M  184M 10324 S  2.9  2.9  0:41.77 clang++ src/app.cpp",
-                " 2177 fm        20   0 1420M   80M  6124 S  1.5  1.3  0:05.28 cargo build",
-                " 2277 fm        20   0  960M   62M  5320 S  1.1  0.9  0:02.02 python3 script.py"
+                " PID USER      PRI  NI  VIRT   RES   SHR S CPU% MEM%   TIME+  Command",
+                "1243 fm        20   0 3240M  145M  8720 S  6.0  2.3  0:23.45 firefox",
+                "1822 fm        20   0 1120M   92M  6532 S  3.3  1.5  0:08.15 alacritty",
+                "2023 fm        20   0 2560M  184M 10324 S  2.9  2.9  0:41.77 clang++ src/app.cpp",
+                "2177 fm        20   0 1420M   80M  6124 S  1.5  1.3  0:05.28 cargo build",
+                "2277 fm        20   0  960M   62M  5320 S  1.1  0.9  0:02.02 python3 script.py"
             ]
         },
 
