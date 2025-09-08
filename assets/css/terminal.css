@@ -160,11 +160,3 @@
         opacity: .1;
     }
 }
-
-/* szanuj preferencję "mniej ruchu" */
-@media (prefers-reduced-motion: reduce){
-    .content-host .terminal-overlay::after{
-        animation: none;
-        opacity: .5; /* opcjonalnie trochę mocniej widoczne statycznie */
-    }
-}
