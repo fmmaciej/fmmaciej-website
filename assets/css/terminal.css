@@ -117,6 +117,11 @@
     :root{
         --overlay-bleed:16px;
     }
+
+    .terminal-line{
+        font-size: 18px;
+    }
+
     .content-host .terminal-overlay .layer{
         opacity: .24;
     }
