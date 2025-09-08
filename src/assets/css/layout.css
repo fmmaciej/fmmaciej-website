@@ -7,6 +7,8 @@
     --link:#fff;
     --link-hover:#9f9f9f;
     --scrim:rgba(0,0,0,.6);
+
+    --content-offset: 24px;
 }
 
 :root[data-theme="light"] {
@@ -43,6 +45,12 @@ a{
 }
 a:hover,a:focus-visible{
     color:var(--link-hover)
+}
+
+.content-host {
+    position: relative;
+    isolation: isolate;
+    margin-top: var(--content-offset);
 }
 
 header,footer{
