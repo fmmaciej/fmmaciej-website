@@ -156,4 +156,7 @@
     :root{
         --overlay-bleed:16px;
     }
+    .content-host .terminal-overlay .layer{
+        opacity: .24;
+    }
 }
