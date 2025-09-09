@@ -60,6 +60,6 @@
         navigate(location.href);
     });
 
+    if (window.initTerminal) window.initTerminal(document);
     if (window.initNav) window.initNav(document);
-    if (window.initPageScripts) window.initPageScripts(document);
 })();

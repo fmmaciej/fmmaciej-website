@@ -11,7 +11,7 @@
             if(saved) {
                 document.documentElement.setAttribute('data-theme', saved);
             } else {
-                // brak wyboru – użyj systemowego
+                // brak wyboru - użyj systemowego
                 var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
             }
@@ -274,109 +274,15 @@
         </nav>
     </aside>
 
-    <script>
-        (() => {
-        const btn = document.getElementById('themeToggle');
-        if(!btn) return; // tylko kończymy TĘ funkcję, reszta skryptów żyje
+    <script src="/assets/js/theme.js" defer></script>
+    <script src="/assets/js/nav.js" defer></script>
+    <script src="/assets/js/page-boot.js" defer></script>
 
-        const KEY = 'theme';
-        const root = document.documentElement;
-        const mql  = window.matchMedia('(prefers-color-scheme: dark)');
+    <!-- terminal + transitions (po UI, bo transitions re-inicjuje komponenty) -->
+    <script src="/assets/js/terminal.js" defer></script>
+    <script src="/assets/js/transitions.js" defer></script>
 
-        function setTheme(t){
-            root.setAttribute('data-theme', t);
-            localStorage.setItem(KEY, t);
-            const icon = btn.querySelector('i');
-            if (icon) icon.className = (t === 'light') ? 'fas fa-sun' : 'fas fa-moon';
-        }
-        function current(){ return root.getAttribute('data-theme') || 'dark'; }
+    <script>window.initTerminal && window.initTerminal(document);</script>
 
-        // inicjalna ikona zgodna z atrybutem ustawionym w <head>
-        setTheme(localStorage.getItem(KEY) || root.getAttribute('data-theme') || (mql.matches?'dark':'light'));
-
-        btn.addEventListener('click', () => {
-            setTheme(current() === 'dark' ? 'light' : 'dark');
-        });
-
-        mql.addEventListener('change', e => {
-            if (!localStorage.getItem(KEY)) setTheme(e.matches ? 'dark' : 'light');
-        });
-        })();
-    </script>
-
-    <script>
-        window.initNav = function initNav(root = document){
-        const body     = document.body;
-        const hamburger= root.getElementById?.('hamburger') || document.getElementById('hamburger');
-        const drawer   = root.getElementById?.('mobileDrawer') || document.getElementById('mobileDrawer');
-        const backdrop = root.getElementById?.('backdrop') || document.getElementById('backdrop');
-        const closeBtn = root.getElementById?.('closeDrawer') || document.getElementById('closeDrawer');
-
-        if(!hamburger || !drawer || !backdrop || !closeBtn) return;
-
-        function openDrawer(){
-            body.classList.add('drawer-open');
-            drawer.setAttribute('aria-hidden','false');
-            backdrop.hidden = false;
-            hamburger.setAttribute('aria-expanded','true');
-        }
-        function closeDrawer(){
-            body.classList.remove('drawer-open');
-            drawer.setAttribute('aria-hidden','true');
-            backdrop.hidden = true;
-            hamburger.setAttribute('aria-expanded','false');
-        }
-        // zapisz globalnie, żeby transitions.js też mógł domknąć
-        window.closeDrawer = closeDrawer;
-
-        // odpinamy stare nasłuchy (jeśli były) i podpinamy od nowa
-        hamburger.onclick = openDrawer;
-        closeBtn.onclick  = closeDrawer;
-        backdrop.onclick  = closeDrawer;
-
-        // klik w link wewnątrz szuflady -> domknij zanim przejdziemy dalej
-        drawer.querySelectorAll('a[href]').forEach(a=>{
-            a.addEventListener('click', (e)=>{
-            // domykaj zawsze na klik; jeśli link jest zewnętrzny i otworzy się w nowej karcie też nie zaszkodzi
-            closeDrawer();
-            }, { once:false });
-        });
-        };
-
-        // start po pierwszym załadowaniu
-        window.initNav(document);
-    </script>
-
-    <script>
-        // Footer year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Upewnij się, że kursor stoi za tekstem (gdy terminal.js zmienia #typedText)
-        const typed = document.getElementById('typedText');
-        const cursorEl = document.getElementById('cursor');
-        if (typed && cursorEl && cursorEl.parentElement !== typed.parentElement) {
-            typed.after(cursorEl);
-        }
-
-        const footer = document.querySelector('footer');
-        if (footer) {
-            const setFooterVar = () =>
-                document.documentElement.style.setProperty('--footer-height',
-                footer.getBoundingClientRect().height + 'px');
-                setFooterVar();
-                addEventListener('resize', setFooterVar);
-        }
-
-        </script>
-
-        <script src="/assets/js/terminal.js" defer></script>
-        <script src="/assets/js/transitions.js" defer></script>
-        <script>window.initTerminal && window.initTerminal(document);</script>
-
-        <script>
-        window.addEventListener('load', () => {
-            document.documentElement.classList.remove('preload');
-        });
-        </script>
 </body>
 </html>
