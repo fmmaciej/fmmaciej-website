@@ -222,3 +222,8 @@ p{
 .no-underline:hover {
     text-decoration: underline;
 }
+
+.preload *, .preload *::before, .preload *::after {
+  transition: none !important;
+  animation: none !important;
+}

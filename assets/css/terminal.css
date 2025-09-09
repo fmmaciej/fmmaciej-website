@@ -52,18 +52,18 @@
     font-size: 24px;
 }
 
-/* Prompt sztywny… */
+/* Prompt sztywny */
 .prompt{flex: 0 0 auto;
     color: var(--muted);
 }
 
-/* …komenda elastyczna i zawijalna */
+/* komenda elastyczna i zawijalna */
 .cmd{
     flex: 1 1 auto;
-    min-width: 0;                 /* klucz do zawijania we flex */
-    white-space: pre-wrap;        /* zawijaj */
-    overflow-wrap: break-word;      /* łam także długie „słowa” */
-    word-break: keep-all;     /* nie łam w środku "słów" */
+    min-width: 0;               /* zwawijanie we flex */
+    white-space: pre-wrap;      /* zawijaj */
+    overflow-wrap: break-word;  /* łam także długie */
+    word-break: keep-all;       /* nie łam w środku */
 }
 
 /* typed/cursor dziedziczą zawijanie z .cmd */

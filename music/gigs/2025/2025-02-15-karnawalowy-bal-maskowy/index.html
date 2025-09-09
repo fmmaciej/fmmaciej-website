@@ -1,21 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="preload">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <script>
         (function(){
             var KEY='theme';
             var saved = localStorage.getItem(KEY);
-            if(saved){
+            if(saved) {
                 document.documentElement.setAttribute('data-theme', saved);
-            }else{
+            } else {
                 // brak wyboru – użyj systemowego
                 var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
             }
         })();
     </script>
+
     <title>FM - Software Engineer</title>
     <meta name="description" content="FM - software engineer. Minimal terminal-style personal site." />
 
@@ -23,10 +25,11 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <link rel="stylesheet" href="/assets/css/layout.css">
     <link rel="stylesheet" href="/assets/css/gig.css">
     <link rel="stylesheet" href="/assets/css/md.css">
     <link rel="stylesheet" href="/assets/css/terminal.css">
-    <link rel="stylesheet" href="/assets/css/layout.css">
+    <link rel="stylesheet" href="/assets/css/transitions.css">
 </head>
 
 <body>
@@ -273,8 +276,14 @@
 
         </script>
 
-        <!-- Overlay terminal JSON → cały „output na tle” ogarnia ten plik: -->
         <script src="/assets/js/terminal.js" defer></script>
+        <script src="/assets/js/transitions.js" defer></script>
+        <script>window.initTerminal && window.initTerminal(document);</script>
 
+        <script>
+        window.addEventListener('load', () => {
+            document.documentElement.classList.remove('preload');
+        });
+        </script>
 </body>
 </html>
