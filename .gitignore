@@ -30,7 +30,7 @@ fmmaciej.code-workspace
 
 src/assets/music/gigs/incoming/
 src/assets/music/mixes/incoming/
-src/assets/music/press_kit/incoming/
+src/assets/music/photos/incoming/
 
 node_modules/
 tools/
