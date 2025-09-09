@@ -6,10 +6,10 @@
     "day": 27,
     "name": "Uds_2",
     "seq": 1,
-    "thumb960": "/assets/music/gigs/_thumbs/20101127_UDS_2_01_960.webp",
     "thumb480": "/assets/music/gigs/_thumbs/20101127_UDS_2_01_480.webp",
     "thumb_w": 353,
     "thumb_h": 500,
+    "thumb960": "/assets/music/gigs/_thumbs/20101127_UDS_2_01_960.webp",
     "display1600": "/assets/music/gigs/_display/20101127_UDS_2_01_1600.webp",
     "rel": "20101127_UDS_2_01"
   },
@@ -20,10 +20,10 @@
     "day": 26,
     "name": "Uds_3",
     "seq": 1,
+    "thumb960": "/assets/music/gigs/_thumbs/20110226_UDS_3_01_960.webp",
     "thumb480": "/assets/music/gigs/_thumbs/20110226_UDS_3_01_480.webp",
     "thumb_w": 353,
     "thumb_h": 500,
-    "thumb960": "/assets/music/gigs/_thumbs/20110226_UDS_3_01_960.webp",
     "display1600": "/assets/music/gigs/_display/20110226_UDS_3_01_1600.webp",
     "rel": "20110226_UDS_3_01"
   },

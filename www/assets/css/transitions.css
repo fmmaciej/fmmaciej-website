@@ -1,0 +1,16 @@
+.content-host {
+    view-transition-name: page;
+}
+
+::view-transition-old(page),
+::view-transition-new(page) {
+    animation-duration: 220ms;
+    animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(page),
+    ::view-transition-new(page) {
+            animation-duration: 1ms;
+    }
+}

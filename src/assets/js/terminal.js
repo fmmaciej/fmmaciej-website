@@ -1,16 +1,19 @@
-(function(){
-    const termBox  = document.querySelector('.terminal-box');
+window.initTerminal = function initTerminal(root = document){
+    const termBox  = root.querySelector('.terminal-box');
     if (!termBox) return;
 
     const typed    = termBox.querySelector('#typedText');
     if (!typed) return;
 
     const cursorEl = termBox.querySelector('#cursor');
-    const cfgPath = termBox.getAttribute('data-terminal') || '/assets/terminal/default.json';
-    const DEFAULTS_URL = '/assets/terminal/config.json';
 
-    const host = document.querySelector('.content-host') || document.body;
+    const host = root.querySelector('.content-host') || document.body;
     if (!host) return;
+
+    host.querySelectorAll('.terminal-overlay').forEach(n => n.remove());
+
+    const cfgPath       = termBox.getAttribute('data-terminal') || '/assets/terminal/default.json';
+    const DEFAULTS_URL  = '/assets/terminal/config.json';
 
     const overlay = document.createElement('div');
     overlay.className = 'terminal-overlay';
@@ -19,7 +22,6 @@
     layer.className = 'layer';
 
     overlay.appendChild(layer);
-
     host.insertAdjacentElement('afterbegin', overlay);
 
     function positionOverlayBelowTerminal(){
@@ -27,22 +29,22 @@
         const termRect = termBox.getBoundingClientRect();
         const baseTop  = Math.max(0, termRect.bottom - hostRect.top);
 
-        // zamiast overlay.style.top = ...:
         host.style.setProperty('--overlay-start', baseTop + 'px');
     }
 
     function setFooterVar(){
+        const footer = document.querySelector('footer'); // footer jest poza hostem
         const h = footer ? footer.getBoundingClientRect().height : 64;
+
         host.style.setProperty('--footer-height', h + 'px');
     }
 
     positionOverlayBelowTerminal();
     setFooterVar();
+    requestAnimationFrame(positionOverlayBelowTerminal);
 
-    window.addEventListener('resize', () => {
-        positionOverlayBelowTerminal();
-        setFooterVar();
-    });
+    const onResize = () => { positionOverlayBelowTerminal(); setFooterVar(); };
+    window.addEventListener('resize', onResize);
 
     const joinOutput = (out) => Array.isArray(out) ? out.join('\n') : (out || '');
     const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -52,7 +54,7 @@
 
     function renderMatrix(durationMs = 2000){
         const rect  = host.getBoundingClientRect();
-        const charW = 8;    // przy 14px mono ~8px/znak (wystarcza do efektu)
+        const charW = 8;    // przy 14px mono ~8px/znak
         const charH = 18;   // ~line-height
         const cols  = Math.max(40, Math.floor(rect.width  / charW));
         const rows  = Math.max(12, Math.floor(rect.height / charH));
@@ -151,10 +153,20 @@
         }
     }
 
+    let intervalHandle = null;
+
     (async function init(){
         const globalDefaults = await fetchJSON(DEFAULTS_URL) || {};
-        const builtins = { random:true, intervalMs:10000, typingDelayMs:25, preDelayMs:250, charDelayMs:12, linePauseMs:120, fadeMs:0 };
         const pageCfg = await fetchJSON(cfgPath) || {};
+        const builtins = { 
+            random:true, 
+            intervalMs:10000, 
+            typingDelayMs:25, 
+            preDelayMs:250, 
+            charDelayMs:12, 
+            linePauseMs:120, 
+            fadeMs:0 
+        };
 
         const base = { ...builtins, ...globalDefaults, ...pageCfg };
         const commands = Array.isArray(pageCfg.commands) ? pageCfg.commands : [];
@@ -205,8 +217,18 @@
         };
 
         await runOne();
-        const h = setInterval(runOne, intervalMs);
+        intervalHandle = setInterval(runOne, intervalMs);
 
         console.log("[terminal] cfg", { intervalMs, typingMs, preDelayMs, fadeMs });
     })();
-})();
+
+    host._terminalCleanup?.();
+    host._terminalCleanup = () => {
+        try {
+            intervalHandle && clearInterval(intervalHandle);
+        } catch {}
+
+        window.removeEventListener('resize', onResize);
+        host.querySelectorAll('.terminal-overlay').forEach(n => n.remove());
+    };
+}
