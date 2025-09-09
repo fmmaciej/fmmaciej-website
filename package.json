@@ -9,7 +9,7 @@
     },
     "scripts": {
         "clean": "rm -fr www/",
-        "build:hash": "echo $(git rev-parse HEAD) > www/build.txt",
+        "build:hash": "echo $(git rev-parse HEAD:src) > www/build.txt",
         "build": "eleventy && npm run build:hash",
         "dev": "eleventy --serve",
 
