@@ -17,9 +17,9 @@
         "build:mixes": "tools/build_mixes.sh",
         "build:photos": "tools/build_photos.sh",
         "bundle:press-kit": "./tools/bundle_press_kit.sh",
-        "build:all": "npm run build:gigs && npm run build:mixes && npm run build:photos && npm run bundle:press-kit",
+        "build:content": "npm run build:gigs && npm run build:mixes && npm run build:photos && npm run bundle:press-kit",
 
-        "rebuild": "npm run clean && npm run build:all && npm run build",
+        "rebuild": "npm run clean && npm run build:content && npm run build",
 
         "push:git": "git push origin main",
         "push:ovh": "git push --force-with-lease origin \"$(git subtree split --prefix=www HEAD)\":refs/heads/ovh-deploy",
