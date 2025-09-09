@@ -28,7 +28,7 @@
         {
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=ErBoL8aMYNI&t=3517s",
-            "img": "/assets/music/mixes/20231201_01.png",
+            "img": "/assets/music/mixes/_thumbs/20231201_01_960.webp",
             "title": "FM | G-Sound x FM | Broken Mindz Radio",
             "date": "01.12.2023",
             "duration": "47min",
@@ -37,7 +37,7 @@
         {
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=_jUz4UOfRuo&t=1051s",
-            "img": "/assets/music/mixes/20201217_01.jpg",
+            "img": "/assets/music/mixes/_thumbs/20201217_01_960.webp",
             "title": "FM | FM & Vyti Tauta [Samogęste] | Broken Mindz Radio",
             "date": "17.12.2020",
             "duration": "43min",
@@ -46,7 +46,7 @@
         {
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=NWcc7OoCQOk&t=4647s",
-            "img": "/assets/music/mixes/20170627_01.png",
+            "img": "/assets/music/mixes/_thumbs/20170627_01_960.webp",
             "title": "FM | Shari Vari & FM | Broken Mindz Radio",
             "date": "27.06.2017",
             "duration": "43min",
@@ -63,7 +63,7 @@
         {
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=ylrcjMI5boA",
-            "img": "/assets/music/mixes/20161008_01.png",
+            "img": "/assets/music/mixes/_thumbs/20161008_01_960.webp",
             "title": "FM | Underground Session Ring",
             "date": "08.10.2016",
             "duration": "10min",
@@ -73,7 +73,7 @@
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=81xn9T4oq0M&t=108s",
             "title": "FM | Techno vs. Drum'n'Bass | Broken Mindz Radio",
-            "img": "/assets/music/mixes/20151115_01.png",
+            "img": "/assets/music/mixes/_thumbs/20151115_01_960.webp",
             "date": "15.11.2015",
             "duration": "43min",
             "genre": "Techno & Drum and bass"
@@ -82,7 +82,7 @@
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=thXcaFg9Rso",
             "title": "FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session",
-            "img": "/assets/music/mixes/20131231_01.png",
+            "img": "/assets/music/mixes/_thumbs/20131231_01_960.webp",
             "date": "31.12.2013",
             "duration": "2min",
             "genre": "Drum and bass"
@@ -90,7 +90,7 @@
         {
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=M5CKKZp4TWQ",
-            "img": "/assets/music/mixes/20131231_02.png",
+            "img": "/assets/music/mixes/_thumbs/20131231_02_960.webp",
             "title": "FM | NEUJAHRS WIRRWARR | BoomEvents x Automaton x Underground Session",
             "date": "31.12.2013",
             "duration": "2min",
@@ -99,7 +99,7 @@
         {
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=dcpu6-HDbno",
-            "img": "/assets/music/mixes/20130510_01.png",
+            "img": "/assets/music/mixes/_thumbs/20130510_01_960.webp",
             "title": "FM b2b Gibo | Harem aka Orphanage",
             "date": "10.05.2013",
             "duration": "3min",
@@ -108,7 +108,7 @@
         {
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=DeboTWBlWZc",
-            "img": "/assets/music/mixes/20121123_01.png",
+            "img": "/assets/music/mixes/_thumbs/20121123_01_960.webp",
             "title": "FM b2b Gibo | Underground Session",
             "date": "23.11.2012",
             "duration": "1h 22min",
@@ -118,7 +118,7 @@
         {
             "group": "YouTube",
             "url": "https://www.youtube.com/watch?v=VHxSpNusDio",
-            "img": "/assets/music/mixes/2011_01.png",
+            "img": "/assets/music/mixes/_thumbs/2011_01_960.webp",
             "title": "FM | DNB PL Dj Battle 2011 | dnb.pl",
             "date": "2011",
             "duration": "43min",
@@ -132,7 +132,7 @@
             "date": "30.11.2017",
             "duration": "60min",
             "genre": "Techno",
-            "img": "/assets/music/mixes/20171130_ElektrodiskoRadioZak_01_960.webp"
+            "img": "/assets/music/mixes/_thumbs/20171130_ElektrodiskoRadioZak_01_960.webp"
         },
 
         {
@@ -142,7 +142,7 @@
             "date": "12.2014",
             "duration": "1h 18min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/uds_logo.png"
+            "img": "/assets/music/mixes/_thumbs/uds_logo_960.webp"
         },
 
         {
@@ -152,7 +152,7 @@
             "date": "07.2014",
             "duration": "60min",
             "genre":"Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -162,7 +162,7 @@
             "date": "20.11.2012",
             "duration": "60min",
             "genre":"Drum and bass",
-            "img": "/assets/music/mixes/techbreak_logo.png"
+            "img": "/assets/music/mixes/_thumbs/techbreak_logo_960.webp"
         },
 
         {
@@ -172,7 +172,7 @@
             "date": "17.04.2012",
             "duration": "60min",
             "genre":"Drum and bass",
-            "img": "/assets/music/mixes/techbreak_logo.png"
+            "img": "/assets/music/mixes/_thumbs/techbreak_logo_960.webp"
         },
 
         {
@@ -182,7 +182,7 @@
             "date": "01.2012",
             "duration": "60min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -192,7 +192,7 @@
             "date": "11.2011",
             "duration": "40min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -202,7 +202,7 @@
             "date": "10.2011",
             "duration": "1h 00min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -212,7 +212,7 @@
             "date": "06.2011",
             "duration": "52min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -222,7 +222,7 @@
             "date": "01.2011",
             "duration": "27min",
             "genre":"Drum and bass",
-            "img": "/assets/music/mixes/2011_01.png"
+            "img": "/assets/music/mixes/_thumbs/2011_01_960.webp"
         },
 
         {
@@ -232,7 +232,7 @@
             "date": "12.2014",
             "duration": "1h 18min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/uds_logo.png"
+            "img": "/assets/music/mixes/_thumbs/uds_logo_960.webp"
         },
         
         {
@@ -242,7 +242,7 @@
             "date": "07.2014",
             "duration": "1h 09min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -252,7 +252,7 @@
             "date": "01.2012",
             "duration": "1h 20min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -262,7 +262,7 @@
             "date": "10.2011",
             "duration": "1h 00min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -272,7 +272,7 @@
             "date": "06.2011",
             "duration": "52min",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/fm_01.jpeg"
+            "img": "/assets/music/mixes/_thumbs/fm_01_960.webp"
         },
 
         {
@@ -280,7 +280,7 @@
             "title": "TechBreak Archive | Break.fm",
             "date": "03.2012 - 03.2013",
             "genre": "Drum and bass",
-            "img": "/assets/music/mixes/techbreak_logo.png"
+            "img": "/assets/music/mixes/_thumbs/techbreak_logo_960.webp"
         }
     ]
 }

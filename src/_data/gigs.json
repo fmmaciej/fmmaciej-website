@@ -34,10 +34,10 @@
     "day": 9,
     "name": "UDS 4",
     "seq": 1,
-    "thumb960": "/assets/music/gigs/_thumbs/20110409_UDS_4_01_960.webp",
     "thumb480": "/assets/music/gigs/_thumbs/20110409_UDS_4_01_480.webp",
     "thumb_w": 353,
     "thumb_h": 500,
+    "thumb960": "/assets/music/gigs/_thumbs/20110409_UDS_4_01_960.webp",
     "display1600": "/assets/music/gigs/_display/20110409_UDS_4_01_1600.webp",
     "rel": "20110409_UDS_4_01"
   },
@@ -620,14 +620,14 @@
     "year": 2016,
     "month": 6,
     "day": 17,
-    "name": "Veni Vini Techno#2",
+    "name": "Veni Vini Techno2",
     "seq": 1,
-    "thumb480": "/assets/music/gigs/_thumbs/20160617_VeniViniTechno#2_01_480.webp",
+    "thumb480": "/assets/music/gigs/_thumbs/20160617_VeniViniTechno2_01_480.webp",
     "thumb_w": 480,
     "thumb_h": 177,
-    "thumb960": "/assets/music/gigs/_thumbs/20160617_VeniViniTechno#2_01_960.webp",
-    "display1600": "/assets/music/gigs/_display/20160617_VeniViniTechno#2_01_1600.webp",
-    "rel": "20160617_VeniViniTechno#2_01"
+    "thumb960": "/assets/music/gigs/_thumbs/20160617_VeniViniTechno2_01_960.webp",
+    "display1600": "/assets/music/gigs/_display/20160617_VeniViniTechno2_01_1600.webp",
+    "rel": "20160617_VeniViniTechno2_01"
   },
   {
     "date": "2016-08-06",
@@ -746,14 +746,14 @@
     "year": 2016,
     "month": 12,
     "day": 17,
-    "name": "Po Naszemu#2",
+    "name": "Po Naszemu2",
     "seq": 1,
-    "thumb480": "/assets/music/gigs/_thumbs/20161217_PoNaszemu#2_01_480.webp",
+    "thumb480": "/assets/music/gigs/_thumbs/20161217_PoNaszemu2_01_480.webp",
     "thumb_w": 480,
     "thumb_h": 180,
-    "thumb960": "/assets/music/gigs/_thumbs/20161217_PoNaszemu#2_01_960.webp",
-    "display1600": "/assets/music/gigs/_display/20161217_PoNaszemu#2_01_1600.webp",
-    "rel": "20161217_PoNaszemu#2_01"
+    "thumb960": "/assets/music/gigs/_thumbs/20161217_PoNaszemu2_01_960.webp",
+    "display1600": "/assets/music/gigs/_display/20161217_PoNaszemu2_01_1600.webp",
+    "rel": "20161217_PoNaszemu2_01"
   },
   {
     "date": "2016-12-31",
@@ -802,28 +802,28 @@
     "year": 2017,
     "month": 3,
     "day": 11,
-    "name": "Po Naszemu#3",
+    "name": "Po Naszemu3",
     "seq": 1,
-    "thumb480": "/assets/music/gigs/_thumbs/20170311_PoNaszemu#3_01_480.webp",
+    "thumb480": "/assets/music/gigs/_thumbs/20170311_PoNaszemu3_01_480.webp",
     "thumb_w": 480,
     "thumb_h": 182,
-    "thumb960": "/assets/music/gigs/_thumbs/20170311_PoNaszemu#3_01_960.webp",
-    "display1600": "/assets/music/gigs/_display/20170311_PoNaszemu#3_01_1600.webp",
-    "rel": "20170311_PoNaszemu#3_01"
+    "thumb960": "/assets/music/gigs/_thumbs/20170311_PoNaszemu3_01_960.webp",
+    "display1600": "/assets/music/gigs/_display/20170311_PoNaszemu3_01_1600.webp",
+    "rel": "20170311_PoNaszemu3_01"
   },
   {
     "date": "2017-03-11",
     "year": 2017,
     "month": 3,
     "day": 11,
-    "name": "Po Naszemu#3",
+    "name": "Po Naszemu3",
     "seq": 2,
-    "thumb480": "/assets/music/gigs/_thumbs/20170311_PoNaszemu#3_02_480.webp",
+    "thumb480": "/assets/music/gigs/_thumbs/20170311_PoNaszemu3_02_480.webp",
     "thumb_w": 288,
     "thumb_h": 288,
-    "thumb960": "/assets/music/gigs/_thumbs/20170311_PoNaszemu#3_02_960.webp",
-    "display1600": "/assets/music/gigs/_display/20170311_PoNaszemu#3_02_1600.webp",
-    "rel": "20170311_PoNaszemu#3_02"
+    "thumb960": "/assets/music/gigs/_thumbs/20170311_PoNaszemu3_02_960.webp",
+    "display1600": "/assets/music/gigs/_display/20170311_PoNaszemu3_02_1600.webp",
+    "rel": "20170311_PoNaszemu3_02"
   },
   {
     "date": "2017-04-22",
@@ -2484,7 +2484,11 @@
     "day": 15,
     "name": "Willa Techno Dancing",
     "seq": 1,
-    "__error__": "UnidentifiedImageError: cannot identify image file '/Users/fm/Programming/08_WebSites/fmmaciej/src/assets/music/gigs/incoming/20230715_WillaTechnoDancing_01.heic'",
+    "thumb480": "/assets/music/gigs/_thumbs/20230715_WillaTechnoDancing_01_480.webp",
+    "thumb_w": 480,
+    "thumb_h": 478,
+    "thumb960": "/assets/music/gigs/_thumbs/20230715_WillaTechnoDancing_01_960.webp",
+    "display1600": "/assets/music/gigs/_display/20230715_WillaTechnoDancing_01_1600.webp",
     "rel": "20230715_WillaTechnoDancing_01"
   },
   {
@@ -2494,7 +2498,11 @@
     "day": 16,
     "name": "Willa Is On Fire",
     "seq": 1,
-    "__error__": "UnidentifiedImageError: cannot identify image file '/Users/fm/Programming/08_WebSites/fmmaciej/src/assets/music/gigs/incoming/20230916_WillaIsOnFire_01.heic'",
+    "thumb480": "/assets/music/gigs/_thumbs/20230916_WillaIsOnFire_01_480.webp",
+    "thumb_w": 480,
+    "thumb_h": 480,
+    "thumb960": "/assets/music/gigs/_thumbs/20230916_WillaIsOnFire_01_960.webp",
+    "display1600": "/assets/music/gigs/_display/20230916_WillaIsOnFire_01_1600.webp",
     "rel": "20230916_WillaIsOnFire_01"
   },
   {
@@ -2504,7 +2512,11 @@
     "day": 16,
     "name": "Willa Is On Fire",
     "seq": 2,
-    "__error__": "UnidentifiedImageError: cannot identify image file '/Users/fm/Programming/08_WebSites/fmmaciej/src/assets/music/gigs/incoming/20230916_WillaIsOnFire_02.heic'",
+    "thumb480": "/assets/music/gigs/_thumbs/20230916_WillaIsOnFire_02_480.webp",
+    "thumb_w": 480,
+    "thumb_h": 854,
+    "thumb960": "/assets/music/gigs/_thumbs/20230916_WillaIsOnFire_02_960.webp",
+    "display1600": "/assets/music/gigs/_display/20230916_WillaIsOnFire_02_1600.webp",
     "rel": "20230916_WillaIsOnFire_02"
   },
   {
@@ -2514,7 +2526,11 @@
     "day": 16,
     "name": "Willa Is On Fire",
     "seq": 3,
-    "__error__": "UnidentifiedImageError: cannot identify image file '/Users/fm/Programming/08_WebSites/fmmaciej/src/assets/music/gigs/incoming/20230916_WillaIsOnFire_03.heic'",
+    "thumb480": "/assets/music/gigs/_thumbs/20230916_WillaIsOnFire_03_480.webp",
+    "thumb_w": 480,
+    "thumb_h": 250,
+    "thumb960": "/assets/music/gigs/_thumbs/20230916_WillaIsOnFire_03_960.webp",
+    "display1600": "/assets/music/gigs/_display/20230916_WillaIsOnFire_03_1600.webp",
     "rel": "20230916_WillaIsOnFire_03"
   },
   {
@@ -2524,7 +2540,11 @@
     "day": 7,
     "name": "Willa Techno Dancing",
     "seq": 1,
-    "__error__": "UnidentifiedImageError: cannot identify image file '/Users/fm/Programming/08_WebSites/fmmaciej/src/assets/music/gigs/incoming/20231007_WillaTechnoDancing_01.heic'",
+    "thumb480": "/assets/music/gigs/_thumbs/20231007_WillaTechnoDancing_01_480.webp",
+    "thumb_w": 480,
+    "thumb_h": 250,
+    "thumb960": "/assets/music/gigs/_thumbs/20231007_WillaTechnoDancing_01_960.webp",
+    "display1600": "/assets/music/gigs/_display/20231007_WillaTechnoDancing_01_1600.webp",
     "rel": "20231007_WillaTechnoDancing_01"
   },
   {
@@ -2534,7 +2554,11 @@
     "day": 7,
     "name": "Willa Techno Dancing",
     "seq": 2,
-    "__error__": "UnidentifiedImageError: cannot identify image file '/Users/fm/Programming/08_WebSites/fmmaciej/src/assets/music/gigs/incoming/20231007_WillaTechnoDancing_02.heic'",
+    "thumb480": "/assets/music/gigs/_thumbs/20231007_WillaTechnoDancing_02_480.webp",
+    "thumb_w": 480,
+    "thumb_h": 480,
+    "thumb960": "/assets/music/gigs/_thumbs/20231007_WillaTechnoDancing_02_960.webp",
+    "display1600": "/assets/music/gigs/_display/20231007_WillaTechnoDancing_02_1600.webp",
     "rel": "20231007_WillaTechnoDancing_02"
   },
   {
@@ -2544,7 +2568,11 @@
     "day": 7,
     "name": "Willa Techno Dancing",
     "seq": 3,
-    "__error__": "UnidentifiedImageError: cannot identify image file '/Users/fm/Programming/08_WebSites/fmmaciej/src/assets/music/gigs/incoming/20231007_WillaTechnoDancing_03.heic'",
+    "thumb480": "/assets/music/gigs/_thumbs/20231007_WillaTechnoDancing_03_480.webp",
+    "thumb_w": 480,
+    "thumb_h": 854,
+    "thumb960": "/assets/music/gigs/_thumbs/20231007_WillaTechnoDancing_03_960.webp",
+    "display1600": "/assets/music/gigs/_display/20231007_WillaTechnoDancing_03_1600.webp",
     "rel": "20231007_WillaTechnoDancing_03"
   },
   {
