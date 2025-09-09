@@ -9,6 +9,8 @@
     }
 
     async function navigate(url) {
+        if (window.closeDrawer) window.closeDrawer();
+
         if (!supportsVTA) { location.href = url; return; }
 
         document.startViewTransition(async () => {
@@ -35,8 +37,9 @@
             history.pushState(null, '', url);
 
             if (window.initTerminal) window.initTerminal(document);
-
+            if (window.initNav)        window.initNav(document);
             if (window.initPageScripts) window.initPageScripts(newHost);
+            if (window.closeDrawer) window.closeDrawer();
         });
     }
 
@@ -47,10 +50,16 @@
         if (a.getAttribute('href').startsWith('#')) return;
 
         e.preventDefault();
+        
+        if (window.closeDrawer) window.closeDrawer();
         navigate(a.href);
     });
 
-    window.addEventListener('popstate', () => navigate(location.href));
+    window.addEventListener('popstate', () => {
+        if (window.closeDrawer) window.closeDrawer();
+        navigate(location.href);
+    });
 
+    if (window.initNav) window.initNav(document);
     if (window.initPageScripts) window.initPageScripts(document);
 })();

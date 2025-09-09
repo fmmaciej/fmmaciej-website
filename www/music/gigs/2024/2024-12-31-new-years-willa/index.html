@@ -246,36 +246,53 @@
         });
         })();
     </script>
-    <script>
-        // Footer year
-        document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Mobile drawer
-        const body = document.body;
-        const hamburger = document.getElementById('hamburger');
-        const drawer = document.getElementById('mobileDrawer');
-        const backdrop = document.getElementById('backdrop');
-        const closeBtn = document.getElementById('closeDrawer');
+    <script>
+        window.initNav = function initNav(root = document){
+        const body     = document.body;
+        const hamburger= root.getElementById?.('hamburger') || document.getElementById('hamburger');
+        const drawer   = root.getElementById?.('mobileDrawer') || document.getElementById('mobileDrawer');
+        const backdrop = root.getElementById?.('backdrop') || document.getElementById('backdrop');
+        const closeBtn = root.getElementById?.('closeDrawer') || document.getElementById('closeDrawer');
+
+        if(!hamburger || !drawer || !backdrop || !closeBtn) return;
 
         function openDrawer(){
             body.classList.add('drawer-open');
             drawer.setAttribute('aria-hidden','false');
             backdrop.hidden = false;
             hamburger.setAttribute('aria-expanded','true');
-            drawer.focus();
         }
         function closeDrawer(){
             body.classList.remove('drawer-open');
             drawer.setAttribute('aria-hidden','true');
             backdrop.hidden = true;
             hamburger.setAttribute('aria-expanded','false');
-            hamburger.focus();
         }
+        // zapisz globalnie, żeby transitions.js też mógł domknąć
+        window.closeDrawer = closeDrawer;
 
-        hamburger.addEventListener('click', openDrawer);
-        closeBtn.addEventListener('click', closeDrawer);
-        backdrop.addEventListener('click', closeDrawer);
-        window.addEventListener('keydown', (e) => { if(e.key==='Escape') closeDrawer(); });
+        // odpinamy stare nasłuchy (jeśli były) i podpinamy od nowa
+        hamburger.onclick = openDrawer;
+        closeBtn.onclick  = closeDrawer;
+        backdrop.onclick  = closeDrawer;
+
+        // klik w link wewnątrz szuflady -> domknij zanim przejdziemy dalej
+        drawer.querySelectorAll('a[href]').forEach(a=>{
+            a.addEventListener('click', (e)=>{
+            // domykaj zawsze na klik; jeśli link jest zewnętrzny i otworzy się w nowej karcie też nie zaszkodzi
+            closeDrawer();
+            }, { once:false });
+        });
+        };
+
+        // start po pierwszym załadowaniu
+        window.initNav(document);
+    </script>
+
+    <script>
+        // Footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
         // Upewnij się, że kursor stoi za tekstem (gdy terminal.js zmienia #typedText)
         const typed = document.getElementById('typedText');
