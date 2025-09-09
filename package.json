@@ -10,8 +10,8 @@
     "scripts": {
         "clean": "rm -fr www/",
         "build:hash": "echo $(git rev-parse HEAD:src) > www/build.txt",
-        "build": "npm run build:hash && eleventy",
-        "dev": "npm run build:hash && eleventy --serve",
+        "build": "eleventy && npm run build:hash",
+        "dev": "eleventy --serve",
 
         "build:gigs": "tools/build_gigs.sh",
         "build:mixes": "tools/build_mixes.sh",
