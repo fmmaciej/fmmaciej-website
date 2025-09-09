@@ -2,7 +2,7 @@
     Ustawienia globalne (ciemny/jaśniejszy motyw)
 ────────────────────────────────────────────────────────── */
 :root{
-    --terminal-opacity: .24;
+    --terminal-opacity: .25;
     --overlay-bleed: 72px;      /* wylewanie sie po bokach */
     --overlay-shift: 0px;       /* przesunięcie w poziomie */
     --overlay-offset: 20px;     /* korekta w pionie */
@@ -10,7 +10,7 @@
 
 @media (max-width: 720px){
     :root{
-        --terminal-opacity-mobile: .24;
+        --terminal-opacity-mobile: .25;
         --overlay-bleed-mobile: 4px;
         --overlay-shift-mobile: 0px;
         --overlay-offset-mobile: 20px;
@@ -33,6 +33,7 @@
 
 .terminal-box{
     --term-lines: 2;
+    margin-top: 16px;
 }
 
 .terminal-viewport{
@@ -98,7 +99,7 @@
     z-index:1;
 }
 
-/* warstwa overlay — zakładamy, że JS wstawia ją na początek .content-host
+/* warstwa overlay - zakładamy, że JS wstawia ją na początek .content-host
    i dynamicznie ustawia top tak, by startowała ZA terminalem */
 .content-host .terminal-overlay{
     position:absolute;
