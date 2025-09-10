@@ -56,19 +56,23 @@ module.exports = function(eleventyConfig) {
     const mdLinkAttrs = require("markdown-it-link-attributes");
 
     const md = markdownIt({ html: true, linkify: true })
-        .use(mdLinkAttrs, {
-                // external links (http/https)
-                // internal -> _blank
-                matcher(href) {
-                    return /^https?:\/\//i.test(href);
-            },
-                attrs: {
-                target: "_blank",
-                rel: "noopener"
-            }
-        });
-
+        .use(mdLinkAttrs, [
+                {
+                    matcher: (href) => /\.zip(?:[#?].*)?$/i.test(href),
+                    attrs: { class: "is-zip", rel: "noopener" }
+                },
+                {
+                    matcher: (href) => /\.pdf(?:[#?].*)?$/i.test(href),
+                    attrs: { class: "is-pdf", target: "_blank", rel: "noopener" }
+                },
+                {
+                    matcher: (href) => /^https?:\/\//i.test(href),
+                    attrs: { target: "_blank", rel: "noopener" }
+                }
+            ]
+        );
     eleventyConfig.setLibrary('md', md)
+
     eleventyConfig.addShortcode('importMd', file => {
         const fs = require('fs'), path = require('path')
         const fullPath = path.join('src', file)

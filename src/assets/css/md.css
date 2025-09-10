@@ -1,31 +1,58 @@
-.md-block p {
-    color: var(--muted);
-    line-height: 1.6;
-}
-
-.md-block h1 {
+.md h1 {
     display: none;
 }
 
-.md-block h2 { 
+.md h2 { 
     text-transform: lowercase;
     font-size: 1.17rem;
     margin: 0 0 10px;
 }
 
-.md-block h2::before {
+.md h2::before {
     content: "/";
 }
 
-.md-block h3 { 
+.md h3 { 
     text-transform: lowercase;
     margin: 0 0 10px;
 }
 
-.md-block h3::before {
+.md h3::before {
     content: "/";
 }
 
-.md-block li { 
+.md p {
     color: var(--muted);
+    line-height: 1.6;
+}
+
+.md li { 
+    color: var(--muted);
+}
+
+/* link PDF — większy font, odstępy i blokowy układ */
+.md a.is-pdf {
+  display: block;          /* każdy w nowej linii */
+  margin: 0.4em 0;         /* odstępy góra/dół */
+  font-size: 16px;         /* << zmień wg uznania */
+  line-height: 1.6;        /* << odstęp między wierszami */
+  text-decoration: none;   /* jeśli chcesz bez podkreślenia */
+}
+
+/* (opcjonalnie) jeśli link siedzi w li, dociśnij też to: */
+.md li > a.is-pdf {
+  display: inline-block;   /* albo block — jak wolisz */
+  margin: 0.25em 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* (opcjonalnie) jeśli chcesz ikonę FA przed linkiem */
+.md a.is-pdf::before {
+  content: "\f1c1"; /* fa-file-pdf */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  margin-right: 0.5em;
+  font-size: 0.9em;
+  vertical-align: middle;
 }
