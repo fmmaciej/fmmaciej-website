@@ -18,7 +18,7 @@
         })();
     </script>
 
-    <title>FM - Software Engineer</title>
+    <title>FM — /music/links</title>
     <meta name="description" content="FM - software engineer. Minimal terminal-style personal site." />
 
     <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="8" width="64" height="64" fill="%23000"/><text x="50%" y="56%" text-anchor="middle" font-family="monospace" font-size="26" fill="white">FM</text></svg>' />
@@ -52,7 +52,7 @@
     </header>
 
     
-        <div class="terminal-box"  data-terminal="/assets/terminal/music/event.json">
+        <div class="terminal-box"  data-terminal="/assets/terminal/music/bio.json">
             <div class="terminal-viewport">
                 <div class="terminal-line">
                 <span class="prompt">fm@void:~$</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
@@ -65,56 +65,51 @@
         <main>
             
 <h3>
-    <a href="/music/">/music</a><a href="/music/gigs/">/gigs</a><a href="/music/gigs#y-2019">/2019</a>/Hidden Noises&amp;t&amp;gnight
+<a href="/music/">/music</a><a href="/music/links">/links</a>
 </h3>
 
 <style>
-    .gig-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 14px;
+    .music-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+        font-family: ui-monospace, monospace;
     }
 
-    .gig-card {
-        display:block;
-        border:1px solid var(--border);
-        border-radius:10px;
-        overflow:hidden;
-        background:var(--bg);
-        transition:transform .15s ease,border-color .15s ease;
-        text-decoration:none;
-        color:var(--text);
+    .music-list li {
+        display: flex;
+        gap: 16px;
     }
 
-    .gig-card:hover { transform: translateY(-2px); border-color: var(--muted); }
-    .gig-card img { width:100%; height:300px; object-fit:cover; display:block; }
-    @media (max-width: 600px){ .gig-card img { height:52vw; max-height:360px; } }
+    .music-list a {
+        color: var(--link);
+        text-decoration: none;
+    }
+
+    .music-list a:hover {
+        text-decoration: underline;
+    }
+
+    .music-list .comment {
+        color: var(--muted);
+        flex: 1;
+    }
 </style>
 
+<p>
+Here are a few links you might find worth checking out.
+</p>
 
-
-<div class="gig-grid">
-
-<a class="gig-card" href="/assets/music/gigs/_display/20191005_HiddenNoises&amp;T&amp;GNight_01_1600.webp" target="_blank" rel="noopener">
-    <img
-        src="/assets/music/gigs/_thumbs/20191005_HiddenNoises&amp;T&amp;GNight_01_480.webp"
-        srcset="/assets/music/gigs/_thumbs/20191005_HiddenNoises&amp;T&amp;GNight_01_480.webp 480w, /assets/music/gigs/_thumbs/20191005_HiddenNoises&amp;T&amp;GNight_01_960.webp 960w"
-        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
-        alt=""
-        width="480"
-        height="247"
-        loading="lazy" decoding="async">
-    <div class="gig-meta">
-        <span class="dot">
-    
-    2019-10-05
-</span>
-        <span class="dot">Hidden Noises&amp;t&amp;gnight</span>
-        <span class="dot">#1</span>
-    </div>
-</a>
-
-</div>
+<ul class="music-list">
+    <li><a href="https://www.facebook.com/Willa.w.parku.lodz/">/willa</a>
+        <span class="comment"># a great spot to party or simply hang out</span></li>
+    <li><a href="https://www.skylarkmusicstore.com">/skylark</a>
+        <span class="comment"># a place to dig for records and music gear</span></li>
+    <li><a href="https://www.mixcloud.com/gsound/">/g-sound</a>
+        <span class="comment"># have a listen to his mixes - worth it</span></li>
+    <li><a href="https://soundcloud.com/skffmusic">/skff</a>
+        <span class="comment"># a talented techno producer</span></li>
+</ul>
 
 <br>
 
