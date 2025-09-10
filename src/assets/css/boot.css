@@ -1,0 +1,24 @@
+#bootOverlay{
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    color: var(--text);
+    z-index: 9999;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+}
+
+#bootOverlay .boot-scroll{
+    overflow: hidden;
+    padding: 8vh 8vw 0;
+    line-height: 1.35;
+    opacity: .96;
+    white-space: pre-wrap;
+}
+
+#bootOverlay .boot-line{ color: var(--muted); margin: 0 0 .2em; }
+#bootOverlay .boot-line.ok      { color: #eaeaea; }
+#bootOverlay .boot-line.warn    { color: #c9a845; }
+#bootOverlay .boot-line.depen   { color: #c9a845; }
+#bootOverlay .boot-line.err     { color: #c94545; }
