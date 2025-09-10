@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="/assets/css/layout.css">
-    <link rel="stylesheet" href="/assets/css/boot.css">
-    <link rel="stylesheet" href="/assets/css/loader.css">
     <link rel="stylesheet" href="/assets/css/gig.css">
     <link rel="stylesheet" href="/assets/css/md.css">
     <link rel="stylesheet" href="/assets/css/terminal.css">
@@ -164,22 +162,15 @@
         </nav>
     </aside>
 
-    <script src="/assets/js/boot.js" defer></script>
-    <script src="/assets/js/loader.js" defer></script>
     <script src="/assets/js/theme.js" defer></script>
     <script src="/assets/js/nav.js" defer></script>
     <script src="/assets/js/page-boot.js" defer></script>
+
+    <!-- terminal + transitions (po UI, bo transitions re-inicjuje komponenty) -->
     <script src="/assets/js/terminal.js" defer></script>
     <script src="/assets/js/transitions.js" defer></script>
 
-    <script>
-        window.initTerminal && window.initTerminal(document);
-        window.initNav && window.initNav(document);
-    </script>
-
-    <div id="pageLoader">
-        <span>loading<span class="dots"></span></span>
-    </div>
+    <script>window.initTerminal && window.initTerminal(document);</script>
 
 </body>
 </html>
