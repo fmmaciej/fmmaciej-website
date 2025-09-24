@@ -2,7 +2,7 @@
     Ustawienia globalne (ciemny/jaśniejszy motyw)
 ────────────────────────────────────────────────────────── */
 :root{
-    --terminal-opacity: .25;
+    --terminal-opacity: .16;
     --overlay-bleed: 72px;      /* wylewanie sie po bokach */
     --overlay-shift: 0px;       /* przesunięcie w poziomie */
     --overlay-offset: 20px;     /* korekta w pionie */
@@ -10,7 +10,7 @@
 
 @media (max-width: 720px){
     :root{
-        --terminal-opacity-mobile: .25;
+        --terminal-opacity-mobile: .16;
         --overlay-bleed-mobile: 4px;
         --overlay-shift-mobile: 0px;
         --overlay-offset-mobile: 20px;
