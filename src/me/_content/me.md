@@ -15,5 +15,5 @@ explore the [/music](/music) I care about. If you'd like, you can
 
 My CV is available for download below in both English and Polish versions.
 
-[English version (PDF)](https://raw.githubusercontent.com/fmmaciej/fmmaciej-cv/main/build/cv-en.pdf)
-[Polish version (PDF)](https://raw.githubusercontent.com/fmmaciej/fmmaciej-cv/main/build/cv-pl.pdf)
+[English version (PDF)](https://raw.githubusercontent.com/fmmaciej/fmmaciej-cv/main/build/cv-organisciak-maciej-en.pdf)
+[Polish version (PDF)](https://raw.githubusercontent.com/fmmaciej/fmmaciej-cv/main/build/cv-organisciak-maciej-pl.pdf)
