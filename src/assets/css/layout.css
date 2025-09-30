@@ -73,53 +73,57 @@ footer{
     padding:0 20px
 }
 
-/* Desktop nav */
-nav.primary{
-    float:right;
-    display:flex;
-    align-items:center;
-    gap:14px
-}
-nav.primary a{
-    color:var(--muted);
-    text-decoration:none
-}
-nav.primary a:hover{
-    color:var(--text);
-    text-decoration:underline
+/* Podstawowa nawigacja desktop */
+nav.primary {
+    float: right;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-.theme-toggle{
-    cursor:pointer;
-    font-size:18px;
-    user-select:none;
-    color:var(--muted);
-    display:inline-flex;
-    align-items:center
-}
-.theme-toggle i {
-    color:currentColor
+nav.primary a {
+    color: var(--muted);
+    text-decoration: none;
 }
 
-.theme-toggle:hover i {
-    color: var(--text); 
+nav.primary a:hover {
+    color: var(--text);
+    text-decoration: underline;
 }
 
-/* Hamburger (shown on small screens) */
-.hamburger{
-    display:none;
-    appearance:none;
-    background:none;
-    border:1px solid var(--border);
-    color:var(--muted);
-    padding:6px 10px;border-radius:6px;cursor:pointer
-}
-.hamburger:focus-visible{
-    outline:2px dotted var(--muted)
+/* Wspólna baza dla przycisków */
+nav.primary button {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    user-select: none;
 }
 
-.hamburger:hover i {
-    color: var(--text); 
+nav.primary button i {
+    color: currentColor;
+}
+
+nav.primary button:hover,
+nav.primary button:hover i {
+    color: var(--text);
+}
+
+nav.primary button:focus-visible {
+    outline: 2px dotted var(--muted);
+}
+
+.hamburger {
+    font-size: 12px;
+}
+
+.theme-toggle {
+    font-size: 16px;
 }
 
 /* Mobile drawer */
