@@ -21,15 +21,15 @@
         "build": "eleventy && npm run build:hash",
         "rebuild": "npm run clean && npm run build:content && npm run build",
 
-        "deploy:git": "git push origin main",
-        "deploy:ovh": "git push --force-with-lease origin \"$(git subtree split --prefix=www HEAD)\":refs/heads/ovh-deploy",
+        "push": "git push",
         "deploy:check": "./tools/build_check.sh",
+        "deploy:ovh": "git push --force-with-lease origin \"$(git subtree split --prefix=www HEAD)\":refs/heads/ovh-deploy",
 
-        "deploy": "npm run deploy:check && npm run deploy:git && npm run deploy:ovh"
+        "deploy": "npm run deploy:check && npm run deploy:ovh"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/fmmaciej/fmmaciej-website.git"
+        "url": "git@fmmaciej:fmmaciej/fmmaciej-website.git"
     },
     "keywords": [],
     "author": "",
