@@ -11,6 +11,6 @@
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(page),
     ::view-transition-new(page) {
-            animation-duration: 1ms;
+        animation-duration: 1ms;
     }
 }
