@@ -1,0 +1,116 @@
+.content-host {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.content-host > * {
+    position: relative;
+    z-index: 1;
+}
+
+.content-host .terminal-overlay {
+    position: absolute;
+
+    top: calc(var(--overlay-start, 0px) - var(--overlay-offset, 0px));
+    bottom: var(--footer-height);
+    left: 0;
+    right: 0;
+
+    pointer-events: none;
+    background: transparent;
+    color: var(--muted);
+    white-space: pre-wrap;
+    z-index: 0;
+}
+
+.content-host .terminal-overlay .layer {
+    font-size: 32px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    line-height: 1.6;
+    opacity: var(--terminal-opacity, .24);
+    display: block;
+    overflow: hidden;
+    width: calc(100% + 2 * var(--overlay-bleed));
+    transform: translateX(calc(-1 * var(--overlay-bleed) + var(--overlay-shift)));
+}
+
+/* mobile */
+@media (max-width: 720px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    .terminal-line {
+        font-size: 18px;
+    }
+
+    .content-host {
+        overflow: hidden;
+    }
+
+    .content-host .terminal-overlay {
+        top: calc(var(--overlay-start, 0px) - var(--overlay-offset-mobile, 0px));
+    }
+
+    .content-host .terminal-overlay .layer {
+        opacity: var(--terminal-opacity-mobile, .74);
+        width: calc(100% + 2 * var(--overlay-bleed-mobile));
+        transform: translateX(calc(-1 * var(--overlay-bleed-mobile) + var(--overlay-shift-mobile)));
+    }
+}
+
+@media (min-width: 721px) {
+    .content-host {
+        overflow: visible;
+    }
+
+    .content-host .terminal-overlay {
+        white-space: pre-wrap;
+    }
+}
+
+
+/* ---------- BOOT ---------- */
+#bootOverlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    color: var(--text);
+    z-index: 9999;
+
+    display: grid;
+    grid-template-rows: 1fr auto;
+
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+#bootOverlay .boot-scroll {
+    overflow: hidden;
+    padding: 8vh 8vw 0;
+    line-height: 1.35;
+    opacity: .96;
+    white-space: pre-wrap;
+}
+
+#bootOverlay .boot-line {
+    color: var(--muted);
+    margin: 0 0 .2em;
+}
+
+#bootOverlay .boot-line.ok {
+    color: #eaeaea;
+}
+
+#bootOverlay .boot-line.warn {
+    color: #c9a845;
+}
+
+#bootOverlay .boot-line.depen {
+    color: #c9a845;
+}
+
+#bootOverlay .boot-line.err {
+    color: #c94545;
+}
