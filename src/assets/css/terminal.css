@@ -1,146 +1,101 @@
-/* ──────────────────────────────────────────────────────────
-    Ustawienia globalne (ciemny/jaśniejszy motyw)
-────────────────────────────────────────────────────────── */
-:root{
-    --terminal-opacity: .16;
-    --overlay-bleed: 72px;      /* wylewanie sie po bokach */
-    --overlay-shift: 0px;       /* przesunięcie w poziomie */
-    --overlay-offset: 20px;     /* korekta w pionie */
-}
-
-@media (max-width: 720px){
-    :root{
-        --terminal-opacity-mobile: .16;
-        --overlay-bleed-mobile: 4px;
-        --overlay-shift-mobile: 0px;
-        --overlay-offset-mobile: 20px;
+@keyframes blink {
+    50% {
+        opacity: 0;
     }
 }
 
-:root[data-theme="light"]{
-    --terminal-opacity: 0.10;
-    --terminal-opacity-mobile: 0.10;
-}
-
-/* ──────────────────────────────────────────────────────────
-    Terminal (pasek z promptem + komenda)
-────────────────────────────────────────────────────────── */
-@keyframes blink{
-    50%{
-        opacity:0
-    }
-}
-
-.terminal-box{
+.terminal-box {
     --term-lines: 2;
     margin-top: 16px;
 }
 
-.terminal-viewport{
+.terminal-viewport {
     position: relative;
-    height: calc(var(--term-lines) * 1.2em);    /* spójne z line-height */
-    overflow: visible;                          /* rozlewanie sie */
+    height: calc(var(--term-lines) * 1.2em);
 }
 
-/* Linia jest absolutna wewnątrz viewportu, więc overflow nie zmienia layoutu */
-.terminal-line{
+.terminal-line {
     position: absolute;
     inset: 0;
+
     display: flex;
     align-items: baseline;
     gap: .5ch;
-    line-height: 1.4;
+
     font-size: 24px;
 }
 
-/* Prompt sztywny */
-.prompt{flex: 0 0 auto;
+.prompt {
+    flex: 0 0 auto;
     color: var(--muted);
 }
 
-/* komenda elastyczna i zawijalna */
-.cmd{
+.cmd {
     flex: 1 1 auto;
-    min-width: 0;               /* zwawijanie we flex */
-    white-space: pre-wrap;      /* zawijaj */
-    overflow-wrap: break-word;  /* łam także długie */
-    word-break: keep-all;       /* nie łam w środku */
+    min-width: 0;
+
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 
-/* typed/cursor dziedziczą zawijanie z .cmd */
-#typedText{
-    white-space: inherit;
-    overflow-wrap: inherit;
+#cursor {
+    display: inline-block;
+    width: .6ch;
+    height: 1em;
+
+    background: var(--cursor);
+
+    transform: translateY(.08em);
+
+    animation: blink 1s step-start infinite;
 }
 
-#cursor{
-    display:inline-block;
-    width:0.6ch;           /* szerokość bloku kursora */
-    height:1em;
-    background:var(--cursor);
-    vertical-align:baseline;
-    transform:translateY(0.08em);
-    animation:blink 1s step-start infinite;
+/* terminal overlay */
+.content-host {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
 }
 
-
-/* ──────────────────────────────────────────────────────────
-    Overlay z outputem (od końca terminala do stopki)
-────────────────────────────────────────────────────────── */
-.content-host{
-    position:relative;
-    isolation:isolate; /* własny stacking context, overlay pod treścią */
-    overflow:hidden;
+.content-host > * {
+    position: relative;
+    z-index: 1;
 }
 
-/* treść strony zawsze nad overlayem */
-.content-host > *{ 
-    position:relative;
-    z-index:1;
-}
-
-/* warstwa overlay - zakładamy, że JS wstawia ją na początek .content-host
-   i dynamicznie ustawia top tak, by startowała ZA terminalem */
-.content-host .terminal-overlay{
-    position:absolute;
+.content-host .terminal-overlay {
+    position: absolute;
 
     top: calc(var(--overlay-start, 0px) - var(--overlay-offset, 0px));
-    bottom:var(--footer-height);
-    left:0;
-    right:0;
+    bottom: var(--footer-height);
+    left: 0;
+    right: 0;
 
-    pointer-events:none;
-    background:transparent;
-    color:var(--muted);
-    white-space:pre-wrap;
-    z-index:0;
+    pointer-events: none;
+    background: transparent;
+    color: var(--muted);
+    white-space: pre-wrap;
+    z-index: 0;
 }
 
-/* wygląd tekstu outputu */
-.content-host .terminal-overlay .layer{
-    font-size:32px;
-    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
-    line-height:1.6;
-
-    opacity:var(--terminal-opacity, .24);
-
+.content-host .terminal-overlay .layer {
+    font-size: 32px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    line-height: 1.6;
+    opacity: var(--terminal-opacity, .24);
     display: block;
     overflow: hidden;
-    /* zwiększamy logiczną szerokość bleed po obu stronach */
     width: calc(100% + 2 * var(--overlay-bleed));
-    /* pozycjonujemy przesunięciem */
     transform: translateX(calc(-1 * var(--overlay-bleed) + var(--overlay-shift)));
 }
 
-/* ──────────────────────────────────────────────────────────
-    Mobile
-────────────────────────────────────────────────────────── */
-@media (max-width:720px){
-    html, body {
+/* mobile */
+@media (max-width: 720px) {
+    html,
+    body {
         overflow-x: hidden;
     }
 
-    .terminal-line{
+    .terminal-line {
         font-size: 18px;
     }
 
@@ -148,18 +103,18 @@
         overflow: hidden;
     }
 
-    .content-host .terminal-overlay{
+    .content-host .terminal-overlay {
         top: calc(var(--overlay-start, 0px) - var(--overlay-offset-mobile, 0px));
     }
 
-    .content-host .terminal-overlay .layer{
+    .content-host .terminal-overlay .layer {
         opacity: var(--terminal-opacity-mobile, .74);
         width: calc(100% + 2 * var(--overlay-bleed-mobile));
         transform: translateX(calc(-1 * var(--overlay-bleed-mobile) + var(--overlay-shift-mobile)));
     }
 }
 
-@media (min-width: 721px){
+@media (min-width: 721px) {
     .content-host {
         overflow: visible;
     }
