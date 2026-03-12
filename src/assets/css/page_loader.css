@@ -2,14 +2,18 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     background: var(--bg);
     color: var(--text);
+
     font-family: ui-monospace, SFMono-Regular, monospace;
     font-size: 14px;
     letter-spacing: 0.08em;
+
     opacity: 0;
     pointer-events: none;
     transition: opacity .3s ease;
@@ -20,14 +24,21 @@ body.show-loader #pageLoader {
     pointer-events: auto;
 }
 
-/* animowane kropki */
 #pageLoader .dots::after {
     content: "...";
-    animation: dots 0.1s steps(3,end) infinite;
+    animation: dots 0.1s steps(3, end) infinite;
 }
 
 @keyframes dots {
-    33% { content: "." }
-    66% { content: ".." }
-    100% { content: "..." }
+    33% {
+        content: ".";
+    }
+
+    66% {
+        content: "..";
+    }
+
+    100% {
+        content: "...";
+    }
 }
