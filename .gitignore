@@ -32,6 +32,7 @@ src/assets/music/gigs/incoming/
 src/assets/music/mixes/incoming/
 src/assets/music/photos/incoming/
 
+docs/
 node_modules/
 tools/
 
