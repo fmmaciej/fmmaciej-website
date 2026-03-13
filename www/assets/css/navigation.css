@@ -46,8 +46,17 @@ nav.primary button:focus-visible {
     position: absolute;
 }
 
+nav.primary .hamburger {
+    border: none;
+}
+
 .theme-toggle {
     font-size: 16px;
+    border: none;
+}
+
+nav.primary .theme-toggle {
+    border: none;
 }
 
 /* mobile */
