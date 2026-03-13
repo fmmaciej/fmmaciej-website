@@ -50,6 +50,14 @@ nav.primary button:focus-visible {
     font-size: 16px;
 }
 
+nav.primary .theme-toggle {
+    border: none;
+}
+
+nav.primary .hamburger {
+    border: none;
+}
+
 /* mobile */
 .backdrop {
     position: fixed;
