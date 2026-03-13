@@ -120,14 +120,14 @@ permalink: /projects/index.html
 <section class="proj-list">
 {% for p in byYear %}
     <article class="proj-item">
-        <header class="proj-head">
+        <section class="proj-head">
             <section class="proj-name">{{ p.name }}</section>
             <section class="proj-year">{{ p.year }}</section>
-        </header>
+        </section>
 
         <p class="proj-desc">{{ p.desc }}</p>
 
-        <footer class="proj-meta">
+        <section class="proj-meta">
             {% if p.stack and p.stack.length %}
                 <section class="tags">
                     {% for t in p.stack %}<section class="tag">{{ t }}</section>{% endfor %}
@@ -151,7 +151,7 @@ permalink: /projects/index.html
                     <section class="status">— {{ p.status }}</section>
                 {% endif %}
             </nav>
-        </footer>
+        </section>
     </article>
 {% endfor %}
 </section>
