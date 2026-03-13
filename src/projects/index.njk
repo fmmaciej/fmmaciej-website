@@ -117,24 +117,24 @@ permalink: /projects/index.html
 {% set projects = projects | default([]) %}
 {% set byYear = projects | sort(false, attribute="year") | reverse %}
 
-<div class="proj-list">
+<section class="proj-list">
 {% for p in byYear %}
     <article class="proj-item">
-        <div class="proj-head">
-            <div class="proj-name">{{ p.name }}</div>
-            <div class="proj-year">{{ p.year }}</div>
-        </div>
+        <header class="proj-head">
+            <section class="proj-name">{{ p.name }}</section>
+            <section class="proj-year">{{ p.year }}</section>
+        </header>
 
         <p class="proj-desc">{{ p.desc }}</p>
 
-        <div class="proj-meta">
+        <footer class="proj-meta">
             {% if p.stack and p.stack.length %}
-                <div class="tags">
-                    {% for t in p.stack %}<span class="tag">{{ t }}</span>{% endfor %}
-                </div>
+                <section class="tags">
+                    {% for t in p.stack %}<section class="tag">{{ t }}</section>{% endfor %}
+                </section>
             {% endif %}
 
-            <div class="links">
+            <nav class="links">
                 {% if p.links and p.links.repo %}
                     <a href="{{ p.links.repo }}" target="_blank" rel="noopener">repo</a>
                 {% endif %}
@@ -148,12 +148,12 @@ permalink: /projects/index.html
                 {% endif %}
 
                 {% if p.status %}
-                    <span class="status">— {{ p.status }}</span>
+                    <section class="status">— {{ p.status }}</section>
                 {% endif %}
-            </div>
-        </div>
+            </nav>
+        </footer>
     </article>
 {% endfor %}
-</div>
+</section>
 
 <br>
