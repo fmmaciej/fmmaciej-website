@@ -22,13 +22,13 @@ Sorted by year, they show where and when the music happened.
 
     <summary class="year-header">
         {{ g.year }}
-        <span class="year-badge" 
+        <span class="year-badge"
             title="{{ g.photoCount }} photo{% if g.photoCount != 1 %}s{% endif %} total">
             {{ g.count }}
         </span>
     </summary>
 
-    <div class="gig-grid">
+    <section class="gig-grid">
     {% for ev in g.items %}
         {% set eager = loop.index0 < 6 %}
         <a class="gig-card" href="/music/gigs/{{ ev.year }}/{{ ev.key }}/" aria-label="{{ ev.cover.alt }}">
@@ -41,14 +41,14 @@ Sorted by year, they show where and when the music happened.
                 height="{{ ev.cover.h }}"
                 {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
                 decoding="async">
-            <div class="gig-meta">
-                <div class="gig-date">{{ ev.date }}</div>
-                <div class="gig-name">{% if ev.name %}{{ ev.name }}{% else %}&nbsp;{% endif %}</div>
-                <div class="gig-count">{{ ev.count }} photo{% if ev.count > 1 %}s{% endif %}</div>
-            </div>
+            <footer class="gig-meta">
+                <section class="gig-date">{{ ev.date }}</section>
+                <section class="gig-name">{% if ev.name %}{{ ev.name }}{% else %}&nbsp;{% endif %}</section>
+                <section class="gig-count">{{ ev.count }} photo{% if ev.count > 1 %}s{% endif %}</section>
+            </footer>
         </a>
     {% endfor %}
-    </div>
+    </section>
 
 </details>
 </section>

@@ -6,12 +6,21 @@ nav.primary {
     gap: 14px;
 }
 
-nav.primary a {
+nav.primary ul { /* Style listy i jej elementów zastępujących <div> */
+  list-style-type: none;
+  margin: 0;
+}
+
+nav.primary ul li {
+  display: inline-block;
+}
+
+nav.primary ul li a {
     color: var(--muted);
     text-decoration: none;
 }
 
-nav.primary a:hover {
+nav.primary ul li a:hover {
     color: var(--text);
     text-decoration: underline;
 }
