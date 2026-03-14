@@ -35,6 +35,7 @@ src/assets/music/photos/incoming/
 docs/
 node_modules/
 tools/
+www/
 
 # Node / JS
 npm-debug.log*
