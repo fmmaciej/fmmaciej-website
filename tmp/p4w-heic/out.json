@@ -1,0 +1,23 @@
+[
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20230715",
+      "year": 2023,
+      "month": 7,
+      "day": 15
+    },
+    "seq": 1,
+    "image": {
+      "id": "20230715_WillaTechnoDancing_01",
+      "thumb": 480,
+      "display": 960,
+      "thumb_w": 480,
+      "thumb_h": 478,
+      "variants": {
+        "480": "20230715_WillaTechnoDancing_01-480.webp",
+        "960": "20230715_WillaTechnoDancing_01-960.webp"
+      }
+    }
+  }
+]

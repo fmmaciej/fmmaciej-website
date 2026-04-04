@@ -1,11 +1,9 @@
 module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "src/.htaccess": ".htaccess" });
     eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
-    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_display": "assets/music/gigs/_display" });
-    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_thumbs": "assets/music/gigs/_thumbs" });
-    eleventyConfig.addPassthroughCopy({ "src/assets/music/mixes/_thumbs": "assets/music/mixes/_thumbs" });
-    eleventyConfig.addPassthroughCopy({ "src/assets/music/photos/_display": "assets/music/photos/_display" });
-    eleventyConfig.addPassthroughCopy({ "src/assets/music/photos/_thumbs": "assets/music/photos/_thumbs" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_images": "assets/music/gigs/_images" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/mixes/_images": "assets/music/mixes/_images" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/photos/_images": "assets/music/photos/_images" });
     eleventyConfig.addPassthroughCopy({ "src/assets/terminal": "assets/terminal" });
     eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
 
