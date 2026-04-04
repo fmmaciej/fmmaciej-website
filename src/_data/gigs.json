@@ -1,22 +1,5 @@
 [
   {
-    "event": null,
-    "date": null,
-    "seq": null,
-    "image": {
-      "id": "1307147F-5910-44EF-B103-31DCA34340DC",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 251,
-      "variants": {
-        "480": "1307147F-5910-44EF-B103-31DCA34340DC-480.webp",
-        "960": "1307147F-5910-44EF-B103-31DCA34340DC-960.webp",
-        "1600": "1307147F-5910-44EF-B103-31DCA34340DC-1600.webp"
-      }
-    }
-  },
-  {
     "event": "UDS_2",
     "date": {
       "date": "20101127",
@@ -5229,6 +5212,28 @@
         "480": "20260212_KarnawałowyBalMaskowy_01-480.webp",
         "960": "20260212_KarnawałowyBalMaskowy_01-960.webp",
         "1600": "20260212_KarnawałowyBalMaskowy_01-1600.webp"
+      }
+    }
+  },
+  {
+    "event": "PrivatePress",
+    "date": {
+      "date": "20260307",
+      "year": 2026,
+      "month": 3,
+      "day": 7
+    },
+    "seq": 1,
+    "image": {
+      "id": "20260307_PrivatePress_01",
+      "thumb": 480,
+      "display": 1600,
+      "thumb_w": 480,
+      "thumb_h": 251,
+      "variants": {
+        "480": "20260307_PrivatePress_01-480.webp",
+        "960": "20260307_PrivatePress_01-960.webp",
+        "1600": "20260307_PrivatePress_01-1600.webp"
       }
     }
   },
