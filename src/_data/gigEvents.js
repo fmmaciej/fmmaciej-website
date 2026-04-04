@@ -173,7 +173,10 @@ module.exports = (() => {
 
             return ev;
         })
-        .sort((a, b) => (a.date < b.date ? 1 : -1));
+        .sort((a, b) => {
+            if (a.date === b.date) return 0;
+            return a.date < b.date ? 1 : -1;
+        });
 
     return events;
 })();
