@@ -155,12 +155,14 @@ module.exports = (() => {
     const events = Array.from(byKey.values())
         .map((ev) => {
             ev.items.sort((a, b) => {
-                const seqOrder = (a.seq || 1) - (b.seq || 1);
+                const aSeq = a.seq == null ? Infinity : a.seq;
+                const bSeq = b.seq == null ? Infinity : b.seq;
+                const seqOrder = aSeq - bSeq;
                 if (seqOrder !== 0) return seqOrder;
                 return String(a.rel || a.src || "").localeCompare(String(b.rel || b.src || ""));
             });
 
-            const cover = ev.items.find((item) => (item.seq || 1) === 1) || ev.items[0];
+            const cover = ev.items.find((item) => item.seq === 1) || ev.items[0];
             ev.cover = {
                 src: cover.src,
                 thumb480: cover.thumb480 || cover.thumb || cover.src,
