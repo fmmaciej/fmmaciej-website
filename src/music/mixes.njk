@@ -141,7 +141,7 @@ permalink: /music/mixes/index.html
         <details class="group" data-key="{{ g | lower }}">
         <summary>{{ g }} <span class="badge">{{ itemsIn | length }}</span></summary>
 
-        <div class="mix-list">
+        <section class=\"mix-list\">
             {% for it in itemsIn %}
             {% set thumb = it.img or (it.url | ytThumb) %}
             <a class="mix-item" href="{{ it.url }}" target="_blank" rel="noopener">
@@ -159,7 +159,7 @@ permalink: /music/mixes/index.html
 
             </a>
             {% endfor %}
-        </div>
+        </section>
         </details>
     {% endif %}
 {% endfor %}
@@ -173,7 +173,7 @@ permalink: /music/mixes/index.html
         if (!heading || !suffix) return;
 
         // helpers
-        const fmt = (slug, label) => 
+        const fmt = (slug, label) =>
             slug ? `<a href="/music/mixes#${slug}">/${label || slug}</a>` : '';
 
         const setBreadcrumb = (slug, label) => {

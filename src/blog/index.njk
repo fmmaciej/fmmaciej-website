@@ -17,8 +17,8 @@ terminalFile: /assets/terminal/blog.json
     {% for post in posts %}
         <li style="margin: 14px 0">
         <a href="{{ post.url }}">{{ post.data.title }}</a>
-        <div style="color:var(--muted);font-size:13px">{{ post.date | blogDate }}</div>
-        {% if post.data.description %}<div>{{ post.data.description }}</div>{% endif %}
+        <small style="color:var(--muted);font-size:13px">{{ post.date | blogDate }}</small>
+        {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
         </li>
     {% endfor %}
 </ul>
