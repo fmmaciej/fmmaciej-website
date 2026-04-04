@@ -78,7 +78,7 @@ function normalizeGigItem(item) {
     const parsedImageId = parseImageId(item.image?.id || item.rel);
     const isoDate = toIsoDate(item.date) || toIsoDate(parsedImageId?.date);
     const name = item.name || item.event || parsedImageId?.name || null;
-    const seq = item.seq ?? parsedImageId?.seq ?? null;
+    const seq = item.seq ?? parsedImageId?.seq ?? 1;
     const dateParts = resolveDateParts(item, isoDate);
 
     if (item.image) {
@@ -155,14 +155,12 @@ module.exports = (() => {
     const events = Array.from(byKey.values())
         .map((ev) => {
             ev.items.sort((a, b) => {
-                const aSeq = a.seq == null ? Infinity : a.seq;
-                const bSeq = b.seq == null ? Infinity : b.seq;
-                const seqOrder = aSeq - bSeq;
+                const seqOrder = (a.seq ?? 1) - (b.seq ?? 1);
                 if (seqOrder !== 0) return seqOrder;
                 return String(a.rel || a.src || "").localeCompare(String(b.rel || b.src || ""));
             });
 
-            const cover = ev.items.find((item) => item.seq === 1) || ev.items[0];
+            const cover = ev.items.find((item) => (item.seq ?? 1) === 1) || ev.items[0];
             ev.cover = {
                 src: cover.src,
                 thumb480: cover.thumb480 || cover.thumb || cover.src,
