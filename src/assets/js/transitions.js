@@ -30,10 +30,22 @@
                 return;
             }
 
+            const newTerminal = dom.querySelector('.terminal-box');
+            const curTerminal = document.querySelector('.terminal-box');
+
             curHost._terminalCleanup?.();
 
             document.title = dom.title || document.title;
             curHost.replaceWith(newHost);
+
+            if (newTerminal && curTerminal) {
+                curTerminal.replaceWith(newTerminal);
+            } else if (newTerminal && !curTerminal) {
+                newHost.insertAdjacentElement('beforebegin', newTerminal);
+            } else if (!newTerminal && curTerminal) {
+                curTerminal.remove();
+            }
+
             history.pushState(null, '', url);
 
             if (window.initTerminal) window.initTerminal(document);
