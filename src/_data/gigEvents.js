@@ -64,11 +64,22 @@ function buildAltText(name, date, seq) {
     return parts.join(" ");
 }
 
+function resolveDateParts(item, isoDate) {
+    const objectDate = item.date && typeof item.date === "object" ? item.date : null;
+
+    return {
+        year: item.year ?? objectDate?.year ?? Number(isoDate?.slice(0, 4)),
+        month: item.month ?? objectDate?.month ?? Number(isoDate?.slice(5, 7)),
+        day: item.day ?? objectDate?.day ?? Number(isoDate?.slice(8, 10))
+    };
+}
+
 function normalizeGigItem(item) {
     const parsedImageId = parseImageId(item.image?.id || item.rel);
     const isoDate = toIsoDate(item.date) || toIsoDate(parsedImageId?.date);
     const name = item.name || item.event || parsedImageId?.name || null;
     const seq = item.seq ?? parsedImageId?.seq ?? null;
+    const dateParts = resolveDateParts(item, isoDate);
 
     if (item.image) {
         const thumb = pickVariantUrl(item.image.variants, item.image.thumb || 480);
@@ -83,9 +94,9 @@ function normalizeGigItem(item) {
         return {
             ...item,
             date: isoDate,
-            year: item.date?.year ?? Number(isoDate?.slice(0, 4)),
-            month: item.date?.month ?? Number(isoDate?.slice(5, 7)),
-            day: item.date?.day ?? Number(isoDate?.slice(8, 10)),
+            year: dateParts.year,
+            month: dateParts.month,
+            day: dateParts.day,
             name,
             seq,
             rel: item.image.id || item.rel,
@@ -103,9 +114,9 @@ function normalizeGigItem(item) {
     return {
         ...item,
         date: isoDate,
-        year: item.year ?? Number(isoDate?.slice(0, 4)),
-        month: item.month ?? Number(isoDate?.slice(5, 7)),
-        day: item.day ?? Number(isoDate?.slice(8, 10)),
+        year: dateParts.year,
+        month: dateParts.month,
+        day: dateParts.day,
         name,
         seq,
         src: item.src || item.display1600 || item.thumb960 || item.thumb480 || item.thumb || null,
