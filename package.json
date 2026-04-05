@@ -23,7 +23,7 @@
 
         "push": "git push",
         "deploy:check": "./tools/build_check.sh",
-        "deploy:ovh": "git push --force-with-lease origin \"$(git subtree split --prefix=www HEAD)\":refs/heads/ovh-deploy",
+        "deploy:ovh": "./tools/deploy_ovh.sh",
 
         "deploy": "npm run deploy:check && npm run deploy:ovh"
     },
