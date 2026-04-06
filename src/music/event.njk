@@ -2,14 +2,14 @@
 layout: layout.njk
 terminalFile: /assets/terminal/music/event.json
 pagination:
-  data: gigEvents
+  data: allGigEvents
   size: 1
   alias: event
-permalink: "/music/gigs/{{ event.year }}/{{ event.key }}/"
+permalink: "{{ event.path }}"
 ---
 
 <h3>
-    <a href="/music/">/music</a><a href="/music/gigs/">/gigs</a><a href="/music/gigs#y-{{ event.year }}">/{{ event.year }}</a>/{% if event.name %}{{ event.name }}{% else %}{{ event.date }}{% endif %}
+    <a href="/music/">/music</a><a href="/music/gigs/">/gigs</a><a href="{{ event.listHref }}">/{{ event.listLabel }}</a>/{% if event.name %}{{ event.name }}{% else %}{{ event.date }}{% endif %}
 </h3>
 
 <style>
