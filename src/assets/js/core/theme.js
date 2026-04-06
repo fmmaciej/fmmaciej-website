@@ -1,4 +1,4 @@
-// /assets/js/theme.js
+// /assets/js/core/theme.js
 (() => {
     const btn  = document.getElementById('themeToggle');
     if (!btn) return;

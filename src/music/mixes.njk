@@ -3,6 +3,11 @@ title: FM — /music/mixes
 layout: layout.njk
 terminalFile: /assets/terminal/music/mixes.json
 permalink: /music/mixes/index.html
+pageStyles:
+  - /assets/css/components/music-collections.css
+  - /assets/css/sections/mixes.css
+pageScripts:
+  - /assets/js/pages/page-boot.js
 ---
 
 {% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
@@ -16,73 +21,6 @@ permalink: /music/mixes/index.html
 <div class="music-intro">
 {% importMd "music/_content/intro/mixes.md" %}
 </div>
-
-<style>
-    .mix-item {
-        display:flex;
-        align-items:center;
-        gap:20px;
-        border:1px solid var(--border);
-        border-radius:10px;
-        padding:12px;
-        text-decoration:none;
-        background:var(--bg);
-        transition:border-color .2s;
-        overflow: hidden;
-    }
-    .mix-item:hover {
-        border-color:var(--muted);
-    }
-    .mix-item.is-disabled {
-        cursor:default;
-    }
-    .mix-item.is-disabled:hover {
-        border-color:var(--border);
-    }
-
-    .mix-item img {
-        width:200px;
-        height:120px;
-        object-fit:cover;
-        border-radius:6px;
-        flex-shrink:0;
-        transition: transform 0.3s ease;
-    }
-    .mix-item:hover img {
-        transform: scale(1.05);
-    }
-    .mix-item.is-disabled:hover img {
-        transform:none;
-    }
-
-    .mix-item figcaption{
-        color:var(--text);
-        font-size:1rem;
-        line-height:1.4
-    }
-
-    .mix-item small{
-        color:var(--muted);
-        display:block;
-        margin-top:6px;
-        font-size:.9rem
-    }
-
-    @media (max-width:600px){
-        .mix-item{
-            flex-direction:column;
-            align-items:flex-start
-        }
-        .mix-item img{
-            width:100%;
-            height:auto;
-            max-height:240px
-        }
-        .mix-item figcaption{
-            margin-top:10px
-        }
-    }
-</style>
 
 {% macro renderMixCard(it) %}
     {% set thumb = it.img or (it.url | ytThumb) %}

@@ -1,6 +1,7 @@
 module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "src/.htaccess": ".htaccess" });
     eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/icons": "assets/icons" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_images": "assets/music/gigs/_images" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/mixes/_images": "assets/music/mixes/_images" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/_presets": "assets/music/_presets" });
@@ -10,7 +11,7 @@ module.exports = function(eleventyConfig) {
 
     // BLOG
     eleventyConfig.addCollection("blog", (collection) => {
-        return collection.getFilteredByGlob("src/posts/*.md")
+        return collection.getFilteredByGlob("src/blog/posts/*.md")
         .filter(p => !p.data.draft)                  // ukryj szkice
         .sort((a,b) => b.date - a.date);            // najnowsze pierwsze
     });

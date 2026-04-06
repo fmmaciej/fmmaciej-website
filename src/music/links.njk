@@ -3,6 +3,8 @@ title: FM — /music/links
 layout: layout.njk
 terminalFile: /assets/terminal/music/bio.json
 permalink: /music/links/index.html
+pageStyles:
+  - /assets/css/sections/music-index.css
 ---
 
 {% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
@@ -12,40 +14,12 @@ permalink: /music/links/index.html
     { href: "/music/links/", label: "/links" }
 ]) }}
 
-<style>
-    .music-list {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0;
-        font-family: ui-monospace, monospace;
-    }
-
-    .music-list li {
-        display: flex;
-        gap: 16px;
-    }
-
-    .music-list a {
-        color: var(--link);
-        text-decoration: none;
-    }
-
-    .music-list a:hover {
-        text-decoration: underline;
-    }
-
-    .music-list .comment {
-        color: var(--muted);
-        flex: 1;
-    }
-</style>
-
 <div class="music-intro">
 {% importMd "music/_content/intro/links.md" %}
 </div>
 
 <ul class="music-list">
-    {% for link in music_links %}
+    {% for link in music.links %}
     <li><a href="{{ link.url }}">/{{ link.slug }}</a>
         <span class="comment"># {{ link.comment }}</span></li>
     {% endfor %}

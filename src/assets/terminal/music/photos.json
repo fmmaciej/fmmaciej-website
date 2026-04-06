@@ -1,0 +1,22 @@
+{
+    "commands": [
+        {
+            "cmd": "ls ~/music/photos",
+            "type": "text",
+            "output": [
+                "2025/",
+                "2024/",
+                "2023/",
+                "..."
+            ]
+        },
+        {
+            "cmd": "cat ~/music/photos/2025",
+            "type": "text",
+            "output": [
+                "2025-03-21 • P29 • werifesteria.photography",
+                "2025-03-07 • Willa Lodz • unknown"
+            ]
+        }
+    ]
+}

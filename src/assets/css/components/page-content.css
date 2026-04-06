@@ -1,25 +1,32 @@
+.page-intro,
 .music-intro {
     color: var(--muted);
     line-height: 1.6;
+    margin-bottom: 24px;
 }
 
+.page-intro > :first-child,
 .music-intro > :first-child {
     margin-top: 0;
 }
 
+.page-intro > :last-child,
 .music-intro > :last-child {
     margin-bottom: 0;
 }
 
+.page-outro,
 .music-outro {
     color: var(--muted);
     line-height: 1.6;
 }
 
+.page-outro > :first-child,
 .music-outro > :first-child {
     margin-top: 0;
 }
 
+.page-outro > :last-child,
 .music-outro > :last-child {
     margin-bottom: 0;
 }

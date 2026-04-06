@@ -114,11 +114,19 @@
         }, cleanups);
     }
 
+    function initPhotosPage(root, cleanups) {
+        initCollectionPage(root, {
+            suffixSelector: '#photosSuffix',
+            formatCrumb: (slug, label) => `<a href="/music/photos#${slug}">/${label || slug.replace(/^y-/, '')}</a>`
+        }, cleanups);
+    }
+
     window.initPageScripts = function initPageScripts(root = document) {
         const cleanups = [];
 
         initMixesPage(root, cleanups);
         initGigsPage(root, cleanups);
+        initPhotosPage(root, cleanups);
 
         const host = document.querySelector('.content-host');
         if (host) {

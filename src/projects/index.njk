@@ -3,123 +3,22 @@ title: FM — /projects
 layout: layout.njk
 terminalFile: /assets/terminal/projects.json
 permalink: /projects/index.html
+pageStyles:
+  - /assets/css/sections/projects.css
 ---
 
 {% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
-
-<style>
-    .proj-list{
-        display:flex;
-        flex-direction:column;
-        gap:12px;
-        margin-top:12px
-    }
-
-    .proj-item{
-        display:flex;
-        flex-direction:column;
-        gap:8px;
-        border:1px solid var(--border);
-        border-radius:10px;
-        background:var(--bg);
-        padding:14px;
-        transition:transform .15s,border-color .15s
-    }
-    .proj-item:hover{
-        transform:translateY(-2px);
-        border-color:var(--muted)}
-
-    .proj-item p{
-        color: var(--muted);
-    }
-
-    .proj-head{
-        display:flex;
-        gap:10px;
-        align-items:baseline;
-        justify-content:space-between
-    }
-
-    .proj-name{
-        font-weight:700
-    }
-
-    .proj-year{
-        color:var(--muted);
-        font-size:13px;
-        white-space:nowrap;
-        margin-left:12px
-    }
-
-    .proj-desc{
-        margin:0
-    }
-
-    .proj-meta{
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .tags{
-        display:flex;
-        flex-wrap:wrap;
-        gap:6px
-    }
-    .tag{
-        border:1px solid var(--border);
-        border-radius:999px;
-        padding:2px 8px;
-        font-size:12px;
-    }
-
-    .links{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        font-size: 14px;
-        align-items: center;
-    }
-    .links a{
-        text-decoration: none;
-        border-bottom: 1px dotted var(--muted);
-    }
-    .links a:hover{
-        border-bottom-color: var(--link-hover);
-    }
-
-    .status{
-        color: var(--muted);
-        font-size: 12px;
-    }
-
-    @media (max-width:700px){
-        .proj-meta{
-            flex-direction:column;
-            align-items:flex-start;
-            gap:10px
-        }
-    }
-
-    .gh-link a{
-        border-bottom:1px dotted var(--muted);
-        text-decoration:none
-    }
-    .gh-link a:hover{
-        border-bottom-color:var(--link-hover)
-    }
-</style>
 
 {{ renderBreadcrumb([
     { href: "/projects/", label: "/projects" }
 ]) }}
 
-<p class="gh-link">
-    More projects live on <a href="https://github.com/fmmaciej" target="_blank" rel="noopener">GitHub</a>.
-</p>
+<div class="page-intro">
+{% importMd "projects/_content/intro/index.md" %}
+</div>
 
-{% set projects = projects | default([]) %}
-{% set byYear = projects | sort(false, attribute="year") | reverse %}
+{% set projectItems = projects.items | default([]) %}
+{% set byYear = projectItems | sort(false, attribute="year") | reverse %}
 
 <div class="proj-list">
 {% for p in byYear %}
