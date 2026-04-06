@@ -88,6 +88,45 @@ Sorted by year, they show where and when the music happened.
 
 
 
+<section class="year-section" id="tba" data-year="tba">
+<details class="year-details" data-year="tba">
+
+    <summary class="year-header">
+        To Be Announced
+        <span class="year-badge"
+            title="1 event total">
+            1
+        </span>
+    </summary>
+
+    
+    <div class="gig-grid">
+    
+        
+        <a class="gig-card" href="/music/gigs/tba/2026-06-06-techno-hardtek-hardhouse/" aria-label="To Be Announced">
+            <img
+                src="/assets/music/gigs/_tba/tba.png"
+                srcset="/assets/music/gigs/_tba/tba.png 480w, /assets/music/gigs/_tba/tba.png 960w"
+                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                alt="To Be Announced"
+                width="1536"
+                height="1024"
+                loading="eager" fetchpriority="high"
+                decoding="async">
+            <div class="gig-meta">
+                <div class="gig-date">2026-06-06</div>
+                <div class="gig-name">Techno, Hardtek, Hardhouse</div>
+                <div class="gig-count">1 photo</div>
+            </div>
+        </a>
+    
+    </div>
+    
+
+</details>
+</section>
+
+
 <section class="year-section" id="y-2026" data-year="2026">
 <details class="year-details" data-year="2026">
 
@@ -3300,11 +3339,16 @@ Sorted by year, they show where and when the music happened.
     const suffix  = document.getElementById('yearSuffix');
     const details = Array.from(document.querySelectorAll('.year-details'));
 
-    const fmt = (year) => year ? `<a href="/music/gigs#y-${year}">/${year}</a>` : '';
-    const setCrumb = (year) => {
-        suffix.innerHTML = year ? fmt(year) : '';
+    const fmt = (group) => {
+        if (!group) return '';
+        if (group === 'tba') return '<a href="/music/gigs#tba">/to-be-announced</a>';
+        return `<a href="/music/gigs#y-${group}">/${group}</a>`;
+    };
+    const setCrumb = (group) => {
+        suffix.innerHTML = group ? fmt(group) : '';
         try {
-            if (year) history.replaceState(null, '', '#y-' + year);
+            if (group === 'tba') history.replaceState(null, '', '#tba');
+            else if (group) history.replaceState(null, '', '#y-' + group);
             else history.replaceState(null, '', location.pathname);
         } catch (_) {}
     };
@@ -3328,14 +3372,18 @@ Sorted by year, they show where and when the music happened.
     // Start: /music/gigs (nic otwartego)
     setCrumb(null);
 
-    // Hash #y-YYYY -> otwórz dany rok
-    const m = (location.hash || '').match(/^#y-(\d{4})$/);
-    if (m) {
-        const target = document.querySelector(`.year-details[data-year="${m[1]}"]`);
+    // Hash #y-YYYY lub #tba -> otwórz daną sekcję
+    const hash = location.hash || '';
+    const m = hash.match(/^#y-(\d{4})$/);
+    const target = hash === '#tba'
+        ? document.querySelector('.year-details[data-year="tba"]')
+        : (m ? document.querySelector(`.year-details[data-year="${m[1]}"]`) : null);
+
+    if (target) {
         if (target && !target.open) {
             target.open = true;
-            setCrumb(m[1]);
-            const sec = document.getElementById('y-' + m[1]);
+            setCrumb(target.dataset.year);
+            const sec = document.getElementById(target.dataset.year === 'tba' ? 'tba' : 'y-' + target.dataset.year);
             if (sec) sec.scrollIntoView({ behavior: 'instant', block: 'start' });
         }
     }
