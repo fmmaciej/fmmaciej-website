@@ -2,8 +2,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "src/.htaccess": ".htaccess" });
     eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_images": "assets/music/gigs/_images" });
-    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_tba": "assets/music/gigs/_tba" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/mixes/_images": "assets/music/mixes/_images" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/_presets": "assets/music/_presets" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/photos/_images": "assets/music/photos/_images" });
     eleventyConfig.addPassthroughCopy({ "src/assets/terminal": "assets/terminal" });
     eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
@@ -84,6 +84,13 @@ module.exports = function(eleventyConfig) {
         return [...items]
             .sort((a, b) => parseMixDate(b?.date) - parseMixDate(a?.date))
             .slice(0, limit);
+    });
+
+    eleventyConfig.addNunjucksFilter("upcomingMixes", (items) => {
+        if (!Array.isArray(items)) return [];
+
+        return [...items]
+            .sort((a, b) => parseMixDate(a?.date) - parseMixDate(b?.date));
     });
 
     eleventyConfig.addNunjucksFilter("groupSlug", (value) => {

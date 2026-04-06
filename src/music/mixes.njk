@@ -64,6 +64,12 @@ permalink: /music/mixes/index.html
     .mix-item:hover {
         border-color:var(--muted);
     }
+    .mix-item.is-disabled {
+        cursor:default;
+    }
+    .mix-item.is-disabled:hover {
+        border-color:var(--border);
+    }
 
     .mix-item img {
         width:200px;
@@ -75,6 +81,9 @@ permalink: /music/mixes/index.html
     }
     .mix-item:hover img {
         transform: scale(1.05);
+    }
+    .mix-item.is-disabled:hover img {
+        transform:none;
     }
 
     .mix-item figcaption{
@@ -106,9 +115,37 @@ permalink: /music/mixes/index.html
     }
 </style>
 
+{% macro renderMixCard(it) %}
+    {% set thumb = it.img or (it.url | ytThumb) %}
+    {% set isLink = it.url %}
+    {% if isLink %}
+    <a class="mix-item" href="{{ it.url }}" target="_blank" rel="noopener">
+    {% else %}
+    <div class="mix-item is-disabled" aria-disabled="true">
+    {% endif %}
+        {% if thumb %}<img src="{{ thumb }}" alt="Thumbnail for {{ it.alt or it.title or 'mix' }}">{% endif %}
+
+        <figcaption>
+            {{ it.title }}
+            {% set meta = [] %}
+            {% if it.date %}{% set meta = meta.concat([it.date]) %}{% endif %}
+            {% if it.duration %}{% set meta = meta.concat([it.duration]) %}{% endif %}
+            {% if it.genre %}{% set meta = meta.concat([it.genre]) %}{% endif %}
+            {% if it.status %}{% set meta = meta.concat([it.status]) %}{% endif %}
+            {% if meta.length %}<small>{{ meta | join(" | ") }}</small>{% endif %}
+            {% if it.desc %}<small>{{ it.desc }}</small>{% endif %}
+        </figcaption>
+    {% if isLink %}
+    </a>
+    {% else %}
+    </div>
+    {% endif %}
+{% endmacro %}
+
 {# ---- DANE Z GLOBALNEGO PLIKU ---- #}
 {% set allItems = mixes.items or [] %}
 {% set latestItems = allItems | latestMixes(5) %}
+{% set upcomingItems = (mixesTba.items or []) | upcomingMixes %}
 
 {# ---- KOLEJNOŚĆ GRUP ---- #}
 {% if mixes.groups %}
@@ -128,6 +165,25 @@ permalink: /music/mixes/index.html
 {% endif %}
 
 {# ---- RENDER: każda grupa = osobny <details> (domyślnie zamknięte) ---- #}
+{% set upcomingSlug = "Upcoming" | groupSlug %}
+<details class="group" id="group-{{ upcomingSlug }}" data-key="{{ upcomingSlug }}" data-group="Upcoming" data-slug="{{ upcomingSlug }}">
+<summary>Upcoming <span class="badge">{{ upcomingItems | length }}</span></summary>
+
+<div class="mix-list">
+    {% if upcomingItems | length %}
+        {% for it in upcomingItems %}
+        {{ renderMixCard(it) }}
+        {% endfor %}
+    {% else %}
+        <div class="mix-item is-disabled" aria-disabled="true">
+            <figcaption>
+                No upcoming mixes added yet.
+            </figcaption>
+        </div>
+    {% endif %}
+</div>
+</details>
+
 {% if latestItems | length %}
     {% set latestSlug = "Latest" | groupSlug %}
     <details class="group" id="group-{{ latestSlug }}" data-key="{{ latestSlug }}" data-group="Latest" data-slug="{{ latestSlug }}">
@@ -135,21 +191,7 @@ permalink: /music/mixes/index.html
 
     <div class="mix-list">
         {% for it in latestItems %}
-        {% set thumb = it.img or (it.url | ytThumb) %}
-        <a class="mix-item" href="{{ it.url }}" target="_blank" rel="noopener">
-            {% if thumb %}<img src="{{ thumb }}" alt="Thumbnail for {{ it.title | default('mix') }}">{% endif %}
-
-            <figcaption>
-                {{ it.title }}
-                {% set meta = [] %}
-                {% if it.date %}{% set meta = meta.concat([it.date]) %}{% endif %}
-                {% if it.duration %}{% set meta = meta.concat([it.duration]) %}{% endif %}
-                {% if it.genre %}{% set meta = meta.concat([it.genre]) %}{% endif %}
-                {% if meta.length %}<small>{{ meta | join(" | ") }}</small>{% endif %}
-                {% if it.desc %}<small>{{ it.desc }}</small>{% endif %}
-            </figcaption>
-
-        </a>
+        {{ renderMixCard(it) }}
         {% endfor %}
     </div>
     </details>
@@ -172,21 +214,7 @@ permalink: /music/mixes/index.html
 
         <div class="mix-list">
             {% for it in itemsIn %}
-            {% set thumb = it.img or (it.url | ytThumb) %}
-            <a class="mix-item" href="{{ it.url }}" target="_blank" rel="noopener">
-                {% if thumb %}<img src="{{ thumb }}" alt="Thumbnail for {{ it.title | default('mix') }}">{% endif %}
-
-                <figcaption>
-                    {{ it.title }}
-                    {% set meta = [] %}
-                    {% if it.date %}{% set meta = meta.concat([it.date]) %}{% endif %}
-                    {% if it.duration %}{% set meta = meta.concat([it.duration]) %}{% endif %}
-                    {% if it.genre %}{% set meta = meta.concat([it.genre]) %}{% endif %}
-                    {% if meta.length %}<small>{{ meta | join(" | ") }}</small>{% endif %}
-                    {% if it.desc %}<small>{{ it.desc }}</small>{% endif %}
-                </figcaption>
-
-            </a>
+            {{ renderMixCard(it) }}
             {% endfor %}
         </div>
         </details>
