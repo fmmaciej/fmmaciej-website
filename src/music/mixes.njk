@@ -108,6 +108,7 @@ permalink: /music/mixes/index.html
 
 {# ---- DANE Z GLOBALNEGO PLIKU ---- #}
 {% set allItems = mixes.items or [] %}
+{% set latestItems = allItems | latestMixes(5) %}
 
 {# ---- KOLEJNOŚĆ GRUP ---- #}
 {% if mixes.groups %}
@@ -127,6 +128,33 @@ permalink: /music/mixes/index.html
 {% endif %}
 
 {# ---- RENDER: każda grupa = osobny <details> (domyślnie zamknięte) ---- #}
+{% if latestItems | length %}
+    {% set latestSlug = "Latest" | groupSlug %}
+    <details class="group" id="group-{{ latestSlug }}" data-key="{{ latestSlug }}" data-group="Latest" data-slug="{{ latestSlug }}">
+    <summary>Latest <span class="badge">{{ latestItems | length }}</span></summary>
+
+    <div class="mix-list">
+        {% for it in latestItems %}
+        {% set thumb = it.img or (it.url | ytThumb) %}
+        <a class="mix-item" href="{{ it.url }}" target="_blank" rel="noopener">
+            {% if thumb %}<img src="{{ thumb }}" alt="Thumbnail for {{ it.title | default('mix') }}">{% endif %}
+
+            <figcaption>
+                {{ it.title }}
+                {% set meta = [] %}
+                {% if it.date %}{% set meta = meta.concat([it.date]) %}{% endif %}
+                {% if it.duration %}{% set meta = meta.concat([it.duration]) %}{% endif %}
+                {% if it.genre %}{% set meta = meta.concat([it.genre]) %}{% endif %}
+                {% if meta.length %}<small>{{ meta | join(" | ") }}</small>{% endif %}
+                {% if it.desc %}<small>{{ it.desc }}</small>{% endif %}
+            </figcaption>
+
+        </a>
+        {% endfor %}
+    </div>
+    </details>
+{% endif %}
+
 {% for g in groups %}
     {# ręczne, odporne filtrowanie do danej grupy #}
     {% set itemsIn = [] %}
@@ -138,7 +166,8 @@ permalink: /music/mixes/index.html
     {% endfor %}
 
     {% if itemsIn | length %}
-        <details class="group" data-key="{{ g | lower }}">
+        {% set slug = g | groupSlug %}
+        <details class="group" id="group-{{ slug }}" data-key="{{ slug }}" data-group="{{ g }}" data-slug="{{ slug }}">
         <summary>{{ g }} <span class="badge">{{ itemsIn | length }}</span></summary>
 
         <div class="mix-list">
