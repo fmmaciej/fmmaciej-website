@@ -2,6 +2,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "src/.htaccess": ".htaccess" });
     eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_images": "assets/music/gigs/_images" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/gigs/_tba": "assets/music/gigs/_tba" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/mixes/_images": "assets/music/mixes/_images" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/photos/_images": "assets/music/photos/_images" });
     eleventyConfig.addPassthroughCopy({ "src/assets/terminal": "assets/terminal" });
