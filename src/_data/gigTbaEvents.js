@@ -1,5 +1,5 @@
 const rawGigsTba = require("./gigs_tba.json");
-const buildGigEvents = require("./buildGigEvents.js");
+const buildGigEvents = require("../_lib/music/buildGigEvents.js");
 
 module.exports = buildGigEvents(rawGigsTba, {
     section: "tba",

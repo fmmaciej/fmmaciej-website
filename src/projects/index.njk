@@ -5,6 +5,8 @@ terminalFile: /assets/terminal/projects.json
 permalink: /projects/index.html
 ---
 
+{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
+
 <style>
     .proj-list{
         display:flex;
@@ -108,7 +110,9 @@ permalink: /projects/index.html
     }
 </style>
 
-<h3><a href="/projects/">/projects</a></h3>
+{{ renderBreadcrumb([
+    { href: "/projects/", label: "/projects" }
+]) }}
 
 <p class="gh-link">
     More projects live on <a href="https://github.com/fmmaciej" target="_blank" rel="noopener">GitHub</a>.

@@ -1,70 +1,3 @@
-/* breadcrumb */
-#gigsBreadcrumb a {
-    text-decoration: none;
-}
-
-#gigsBreadcrumb a:hover {
-    text-decoration: underline;
-}
-
-/* year sections */
-.year-details {
-    border: 0;
-}
-
-.year-details > summary.year-header {
-    list-style: none;
-    cursor: pointer;
-    position: sticky;
-    top: 8px;
-    z-index: 1;
-    background: var(--bg);
-    padding: 6px 4px;
-    margin: 0 0 12px;
-    font-weight: 700;
-    border-bottom: 1px solid var(--border);
-}
-
-.year-details > summary.year-header::-webkit-details-marker {
-    display: none;
-}
-
-.year-section {
-    color: var(--muted);
-    margin: 28px 0 18px;
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 800px;
-}
-
-.year-section.is-active .year-header {
-    border-bottom-color: var(--muted);
-    color: var(--text);
-}
-
-/* badge */
-.year-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.year-badge {
-    margin-left: auto;
-    font-size: 12px;
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 2px 6px;
-    border-radius: 999px;
-    line-height: 1;
-}
-
-/* grid */
-.gig-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
-}
-
 .gig-card {
     display: block;
     border: 1px solid var(--border);
@@ -119,7 +52,7 @@
 
 /* mobile */
 @media (max-width: 600px) {
-    .gig-card img {
+    .group-items[data-layout="grid"] .gig-card img {
         height: 52vw;
         max-height: 360px;
     }

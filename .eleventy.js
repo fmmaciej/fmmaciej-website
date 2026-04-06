@@ -43,64 +43,6 @@ module.exports = function(eleventyConfig) {
         return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
     });
 
-    function parseMixDate(value) {
-        if (!value || typeof value !== "string") return Number.NEGATIVE_INFINITY;
-
-        const normalized = value.trim();
-        if (!normalized) return Number.NEGATIVE_INFINITY;
-
-        if (normalized.includes(" - ")) {
-            return normalized
-                .split(/\s+-\s+/)
-                .map(parseMixDate)
-                .reduce((latest, current) => Math.max(latest, current), Number.NEGATIVE_INFINITY);
-        }
-
-        let match = normalized.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
-        if (match) {
-            const [, day, month, year] = match;
-            return Date.UTC(Number(year), Number(month) - 1, Number(day));
-        }
-
-        match = normalized.match(/^(\d{2})\.(\d{4})$/);
-        if (match) {
-            const [, month, year] = match;
-            return Date.UTC(Number(year), Number(month) - 1, 1);
-        }
-
-        match = normalized.match(/^(\d{4})$/);
-        if (match) {
-            const [, year] = match;
-            return Date.UTC(Number(year), 0, 1);
-        }
-
-        const fallback = Date.parse(normalized);
-        return Number.isNaN(fallback) ? Number.NEGATIVE_INFINITY : fallback;
-    }
-
-    eleventyConfig.addNunjucksFilter("latestMixes", (items, limit = 5) => {
-        if (!Array.isArray(items)) return [];
-
-        return [...items]
-            .sort((a, b) => parseMixDate(b?.date) - parseMixDate(a?.date))
-            .slice(0, limit);
-    });
-
-    eleventyConfig.addNunjucksFilter("upcomingMixes", (items) => {
-        if (!Array.isArray(items)) return [];
-
-        return [...items]
-            .sort((a, b) => parseMixDate(a?.date) - parseMixDate(b?.date));
-    });
-
-    eleventyConfig.addNunjucksFilter("groupSlug", (value) => {
-        return String(value || "")
-            .trim()
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, "-")
-            .replace(/^-+|-+$/g, "");
-    });
-
     // Date filter
     eleventyConfig.addFilter("blogDate", (dateObj) =>
         new Intl.DateTimeFormat("pl-PL", { year:"numeric", month:"long", day:"2-digit" }).format(dateObj)

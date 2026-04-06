@@ -3,7 +3,6 @@ const gigEvents = require("./gigEvents.js");
 module.exports = () => {
     const events = gigEvents || [];
 
-    // year -> events[]
     const grouped = new Map();
     for (const ev of events) {
         if (!grouped.has(ev.year)) grouped.set(ev.year, []);
@@ -17,7 +16,14 @@ module.exports = () => {
         const count = items.length;
         const photoCount = items.reduce((acc, ev) => acc + (ev.count || 0), 0);
 
-        return { year, items, count, photoCount };
+        return {
+            year,
+            name: String(year),
+            slug: `y-${year}`,
+            items,
+            count,
+            photoCount
+        };
     });
 
     return { events, groups, years };

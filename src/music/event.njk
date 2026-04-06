@@ -8,9 +8,17 @@ pagination:
 permalink: "{{ event.path }}"
 ---
 
-<h3>
-    <a href="/music/">/music</a><a href="/music/gigs/">/gigs</a><a href="{{ event.listHref }}">/{{ event.listLabel }}</a>/{% if event.name %}{{ event.name }}{% else %}{{ event.date }}{% endif %}
-</h3>
+{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
+
+{{ renderBreadcrumb([
+    { href: "/music/", label: "/music" },
+    { href: "/music/gigs/", label: "/gigs" },
+    { href: event.listHref, label: "/" ~ event.listLabel }
+], event.name or event.date) }}
+
+<div class="music-intro">
+{% importMd "music/_content/intro/event.md" %}
+</div>
 
 <style>
     .gig-grid {

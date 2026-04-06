@@ -1,0 +1,22 @@
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0;
+}
+
+.breadcrumb a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+.breadcrumb-suffix,
+.breadcrumb-current {
+    color: var(--muted);
+}

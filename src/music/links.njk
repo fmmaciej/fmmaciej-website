@@ -5,9 +5,12 @@ terminalFile: /assets/terminal/music/bio.json
 permalink: /music/links/index.html
 ---
 
-<h3>
-<a href="/music/">/music</a><a href="/music/links">/links</a>
-</h3>
+{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
+
+{{ renderBreadcrumb([
+    { href: "/music/", label: "/music" },
+    { href: "/music/links/", label: "/links" }
+]) }}
 
 <style>
     .music-list {
@@ -37,19 +40,15 @@ permalink: /music/links/index.html
     }
 </style>
 
-<p>
-Here are a few links you might find worth checking out.
-</p>
+<div class="music-intro">
+{% importMd "music/_content/intro/links.md" %}
+</div>
 
 <ul class="music-list">
-    <li><a href="https://www.facebook.com/Willa.w.parku.lodz/">/willa</a>
-        <span class="comment"># a great spot to party or simply hang out</span></li>
-    <li><a href="https://www.skylarkmusicstore.com">/skylark</a>
-        <span class="comment"># a place to dig for records and music gear</span></li>
-    <li><a href="https://www.mixcloud.com/gsound/">/g-sound</a>
-        <span class="comment"># have a listen to his mixes - worth it</span></li>
-    <li><a href="https://soundcloud.com/skffmusic">/skff</a>
-        <span class="comment"># a talented techno producer</span></li>
+    {% for link in music_links %}
+    <li><a href="{{ link.url }}">/{{ link.slug }}</a>
+        <span class="comment"># {{ link.comment }}</span></li>
+    {% endfor %}
 </ul>
 
 <br>

@@ -1,19 +1,19 @@
 (() => {
-    function initMixesPage(root, cleanups) {
-        const heading = root.querySelector('#mixesBreadcrumb');
-        const suffix = root.querySelector('#groupSuffix');
-        if (!heading || !suffix) return;
+    function initCollectionPage(root, options, cleanups) {
+        const suffix = root.querySelector(options.suffixSelector);
+        if (!suffix) return;
 
         const groups = Array.from(root.querySelectorAll('details.group'));
+        if (!groups.length) return;
+
         let activeId = null;
 
-        const fmt = (slug, label) =>
-            slug ? `<a href="/music/mixes#${slug}">/${label || slug}</a>` : '';
-
         const setBreadcrumb = (slug, label) => {
-            suffix.innerHTML = slug ? fmt(slug, label) : '';
-            if (slug) history.replaceState(null, '', '#' + slug);
-            else history.replaceState(null, '', location.pathname);
+            suffix.innerHTML = slug ? options.formatCrumb(slug, label) : '';
+            try {
+                if (slug) history.replaceState(null, '', `#${slug}`);
+                else history.replaceState(null, '', location.pathname);
+            } catch (_) {}
         };
 
         const setActive = (el) => {
@@ -94,64 +94,24 @@
         });
     }
 
+    function initMixesPage(root, cleanups) {
+        initCollectionPage(root, {
+            suffixSelector: '#groupSuffix',
+            formatCrumb: (slug, label) => `<a href="/music/mixes#${slug}">/${label || slug}</a>`
+        }, cleanups);
+    }
+
     function initGigsPage(root, cleanups) {
-        const suffix = root.querySelector('#yearSuffix');
-        if (!suffix) return;
+        initCollectionPage(root, {
+            suffixSelector: '#yearSuffix',
+            formatCrumb: (slug, label) => {
+                if (slug === 'tba') {
+                    return '<a href="/music/gigs#tba">/to-be-announced</a>';
+                }
 
-        const details = Array.from(root.querySelectorAll('.year-details'));
-
-        const fmt = (group) => {
-            if (!group) return '';
-            if (group === 'tba') return '<a href="/music/gigs#tba">/to-be-announced</a>';
-            return `<a href="/music/gigs#y-${group}">/${group}</a>`;
-        };
-
-        const setCrumb = (group) => {
-            suffix.innerHTML = group ? fmt(group) : '';
-            try {
-                if (group === 'tba') history.replaceState(null, '', '#tba');
-                else if (group) history.replaceState(null, '', '#y-' + group);
-                else history.replaceState(null, '', location.pathname);
-            } catch (_) {}
-        };
-
-        const topmostOpenYear = () => {
-            const open = details.filter((detail) => detail.open);
-            if (!open.length) return null;
-
-            open.sort((a, b) => Math.abs(a.getBoundingClientRect().top) - Math.abs(b.getBoundingClientRect().top));
-            return open[0].dataset.year || null;
-        };
-
-        const toggleHandlers = details.map((detail) => {
-            const onToggle = () => {
-                const year = detail.open ? detail.dataset.year : topmostOpenYear();
-                setCrumb(year);
-            };
-
-            detail.addEventListener('toggle', onToggle);
-            return () => detail.removeEventListener('toggle', onToggle);
-        });
-
-        setCrumb(null);
-
-        const hash = location.hash || '';
-        const match = hash.match(/^#y-(\d{4})$/);
-        const target = hash === '#tba'
-            ? root.querySelector('.year-details[data-year="tba"]')
-            : (match ? root.querySelector(`.year-details[data-year="${match[1]}"]`) : null);
-
-        if (target && !target.open) {
-            target.open = true;
-            setCrumb(target.dataset.year);
-            const sectionId = target.dataset.year === 'tba' ? 'tba' : 'y-' + target.dataset.year;
-            const section = root.querySelector('#' + sectionId);
-            if (section) section.scrollIntoView({ behavior: 'instant', block: 'start' });
-        }
-
-        cleanups.push(() => {
-            toggleHandlers.forEach((cleanup) => cleanup());
-        });
+                return `<a href="/music/gigs#${slug}">/${label || slug.replace(/^y-/, '')}</a>`;
+            }
+        }, cleanups);
     }
 
     window.initPageScripts = function initPageScripts(root = document) {

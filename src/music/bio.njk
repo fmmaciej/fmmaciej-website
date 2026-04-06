@@ -5,16 +5,19 @@ terminalFile: /assets/terminal/music/bio.json
 permalink: /music/bio/index.html
 ---
 
-<h3>
-<a href="/music/">/music</a><a href="/music/bio">/bio</a>
-</h3>
+{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
 
-<p>
-Stripped down to the basics, but with the details that matter most.
-</p>
+{{ renderBreadcrumb([
+    { href: "/music/", label: "/music" },
+    { href: "/music/bio/", label: "/bio" }
+]) }}
+
+<div class="music-intro">
+{% importMd "music/_content/intro/bio.md" %}
+</div>
 
 <div class="md">
-{% importMd "music/_content/bio.md" %}
+{% importMd "music/_content/pages/bio.md" %}
 </div>
 
 <br>

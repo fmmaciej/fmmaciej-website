@@ -1,5 +1,5 @@
 const rawMixesTba = require("./mixes_tba.json");
-const mixImagePresets = require("./mixImagePresets.js");
+const mixImagePresets = require("../_lib/music/mixImagePresets.js");
 
 function buildMixImage(item) {
     if (item?.img) {

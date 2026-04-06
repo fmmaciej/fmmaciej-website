@@ -1,0 +1,25 @@
+.music-intro {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.music-intro > :first-child {
+    margin-top: 0;
+}
+
+.music-intro > :last-child {
+    margin-bottom: 0;
+}
+
+.music-outro {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.music-outro > :first-child {
+    margin-top: 0;
+}
+
+.music-outro > :last-child {
+    margin-bottom: 0;
+}
