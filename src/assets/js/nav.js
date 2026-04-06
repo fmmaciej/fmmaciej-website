@@ -31,5 +31,3 @@ window.initNav = function initNav(root = document){
         a.addEventListener('click', () => closeDrawer());
     });
 };
-// auto-init przy pierwszym załadowaniu
-window.initNav(document);

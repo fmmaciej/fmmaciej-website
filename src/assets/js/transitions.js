@@ -34,6 +34,7 @@
             const curTerminal = document.querySelector('.terminal-box');
 
             curHost._terminalCleanup?.();
+            curHost._pageCleanup?.();
 
             document.title = dom.title || document.title;
             curHost.replaceWith(newHost);
@@ -49,8 +50,8 @@
             history.pushState(null, '', url);
 
             if (window.initTerminal) window.initTerminal(document);
-            if (window.initNav)        window.initNav(document);
-            if (window.initPageScripts) window.initPageScripts(newHost);
+            if (window.initNav) window.initNav(document);
+            if (window.initPageScripts) window.initPageScripts(document);
             if (window.closeDrawer) window.closeDrawer();
         });
     }
@@ -74,4 +75,5 @@
 
     if (window.initTerminal) window.initTerminal(document);
     if (window.initNav) window.initNav(document);
+    if (window.initPageScripts) window.initPageScripts(document);
 })();
