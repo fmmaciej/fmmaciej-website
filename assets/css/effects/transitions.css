@@ -2,6 +2,20 @@
     view-transition-name: page;
 }
 
+.content-host.is-reveal-enter [data-reveal] {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+        opacity 220ms ease,
+        transform 260ms ease;
+    transition-delay: calc(var(--reveal-index, 0) * 26ms);
+}
+
+.content-host.is-reveal-enter.is-reveal-active [data-reveal] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 ::view-transition-old(page),
 ::view-transition-new(page) {
     animation-duration: 220ms;
@@ -9,6 +23,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .content-host.is-reveal-enter [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
     ::view-transition-old(page),
     ::view-transition-new(page) {
         animation-duration: 1ms;

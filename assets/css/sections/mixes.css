@@ -7,12 +7,14 @@
     padding: 12px;
     text-decoration: none;
     background: var(--bg);
-    transition: border-color .2s;
+    transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
     overflow: hidden;
 }
 
 .mix-item:hover {
-    border-color: var(--muted);
+    border-color: color-mix(in srgb, var(--text) 18%, var(--border));
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--bg) 72%, transparent);
+    transform: translateY(-1px);
 }
 
 .mix-item.is-disabled {
@@ -29,14 +31,19 @@
     object-fit: cover;
     border-radius: 6px;
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    transition: transform .28s ease;
 }
 
 .mix-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.025);
 }
 
 .mix-item.is-disabled:hover img {
+    transform: none;
+}
+
+.mix-item.is-disabled:hover {
+    box-shadow: none;
     transform: none;
 }
 
