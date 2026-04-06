@@ -73,8 +73,11 @@
     background: color-mix(in srgb, var(--bg) 96%, var(--text));
 }
 
+.group[open] > summary {
+    border-bottom-color: transparent;
+}
+
 .group.is-active > summary {
-    border-bottom-color: var(--muted);
     color: var(--text);
     background: color-mix(in srgb, var(--bg) 95%, var(--text));
 }
