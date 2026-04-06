@@ -1,0 +1,46 @@
+.photo-meta {
+    padding: 8px 10px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.photo-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.photo-preview {
+    display: block;
+    color: inherit;
+}
+
+.photo-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-left: 14px;
+}
+
+.photo-contact-item {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+}
+
+.photo-contact-key {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.photo-contact-list a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+.photo-contact-list a:hover {
+    text-decoration: underline;
+}

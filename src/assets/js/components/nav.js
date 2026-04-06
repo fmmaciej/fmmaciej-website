@@ -1,4 +1,4 @@
-// /assets/js/nav.js
+// /assets/js/components/nav.js
 window.initNav = function initNav(root = document){
     const body     = document.body;
     const $        = (id) => root.getElementById?.(id) || document.getElementById(id);
@@ -31,5 +31,3 @@ window.initNav = function initNav(root = document){
         a.addEventListener('click', () => closeDrawer());
     });
 };
-// auto-init przy pierwszym załadowaniu
-window.initNav(document);

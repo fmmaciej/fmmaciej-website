@@ -1,0 +1,5 @@
+This is where I'll be writing a mix of technical notes, music-related
+observations, and occasional posts from the overlap between the two.
+
+Some entries will be practical, some more reflective, but all of them will
+stay close to the things I actually spend time on.

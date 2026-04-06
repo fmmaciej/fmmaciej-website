@@ -1,0 +1,47 @@
+.music-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    font-family: ui-monospace, monospace;
+}
+
+.music-list li {
+    display: flex;
+    gap: 16px;
+}
+
+.music-list a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+.music-list a:hover {
+    text-decoration: underline;
+}
+
+.music-list .comment {
+    color: var(--muted);
+    flex: 1;
+}
+
+.booking {
+    margin-top: 24px;
+    font-size: 15px;
+}
+
+main p.booking {
+    color: var(--text);
+}
+
+.booking-link {
+    color: var(--link);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--muted);
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.booking-link:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+}

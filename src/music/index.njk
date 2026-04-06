@@ -3,72 +3,19 @@ title: FM — /music
 layout: layout.njk
 terminalFile: /assets/terminal/music/music.json
 permalink: /music/index.html
+pageStyles:
+  - /assets/css/sections/music-index.css
 ---
 
-<h3>
-<a href="/music/">/music</a>
-</h3>
+{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
 
-<style>
-    main p {
-        color: var(--muted);
-        line-height: 1.6;
-    }
+{{ renderBreadcrumb([
+    { href: "/music/", label: "/music" }
+]) }}
 
-    .music-list {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0;
-        font-family: ui-monospace, monospace;
-    }
-
-    .music-list li {
-        display: flex;
-        gap: 16px;
-    }
-
-    .music-list a {
-        color: var(--link);
-        text-decoration: none;
-    }
-
-    .music-list a:hover {
-        text-decoration: underline;
-    }
-
-    .music-list .comment {
-        color: var(--muted);
-        flex: 1;
-    }
-
-    .booking {
-        margin-top: 24px;
-        font-size: 15px;
-    }
-
-    main p.booking {
-        color: var(--text);
-    }
-
-    .booking-link {
-        color: var(--link);
-        font-weight: 500;
-        text-decoration: none;
-        border-bottom: 1px dotted var(--muted);
-        transition: color 0.2s, border-color 0.2s;
-    }
-
-    .booking-link:hover {
-        color: var(--link-hover);
-        border-bottom-color: var(--link-hover);
-    }
-</style>
-
-<p>
-Two things that really drew me to vinyl were the expense and the inconvenience.  
-<br>
-All mixes and gigs are archived here.  
-</p>
+<div class="music-intro">
+{% importMd "music/_content/intro/index.md" %}
+</div>
 
 <p class="booking">
     → Booking / inquiries: <a href="mailto:fm@fmmaciej.com" class="booking-link">fm@fmmaciej.com</a>
@@ -77,7 +24,7 @@ All mixes and gigs are archived here.
 <ul class="music-list">
     <li><a href="/music/bio/">/bio</a>    <span class="comment"># a few words about me as a DJ</span></li>
     <li><a href="/music/rider/">/rider</a> <span class="comment"># basic technical requirements</span></li>
-    <li><a href="/music/photos/">/photos</a> <span class="comment"># to be added...</span></li>
+    <li><a href="/music/photos/">/photos</a> <span class="comment"># selected photos from parties and events</span></li>
     <li><a href="/music/mixes/">/mixes</a> <span class="comment"># my sets to listen online</span></li>
     <li><a href="/music/gigs/">/gigs</a>   <span class="comment"># archive of parties and posters</span></li>
     <li><a href="/music/links/">/links</a>   <span class="comment"># a few links you might find worth checking out</span></li>
@@ -85,11 +32,9 @@ All mixes and gigs are archived here.
 
 <br>
 
-<p>
-Feel free to download my press kit, which contains <a href="/music/bio/">/bio</a>, 
-<a href="/music/rider/">/rider</a>, and 
-<a href="/music/photos/">/photos</a>.
-</p>
+<div class="music-outro">
+{% importMd "music/_content/outro/index.md" %}
+</div>
 
 <p class="presskit">
     <i class="fas fa-file-zipper" aria-hidden="true"></i>

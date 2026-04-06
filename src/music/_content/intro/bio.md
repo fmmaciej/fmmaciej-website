@@ -1,0 +1,1 @@
+Stripped down to the basics, but with the details that matter most.

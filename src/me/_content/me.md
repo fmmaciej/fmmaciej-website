@@ -2,7 +2,7 @@
 
 ## About
 
-I’m FM, a software engineer who enjoys building lean, reliable tools.
+I'm FM, a software engineer who enjoys building lean, reliable tools.
 My work often blends Linux, C++, Python, Rust, TypeScript and networking.
 I like clean architectures, fast builds and efficient binaries.
 

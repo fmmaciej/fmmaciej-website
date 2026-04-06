@@ -3,117 +3,24 @@ title: FM — /music/mixes
 layout: layout.njk
 terminalFile: /assets/terminal/music/mixes.json
 permalink: /music/mixes/index.html
+pageStyles:
+  - /assets/css/components/music-collections.css
+  - /assets/css/sections/mixes.css
+pageScripts:
+  - /assets/js/pages/page-boot.js
 ---
 
-<h3 id="mixesBreadcrumb">
-    <a href="/music/">/music</a><a href="/music/mixes">/mixes</a><span id="groupSuffix"></span>
-</h3>
+{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
+{% from "macros/music-collections.njk" import renderGroup %}
 
-<style>
-    .group{
-        border:1px solid var(--border);
-        border-radius:10px;
-        margin:16px 0;
-        overflow:hidden;
-        background:var(--bg)
-    }
+{{ renderBreadcrumb([
+    { href: "/music/", label: "/music" },
+    { href: "/music/mixes/", label: "/mixes" }
+], "", "mixesBreadcrumb", "groupSuffix") }}
 
-    .group>summary{
-        list-style:none;
-        cursor:pointer;
-        padding:12px 14px;
-        font-weight:600;
-        display:flex;
-        align-items:center;
-        gap:10px;
-        border-bottom:1px solid var(--border);
-        user-select:none
-    }
-    .group>summary::-webkit-details-marker{
-        display:none
-    }
-
-    .group summary .badge{
-        margin-left:auto;
-        font-size:12px;
-        color:var(--muted);
-        border:1px solid var(--border);
-        padding:2px 6px;
-        border-radius:999px
-    }
-
-    .mix-list{
-        display:flex;
-        flex-direction:column;
-        gap:14px;
-        padding:12px
-    }
-
-    .mix-item {
-        display:flex;
-        align-items:center;
-        gap:20px;
-        border:1px solid var(--border);
-        border-radius:10px;
-        padding:12px;
-        text-decoration:none;
-        background:var(--bg);
-        transition:border-color .2s;
-        overflow: hidden;
-    }
-    .mix-item:hover {
-        border-color:var(--muted);
-    }
-    .mix-item.is-disabled {
-        cursor:default;
-    }
-    .mix-item.is-disabled:hover {
-        border-color:var(--border);
-    }
-
-    .mix-item img {
-        width:200px;
-        height:120px;
-        object-fit:cover;
-        border-radius:6px;
-        flex-shrink:0;
-        transition: transform 0.3s ease;
-    }
-    .mix-item:hover img {
-        transform: scale(1.05);
-    }
-    .mix-item.is-disabled:hover img {
-        transform:none;
-    }
-
-    .mix-item figcaption{
-        color:var(--text);
-        font-size:1rem;
-        line-height:1.4
-    }
-
-    .mix-item small{
-        color:var(--muted);
-        display:block;
-        margin-top:6px;
-        font-size:.9rem
-    }
-
-    @media (max-width:600px){
-        .mix-item{
-            flex-direction:column;
-            align-items:flex-start
-        }
-        .mix-item img{
-            width:100%;
-            height:auto;
-            max-height:240px
-        }
-        .mix-item figcaption{
-            margin-top:10px
-        }
-    }
-</style>
+<div class="music-intro">
+{% importMd "music/_content/intro/mixes.md" %}
+</div>
 
 {% macro renderMixCard(it) %}
     {% set thumb = it.img or (it.url | ytThumb) %}
@@ -143,33 +50,14 @@ permalink: /music/mixes/index.html
 {% endmacro %}
 
 {# ---- DANE Z GLOBALNEGO PLIKU ---- #}
-{% set allItems = mixes.items or [] %}
-{% set latestItems = allItems | latestMixes(5) %}
-{% set upcomingItems = (mixesTba.items or []) | upcomingMixes %}
-
-{# ---- KOLEJNOŚĆ GRUP ---- #}
-{% if mixes.groups %}
-    {% set groups = mixes.groups %}
-
-{% else %}
-    {% set groups = [] %}
-
-    {% for it in allItems %}
-        {% set g = (it.group or "Other") | trim %}
-        {% if g not in groups %}{% set groups = groups.concat([g]) %}{% endif %}
-    {% endfor %}
-
-    {% if "Other" in groups %}
-        {% set groups = (groups | reject("equalto","Other") | list) + ["Other"] %}
-    {% endif %}
-{% endif %}
+{% set upcomingItems = mixData.upcomingItems or [] %}
+{% set latestItems = mixData.latestItems or [] %}
+{% set groups = mixData.groups or [] %}
+{% set upcomingGroup = mixData.upcomingGroup %}
+{% set latestGroup = mixData.latestGroup %}
 
 {# ---- RENDER: każda grupa = osobny <details> (domyślnie zamknięte) ---- #}
-{% set upcomingSlug = "Upcoming" | groupSlug %}
-<details class="group" id="group-{{ upcomingSlug }}" data-key="{{ upcomingSlug }}" data-group="Upcoming" data-slug="{{ upcomingSlug }}">
-<summary>Upcoming <span class="badge">{{ upcomingItems | length }}</span></summary>
-
-<div class="mix-list">
+{% call renderGroup(upcomingGroup, upcomingItems | length, "list") %}
     {% if upcomingItems | length %}
         {% for it in upcomingItems %}
         {{ renderMixCard(it) }}
@@ -181,135 +69,22 @@ permalink: /music/mixes/index.html
             </figcaption>
         </div>
     {% endif %}
-</div>
-</details>
+{% endcall %}
 
 {% if latestItems | length %}
-    {% set latestSlug = "Latest" | groupSlug %}
-    <details class="group" id="group-{{ latestSlug }}" data-key="{{ latestSlug }}" data-group="Latest" data-slug="{{ latestSlug }}">
-    <summary>Latest <span class="badge">{{ latestItems | length }}</span></summary>
-
-    <div class="mix-list">
-        {% for it in latestItems %}
-        {{ renderMixCard(it) }}
-        {% endfor %}
-    </div>
-    </details>
+{% call renderGroup(latestGroup, latestItems | length, "list") %}
+    {% for it in latestItems %}
+    {{ renderMixCard(it) }}
+    {% endfor %}
+{% endcall %}
 {% endif %}
 
-{% for g in groups %}
-    {# ręczne, odporne filtrowanie do danej grupy #}
-    {% set itemsIn = [] %}
-    {% for it in allItems %}
-        {% set grp = ((it.group or "Other") | trim | lower) %}
-        {% if grp == (g | trim | lower) %}
-        {% set itemsIn = itemsIn.concat([it]) %}
-        {% endif %}
-    {% endfor %}
-
-    {% if itemsIn | length %}
-        {% set slug = g | groupSlug %}
-        <details class="group" id="group-{{ slug }}" data-key="{{ slug }}" data-group="{{ g }}" data-slug="{{ slug }}">
-        <summary>{{ g }} <span class="badge">{{ itemsIn | length }}</span></summary>
-
-        <div class="mix-list">
-            {% for it in itemsIn %}
-            {{ renderMixCard(it) }}
-            {% endfor %}
-        </div>
-        </details>
-    {% endif %}
+{% for group in groups %}
+    {% call renderGroup(group, group.items | length, "list") %}
+        {% for it in group.items %}
+        {{ renderMixCard(it) }}
+        {% endfor %}
+    {% endcall %}
 {% endfor %}
 
 <br>
-
-<script>
-    (function() {
-        const heading = document.getElementById('mixesBreadcrumb');   // <h2 id="mixesBreadcrumb">/music/mixes <span id="groupSuffix"></span>
-        const suffix  = document.getElementById('groupSuffix');
-        if (!heading || !suffix) return;
-
-        // helpers
-        const fmt = (slug, label) => 
-            slug ? `<a href="/music/mixes#${slug}">/${label || slug}</a>` : '';
-
-        const setBreadcrumb = (slug, label) => {
-            suffix.innerHTML = slug ? fmt(slug, label) : '';
-            if (slug) history.replaceState(null, '', '#' + slug);
-            else history.replaceState(null, '', location.pathname);
-        };
-
-        const groups = Array.from(document.querySelectorAll('details.group'));
-        let activeId = null;
-
-        // highlight active group
-        const setActive = (el) => {
-            groups.forEach(g => g.classList.remove('is-active'));
-            if (el) el.classList.add('is-active');
-        };
-
-        // Click on summary → update breadcrumb immediately
-        document.querySelectorAll('details.group > summary').forEach(sum => {
-            sum.addEventListener('click', () => {
-                const wrap  = sum.parentElement;
-                const slug  = wrap?.dataset?.slug;
-                const label = (wrap?.dataset?.group || '').toLowerCase();
-                // odrocz minimalnie, by <details> zdążył się rozwinąć/zwinąć
-                setTimeout(() => {
-                    // jeśli zwinięte po kliknięciu → wróć do /music/mixes (bez sufiksu)
-                    if (!wrap.open) { setBreadcrumb(null, null); setActive(null); return; }
-                    setBreadcrumb(slug, label);
-                    setActive(wrap);
-                }, 0);
-            });
-        });
-
-        // IntersectionObserver → wybierz sekcję w kadrze
-        const io = new IntersectionObserver((entries) => {
-            // bierzemy tylko te w kadrze i sortujemy po największym udziale
-            const visible = entries.filter(en => en.isIntersecting)
-                                .sort((a,b) => (b.intersectionRatio||0) - (a.intersectionRatio||0));
-            if (visible.length) {
-                const top   = visible[0].target;
-                const slug  = top.dataset.slug;
-                const label = (top.dataset.group || '').toLowerCase();
-
-                // tylko jeśli sekcja jest faktycznie rozwinięta
-                if (top.open && top.id !== activeId) {
-                    activeId = top.id;
-                    setBreadcrumb(slug, label);
-                    setActive(top);
-                }
-            } else {
-                // nic nie jest w kadrze → cofamy suffix (np. po zwinięciu wszystkiego)
-                setBreadcrumb(null, null);
-                setActive(null);
-                activeId = null;
-            }
-        }, {
-            root: null,
-            rootMargin: '-20% 0px -40% 0px',
-            threshold: [0.2, 0.4, 0.6, 0.8]
-        });
-
-        groups.forEach(g => io.observe(g));
-
-        // Start: domyślnie TYLKO /music/mixes; jeśli jest hash → rozwiń i ustaw
-        const initFromHash = () => {
-            const slug = (location.hash || '').replace(/^#/, '');
-            if (!slug) { setBreadcrumb(null, null); return; }
-
-            const el = document.getElementById('group-' + slug);
-            if (el) {
-                if (!el.open) el.open = true;
-                el.scrollIntoView({ behavior: 'instant', block: 'start' });
-                setBreadcrumb(slug, (el.dataset.group || '').toLowerCase());
-                setActive(el);
-            } else {
-                setBreadcrumb(null, null);
-            }
-        };
-
-        initFromHash();
-    })();
-</script>

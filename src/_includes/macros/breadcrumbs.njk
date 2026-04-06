@@ -1,0 +1,9 @@
+{% macro renderBreadcrumb(items = [], currentLabel = "", id = "", suffixId = "") %}
+<h3{% if id %} id="{{ id }}"{% endif %} class="breadcrumb">
+    {% for item in items %}
+    <a href="{{ item.href }}" title="{{ item.title or ('Jump to: ' ~ (item.label | replace('/', ''))) }}">{{ item.label }}</a>
+    {% endfor %}
+    {% if suffixId %}<span id="{{ suffixId }}" class="breadcrumb-suffix"></span>{% endif %}
+    {% if currentLabel %}<span class="breadcrumb-current">/{{ currentLabel }}</span>{% endif %}
+</h3>
+{% endmacro %}

@@ -5,21 +5,23 @@ terminalFile: /assets/terminal/music/rider.json
 permalink: /music/rider/index.html
 ---
 
-<h3>
-<a href="/music/">/music</a><a href="/music/rider">/rider</a>
-</h3>
+{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
 
-<p>
-My basic technical and hospitality requirements.  
-I keep it minimal, but a few details are crucial to ensure a smooth performance.
-</p>
+{{ renderBreadcrumb([
+    { href: "/music/", label: "/music" },
+    { href: "/music/rider/", label: "/rider" }
+]) }}
 
-<div class="md">
-{% importMd "music/_content/rider.md" %}
+<div class="music-intro">
+{% importMd "music/_content/intro/rider.md" %}
 </div>
 
-<p>
-That’s all. Simple, reliable, effective.
-</p>
+<div class="md">
+{% importMd "music/_content/pages/rider.md" %}
+</div>
+
+<div class="music-outro">
+{% importMd "music/_content/outro/rider.md" %}
+</div>
 
 <br>

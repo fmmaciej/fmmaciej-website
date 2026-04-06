@@ -1,0 +1,33 @@
+.social-icons {
+    display: flex;
+    gap: 14px;
+}
+
+.social-icons a {
+    color: var(--muted);
+    font-size: 18px;
+    text-decoration: none;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
+.social-icons a:hover {
+    color: var(--text);
+}
+
+.social-icons img {
+    width: 18px;
+    height: 18px;
+    display: block;
+    opacity: 0.72;
+    transition: opacity 0.2s, filter 0.2s;
+}
+
+:root:not([data-theme="light"]) .social-icons img {
+    filter: invert(1);
+}
+
+.social-icons a:hover img {
+    opacity: 1;
+}
