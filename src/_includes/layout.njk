@@ -63,8 +63,9 @@
     <div style="clear:both"></div>
     </header>
 
-    {% if terminalFile or terminal != false %}
-        <div class="terminal-box" {% if terminalFile %} data-terminal="{{ terminalFile }}"{% endif %}>
+    {% set resolvedTerminalFile = terminalFile if terminalFile is defined else "/assets/terminal/default.json" %}
+    {% if resolvedTerminalFile != false %}
+        <div class="terminal-box" data-terminal="{{ resolvedTerminalFile }}">
             <div class="terminal-viewport">
                 <div class="terminal-line">
                 <span class="prompt">fm@void:~$</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
