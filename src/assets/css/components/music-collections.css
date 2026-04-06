@@ -18,10 +18,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid var(--border);
     user-select: none;
-    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+    transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
     position: relative;
+    box-shadow: inset 0 -1px 0 var(--border);
 }
 
 .group > summary .group-label {
@@ -74,7 +74,7 @@
 }
 
 .group[open] > summary {
-    border-bottom-color: transparent;
+    box-shadow: none;
 }
 
 .group.is-active > summary {
