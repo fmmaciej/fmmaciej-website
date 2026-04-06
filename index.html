@@ -25,18 +25,23 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="/assets/css/boot.css" />
-    <link rel="stylesheet" href="/assets/css/file_list.css" />
-    <link rel="stylesheet" href="/assets/css/gigs.css" />
-    <link rel="stylesheet" href="/assets/css/global.css" />
-    <link rel="stylesheet" href="/assets/css/icons.css" />
-    <link rel="stylesheet" href="/assets/css/layout.css" />
-    <link rel="stylesheet" href="/assets/css/markdown.css" />
-    <link rel="stylesheet" href="/assets/css/navigation.css" />
-    <link rel="stylesheet" href="/assets/css/page_loader.css" />
-    <link rel="stylesheet" href="/assets/css/root.css" />
-    <link rel="stylesheet" href="/assets/css/terminal.css" />
-    <link rel="stylesheet" href="/assets/css/transitions.css" />
+    <link rel="stylesheet" href="/assets/css/effects/boot.css" />
+    <link rel="stylesheet" href="/assets/css/components/breadcrumbs.css" />
+    <link rel="stylesheet" href="/assets/css/base/global.css" />
+    <link rel="stylesheet" href="/assets/css/components/icons.css" />
+    <link rel="stylesheet" href="/assets/css/base/layout.css" />
+    <link rel="stylesheet" href="/assets/css/effects/markdown.css" />
+    <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+    <link rel="stylesheet" href="/assets/css/components/page_loader.css" />
+    <link rel="stylesheet" href="/assets/css/components/page-content.css" />
+    <link rel="stylesheet" href="/assets/css/base/root.css" />
+    <link rel="stylesheet" href="/assets/css/components/terminal.css" />
+    <link rel="stylesheet" href="/assets/css/effects/transitions.css" />
+    
+        
+    <link rel="stylesheet" href="/assets/css/sections/home.css" data-page-style />
+        
+    
 </head>
 
 <body>
@@ -64,7 +69,8 @@
     </header>
 
     
-        <div class="terminal-box" >
+    
+        <div class="terminal-box" data-terminal="/assets/terminal/default.json">
             <div class="terminal-viewport">
                 <div class="terminal-line">
                 <span class="prompt">fm@void:~$</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
@@ -76,41 +82,10 @@
     <div class="content-host">
         <main>
             
-<style>
-    .file-list {
-        list-style: none; 
-        padding: 0;
-        margin: 12px 0;
-    }
-
-    .file-list li {
-        margin: 6px 0;
-    }
-
-    .file-list li a {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--link);
-        text-decoration: underline;
-        font-size: 15px;
-        transition: color .2s;
-    }
-
-    .file-list li a:hover {
-        color: var(--link-hover);
-    }
-
-    .file-list li a i {
-        font-size: 14px;
-        color: var(--muted);
-    }
-</style>
-
 <div class="md">
 <h1>Me</h1>
 <h2>About</h2>
-<p>I’m FM, a software engineer who enjoys building lean, reliable tools.
+<p>I'm FM, a software engineer who enjoys building lean, reliable tools.
 My work often blends Linux, C++, Python, Rust, TypeScript and networking.
 I like clean architectures, fast builds and efficient binaries.</p>
 <p>This site is minimal on purpose. Feel free to check out my <a href="/projects">/projects</a>
@@ -141,6 +116,9 @@ explore the <a href="/music">/music</a> I care about. If you'd like, you can
             <a href="https://stackoverflow.com/users/8387639/maciej-fm" title="Stack Overflow" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-stack-overflow"></i>
             </a>
+            <a href="https://pl.ra.co/dj/fmpl" title="Resident Advisor" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/icons/ra.png" alt="Resident Advisor">
+            </a>
             <a href="https://instagram.com/fmmaciej" title="Instagram" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-instagram"></i>
             </a>
@@ -170,18 +148,17 @@ explore the <a href="/music">/music</a> I care about. If you'd like, you can
         </nav>
     </aside>
 
-    <script src="/assets/js/boot.js" defer></script>
-    <script src="/assets/js/loader.js" defer></script>
-    <script src="/assets/js/theme.js" defer></script>
-    <script src="/assets/js/nav.js" defer></script>
-    <script src="/assets/js/page-boot.js" defer></script>
-    <script src="/assets/js/terminal.js" defer></script>
-    <script src="/assets/js/transitions.js" defer></script>
-
-    <script>
-        window.initTerminal && window.initTerminal(document);
-        window.initNav && window.initNav(document);
-    </script>
+    <script src="/assets/js/core/boot.js" defer></script>
+    <script src="/assets/js/components/loader.js" defer></script>
+    <script src="/assets/js/core/theme.js" defer></script>
+    <script src="/assets/js/components/nav.js" defer></script>
+    <script src="/assets/js/components/terminal.js" defer></script>
+    
+        
+    <script src="/assets/js/core/boot.js" defer data-page-script></script>
+        
+    
+    <script src="/assets/js/core/transitions.js" defer></script>
 
     <div id="pageLoader">
         <span>loading<span class="dots"></span></span>

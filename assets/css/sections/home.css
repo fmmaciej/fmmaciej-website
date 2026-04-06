@@ -1,0 +1,28 @@
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+}
+
+.file-list li {
+    margin: 6px 0;
+}
+
+.file-list li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--link);
+    text-decoration: underline;
+    font-size: 15px;
+    transition: color .2s;
+}
+
+.file-list li a:hover {
+    color: var(--link-hover);
+}
+
+.file-list li a i {
+    font-size: 14px;
+    color: var(--muted);
+}

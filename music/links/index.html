@@ -25,18 +25,23 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="/assets/css/boot.css" />
-    <link rel="stylesheet" href="/assets/css/file_list.css" />
-    <link rel="stylesheet" href="/assets/css/gigs.css" />
-    <link rel="stylesheet" href="/assets/css/global.css" />
-    <link rel="stylesheet" href="/assets/css/icons.css" />
-    <link rel="stylesheet" href="/assets/css/layout.css" />
-    <link rel="stylesheet" href="/assets/css/markdown.css" />
-    <link rel="stylesheet" href="/assets/css/navigation.css" />
-    <link rel="stylesheet" href="/assets/css/page_loader.css" />
-    <link rel="stylesheet" href="/assets/css/root.css" />
-    <link rel="stylesheet" href="/assets/css/terminal.css" />
-    <link rel="stylesheet" href="/assets/css/transitions.css" />
+    <link rel="stylesheet" href="/assets/css/effects/boot.css" />
+    <link rel="stylesheet" href="/assets/css/components/breadcrumbs.css" />
+    <link rel="stylesheet" href="/assets/css/base/global.css" />
+    <link rel="stylesheet" href="/assets/css/components/icons.css" />
+    <link rel="stylesheet" href="/assets/css/base/layout.css" />
+    <link rel="stylesheet" href="/assets/css/effects/markdown.css" />
+    <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+    <link rel="stylesheet" href="/assets/css/components/page_loader.css" />
+    <link rel="stylesheet" href="/assets/css/components/page-content.css" />
+    <link rel="stylesheet" href="/assets/css/base/root.css" />
+    <link rel="stylesheet" href="/assets/css/components/terminal.css" />
+    <link rel="stylesheet" href="/assets/css/effects/transitions.css" />
+    
+        
+    <link rel="stylesheet" href="/assets/css/sections/music-index.css" data-page-style />
+        
+    
 </head>
 
 <body>
@@ -64,7 +69,8 @@
     </header>
 
     
-        <div class="terminal-box"  data-terminal="/assets/terminal/music/bio.json">
+    
+        <div class="terminal-box" data-terminal="/assets/terminal/music/bio.json">
             <div class="terminal-viewport">
                 <div class="terminal-line">
                 <span class="prompt">fm@void:~$</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
@@ -76,51 +82,39 @@
     <div class="content-host">
         <main>
             
-<h3>
-<a href="/music/">/music</a><a href="/music/links">/links</a>
+
+
+
+<h3 class="breadcrumb">
+    
+    <a href="/music/" title="Jump to: music">/music</a>
+    
+    <a href="/music/links/" title="Jump to: links">/links</a>
+    
+    
+    
 </h3>
 
-<style>
-    .music-list {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0;
-        font-family: ui-monospace, monospace;
-    }
 
-    .music-list li {
-        display: flex;
-        gap: 16px;
-    }
+<div class="music-intro">
+<p>Here are a few links you might find worth checking out.</p>
 
-    .music-list a {
-        color: var(--link);
-        text-decoration: none;
-    }
-
-    .music-list a:hover {
-        text-decoration: underline;
-    }
-
-    .music-list .comment {
-        color: var(--muted);
-        flex: 1;
-    }
-</style>
-
-<p>
-Here are a few links you might find worth checking out.
-</p>
+</div>
 
 <ul class="music-list">
+    
     <li><a href="https://www.facebook.com/Willa.w.parku.lodz/">/willa</a>
         <span class="comment"># a great spot to party or simply hang out</span></li>
+    
     <li><a href="https://www.skylarkmusicstore.com">/skylark</a>
         <span class="comment"># a place to dig for records and music gear</span></li>
+    
     <li><a href="https://www.mixcloud.com/gsound/">/g-sound</a>
         <span class="comment"># have a listen to his mixes - worth it</span></li>
+    
     <li><a href="https://soundcloud.com/skffmusic">/skff</a>
         <span class="comment"># a talented techno producer</span></li>
+    
 </ul>
 
 <br>
@@ -139,6 +133,9 @@ Here are a few links you might find worth checking out.
             </a>
             <a href="https://stackoverflow.com/users/8387639/maciej-fm" title="Stack Overflow" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-stack-overflow"></i>
+            </a>
+            <a href="https://pl.ra.co/dj/fmpl" title="Resident Advisor" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/icons/ra.png" alt="Resident Advisor">
             </a>
             <a href="https://instagram.com/fmmaciej" title="Instagram" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-instagram"></i>
@@ -169,18 +166,13 @@ Here are a few links you might find worth checking out.
         </nav>
     </aside>
 
-    <script src="/assets/js/boot.js" defer></script>
-    <script src="/assets/js/loader.js" defer></script>
-    <script src="/assets/js/theme.js" defer></script>
-    <script src="/assets/js/nav.js" defer></script>
-    <script src="/assets/js/page-boot.js" defer></script>
-    <script src="/assets/js/terminal.js" defer></script>
-    <script src="/assets/js/transitions.js" defer></script>
-
-    <script>
-        window.initTerminal && window.initTerminal(document);
-        window.initNav && window.initNav(document);
-    </script>
+    <script src="/assets/js/core/boot.js" defer></script>
+    <script src="/assets/js/components/loader.js" defer></script>
+    <script src="/assets/js/core/theme.js" defer></script>
+    <script src="/assets/js/components/nav.js" defer></script>
+    <script src="/assets/js/components/terminal.js" defer></script>
+    
+    <script src="/assets/js/core/transitions.js" defer></script>
 
     <div id="pageLoader">
         <span>loading<span class="dots"></span></span>

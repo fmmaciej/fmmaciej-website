@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en" class="preload">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script>
+        (function(){
+            var KEY='theme';
+            var saved = localStorage.getItem(KEY);
+            if(saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+            } else {
+                // brak wyboru - użyj systemowego
+                var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            }
+        })();
+    </script>
+
+    <title>FM — /music/photos</title>
+    <meta name="description" content="FM - software engineer. Minimal terminal-style personal site." />
+
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="8" width="64" height="64" fill="%23000"/><text x="50%" y="56%" text-anchor="middle" font-family="monospace" font-size="26" fill="white">FM</text></svg>' />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/assets/css/effects/boot.css" />
+    <link rel="stylesheet" href="/assets/css/components/breadcrumbs.css" />
+    <link rel="stylesheet" href="/assets/css/base/global.css" />
+    <link rel="stylesheet" href="/assets/css/components/icons.css" />
+    <link rel="stylesheet" href="/assets/css/base/layout.css" />
+    <link rel="stylesheet" href="/assets/css/effects/markdown.css" />
+    <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+    <link rel="stylesheet" href="/assets/css/components/page_loader.css" />
+    <link rel="stylesheet" href="/assets/css/components/page-content.css" />
+    <link rel="stylesheet" href="/assets/css/base/root.css" />
+    <link rel="stylesheet" href="/assets/css/components/terminal.css" />
+    <link rel="stylesheet" href="/assets/css/effects/transitions.css" />
+    
+        
+    <link rel="stylesheet" href="/assets/css/components/music-collections.css" data-page-style />
+        
+    <link rel="stylesheet" href="/assets/css/components/music-media-cards.css" data-page-style />
+        
+    <link rel="stylesheet" href="/assets/css/sections/photos.css" data-page-style />
+        
+    
+</head>
+
+<body>
+    <div class="wrap">
+
+    <header>
+    <a href="/" class="no-underline"><strong>FM</strong></a>
+    <nav class="primary" aria-label="Primary navigation">
+        <div class="primary-links">
+            <a href="/">/me</a>
+            <a href="/projects/">/projects</a>
+            <a href="/blog/">/blog</a>
+            <a href="/music/">/music</a>
+            <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
+        </div>
+        <button class="hamburger" id="hamburger" type="button" aria-controls="mobileDrawer" aria-expanded="false" aria-label="Open menu">
+            MENU<i class="fas fa-bars"></i>
+        </button>
+
+        <button class="theme-toggle" id="themeToggle" type="button" title="Toggle theme" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+    <div style="clear:both"></div>
+    </header>
+
+    
+    
+        <div class="terminal-box" data-terminal="/assets/terminal/music/photos.json">
+            <div class="terminal-viewport">
+                <div class="terminal-line">
+                <span class="prompt">fm@void:~$</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
+                </div>
+            </div>
+        </div>
+    
+
+    <div class="content-host">
+        <main>
+            
+
+
+
+
+<h3 id="photosBreadcrumb" class="breadcrumb">
+    
+    <a href="/music/" title="Jump to: music">/music</a>
+    
+    <a href="/music/photos/" title="Jump to: photos">/photos</a>
+    
+    <span id="photosSuffix" class="breadcrumb-suffix"></span>
+    
+</h3>
+
+
+<div class="music-intro">
+<p>Selected photos from parties, club nights, and other music-related events.</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+<details class="group" id="group-y-2025" data-key="y-2025" data-group="2025" data-slug="y-2025">
+    <summary>
+        2025
+        <span class="badge">1</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20250321_P29_werifesteria.webp" target="_blank" rel="noopener" aria-label="P29 2025-03-21 werifesteria.photography">
+        <img
+            src="/assets/music/photos/_images/20250321_P29_werifesteria.webp"
+            srcset="/assets/music/photos/_images/20250321_P29_werifesteria.webp 480w, /assets/music/photos/_images/20250321_P29_werifesteria.webp 960w, /assets/music/photos/_images/20250321_P29_werifesteria.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="P29 2025-03-21 werifesteria.photography"
+            width="480"
+            height="319"
+            loading="eager" fetchpriority="high"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2025-03-21</div>
+            <div><span class="photo-label">miejsce:</span> P29</div>
+            <div><span class="photo-label">Autor:</span> werifesteria.photography</div>
+            
+            <div><span class="photo-label">Kontakt:</span></div>
+            <div class="photo-contact-list">
+                
+                <div class="photo-contact-item">
+                    <span class="photo-contact-key">ig:</span>
+                    <a href="https://instagram.com/werifesteria.photography" target="_blank" rel="noopener">@werifesteria.photography</a>
+                </div>
+                
+                
+                
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    </div>
+</details>
+
+
+
+
+<details class="group" id="group-y-2024" data-key="y-2024" data-group="2024" data-slug="y-2024">
+    <summary>
+        2024
+        <span class="badge">4</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20240127_Luzztro_unknown_01-1600.webp" target="_blank" rel="noopener" aria-label="Luzztro 2024-01-27 unknown">
+        <img
+            src="/assets/music/photos/_images/20240127_Luzztro_unknown_01-480.webp"
+            srcset="/assets/music/photos/_images/20240127_Luzztro_unknown_01-480.webp 480w, /assets/music/photos/_images/20240127_Luzztro_unknown_01-960.webp 960w, /assets/music/photos/_images/20240127_Luzztro_unknown_01-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="Luzztro 2024-01-27 unknown"
+            width="480"
+            height="640"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2024-01-27</div>
+            <div><span class="photo-label">miejsce:</span> Luzztro</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20240127_Luzztro_unknown_02-1600.webp" target="_blank" rel="noopener" aria-label="Luzztro 2024-01-27 unknown">
+        <img
+            src="/assets/music/photos/_images/20240127_Luzztro_unknown_02-480.webp"
+            srcset="/assets/music/photos/_images/20240127_Luzztro_unknown_02-480.webp 480w, /assets/music/photos/_images/20240127_Luzztro_unknown_02-960.webp 960w, /assets/music/photos/_images/20240127_Luzztro_unknown_02-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="Luzztro 2024-01-27 unknown"
+            width="480"
+            height="640"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2024-01-27</div>
+            <div><span class="photo-label">miejsce:</span> Luzztro</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20240127_Luzztro_unknown_03-1600.webp" target="_blank" rel="noopener" aria-label="Luzztro 2024-01-27 unknown">
+        <img
+            src="/assets/music/photos/_images/20240127_Luzztro_unknown_03-480.webp"
+            srcset="/assets/music/photos/_images/20240127_Luzztro_unknown_03-480.webp 480w, /assets/music/photos/_images/20240127_Luzztro_unknown_03-960.webp 960w, /assets/music/photos/_images/20240127_Luzztro_unknown_03-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="Luzztro 2024-01-27 unknown"
+            width="480"
+            height="640"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2024-01-27</div>
+            <div><span class="photo-label">miejsce:</span> Luzztro</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20240127_Luzztro_unknown_04-1600.webp" target="_blank" rel="noopener" aria-label="Luzztro 2024-01-27 unknown">
+        <img
+            src="/assets/music/photos/_images/20240127_Luzztro_unknown_04-480.webp"
+            srcset="/assets/music/photos/_images/20240127_Luzztro_unknown_04-480.webp 480w, /assets/music/photos/_images/20240127_Luzztro_unknown_04-960.webp 960w, /assets/music/photos/_images/20240127_Luzztro_unknown_04-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="Luzztro 2024-01-27 unknown"
+            width="480"
+            height="640"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2024-01-27</div>
+            <div><span class="photo-label">miejsce:</span> Luzztro</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+
+    </div>
+</details>
+
+
+
+
+<details class="group" id="group-y-2023" data-key="y-2023" data-group="2023" data-slug="y-2023">
+    <summary>
+        2023
+        <span class="badge">3</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20231031_Willa_unknown_01-1600.webp" target="_blank" rel="noopener" aria-label="Willa 2023-10-31 unknown">
+        <img
+            src="/assets/music/photos/_images/20231031_Willa_unknown_01-480.webp"
+            srcset="/assets/music/photos/_images/20231031_Willa_unknown_01-480.webp 480w, /assets/music/photos/_images/20231031_Willa_unknown_01-960.webp 960w, /assets/music/photos/_images/20231031_Willa_unknown_01-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="Willa 2023-10-31 unknown"
+            width="480"
+            height="270"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2023-10-31</div>
+            <div><span class="photo-label">miejsce:</span> Willa</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20231031_Willa_unknown_02-1600.webp" target="_blank" rel="noopener" aria-label="Willa 2023-10-31 unknown">
+        <img
+            src="/assets/music/photos/_images/20231031_Willa_unknown_02-480.webp"
+            srcset="/assets/music/photos/_images/20231031_Willa_unknown_02-480.webp 480w, /assets/music/photos/_images/20231031_Willa_unknown_02-960.webp 960w, /assets/music/photos/_images/20231031_Willa_unknown_02-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="Willa 2023-10-31 unknown"
+            width="480"
+            height="667"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2023-10-31</div>
+            <div><span class="photo-label">miejsce:</span> Willa</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20231031_Willa_unknown_03-1600.webp" target="_blank" rel="noopener" aria-label="Willa 2023-10-31 unknown">
+        <img
+            src="/assets/music/photos/_images/20231031_Willa_unknown_03-480.webp"
+            srcset="/assets/music/photos/_images/20231031_Willa_unknown_03-480.webp 480w, /assets/music/photos/_images/20231031_Willa_unknown_03-960.webp 960w, /assets/music/photos/_images/20231031_Willa_unknown_03-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="Willa 2023-10-31 unknown"
+            width="480"
+            height="320"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2023-10-31</div>
+            <div><span class="photo-label">miejsce:</span> Willa</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+
+    </div>
+</details>
+
+
+
+
+<details class="group" id="group-y-2022" data-key="y-2022" data-group="2022" data-slug="y-2022">
+    <summary>
+        2022
+        <span class="badge">1</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20221029_Willa_unknown_04-1600.webp" target="_blank" rel="noopener" aria-label="Willa 2022-10-29 unknown">
+        <img
+            src="/assets/music/photos/_images/20221029_Willa_unknown_04-480.webp"
+            srcset="/assets/music/photos/_images/20221029_Willa_unknown_04-480.webp 480w, /assets/music/photos/_images/20221029_Willa_unknown_04-960.webp 960w, /assets/music/photos/_images/20221029_Willa_unknown_04-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="Willa 2022-10-29 unknown"
+            width="480"
+            height="480"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2022-10-29</div>
+            <div><span class="photo-label">miejsce:</span> Willa</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+
+    </div>
+</details>
+
+
+
+
+<details class="group" id="group-y-2019" data-key="y-2019" data-group="2019" data-slug="y-2019">
+    <summary>
+        2019
+        <span class="badge">1</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+    
+        
+        
+    <div class="music-photo-card">
+        <a class="photo-preview" href="/assets/music/photos/_images/20190209_SodaUndergroundStage_unknown_01-1600.webp" target="_blank" rel="noopener" aria-label="SodaUndergroundStage 2019-02-09 unknown">
+        <img
+            src="/assets/music/photos/_images/20190209_SodaUndergroundStage_unknown_01-480.webp"
+            srcset="/assets/music/photos/_images/20190209_SodaUndergroundStage_unknown_01-480.webp 480w, /assets/music/photos/_images/20190209_SodaUndergroundStage_unknown_01-960.webp 960w, /assets/music/photos/_images/20190209_SodaUndergroundStage_unknown_01-1600.webp 1600w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+            alt="SodaUndergroundStage 2019-02-09 unknown"
+            width="480"
+            height="473"
+            loading="lazy" fetchpriority="low"
+            decoding="async">
+        </a>
+        <div class="photo-meta">
+            <div><span class="photo-label">data:</span> 2019-02-09</div>
+            <div><span class="photo-label">miejsce:</span> SodaUndergroundStage</div>
+            <div><span class="photo-label">Autor:</span> unknown</div>
+            
+        </div>
+    </div>
+
+    
+
+    </div>
+</details>
+
+
+
+
+<br>
+
+        </main>
+    </div>
+
+    <footer>
+        <div>© <span id="year"></span> FM - served plain & simple</div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/organisciak-maciej/" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.github.com/fmmaciej" title="Github" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://stackoverflow.com/users/8387639/maciej-fm" title="Stack Overflow" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-stack-overflow"></i>
+            </a>
+            <a href="https://pl.ra.co/dj/fmpl" title="Resident Advisor" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/icons/ra.png" alt="Resident Advisor">
+            </a>
+            <a href="https://instagram.com/fmmaciej" title="Instagram" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.mixcloud.com/fmmaciej" title="MixCloud" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-mixcloud"></i>
+            </a>
+            <a href="https://www.soundcloud.com/fmmaciej" title="SoundCloud" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-soundcloud"></i>
+            </a>
+        </div>
+    </footer>
+    </div>
+
+    <!-- Drawer + backdrop -->
+    <div class="backdrop" id="backdrop" hidden></div>
+    <aside class="drawer" id="mobileDrawer" aria-hidden="true" aria-label="Mobile menu">
+        <header>
+        <strong>Menu</strong>
+        <button class="close" id="closeDrawer" aria-label="Close menu">×</button>
+        </header>
+        <nav>
+            <a href="/">/me</a>
+            <a href="/projects/">/projects</a>
+            <a href="/blog/">/blog</a>
+            <a href="/music/">/music</a>
+            <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
+        </nav>
+    </aside>
+
+    <script src="/assets/js/core/boot.js" defer></script>
+    <script src="/assets/js/components/loader.js" defer></script>
+    <script src="/assets/js/core/theme.js" defer></script>
+    <script src="/assets/js/components/nav.js" defer></script>
+    <script src="/assets/js/components/terminal.js" defer></script>
+    
+        
+    <script src="/assets/js/pages/page-boot.js" defer data-page-script></script>
+        
+    
+    <script src="/assets/js/core/transitions.js" defer></script>
+
+    <div id="pageLoader">
+        <span>loading<span class="dots"></span></span>
+    </div>
+
+</body>
+</html>
