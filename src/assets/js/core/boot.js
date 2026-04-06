@@ -52,10 +52,11 @@
             "[    2.000000] login: void linux  rolling   tty1"
         ];
 
-        const LINE_MS   = 10;
-        const END_PAUSE = 500;
-        const LOADER_MS = 500;
-
+        const LINE_MS_MIN = 7;
+        const LINE_MS_MAX = 16;
+        const END_PAUSE = 280;
+        const OVERLAY_OUT_MS = 320;
+        const LOADER_MS = 420;
         document.body.classList.add('booting');
 
         // BOOT overlay
@@ -67,20 +68,28 @@
         document.body.appendChild(overlay);
 
         const scroll = overlay.querySelector('#bootScroll');
-
         let i = 0;
+
+        function nextDelay(index) {
+            const base = LINE_MS_MIN + Math.floor(Math.random() * (LINE_MS_MAX - LINE_MS_MIN + 1));
+            if (index === 0 || index % 8 === 0) return base + 16;
+            return base;
+        }
+
         function step(){
             if (i >= LINES.length) {
-                // usuń overlay, pokaż loader na 1s, schowaj loader
                 setTimeout(() => {
-                    // usuń boot overlay, żeby nie przykrywał loadera
-                    overlay.remove();
+                    overlay.classList.add('is-complete');
 
-                    document.body.classList.add('show-loader');
                     setTimeout(() => {
+                        overlay.remove();
+                        document.body.classList.add('show-loader');
+
+                        setTimeout(() => {
                             document.body.classList.remove('show-loader');
                             document.body.classList.remove('booting');
                         }, LOADER_MS);
+                    }, OVERLAY_OUT_MS);
                 }, END_PAUSE);
 
                 return;
@@ -98,9 +107,10 @@
             ln.textContent = txt;
 
             scroll.appendChild(ln);
+            requestAnimationFrame(() => ln.classList.add('is-visible'));
             scroll.scrollTop = scroll.scrollHeight;
 
-            setTimeout(step, LINE_MS);
+            setTimeout(step, nextDelay(i));
         }
 
         step();
