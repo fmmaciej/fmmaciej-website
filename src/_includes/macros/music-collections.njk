@@ -1,7 +1,8 @@
 {% macro renderGroup(group, count, layout = "list") %}
 <details class="group" id="group-{{ group.slug }}" data-key="{{ group.slug }}" data-group="{{ group.name }}" data-slug="{{ group.slug }}">
     <summary>
-        {{ group.name }}
+        <span class="group-label">{{ group.name }}</span>
+        <span class="group-dots" aria-hidden="true"></span>
         <span class="badge">{{ count }}</span>
     </summary>
 

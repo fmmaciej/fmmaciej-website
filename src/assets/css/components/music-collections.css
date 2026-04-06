@@ -6,6 +6,7 @@
     background: var(--bg);
     content-visibility: auto;
     contain-intrinsic-size: 1px 800px;
+    transition: border-color .18s ease, box-shadow .18s ease;
 }
 
 .group > summary {
@@ -13,11 +14,40 @@
     cursor: pointer;
     padding: 12px 14px;
     font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     display: flex;
     align-items: center;
     gap: 10px;
     border-bottom: 1px solid var(--border);
     user-select: none;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+    position: relative;
+}
+
+.group > summary .group-label {
+    white-space: nowrap;
+}
+
+.group > summary .group-dots {
+    min-width: 4ch;
+    color: var(--muted);
+    opacity: .8;
+    letter-spacing: .02em;
+}
+
+.group > summary.is-pending .group-dots {
+    color: var(--text);
+    opacity: 1;
+}
+
+.group > summary::before {
+    content: ">";
+    font-size: 13px;
+    line-height: 1;
+    color: var(--muted);
+    transform: translateY(-0.5px);
+    transition: color .18s ease, opacity .18s ease, transform .18s ease;
+    opacity: .55;
 }
 
 .group > summary::-webkit-details-marker {
@@ -30,17 +60,50 @@
     color: var(--muted);
     border: 1px solid var(--border);
     padding: 2px 6px;
-    border-radius: 999px;
+    border-radius: 4px;
     line-height: 1;
+    transition: color .18s ease, border-color .18s ease, background-color .18s ease;
+}
+
+.group:hover {
+    border-color: color-mix(in srgb, var(--muted) 35%, var(--border));
+}
+
+.group:hover > summary {
+    background: color-mix(in srgb, var(--bg) 96%, var(--text));
 }
 
 .group.is-active > summary {
     border-bottom-color: var(--muted);
     color: var(--text);
+    background: color-mix(in srgb, var(--bg) 95%, var(--text));
+}
+
+.group.is-active {
+    border-color: color-mix(in srgb, var(--muted) 22%, var(--border));
+    box-shadow: none;
+}
+
+.group.is-active > summary::before {
+    color: var(--text);
+    opacity: 1;
+    transform: translateX(1px) translateY(-0.5px);
+}
+
+.group.is-active > summary .badge {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--muted) 32%, var(--border));
+    background: transparent;
+}
+
+.group[open]:not(.is-active) > summary::before {
+    color: color-mix(in srgb, var(--muted) 78%, var(--text));
+    opacity: .8;
 }
 
 .group-items {
     padding: 12px;
+    will-change: height;
 }
 
 .group-items[data-layout="list"] {
