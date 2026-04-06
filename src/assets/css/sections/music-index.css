@@ -11,12 +11,20 @@
 }
 
 .music-list a {
-    color: var(--link);
+    color: color-mix(in srgb, var(--text) 84%, var(--muted));
     text-decoration: none;
+    transition: color .18s ease, border-color .18s ease;
+    border-bottom: 1px dotted transparent;
 }
 
 .music-list a:hover {
-    text-decoration: underline;
+    color: var(--link-hover);
+    border-bottom-color: color-mix(in srgb, var(--muted) 70%, transparent);
+}
+
+.music-list a:focus-visible {
+    color: var(--link-hover);
+    border-bottom-color: color-mix(in srgb, var(--muted) 70%, transparent);
 }
 
 .music-list .comment {

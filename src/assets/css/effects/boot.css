@@ -4,11 +4,17 @@
     background: var(--bg);
     color: var(--text);
     z-index: 9999;
-
     display: grid;
     grid-template-rows: 1fr auto;
 
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    transition: opacity 280ms ease, filter 320ms ease, transform 320ms ease;
+}
+
+#bootOverlay.is-complete {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(-4px);
 }
 
 #bootOverlay .boot-scroll {
@@ -22,6 +28,14 @@
 #bootOverlay .boot-line {
     color: var(--muted);
     margin: 0 0 .2em;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 120ms linear, transform 180ms ease;
+}
+
+#bootOverlay .boot-line.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 #bootOverlay .boot-line.ok {

@@ -6,7 +6,7 @@
     border-radius: 10px;
     overflow: hidden;
     background: var(--bg);
-    transition: transform .15s ease, border-color .15s ease;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     text-decoration: none;
     color: var(--text);
 }
@@ -14,8 +14,9 @@
 .gig-card:hover,
 .music-event-card:hover,
 .music-photo-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--muted);
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--text) 18%, var(--border));
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--bg) 72%, transparent);
 }
 
 .gig-card img,
@@ -25,6 +26,14 @@
     height: 300px;
     object-fit: cover;
     display: block;
+    transform: scale(1);
+    transition: transform .28s ease;
+}
+
+.gig-card:hover img,
+.music-event-card:hover img,
+.music-photo-card:hover img {
+    transform: scale(1.025);
 }
 
 @media (max-width: 600px) {
