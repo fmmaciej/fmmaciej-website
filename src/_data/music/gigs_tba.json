@@ -1,6 +1,7 @@
 [
   {
     "event": "Subterra 2.0",
+    "place": "Mastak Records, Warszawa",
     "date": {
       "date": "20260417",
       "year": 2026,
@@ -13,6 +14,7 @@
 
   {
     "event": "Techno, Hardtek, Hardhouse",
+    "place": "P29, Łódź",
     "date": {
       "date": "20260606",
       "year": 2026,
@@ -25,6 +27,7 @@
 
   {
     "event": "Drum & Bass",
+    "place": "Łódź",
     "date": {
       "date": "20260912",
       "year": 2026,

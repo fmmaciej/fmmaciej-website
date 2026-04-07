@@ -5,5 +5,6 @@ module.exports = buildGigEvents(rawGigsTba, {
     section: "tba",
     listHref: "/music/gigs#tba",
     listLabel: "To Be Announced",
-    pathPrefix: "/music/gigs/tba"
+    pathPrefix: "/music/gigs/tba",
+    sortOrder: "asc"
 });

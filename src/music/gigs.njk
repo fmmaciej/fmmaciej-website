@@ -37,6 +37,9 @@ pageScripts:
         <div class="gig-meta">
             <div class="gig-date">{{ ev.date }}</div>
             <div class="gig-name">{% if ev.name %}{{ ev.name }}{% else %}&nbsp;{% endif %}</div>
+            {% if ev.place %}
+            <div class="gig-place">{{ ev.place }}</div>
+            {% endif %}
             <div class="gig-count">{{ ev.count }} photo{% if ev.count > 1 %}s{% endif %}</div>
         </div>
     </a>

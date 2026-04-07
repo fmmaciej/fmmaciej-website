@@ -183,7 +183,8 @@ module.exports = function buildGigEvents(rawGigs, options = {}) {
         section = "archive",
         listHref = null,
         listLabel = null,
-        pathPrefix = "/music/gigs"
+        pathPrefix = "/music/gigs",
+        sortOrder = "desc"
     } = options;
 
     const gigs = Array.isArray(rawGigs) ? rawGigs.map(normalizeGigItem) : [];
@@ -230,6 +231,7 @@ module.exports = function buildGigEvents(rawGigs, options = {}) {
                 alt: cover.alt
             };
             ev.count = ev.items.length;
+            ev.place = ev.items.find((item) => item.place)?.place || null;
             ev.section = section;
             ev.listHref = listHref || `/music/gigs#y-${ev.year}`;
             ev.listLabel = listLabel || String(ev.year);
@@ -239,6 +241,11 @@ module.exports = function buildGigEvents(rawGigs, options = {}) {
         })
         .sort((a, b) => {
             if (a.date === b.date) return 0;
+
+            if (sortOrder === "asc") {
+                return a.date < b.date ? -1 : 1;
+            }
+
             return a.date < b.date ? 1 : -1;
         });
 };
