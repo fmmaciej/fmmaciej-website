@@ -7,17 +7,22 @@
                 "2025/",
                 "2024/",
                 "2023/",
+                "2022/",
+                "2021/",
+                "2020/",
                 "..."
             ]
         },
 
         {
-            "cmd": "cat ~/music/gigs/2023",
+            "cmd": "ls -al ~/music/gigs/2023",
             "type": "text",
             "output": [
-                "2023-07-15 • Willa Techno Dancing • 3 photos",
-                "2023-05-01 • Void Club • 2 photos",
-                "2023-03-11 • Electro District • 4 photos"
+                "drwxr-xr-x  5 fm fm  160 Jul 15 23:59 .",
+                "drwxr-xr-x 10 fm fm  320 Dec 31 23:59 ..",
+                "-rw-r--r--  1 fm fm 480K Jul 15 23:59 2023-07-15_willa-techno-dancing_01.webp",
+                "-rw-r--r--  1 fm fm 356K May 01 23:59 2023-05-01_void-club_01.webp",
+                "-rw-r--r--  1 fm fm 512K Mar 11 23:59 2023-03-11_electro-district_01.webp"
             ]
         }
     ]

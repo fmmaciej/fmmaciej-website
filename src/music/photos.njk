@@ -11,13 +11,7 @@ pageScripts:
   - /assets/js/pages/page-boot.js
 ---
 
-{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
 {% from "macros/music-collections.njk" import renderGroup %}
-
-{{ renderBreadcrumb([
-    { href: "/music/", label: "/music" },
-    { href: "/music/photos/", label: "/photos" }
-], "", "photosBreadcrumb", "photosSuffix") }}
 
 <div class="music-intro">
 {% importMd "music/_content/intro/photos.md" %}

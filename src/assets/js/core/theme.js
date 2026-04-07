@@ -14,11 +14,22 @@
         if (icon) icon.className = (t === 'light') ? 'fas fa-sun' : 'fas fa-moon';
     }
     function current(){ return root.getAttribute('data-theme') || 'dark'; }
+    function nextTheme(){ return current() === 'dark' ? 'light' : 'dark'; }
 
     // spójna ikona (atrybut data-theme ustawiony już inline w <head>)
     setTheme(localStorage.getItem(KEY) || root.getAttribute('data-theme') || (mql.matches?'dark':'light'));
 
-    btn.addEventListener('click', () => setTheme(current() === 'dark' ? 'light' : 'dark'));
+    btn.addEventListener('click', () => {
+        const targetTheme = nextTheme();
+        const command = window.terminalActions?.commands?.theme?.(targetTheme) || `theme ${targetTheme}`;
+
+        if (window.playTerminalCommand) {
+            window.playTerminalCommand(command, { resumeCycleAfterMs: 1200 }).then(() => setTheme(targetTheme));
+            return;
+        }
+
+        setTheme(targetTheme);
+    });
     mql.addEventListener('change', e => {
         if (!localStorage.getItem(KEY)) setTheme(e.matches ? 'dark' : 'light');
     });

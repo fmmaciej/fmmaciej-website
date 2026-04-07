@@ -7,12 +7,6 @@ pageStyles:
   - /assets/css/sections/projects.css
 ---
 
-{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
-
-{{ renderBreadcrumb([
-    { href: "/projects/", label: "/projects" }
-]) }}
-
 <div class="page-intro">
 {% importMd "projects/_content/intro/index.md" %}
 </div>

@@ -5,13 +5,6 @@ terminalFile: /assets/terminal/music/rider.json
 permalink: /music/rider/index.html
 ---
 
-{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
-
-{{ renderBreadcrumb([
-    { href: "/music/", label: "/music" },
-    { href: "/music/rider/", label: "/rider" }
-]) }}
-
 <div class="music-intro">
 {% importMd "music/_content/intro/rider.md" %}
 </div>

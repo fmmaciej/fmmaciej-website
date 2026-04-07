@@ -11,17 +11,17 @@ pageStyles:
   - /assets/css/sections/music-event.css
 ---
 
-{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
-
-{{ renderBreadcrumb([
-    { href: "/music/", label: "/music" },
-    { href: "/music/gigs/", label: "/gigs" },
-    { href: event.listHref, label: "/" ~ event.listLabel }
-], event.name or event.date) }}
-
 <div class="music-intro">
 {% importMd "music/_content/intro/event.md" %}
 </div>
+
+<nav class="terminal-path-source" hidden aria-hidden="true">
+    <a href="/" title="Jump to: home">/home/fm</a>
+    <a href="/music/" title="Jump to: music">/music</a>
+    <a href="/music/gigs/" title="Jump to: gigs">/gigs</a>
+    <a href="{{ event.listHref }}" title="Jump to: {{ event.listLabel }}">{{ "/" ~ (event.listLabel | lower | replace(" ", "-")) }}</a>
+    <span>/{{ event.name or event.date }}</span>
+</nav>
 
 {% macro fmtDate(iso) %}
     {% set y = iso.slice(0,4) %}{% set m = iso.slice(5,7) %}{% set d = iso.slice(8,10) %}

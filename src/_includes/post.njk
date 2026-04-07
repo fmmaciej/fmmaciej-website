@@ -1,6 +1,11 @@
 {% extends "layout.njk" %}
 {% block content %}
 <article>
+    <nav class="terminal-path-source" hidden aria-hidden="true">
+        <a href="/" title="Jump to: home">/home/fm</a>
+        <a href="/blog/" title="Jump to: blog">/blog</a>
+        <span>/{{ title }}</span>
+    </nav>
     <header style="margin-bottom:16px">
         <h1>{{ title }}</h1>
         <p style="color:var(--muted);font-size:14px">
