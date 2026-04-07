@@ -1,19 +1,19 @@
-const mixes = require("./music/mixes.json");
-const mixesTba = require("./mixesTba.js");
+const mixesArchive = require("./music/mixes_archive.json");
+const mixesUpcoming = require("./mixesUpcoming.js");
 const parseMixDate = require("../_lib/music/parseMixDate.js");
 const groupSlug = require("../_lib/music/groupSlug.js");
 
 module.exports = () => {
-    const archiveItems = Array.isArray(mixes?.items) ? mixes.items : [];
-    const upcomingItems = Array.isArray(mixesTba?.items)
-        ? [...mixesTba.items].sort((a, b) => parseMixDate(a?.date) - parseMixDate(b?.date))
+    const archiveItems = Array.isArray(mixesArchive?.items) ? mixesArchive.items : [];
+    const upcomingItems = Array.isArray(mixesUpcoming?.items)
+        ? [...mixesUpcoming.items].sort((a, b) => parseMixDate(a?.date) - parseMixDate(b?.date))
         : [];
     const latestItems = [...archiveItems]
         .sort((a, b) => parseMixDate(b?.date) - parseMixDate(a?.date))
         .slice(0, 5);
 
-    const groupNames = Array.isArray(mixes?.groups) && mixes.groups.length
-        ? mixes.groups
+    const groupNames = Array.isArray(mixesArchive?.groups) && mixesArchive.groups.length
+        ? mixesArchive.groups
         : Array.from(new Set(archiveItems.map((item) => (item.group || "Other").trim())));
 
     const groups = groupNames
@@ -29,6 +29,8 @@ module.exports = () => {
         latestItems,
         upcomingItems,
         groups,
+        archive: mixesArchive || { groups: [], items: [] },
+        upcoming: mixesUpcoming || { items: [], defaults: {} },
         upcomingGroup: { name: "Upcoming", slug: "upcoming" },
         latestGroup: { name: "Latest", slug: "latest" }
     };
