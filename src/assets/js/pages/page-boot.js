@@ -181,7 +181,6 @@
 
     function initCollectionPage(root, options, cleanups) {
         const suffix = root.querySelector(options.suffixSelector);
-        if (!suffix) return;
 
         const groups = Array.from(root.querySelectorAll('details.group'));
         if (!groups.length) return;
@@ -189,12 +188,29 @@
         let activeId = null;
 
         const setBreadcrumb = (slug, label) => {
-            suffix.innerHTML = slug ? options.formatCrumb(slug, label) : '';
+            if (suffix) {
+                suffix.innerHTML = slug ? options.formatCrumb(slug, label) : '';
+            }
             try {
                 if (slug) history.replaceState(null, '', `#${slug}`);
                 else history.replaceState(null, '', location.pathname);
             } catch (_) {}
         };
+
+        const applyBreadcrumbForGroup = (group) => {
+            if (!group) {
+                activeId = null;
+                setBreadcrumb(null, null);
+                setActive(null);
+                return;
+            }
+
+            activeId = group.id;
+            setBreadcrumb(group.dataset.slug, (group.dataset.group || '').toLowerCase());
+            setActive(group);
+        };
+
+        const findOpenGroup = () => groups.find((group) => group.open);
 
         const setActive = (el) => {
             groups.forEach((group) => group.classList.remove('is-active'));
@@ -221,9 +237,7 @@
                     wrap.dataset.animating = '1';
                     animateClose(wrap, content, () => {
                         delete wrap.dataset.animating;
-                        setBreadcrumb(null, null);
-                        setActive(null);
-                        activeId = null;
+                        applyBreadcrumbForGroup(findOpenGroup());
                     });
                     return;
                 }
@@ -254,20 +268,17 @@
                 .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0));
 
             if (!visible.length) {
-                setBreadcrumb(null, null);
-                setActive(null);
-                activeId = null;
+                const openGroup = findOpenGroup();
+                if (!openGroup) {
+                    applyBreadcrumbForGroup(null);
+                }
                 return;
             }
 
-            const top = visible[0].target;
-            const slug = top.dataset.slug;
-            const label = (top.dataset.group || '').toLowerCase();
+            const top = (visible.find((entry) => entry.target.open) || visible[0]).target;
 
             if (top.open && top.id !== activeId) {
-                activeId = top.id;
-                setBreadcrumb(slug, label);
-                setActive(top);
+                applyBreadcrumbForGroup(top);
             }
         }, {
             root: null,
@@ -301,14 +312,14 @@
 
     function initMixesPage(root, cleanups) {
         initCollectionPage(root, {
-            suffixSelector: '#groupSuffix',
+            suffixSelector: '#terminalPathSuffix',
             formatCrumb: (slug, label) => `<a href="/music/mixes#${slug}">/${label || slug}</a>`
         }, cleanups);
     }
 
     function initGigsPage(root, cleanups) {
         initCollectionPage(root, {
-            suffixSelector: '#yearSuffix',
+            suffixSelector: '#terminalPathSuffix',
             formatCrumb: (slug, label) => {
                 if (slug === 'tba') {
                     return '<a href="/music/gigs#tba">/to-be-announced</a>';
@@ -321,17 +332,22 @@
 
     function initPhotosPage(root, cleanups) {
         initCollectionPage(root, {
-            suffixSelector: '#photosSuffix',
+            suffixSelector: '#terminalPathSuffix',
             formatCrumb: (slug, label) => `<a href="/music/photos#${slug}">/${label || slug.replace(/^y-/, '')}</a>`
         }, cleanups);
     }
 
     window.initPageScripts = function initPageScripts(root = document) {
         const cleanups = [];
+        const path = window.location.pathname;
 
-        initMixesPage(root, cleanups);
-        initGigsPage(root, cleanups);
-        initPhotosPage(root, cleanups);
+        if (path.startsWith('/music/mixes')) {
+            initMixesPage(root, cleanups);
+        } else if (path.startsWith('/music/gigs')) {
+            initGigsPage(root, cleanups);
+        } else if (path.startsWith('/music/photos')) {
+            initPhotosPage(root, cleanups);
+        }
 
         const host = document.querySelector('.content-host');
         if (host) {

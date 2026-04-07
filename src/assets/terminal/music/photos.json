@@ -7,15 +7,21 @@
                 "2025/",
                 "2024/",
                 "2023/",
+                "2022/",
+                "2021/",
+                "2020/",
                 "..."
             ]
         },
+
         {
-            "cmd": "cat ~/music/photos/2025",
+            "cmd": "ls -al ~/music/photos/2025",
             "type": "text",
             "output": [
-                "2025-03-21 • P29 • werifesteria.photography",
-                "2025-03-07 • Willa Lodz • unknown"
+                "drwxr-xr-x  4 fm fm  128 Mar 21 23:59 .",
+                "drwxr-xr-x 10 fm fm  320 Dec 31 23:59 ..",
+                "-rw-r--r--  1 fm fm 421K Mar 21 23:59 20250321_P29_photography_01.webp",
+                "-rw-r--r--  1 fm fm 398K Mar 07 23:59 20250307_Willa-Lodz_unknown_01.webp"
             ]
         }
     ]

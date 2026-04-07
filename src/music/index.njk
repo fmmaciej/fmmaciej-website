@@ -7,12 +7,6 @@ pageStyles:
   - /assets/css/sections/music-index.css
 ---
 
-{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
-
-{{ renderBreadcrumb([
-    { href: "/music/", label: "/music" }
-]) }}
-
 <div class="music-intro">
 {% importMd "music/_content/intro/index.md" %}
 </div>

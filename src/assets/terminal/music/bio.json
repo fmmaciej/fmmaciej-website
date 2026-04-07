@@ -1,13 +1,52 @@
 {
     "commands": [
         {
-            "cmd": "cat ~/music/bio.md",
+            "cmd": "cat ~/music/bio/bio.md",
             "type": "text",
             "output": [
-                "FM — DJ & vinyl enthusiast",
-                "One-liner: Techno and electro sets with a raw edge.",
-                "Short: Active since 2008, collector, selector, DJ.",
-                "Extended: See /music/bio for full details."
+                "# FM Bio",
+                "",
+                "## One-liner",
+                "",
+                "Vinyl DJ since 2008, forged in the raw energy of dark drum and bass and his techstep mix series, now diving into the depths of techno and electro as a resident at Willa in Łódź.",
+                "",
+                "## Short",
+                "",
+                "Collecting vinyl since 2008, I debuted on the scene in 2010 with a sound rooted in dark and raw drum and bass. After a series of techstep mixes, I released my final dnb set in 2016 for NFSOP. I co-hosted the TechBreak radio show on break.fm, a project dedicated to late 90s and early 2000s techstep. Since then, my style has evolved toward slower tempos, exploring techno, electro, and related genres always anchored by the authenticity of vinyl. Currently, I’m a resident DJ at Willa in Łódź, refining my craft with every set.",
+                "",
+                "## Extended",
+                "",
+                "Collecting vinyl records since 2008, I made my debut on the scene in 2010.",
+                "..."
+            ]
+        },
+        {
+            "cmd": "grep -A2 '^## One-liner' ~/music/bio/bio.md",
+            "type": "text",
+            "output": [
+                "## One-liner",
+                "",
+                "Vinyl DJ since 2008, forged in the raw energy of dark drum and bass and his techstep mix series, now diving into the depths of techno and electro as a resident at Willa in Łódź."
+            ]
+        },
+        {
+            "cmd": "grep -A2 '^## Short' ~/music/bio/bio.md",
+            "type": "text",
+            "output": [
+                "## Short",
+                "",
+                "Collecting vinyl since 2008, I debuted on the scene in 2010 with a sound rooted in dark and raw drum and bass. After a series of techstep mixes, I released my final dnb set in 2016 for NFSOP. I co-hosted the TechBreak radio show on break.fm, a project dedicated to late 90s and early 2000s techstep. Since then, my style has evolved toward slower tempos, exploring techno, electro, and related genres always anchored by the authenticity of vinyl. Currently, I’m a resident DJ at Willa in Łódź, refining my craft with every set."
+            ]
+        },
+        {
+            "cmd": "grep -A3 '^## Extended' ~/music/bio/bio.md",
+            "type": "text",
+            "output": [
+                "## Extended",
+                "",
+                "Collecting vinyl records since 2008, I made my debut on the scene in 2010.",
+                "My early years were rooted in dark, raw sounds - neurofunk, technoid, amen breaks - culminating in techstep drum and bass.",
+                "..."
             ]
         }
     ]

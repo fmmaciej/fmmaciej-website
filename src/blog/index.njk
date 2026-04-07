@@ -11,15 +11,17 @@ pageStyles:
   - /assets/css/sections/blog.css
 ---
 
-{% from "macros/breadcrumbs.njk" import renderBreadcrumb %}
-
-{{ renderBreadcrumb([
-    { href: "/blog/", label: "/blog" }
-]) }}
-
 <div class="page-intro">
 {% importMd "blog/_content/intro/index.md" %}
 </div>
+
+<nav class="terminal-path-source" hidden aria-hidden="true">
+    <a href="/" title="Jump to: home">/home/fm</a>
+    <a href="/blog/" title="Jump to: blog">/blog</a>
+    {% if pagination.pageNumber > 0 %}
+    <span>/page-{{ pagination.pageNumber + 1 }}</span>
+    {% endif %}
+</nav>
 
 <ul class="blog-list">
     {% for post in posts %}

@@ -5,7 +5,6 @@
     const PAGE_STYLE_SELECTOR = 'link[data-page-style]';
     const PAGE_SCRIPT_SELECTOR = 'script[data-page-script]';
     const REVEAL_SELECTOR = [
-        '.breadcrumb',
         '.music-intro',
         '.music-outro',
         '.page-intro',
@@ -136,13 +135,6 @@
         }
     }
 
-    function isInternalNav(a, evt) {
-        if (!a || a.target === '_blank' || evt.metaKey || evt.ctrlKey || evt.shiftKey) return false;
-        const url = new URL(a.href, location.href);
-
-        return url.origin === location.origin;
-    }
-
     async function navigate(url) {
         if (window.closeDrawer) window.closeDrawer();
 
@@ -198,14 +190,36 @@
 
     document.addEventListener('click', (e) => {
         const a = e.target.closest('a[href]');
+        if (!a) return;
+        if (a.dataset.terminalBypass === '1') return;
 
-        if (!isInternalNav(a, e)) return;
-        if (a.getAttribute('href').startsWith('#')) return;
+        const action = window.terminalActions?.resolveAction?.(a, e);
+        if (action) {
+            e.preventDefault();
 
-        e.preventDefault();
-        
-        if (window.closeDrawer) window.closeDrawer();
-        navigate(a.href);
+            const runAction = async () => {
+                if (action.mode === 'native') {
+                    window.terminalActions?.triggerNativeLink?.(a);
+                    return;
+                }
+
+                if (window.closeDrawer) window.closeDrawer();
+                await navigate(action.href || a.href);
+            };
+
+            if (window.playTerminalCommand && action.command) {
+                window.playTerminalCommand(action.command, {
+                    resumeCycleAfterMs: action.resumeCycleAfterMs || 0
+                }).then(runAction);
+                return;
+            }
+
+            runAction();
+            return;
+        };
+
+        const href = a.getAttribute('href') || '';
+        if (href.startsWith('#')) return;
     });
 
     window.addEventListener('popstate', () => {
