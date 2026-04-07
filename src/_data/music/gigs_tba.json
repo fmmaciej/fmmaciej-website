@@ -1,5 +1,9 @@
 [
   {
+    "event": "__default__",
+    "imagePreset": "tba-default"
+  },
+  {
     "event": "Subterra 2.0",
     "place": "Mastak Records, Warszawa",
     "date": {
@@ -8,10 +12,8 @@
       "month": 4,
       "day": 17
     },
-    "seq": 1,
-    "imagePreset": "tba-default"
+    "coverId": "20260417_Subterra2.0_01"
   },
-
   {
     "event": "Techno, Hardtek, Hardhouse",
     "place": "P29, Łódź",
@@ -21,10 +23,8 @@
       "month": 6,
       "day": 6
     },
-    "seq": 1,
     "imagePreset": "tba-default"
   },
-
   {
     "event": "Drum & Bass",
     "place": "Łódź",
@@ -34,8 +34,6 @@
       "month": 9,
       "day": 12
     },
-    "seq": 1,
     "imagePreset": "tba-default"
   }
-
 ]

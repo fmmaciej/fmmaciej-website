@@ -19,7 +19,8 @@
         "960": "20101127_UDS_2_01-960.webp",
         "1600": "20101127_UDS_2_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS_3",
@@ -41,7 +42,8 @@
         "960": "20110226_UDS_3_01-960.webp",
         "1600": "20110226_UDS_3_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS_4",
@@ -63,7 +65,8 @@
         "960": "20110409_UDS_4_01-960.webp",
         "1600": "20110409_UDS_4_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Prototyp",
@@ -85,7 +88,8 @@
         "960": "20110910_Prototyp_01-960.webp",
         "1600": "20110910_Prototyp_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS_6",
@@ -107,7 +111,8 @@
         "960": "20111126_UDS_6_01-960.webp",
         "1600": "20111126_UDS_6_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Hemuguguli",
@@ -129,7 +134,8 @@
         "960": "20120302_Hemuguguli_01-960.webp",
         "1600": "20120302_Hemuguguli_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Ultimate_session_Toruń",
@@ -151,7 +157,8 @@
         "960": "20120323_Ultimate_session_Toruń_01-960.webp",
         "1600": "20120323_Ultimate_session_Toruń_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Ultimate_session_Toruń",
@@ -173,7 +180,8 @@
         "960": "20120323_Ultimate_session_Toruń_02-960.webp",
         "1600": "20120323_Ultimate_session_Toruń_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Double_Impact",
@@ -195,7 +203,8 @@
         "960": "20120409_Double_Impact_01-960.webp",
         "1600": "20120409_Double_Impact_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -217,7 +226,8 @@
         "960": "20120707_UDS_01-960.webp",
         "1600": "20120707_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -239,7 +249,8 @@
         "960": "20120707_UDS_02-960.webp",
         "1600": "20120707_UDS_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -261,7 +272,8 @@
         "960": "20120831_UDS_01-960.webp",
         "1600": "20120831_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -283,7 +295,8 @@
         "960": "20121006_UDS_01-960.webp",
         "1600": "20121006_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -305,7 +318,8 @@
         "960": "20121123_UDS_01-960.webp",
         "1600": "20121123_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NeuroReanimacja",
@@ -327,7 +341,8 @@
         "960": "20121229_NeuroReanimacja_01-960.webp",
         "1600": "20121229_NeuroReanimacja_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WarsawMechanizmVsUDS",
@@ -349,7 +364,8 @@
         "960": "20130119_WarsawMechanizmVsUDS_01-960.webp",
         "1600": "20130119_WarsawMechanizmVsUDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WarOfSounds",
@@ -371,7 +387,8 @@
         "960": "20130216_WarOfSounds_01-960.webp",
         "1600": "20130216_WarOfSounds_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -393,7 +410,8 @@
         "960": "20130427_UDS_01-960.webp",
         "1600": "20130427_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -415,7 +433,8 @@
         "960": "20130608_UDS_01-960.webp",
         "1600": "20130608_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -437,7 +456,8 @@
         "960": "20130810_UDS_01-960.webp",
         "1600": "20130810_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SuperSonic",
@@ -459,7 +479,8 @@
         "960": "20130921_SuperSonic_01-960.webp",
         "1600": "20130921_SuperSonic_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SuperSonic",
@@ -481,7 +502,8 @@
         "960": "20130921_SuperSonic_02-960.webp",
         "1600": "20130921_SuperSonic_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SuperSonic",
@@ -503,7 +525,8 @@
         "960": "20130921_SuperSonic_03-960.webp",
         "1600": "20130921_SuperSonic_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -525,7 +548,8 @@
         "960": "20131102_UDS_01-960.webp",
         "1600": "20131102_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -547,7 +571,8 @@
         "960": "20131207_UDS_01-960.webp",
         "1600": "20131207_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Neuj_ahrs_wirr_warr",
@@ -569,7 +594,8 @@
         "960": "20131231_Neuj_ahrs_wirr_warr_01-960.webp",
         "1600": "20131231_Neuj_ahrs_wirr_warr_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Neuj_ahrs_wirr_warr",
@@ -591,7 +617,8 @@
         "960": "20131231_Neuj_ahrs_wirr_warr_02-960.webp",
         "1600": "20131231_Neuj_ahrs_wirr_warr_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Sylwester",
@@ -613,7 +640,8 @@
         "960": "20131231_Sylwester_01-960.webp",
         "1600": "20131231_Sylwester_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ŁupanKO",
@@ -635,7 +663,8 @@
         "960": "20140125_ŁupanKO_01-960.webp",
         "1600": "20140125_ŁupanKO_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SpaceInvaders",
@@ -657,7 +686,8 @@
         "960": "20140426_SpaceInvaders_01-960.webp",
         "1600": "20140426_SpaceInvaders_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "MegaMajówka",
@@ -679,7 +709,8 @@
         "960": "20140503_MegaMajówka_01-960.webp",
         "1600": "20140503_MegaMajówka_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Trubass",
@@ -701,7 +732,8 @@
         "960": "20140621_Trubass_01-960.webp",
         "1600": "20140621_Trubass_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "HardeImStadt",
@@ -723,7 +755,8 @@
         "960": "20141024_HardeImStadt_01-960.webp",
         "1600": "20141024_HardeImStadt_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Bassówka",
@@ -745,7 +778,8 @@
         "960": "20150403_Bassówka_01-960.webp",
         "1600": "20150403_Bassówka_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -767,7 +801,8 @@
         "960": "20150410_UDS_01-960.webp",
         "1600": "20150410_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDSSierociniec2",
@@ -789,7 +824,8 @@
         "960": "20150808_UDSSierociniec2_01-960.webp",
         "1600": "20150808_UDSSierociniec2_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "DarkSideOfTheBoom",
@@ -811,7 +847,8 @@
         "960": "20150828_DarkSideOfTheBoom_01-960.webp",
         "1600": "20150828_DarkSideOfTheBoom_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LightMoveFestival",
@@ -833,7 +870,8 @@
         "960": "20151010_LightMoveFestival_01-960.webp",
         "1600": "20151010_LightMoveFestival_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -855,7 +893,8 @@
         "960": "20151205_UDS_01-960.webp",
         "1600": "20151205_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -877,7 +916,8 @@
         "960": "20160213_UDS_01-960.webp",
         "1600": "20160213_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "TechnoMeetsDrum'n'bass",
@@ -899,7 +939,8 @@
         "960": "20160402_TechnoMeetsDrum'n'bass_01-960.webp",
         "1600": "20160402_TechnoMeetsDrum'n'bass_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WernisażWystawyFotografii",
@@ -921,7 +962,8 @@
         "960": "20160421_WernisażWystawyFotografii_01-960.webp",
         "1600": "20160421_WernisażWystawyFotografii_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -943,7 +985,8 @@
         "960": "20160514_UDS_01-960.webp",
         "1600": "20160514_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "MatmaGeburstag",
@@ -965,7 +1008,8 @@
         "960": "20160611_MatmaGeburstag_01-960.webp",
         "1600": "20160611_MatmaGeburstag_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "VeniViniTechno#2",
@@ -987,7 +1031,8 @@
         "960": "20160617_VeniViniTechno#2_01-960.webp",
         "1600": "20160617_VeniViniTechno#2_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "VeniViniTechno2",
@@ -1009,7 +1054,8 @@
         "960": "20160617_VeniViniTechno2_01-960.webp",
         "1600": "20160617_VeniViniTechno2_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "3UrodzinyBoomEvents",
@@ -1031,7 +1077,8 @@
         "960": "20160806_3UrodzinyBoomEvents_01-960.webp",
         "1600": "20160806_3UrodzinyBoomEvents_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NaukiTechniczne",
@@ -1053,7 +1100,8 @@
         "960": "20161001_NaukiTechniczne_01-960.webp",
         "1600": "20161001_NaukiTechniczne_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -1075,7 +1123,8 @@
         "960": "20161008_UDS_01-960.webp",
         "1600": "20161008_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -1097,7 +1146,8 @@
         "960": "20161008_UDS_02-960.webp",
         "1600": "20161008_UDS_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "TechnosoulNight",
@@ -1119,7 +1169,8 @@
         "960": "20161029_TechnosoulNight_01-960.webp",
         "1600": "20161029_TechnosoulNight_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "TechnosoulNight",
@@ -1141,7 +1192,8 @@
         "960": "20161029_TechnosoulNight_02-960.webp",
         "1600": "20161029_TechnosoulNight_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "25YearsOfTresor",
@@ -1163,7 +1215,8 @@
         "960": "20161203_25YearsOfTresor_01-960.webp",
         "1600": "20161203_25YearsOfTresor_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "25YearsOfTresor",
@@ -1185,7 +1238,8 @@
         "960": "20161203_25YearsOfTresor_02-960.webp",
         "1600": "20161203_25YearsOfTresor_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PoNaszemu#2",
@@ -1207,7 +1261,8 @@
         "960": "20161217_PoNaszemu#2_01-960.webp",
         "1600": "20161217_PoNaszemu#2_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PoNaszemu2",
@@ -1229,7 +1284,8 @@
         "960": "20161217_PoNaszemu2_01-960.webp",
         "1600": "20161217_PoNaszemu2_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Ravester",
@@ -1251,7 +1307,8 @@
         "960": "20161231_Ravester_01-960.webp",
         "1600": "20161231_Ravester_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Technosoul",
@@ -1273,7 +1330,8 @@
         "960": "20170128_Technosoul_01-960.webp",
         "1600": "20170128_Technosoul_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -1295,7 +1353,8 @@
         "960": "20170211_UDS_01-960.webp",
         "1600": "20170211_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PoNaszemu#3",
@@ -1317,7 +1376,8 @@
         "960": "20170311_PoNaszemu#3_01-960.webp",
         "1600": "20170311_PoNaszemu#3_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PoNaszemu#3",
@@ -1339,7 +1399,8 @@
         "960": "20170311_PoNaszemu#3_02-960.webp",
         "1600": "20170311_PoNaszemu#3_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PoNaszemu3",
@@ -1361,7 +1422,8 @@
         "960": "20170311_PoNaszemu3_01-960.webp",
         "1600": "20170311_PoNaszemu3_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PoNaszemu3",
@@ -1383,7 +1445,8 @@
         "960": "20170311_PoNaszemu3_02-960.webp",
         "1600": "20170311_PoNaszemu3_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -1405,7 +1468,8 @@
         "960": "20170422_UDS_01-960.webp",
         "1600": "20170422_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UDS",
@@ -1427,7 +1491,8 @@
         "960": "20170429_UDS_01-960.webp",
         "1600": "20170429_UDS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Majbasówka",
@@ -1449,7 +1514,8 @@
         "960": "20170502_Majbasówka_01-960.webp",
         "1600": "20170502_Majbasówka_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SamoGęste",
@@ -1471,7 +1537,8 @@
         "960": "20170513_SamoGęste_01-960.webp",
         "1600": "20170513_SamoGęste_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "2ŁodzkaKonferencja",
@@ -1493,7 +1560,8 @@
         "960": "20170624_2ŁodzkaKonferencja_01-960.webp",
         "1600": "20170624_2ŁodzkaKonferencja_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "2ŁódzkaKonferencja",
@@ -1515,7 +1583,8 @@
         "960": "20170624_2ŁódzkaKonferencja_02-960.webp",
         "1600": "20170624_2ŁódzkaKonferencja_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Blackout2",
@@ -1537,7 +1606,8 @@
         "960": "20170819_Blackout2_01-960.webp",
         "1600": "20170819_Blackout2_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LTronica",
@@ -1559,7 +1629,8 @@
         "960": "20171008_LTronica_01-960.webp",
         "1600": "20171008_LTronica_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LTronica",
@@ -1577,11 +1648,12 @@
       "thumb_w": 480,
       "thumb_h": 720,
       "variants": {
-        "480": "20171008_LTronica_02-480.webp",
         "960": "20171008_LTronica_02-960.webp",
+        "480": "20171008_LTronica_02-480.webp",
         "1600": "20171008_LTronica_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LTronica",
@@ -1603,7 +1675,8 @@
         "960": "20171008_LTronica_03-960.webp",
         "1600": "20171008_LTronica_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LTronica",
@@ -1625,7 +1698,8 @@
         "960": "20171008_LTronica_04-960.webp",
         "1600": "20171008_LTronica_04-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LTronica",
@@ -1647,7 +1721,8 @@
         "960": "20171008_LTronica_05-960.webp",
         "1600": "20171008_LTronica_05-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LTronica",
@@ -1669,7 +1744,8 @@
         "960": "20171008_LTronica_06-960.webp",
         "1600": "20171008_LTronica_06-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LTronica",
@@ -1691,7 +1767,8 @@
         "960": "20171008_LTronica_07-960.webp",
         "1600": "20171008_LTronica_07-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SamoGesteX20",
@@ -1713,7 +1790,8 @@
         "960": "20171020_SamoGesteX20_01-960.webp",
         "1600": "20171020_SamoGesteX20_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Blackout3",
@@ -1735,7 +1813,8 @@
         "960": "20171021_Blackout3_01-960.webp",
         "1600": "20171021_Blackout3_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "EdRush",
@@ -1757,7 +1836,8 @@
         "960": "20171111_EdRush_01-960.webp",
         "1600": "20171111_EdRush_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "EdRush",
@@ -1779,7 +1859,8 @@
         "960": "20171111_EdRush_02-960.webp",
         "1600": "20171111_EdRush_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ElektrodiskoRadioZak",
@@ -1801,7 +1882,8 @@
         "960": "20171130_ElektrodiskoRadioZak_01-960.webp",
         "1600": "20171130_ElektrodiskoRadioZak_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "BRWSH",
@@ -1823,7 +1905,8 @@
         "960": "20171215_BRWSH_01-960.webp",
         "1600": "20171215_BRWSH_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "BoatToBerlin",
@@ -1845,7 +1928,8 @@
         "960": "20171223_BoatToBerlin_01-960.webp",
         "1600": "20171223_BoatToBerlin_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SNTS",
@@ -1867,7 +1951,8 @@
         "960": "20180120_SNTS_01-960.webp",
         "1600": "20180120_SNTS_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SNTS",
@@ -1889,7 +1974,8 @@
         "960": "20180120_SNTS_02-960.webp",
         "1600": "20180120_SNTS_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SayYesToTechno",
@@ -1911,7 +1997,8 @@
         "960": "20180316_SayYesToTechno_01-960.webp",
         "1600": "20180316_SayYesToTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "DirtyStuffNight",
@@ -1933,7 +2020,8 @@
         "960": "20180505_DirtyStuffNight_01-960.webp",
         "1600": "20180505_DirtyStuffNight_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "DirtyStuffNight",
@@ -1955,7 +2043,8 @@
         "960": "20180505_DirtyStuffNight_02-960.webp",
         "1600": "20180505_DirtyStuffNight_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SzukamChlopakaDziewczynyTechno",
@@ -1977,7 +2066,8 @@
         "960": "20180512_SzukamChlopakaDziewczynyTechno_01-960.webp",
         "1600": "20180512_SzukamChlopakaDziewczynyTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": null,
@@ -1994,7 +2084,8 @@
         "960": "20180526_SayYesToTechno_Sept-960.webp",
         "1600": "20180526_SayYesToTechno_Sept-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PlaskaZiemia",
@@ -2016,7 +2107,8 @@
         "960": "20180602_PlaskaZiemia_01-960.webp",
         "1600": "20180602_PlaskaZiemia_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PlaskaZiemia",
@@ -2038,7 +2130,8 @@
         "960": "20180602_PlaskaZiemia_02-960.webp",
         "1600": "20180602_PlaskaZiemia_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "4na4",
@@ -2060,7 +2153,8 @@
         "960": "20180720_4na4_01-960.webp",
         "1600": "20180720_4na4_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "BlackHole",
@@ -2082,7 +2176,8 @@
         "960": "20180811_BlackHole_01-960.webp",
         "1600": "20180811_BlackHole_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "OstatniPlenerSezonu2018",
@@ -2104,7 +2199,8 @@
         "960": "20180907_OstatniPlenerSezonu2018_01-960.webp",
         "1600": "20180907_OstatniPlenerSezonu2018_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "VytiTautaBday",
@@ -2126,7 +2222,8 @@
         "960": "20181013_VytiTautaBday_01-960.webp",
         "1600": "20181013_VytiTautaBday_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": null,
@@ -2143,7 +2240,8 @@
         "960": "20181026_ManoidTruth-960.webp",
         "1600": "20181026_ManoidTruth-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2165,7 +2263,8 @@
         "960": "20181222_CyklPrawdziweTechno_01-960.webp",
         "1600": "20181222_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2187,7 +2286,8 @@
         "960": "20181222_CyklPrawdziweTechno_02-960.webp",
         "1600": "20181222_CyklPrawdziweTechno_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2209,7 +2309,8 @@
         "960": "20190209_CyklPrawdziweTechno_01-960.webp",
         "1600": "20190209_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2231,7 +2332,8 @@
         "960": "20190209_CyklPrawdziweTechno_02-960.webp",
         "1600": "20190209_CyklPrawdziweTechno_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CantStopRaving",
@@ -2253,7 +2355,8 @@
         "960": "20190309_CantStopRaving_01-960.webp",
         "1600": "20190309_CantStopRaving_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CantStopRaving",
@@ -2275,7 +2378,8 @@
         "960": "20190309_CantStopRaving_02-960.webp",
         "1600": "20190309_CantStopRaving_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ElectronicSummer",
@@ -2297,7 +2401,8 @@
         "960": "20190621_ElectronicSummer_01-960.webp",
         "1600": "20190621_ElectronicSummer_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "JaSzanujeJaRejwuje",
@@ -2319,7 +2424,8 @@
         "960": "20190622_JaSzanujeJaRejwuje_01-960.webp",
         "1600": "20190622_JaSzanujeJaRejwuje_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2341,7 +2447,8 @@
         "960": "20190713_CyklPrawdziweTechno_01-960.webp",
         "1600": "20190713_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "HiddenNoises&Pylon",
@@ -2363,7 +2470,8 @@
         "960": "20190713_HiddenNoises&Pylon_01-960.webp",
         "1600": "20190713_HiddenNoises&Pylon_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "HiddenNoises&Pylon",
@@ -2385,7 +2493,8 @@
         "960": "20190713_HiddenNoises&Pylon_02-960.webp",
         "1600": "20190713_HiddenNoises&Pylon_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "BlackHole2",
@@ -2407,7 +2516,8 @@
         "960": "20190810_BlackHole2_01-960.webp",
         "1600": "20190810_BlackHole2_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2429,7 +2539,8 @@
         "960": "20190824_CyklPrawdziweTechno_01-960.webp",
         "1600": "20190824_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "HiddenNoises&T&GNight",
@@ -2451,7 +2562,8 @@
         "960": "20191005_HiddenNoises&T&GNight_01-960.webp",
         "1600": "20191005_HiddenNoises&T&GNight_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Prototypy",
@@ -2473,7 +2585,8 @@
         "960": "20191016_Prototypy_01-960.webp",
         "1600": "20191016_Prototypy_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NightmareCreatures",
@@ -2495,7 +2608,8 @@
         "960": "20191102_NightmareCreatures_01-960.webp",
         "1600": "20191102_NightmareCreatures_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NightmareCreatures",
@@ -2517,7 +2631,8 @@
         "960": "20191102_NightmareCreatures_02-960.webp",
         "1600": "20191102_NightmareCreatures_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Kemal",
@@ -2539,7 +2654,8 @@
         "960": "20191206_Kemal_01-960.webp",
         "1600": "20191206_Kemal_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Kemal",
@@ -2561,7 +2677,8 @@
         "960": "20191206_Kemal_02-960.webp",
         "1600": "20191206_Kemal_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2583,7 +2700,8 @@
         "960": "20191220_CyklPrawdziweTechno_01-960.webp",
         "1600": "20191220_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": null,
@@ -2600,7 +2718,8 @@
         "960": "20191226_RevoJaselkaOnlineStream-960.webp",
         "1600": "20191226_RevoJaselkaOnlineStream-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "3UrodzinyRevo",
@@ -2622,7 +2741,8 @@
         "960": "20200111_3UrodzinyRevo_01-960.webp",
         "1600": "20200111_3UrodzinyRevo_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Prototypy",
@@ -2644,7 +2764,8 @@
         "960": "20200122_Prototypy_01-960.webp",
         "1600": "20200122_Prototypy_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2666,7 +2787,8 @@
         "960": "20200208_CyklPrawdziweTechno_01-960.webp",
         "1600": "20200208_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "2UrodzinySody",
@@ -2688,7 +2810,8 @@
         "960": "20200409_2UrodzinySody_01-960.webp",
         "1600": "20200409_2UrodzinySody_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PodziemnaLodz",
@@ -2710,7 +2833,8 @@
         "960": "20200627_PodziemnaLodz_01-960.webp",
         "1600": "20200627_PodziemnaLodz_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2732,7 +2856,8 @@
         "960": "20200820_CyklPrawdziweTechno_01-960.webp",
         "1600": "20200820_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LabiryntIsland",
@@ -2754,7 +2879,8 @@
         "960": "20200829_LabiryntIsland_01-960.webp",
         "1600": "20200829_LabiryntIsland_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LabiryntIsland",
@@ -2776,7 +2902,8 @@
         "960": "20200829_LabiryntIsland_02-960.webp",
         "1600": "20200829_LabiryntIsland_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2798,7 +2925,8 @@
         "960": "20200926_CyklPrawdziweTechno_01-960.webp",
         "1600": "20200926_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2820,7 +2948,8 @@
         "960": "20201017_CyklPrawdziweTechno_01-960.webp",
         "1600": "20201017_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LabiryntIsland",
@@ -2842,7 +2971,8 @@
         "960": "20210626_LabiryntIsland_01-960.webp",
         "1600": "20210626_LabiryntIsland_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WystawaMuzykiTechno",
@@ -2864,7 +2994,8 @@
         "960": "20210717_WystawaMuzykiTechno_01-960.webp",
         "1600": "20210717_WystawaMuzykiTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WystawaMuzykiTechno",
@@ -2886,7 +3017,8 @@
         "960": "20210717_WystawaMuzykiTechno_02-960.webp",
         "1600": "20210717_WystawaMuzykiTechno_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "TesknilismyZaTechno",
@@ -2908,7 +3040,8 @@
         "960": "20210731_TesknilismyZaTechno_01-960.webp",
         "1600": "20210731_TesknilismyZaTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2930,7 +3063,8 @@
         "960": "20210814_CyklPrawdziweTechno_01-960.webp",
         "1600": "20210814_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2952,7 +3086,8 @@
         "960": "20211009_CyklPrawdziweTechno_01-960.webp",
         "1600": "20211009_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": null,
@@ -2969,7 +3104,8 @@
         "960": "20211106_CyklPrawdziweTechno-960.webp",
         "1600": "20211106_CyklPrawdziweTechno-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "CyklPrawdziweTechno",
@@ -2991,7 +3127,8 @@
         "960": "20211126_CyklPrawdziweTechno_01-960.webp",
         "1600": "20211126_CyklPrawdziweTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "BoomImprezkaPrzedLockdownem",
@@ -3013,7 +3150,8 @@
         "960": "20211210_BoomImprezkaPrzedLockdownem_01-960.webp",
         "1600": "20211210_BoomImprezkaPrzedLockdownem_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWilla",
@@ -3035,7 +3173,8 @@
         "960": "20211231_NewYearsWilla_01-960.webp",
         "1600": "20211231_NewYearsWilla_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -3057,7 +3196,8 @@
         "960": "20220319_PowitanieWiosny_01-960.webp",
         "1600": "20220319_PowitanieWiosny_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -3079,7 +3219,8 @@
         "960": "20220322_PowitanieWiosny_02-960.webp",
         "1600": "20220322_PowitanieWiosny_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WielkieOtwarcie",
@@ -3101,7 +3242,8 @@
         "960": "20220423_WielkieOtwarcie_01-960.webp",
         "1600": "20220423_WielkieOtwarcie_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SzukamChlopakaDziewczynyTechno",
@@ -3123,7 +3265,8 @@
         "960": "20220512_SzukamChlopakaDziewczynyTechno_02-960.webp",
         "1600": "20220512_SzukamChlopakaDziewczynyTechno_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LabiryntAtakKosmitow",
@@ -3145,7 +3288,8 @@
         "960": "20220917_LabiryntAtakKosmitow_01-960.webp",
         "1600": "20220917_LabiryntAtakKosmitow_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LabiryntAtakKosmitow",
@@ -3167,7 +3311,8 @@
         "960": "20220917_LabiryntAtakKosmitow_02-960.webp",
         "1600": "20220917_LabiryntAtakKosmitow_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Halloween",
@@ -3189,7 +3334,8 @@
         "960": "20221029_Halloween_01-960.webp",
         "1600": "20221029_Halloween_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Halloween",
@@ -3211,7 +3357,8 @@
         "960": "20221029_Halloween_02-960.webp",
         "1600": "20221029_Halloween_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Halloween",
@@ -3233,7 +3380,8 @@
         "960": "20221029_Halloween_03-960.webp",
         "1600": "20221029_Halloween_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWillon",
@@ -3255,7 +3403,8 @@
         "960": "20221231_NewYearsWillon_01-960.webp",
         "1600": "20221231_NewYearsWillon_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWillon",
@@ -3277,7 +3426,8 @@
         "960": "20221231_NewYearsWillon_02-960.webp",
         "1600": "20221231_NewYearsWillon_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWillon",
@@ -3299,7 +3449,8 @@
         "960": "20221231_NewYearsWillon_03-960.webp",
         "1600": "20221231_NewYearsWillon_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWillon",
@@ -3321,7 +3472,8 @@
         "960": "20221231_NewYearsWillon_04-960.webp",
         "1600": "20221231_NewYearsWillon_04-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWillon",
@@ -3343,7 +3495,8 @@
         "960": "20221231_NewYearsWillon_05-960.webp",
         "1600": "20221231_NewYearsWillon_05-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -3365,7 +3518,8 @@
         "960": "20230107_WillaTechnoDancing_01-960.webp",
         "1600": "20230107_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillowkaCzyliWiekszaDomowka",
@@ -3387,7 +3541,8 @@
         "960": "20230113_WillowkaCzyliWiekszaDomowka_01-960.webp",
         "1600": "20230113_WillowkaCzyliWiekszaDomowka_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillowkaCzyliWiekszaDomowka",
@@ -3409,7 +3564,8 @@
         "960": "20230113_WillowkaCzyliWiekszaDomowka_02-960.webp",
         "1600": "20230113_WillowkaCzyliWiekszaDomowka_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillowkaCzyliWiekszaDomowka",
@@ -3431,7 +3587,8 @@
         "960": "20230113_WillowkaCzyliWiekszaDomowka_03-960.webp",
         "1600": "20230113_WillowkaCzyliWiekszaDomowka_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -3453,7 +3610,8 @@
         "960": "20230204_WillaTechnoDancing_01-960.webp",
         "1600": "20230204_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -3475,7 +3633,8 @@
         "960": "20230210_WillaTechnoDancing_01-960.webp",
         "1600": "20230210_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WalentynkowyBalMaskowy",
@@ -3497,7 +3656,8 @@
         "960": "20230218_WalentynkowyBalMaskowy_01-960.webp",
         "1600": "20230218_WalentynkowyBalMaskowy_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WalentynkowyBalMaskowy",
@@ -3519,7 +3679,8 @@
         "960": "20230218_WalentynkowyBalMaskowy_03-960.webp",
         "1600": "20230218_WalentynkowyBalMaskowy_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WalentynkowyBalMaskowy",
@@ -3541,7 +3702,8 @@
         "960": "20230218_WalentynkowyBalMaskowy_04-960.webp",
         "1600": "20230218_WalentynkowyBalMaskowy_04-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WalentynkowyBalMaskowy",
@@ -3563,7 +3725,8 @@
         "960": "20230218_WalentynkowyBalMaskowy_05-960.webp",
         "1600": "20230218_WalentynkowyBalMaskowy_05-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WalentynkowyBalMaskowy",
@@ -3585,7 +3748,8 @@
         "960": "20230218_WalentynkowyBalMaskowy_06-960.webp",
         "1600": "20230218_WalentynkowyBalMaskowy_06-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WalentynkowyBalMaskowy",
@@ -3607,7 +3771,8 @@
         "960": "20230218_WalentynkowyBalMaskowy_07-960.webp",
         "1600": "20230218_WalentynkowyBalMaskowy_07-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -3629,7 +3794,8 @@
         "960": "20230311_WillaTechnoDancing_01-960.webp",
         "1600": "20230311_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -3651,7 +3817,8 @@
         "960": "20230311_WillaTechnoDancing_02-960.webp",
         "1600": "20230311_WillaTechnoDancing_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -3673,7 +3840,8 @@
         "960": "20230325_PowitanieWiosny_01-960.webp",
         "1600": "20230325_PowitanieWiosny_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -3695,7 +3863,8 @@
         "960": "20230325_PowitanieWiosny_02-960.webp",
         "1600": "20230325_PowitanieWiosny_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -3717,7 +3886,8 @@
         "960": "20230325_PowitanieWiosny_03-960.webp",
         "1600": "20230325_PowitanieWiosny_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "MakeLodzkieTechnoGreatAgain",
@@ -3739,7 +3909,8 @@
         "960": "20230414_MakeLodzkieTechnoGreatAgain_01-960.webp",
         "1600": "20230414_MakeLodzkieTechnoGreatAgain_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "MakeLodzkieTechnoGreatAgain",
@@ -3761,7 +3932,8 @@
         "960": "20230414_MakeLodzkieTechnoGreatAgain_02-960.webp",
         "1600": "20230414_MakeLodzkieTechnoGreatAgain_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "MakeLodzkieTechnoGreatAgain",
@@ -3783,7 +3955,8 @@
         "960": "20230414_MakeLodzkieTechnoGreatAgain_03-960.webp",
         "1600": "20230414_MakeLodzkieTechnoGreatAgain_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "10YearsOfBoomEvents",
@@ -3805,7 +3978,8 @@
         "960": "20230422_10YearsOfBoomEvents_01-960.webp",
         "1600": "20230422_10YearsOfBoomEvents_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "10YearsOfBoomEvents",
@@ -3827,7 +4001,8 @@
         "960": "20230422_10YearsOfBoomEvents_03-960.webp",
         "1600": "20230422_10YearsOfBoomEvents_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "10YearsOfBoomEvents",
@@ -3849,7 +4024,8 @@
         "960": "20230422_10YearsOfBoomEvents_04-960.webp",
         "1600": "20230422_10YearsOfBoomEvents_04-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UrodzinyWilli",
@@ -3871,7 +4047,8 @@
         "960": "20230429_UrodzinyWilli_01-960.webp",
         "1600": "20230429_UrodzinyWilli_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "UrodzinyWilli",
@@ -3893,7 +4070,8 @@
         "960": "20230429_UrodzinyWilli_02-960.webp",
         "1600": "20230429_UrodzinyWilli_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -3915,7 +4093,8 @@
         "960": "20230506_WillaTechnoDancing_01-960.webp",
         "1600": "20230506_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Brwsh",
@@ -3937,7 +4116,8 @@
         "960": "20230519_Brwsh_01-960.webp",
         "1600": "20230519_Brwsh_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Brwsh",
@@ -3959,7 +4139,8 @@
         "960": "20230519_Brwsh_02-960.webp",
         "1600": "20230519_Brwsh_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -3981,7 +4162,8 @@
         "960": "20230715_WillaTechnoDancing_01-960.webp",
         "1600": "20230715_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaIsOnFire",
@@ -4003,7 +4185,8 @@
         "960": "20230916_WillaIsOnFire_01-960.webp",
         "1600": "20230916_WillaIsOnFire_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaIsOnFire",
@@ -4025,7 +4208,8 @@
         "960": "20230916_WillaIsOnFire_02-960.webp",
         "1600": "20230916_WillaIsOnFire_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaIsOnFire",
@@ -4047,7 +4231,8 @@
         "960": "20230916_WillaIsOnFire_03-960.webp",
         "1600": "20230916_WillaIsOnFire_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4069,7 +4254,8 @@
         "960": "20231007_WillaTechnoDancing_01-960.webp",
         "1600": "20231007_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4091,7 +4277,8 @@
         "960": "20231007_WillaTechnoDancing_02-960.webp",
         "1600": "20231007_WillaTechnoDancing_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4113,7 +4300,8 @@
         "960": "20231007_WillaTechnoDancing_03-960.webp",
         "1600": "20231007_WillaTechnoDancing_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "DobraNocka",
@@ -4135,7 +4323,8 @@
         "960": "20231017_DobraNocka_01-960.webp",
         "1600": "20231017_DobraNocka_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NotSoAbandonedWilla",
@@ -4157,7 +4346,8 @@
         "960": "20231031_NotSoAbandonedWilla_01-960.webp",
         "1600": "20231031_NotSoAbandonedWilla_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4179,7 +4369,8 @@
         "960": "20231202_WillaTechnoDancing_01-960.webp",
         "1600": "20231202_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Pasterka",
@@ -4201,7 +4392,8 @@
         "960": "20231224_Pasterka_01-960.webp",
         "1600": "20231224_Pasterka_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWilla",
@@ -4223,7 +4415,8 @@
         "960": "20231231_NewYearsWilla_01-960.webp",
         "1600": "20231231_NewYearsWilla_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LodzkiTowar",
@@ -4245,7 +4438,8 @@
         "960": "20240127_LodzkiTowar_01-960.webp",
         "1600": "20240127_LodzkiTowar_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "LodzkiTowar",
@@ -4267,7 +4461,8 @@
         "960": "20240127_LodzkiTowar_02-960.webp",
         "1600": "20240127_LodzkiTowar_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SpeedsOfTechno",
@@ -4289,7 +4484,8 @@
         "960": "20240128_SpeedsOfTechno_01-960.webp",
         "1600": "20240128_SpeedsOfTechno_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "KarnawalowyBalMaskowy",
@@ -4311,7 +4507,8 @@
         "960": "20240217_KarnawalowyBalMaskowy_01-960.webp",
         "1600": "20240217_KarnawalowyBalMaskowy_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "KarnawalowyBalMaskowy",
@@ -4333,7 +4530,8 @@
         "960": "20240217_KarnawalowyBalMaskowy_02-960.webp",
         "1600": "20240217_KarnawalowyBalMaskowy_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -4355,7 +4553,8 @@
         "960": "20240323_PowitanieWiosny_01-960.webp",
         "1600": "20240323_PowitanieWiosny_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -4377,7 +4576,8 @@
         "960": "20240323_PowitanieWiosny_02-960.webp",
         "1600": "20240323_PowitanieWiosny_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4399,7 +4599,8 @@
         "960": "20240405_WillaTechnoDancing_01-960.webp",
         "1600": "20240405_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4421,7 +4622,8 @@
         "960": "20240405_WillaTechnoDancing_02-960.webp",
         "1600": "20240405_WillaTechnoDancing_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "2UrodzinyWilli",
@@ -4443,7 +4645,8 @@
         "960": "20240427_2UrodzinyWilli_01-960.webp",
         "1600": "20240427_2UrodzinyWilli_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "2UrodzinyWilli",
@@ -4465,7 +4668,8 @@
         "960": "20240427_2UrodzinyWilli_02-960.webp",
         "1600": "20240427_2UrodzinyWilli_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "2UrodzinyWilli",
@@ -4487,7 +4691,8 @@
         "960": "20240427_2UrodzinyWilli_03-960.webp",
         "1600": "20240427_2UrodzinyWilli_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SummerAtFinest",
@@ -4509,7 +4714,8 @@
         "960": "20240629_SummerAtFinest_01-960.webp",
         "1600": "20240629_SummerAtFinest_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4531,7 +4737,8 @@
         "960": "20240719_WillaTechnoDancing_01-960.webp",
         "1600": "20240719_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciAfter",
@@ -4553,7 +4760,8 @@
         "960": "20240831_ParadaWolnosciAfter_01-960.webp",
         "1600": "20240831_ParadaWolnosciAfter_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciAfter",
@@ -4575,7 +4783,8 @@
         "960": "20240831_ParadaWolnosciAfter_02-960.webp",
         "1600": "20240831_ParadaWolnosciAfter_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciAfter",
@@ -4597,7 +4806,8 @@
         "960": "20240831_ParadaWolnosciAfter_03-960.webp",
         "1600": "20240831_ParadaWolnosciAfter_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciAfter",
@@ -4619,7 +4829,8 @@
         "960": "20240831_ParadaWolnosciAfter_04-960.webp",
         "1600": "20240831_ParadaWolnosciAfter_04-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciAfter",
@@ -4641,7 +4852,8 @@
         "960": "20240831_ParadaWolnosciAfter_05-960.webp",
         "1600": "20240831_ParadaWolnosciAfter_05-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciPlatforma",
@@ -4663,7 +4875,8 @@
         "960": "20240831_ParadaWolnosciPlatforma_01-960.webp",
         "1600": "20240831_ParadaWolnosciPlatforma_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciPlatforma",
@@ -4685,7 +4898,8 @@
         "960": "20240831_ParadaWolnosciPlatforma_02-960.webp",
         "1600": "20240831_ParadaWolnosciPlatforma_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciPlatforma",
@@ -4707,7 +4921,8 @@
         "960": "20240831_ParadaWolnosciPlatforma_03-960.webp",
         "1600": "20240831_ParadaWolnosciPlatforma_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciPlatforma",
@@ -4729,7 +4944,8 @@
         "960": "20240831_ParadaWolnosciPlatforma_04-960.webp",
         "1600": "20240831_ParadaWolnosciPlatforma_04-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "ParadaWolnosciPlatforma",
@@ -4751,7 +4967,8 @@
         "960": "20240831_ParadaWolnosciPlatforma_05-960.webp",
         "1600": "20240831_ParadaWolnosciPlatforma_05-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4773,7 +4990,8 @@
         "960": "20241012_WillaTechnoDancing_01-960.webp",
         "1600": "20241012_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -4795,7 +5013,8 @@
         "960": "20241012_WillaTechnoDancing_02-960.webp",
         "1600": "20241012_WillaTechnoDancing_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Interstellars",
@@ -4817,7 +5036,8 @@
         "960": "20241214_Interstellars_01-960.webp",
         "1600": "20241214_Interstellars_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWilla",
@@ -4839,7 +5059,8 @@
         "960": "20241231_NewYearsWilla_01-960.webp",
         "1600": "20241231_NewYearsWilla_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWilla",
@@ -4861,7 +5082,8 @@
         "960": "20241231_NewYearsWilla_02-960.webp",
         "1600": "20241231_NewYearsWilla_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWilla",
@@ -4883,7 +5105,8 @@
         "960": "20241231_NewYearsWilla_03-960.webp",
         "1600": "20241231_NewYearsWilla_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWilla",
@@ -4905,7 +5128,8 @@
         "960": "20241231_NewYearsWilla_04-960.webp",
         "1600": "20241231_NewYearsWilla_04-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "KarnawalowyBalMaskowy",
@@ -4927,7 +5151,8 @@
         "960": "20250215_KarnawalowyBalMaskowy_01-960.webp",
         "1600": "20250215_KarnawalowyBalMaskowy_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "KarnawalowyBalMaskowy",
@@ -4949,7 +5174,8 @@
         "960": "20250215_KarnawalowyBalMaskowy_02-960.webp",
         "1600": "20250215_KarnawalowyBalMaskowy_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "KarnawalowyBalMaskowy",
@@ -4971,7 +5197,8 @@
         "960": "20250215_KarnawalowyBalMaskowy_03-960.webp",
         "1600": "20250215_KarnawalowyBalMaskowy_03-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Subterra",
@@ -4993,7 +5220,8 @@
         "960": "20250321_Subterra_01-960.webp",
         "1600": "20250321_Subterra_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Subterra",
@@ -5015,7 +5243,8 @@
         "960": "20250321_Subterra_02-960.webp",
         "1600": "20250321_Subterra_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -5037,7 +5266,8 @@
         "960": "20250322_PowitanieWiosny_01-960.webp",
         "1600": "20250322_PowitanieWiosny_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -5059,7 +5289,8 @@
         "960": "20250322_PowitanieWiosny_02-960.webp",
         "1600": "20250322_PowitanieWiosny_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -5081,7 +5312,8 @@
         "960": "20250329_WillaTechnoDancing_01-960.webp",
         "1600": "20250329_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -5103,7 +5335,8 @@
         "960": "20250329_WillaTechnoDancing_02-960.webp",
         "1600": "20250329_WillaTechnoDancing_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "WillaTechnoDancing",
@@ -5125,7 +5358,8 @@
         "960": "20251011_WillaTechnoDancing_01-960.webp",
         "1600": "20251011_WillaTechnoDancing_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWillaOnTour",
@@ -5147,7 +5381,8 @@
         "960": "20251231_NewYearsWillaOnTour_01-960.webp",
         "1600": "20251231_NewYearsWillaOnTour_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "NewYearsWillaOnTour",
@@ -5169,7 +5404,8 @@
         "960": "20251231_NewYearsWillaOnTour_02-960.webp",
         "1600": "20251231_NewYearsWillaOnTour_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "Proper",
@@ -5191,7 +5427,8 @@
         "960": "20260124_Proper_01-960.webp",
         "1600": "20260124_Proper_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "KarnawałowyBalMaskowy",
@@ -5213,7 +5450,8 @@
         "960": "20260212_KarnawałowyBalMaskowy_01-960.webp",
         "1600": "20260212_KarnawałowyBalMaskowy_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PrivatePress",
@@ -5235,7 +5473,8 @@
         "960": "20260307_PrivatePress_01-960.webp",
         "1600": "20260307_PrivatePress_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -5257,7 +5496,8 @@
         "960": "20260321_PowitanieWiosny_01-960.webp",
         "1600": "20260321_PowitanieWiosny_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "PowitanieWiosny",
@@ -5279,7 +5519,8 @@
         "960": "20260321_PowitanieWiosny_02-960.webp",
         "1600": "20260321_PowitanieWiosny_02-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
   },
   {
     "event": "SektaSelektaTakeover",
@@ -5301,6 +5542,30 @@
         "960": "20260327_SektaSelektaTakeover_01-960.webp",
         "1600": "20260327_SektaSelektaTakeover_01-1600.webp"
       }
-    }
+    },
+    "kind": "archive"
+  },
+  {
+    "event": "Subterra2.0",
+    "date": {
+      "date": "20260417",
+      "year": 2026,
+      "month": 4,
+      "day": 17
+    },
+    "seq": 1,
+    "image": {
+      "id": "20260417_Subterra2.0_01",
+      "thumb": 480,
+      "display": 1600,
+      "thumb_w": 480,
+      "thumb_h": 392,
+      "variants": {
+        "480": "20260417_Subterra2.0_01-480.webp",
+        "960": "20260417_Subterra2.0_01-960.webp",
+        "1600": "20260417_Subterra2.0_01-1600.webp"
+      }
+    },
+    "kind": "tba"
   }
 ]
