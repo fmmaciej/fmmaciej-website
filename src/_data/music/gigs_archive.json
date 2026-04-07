@@ -1,0 +1,1696 @@
+[
+  {
+    "event": "SektaSelektaTakeover",
+    "date": {
+      "date": "20260327",
+      "year": 2026,
+      "month": 3,
+      "day": 27
+    },
+    "coverId": "20260327_SektaSelektaTakeover_01",
+    "place": null
+  },
+  {
+    "event": "PowitanieWiosny",
+    "date": {
+      "date": "20260321",
+      "year": 2026,
+      "month": 3,
+      "day": 21
+    },
+    "coverId": "20260321_PowitanieWiosny_01",
+    "place": null
+  },
+  {
+    "event": "PrivatePress",
+    "date": {
+      "date": "20260307",
+      "year": 2026,
+      "month": 3,
+      "day": 7
+    },
+    "coverId": "20260307_PrivatePress_01",
+    "place": null
+  },
+  {
+    "event": "KarnawałowyBalMaskowy",
+    "date": {
+      "date": "20260212",
+      "year": 2026,
+      "month": 2,
+      "day": 12
+    },
+    "coverId": "20260212_KarnawałowyBalMaskowy_01",
+    "place": null
+  },
+  {
+    "event": "Proper",
+    "date": {
+      "date": "20260124",
+      "year": 2026,
+      "month": 1,
+      "day": 24
+    },
+    "coverId": "20260124_Proper_01",
+    "place": null
+  },
+  {
+    "event": "NewYearsWillaOnTour",
+    "date": {
+      "date": "20251231",
+      "year": 2025,
+      "month": 12,
+      "day": 31
+    },
+    "coverId": "20251231_NewYearsWillaOnTour_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20251011",
+      "year": 2025,
+      "month": 10,
+      "day": 11
+    },
+    "coverId": "20251011_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20250329",
+      "year": 2025,
+      "month": 3,
+      "day": 29
+    },
+    "coverId": "20250329_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "PowitanieWiosny",
+    "date": {
+      "date": "20250322",
+      "year": 2025,
+      "month": 3,
+      "day": 22
+    },
+    "coverId": "20250322_PowitanieWiosny_01",
+    "place": null
+  },
+  {
+    "event": "Subterra",
+    "date": {
+      "date": "20250321",
+      "year": 2025,
+      "month": 3,
+      "day": 21
+    },
+    "coverId": "20250321_Subterra_01",
+    "place": null
+  },
+  {
+    "event": "KarnawalowyBalMaskowy",
+    "date": {
+      "date": "20250215",
+      "year": 2025,
+      "month": 2,
+      "day": 15
+    },
+    "coverId": "20250215_KarnawalowyBalMaskowy_01",
+    "place": null
+  },
+  {
+    "event": "NewYearsWilla",
+    "date": {
+      "date": "20241231",
+      "year": 2024,
+      "month": 12,
+      "day": 31
+    },
+    "coverId": "20241231_NewYearsWilla_01",
+    "place": null
+  },
+  {
+    "event": "Interstellars",
+    "date": {
+      "date": "20241214",
+      "year": 2024,
+      "month": 12,
+      "day": 14
+    },
+    "coverId": "20241214_Interstellars_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20241012",
+      "year": 2024,
+      "month": 10,
+      "day": 12
+    },
+    "coverId": "20241012_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "ParadaWolnosciPlatforma",
+    "date": {
+      "date": "20240831",
+      "year": 2024,
+      "month": 8,
+      "day": 31
+    },
+    "coverId": "20240831_ParadaWolnosciPlatforma_01",
+    "place": null
+  },
+  {
+    "event": "ParadaWolnosciAfter",
+    "date": {
+      "date": "20240831",
+      "year": 2024,
+      "month": 8,
+      "day": 31
+    },
+    "coverId": "20240831_ParadaWolnosciAfter_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20240719",
+      "year": 2024,
+      "month": 7,
+      "day": 19
+    },
+    "coverId": "20240719_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "SummerAtFinest",
+    "date": {
+      "date": "20240629",
+      "year": 2024,
+      "month": 6,
+      "day": 29
+    },
+    "coverId": "20240629_SummerAtFinest_01",
+    "place": null
+  },
+  {
+    "event": "2UrodzinyWilli",
+    "date": {
+      "date": "20240427",
+      "year": 2024,
+      "month": 4,
+      "day": 27
+    },
+    "coverId": "20240427_2UrodzinyWilli_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20240405",
+      "year": 2024,
+      "month": 4,
+      "day": 5
+    },
+    "coverId": "20240405_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "PowitanieWiosny",
+    "date": {
+      "date": "20240323",
+      "year": 2024,
+      "month": 3,
+      "day": 23
+    },
+    "coverId": "20240323_PowitanieWiosny_01",
+    "place": null
+  },
+  {
+    "event": "KarnawalowyBalMaskowy",
+    "date": {
+      "date": "20240217",
+      "year": 2024,
+      "month": 2,
+      "day": 17
+    },
+    "coverId": "20240217_KarnawalowyBalMaskowy_01",
+    "place": null
+  },
+  {
+    "event": "SpeedsOfTechno",
+    "date": {
+      "date": "20240128",
+      "year": 2024,
+      "month": 1,
+      "day": 28
+    },
+    "coverId": "20240128_SpeedsOfTechno_01",
+    "place": null
+  },
+  {
+    "event": "LodzkiTowar",
+    "date": {
+      "date": "20240127",
+      "year": 2024,
+      "month": 1,
+      "day": 27
+    },
+    "coverId": "20240127_LodzkiTowar_01",
+    "place": null
+  },
+  {
+    "event": "NewYearsWilla",
+    "date": {
+      "date": "20231231",
+      "year": 2023,
+      "month": 12,
+      "day": 31
+    },
+    "coverId": "20231231_NewYearsWilla_01",
+    "place": null
+  },
+  {
+    "event": "Pasterka",
+    "date": {
+      "date": "20231224",
+      "year": 2023,
+      "month": 12,
+      "day": 24
+    },
+    "coverId": "20231224_Pasterka_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20231202",
+      "year": 2023,
+      "month": 12,
+      "day": 2
+    },
+    "coverId": "20231202_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "NotSoAbandonedWilla",
+    "date": {
+      "date": "20231031",
+      "year": 2023,
+      "month": 10,
+      "day": 31
+    },
+    "coverId": "20231031_NotSoAbandonedWilla_01",
+    "place": null
+  },
+  {
+    "event": "DobraNocka",
+    "date": {
+      "date": "20231017",
+      "year": 2023,
+      "month": 10,
+      "day": 17
+    },
+    "coverId": "20231017_DobraNocka_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20231007",
+      "year": 2023,
+      "month": 10,
+      "day": 7
+    },
+    "coverId": "20231007_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "WillaIsOnFire",
+    "date": {
+      "date": "20230916",
+      "year": 2023,
+      "month": 9,
+      "day": 16
+    },
+    "coverId": "20230916_WillaIsOnFire_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20230715",
+      "year": 2023,
+      "month": 7,
+      "day": 15
+    },
+    "coverId": "20230715_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "Brwsh",
+    "date": {
+      "date": "20230519",
+      "year": 2023,
+      "month": 5,
+      "day": 19
+    },
+    "coverId": "20230519_Brwsh_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20230506",
+      "year": 2023,
+      "month": 5,
+      "day": 6
+    },
+    "coverId": "20230506_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "UrodzinyWilli",
+    "date": {
+      "date": "20230429",
+      "year": 2023,
+      "month": 4,
+      "day": 29
+    },
+    "coverId": "20230429_UrodzinyWilli_01",
+    "place": null
+  },
+  {
+    "event": "10YearsOfBoomEvents",
+    "date": {
+      "date": "20230422",
+      "year": 2023,
+      "month": 4,
+      "day": 22
+    },
+    "coverId": "20230422_10YearsOfBoomEvents_01",
+    "place": null
+  },
+  {
+    "event": "MakeLodzkieTechnoGreatAgain",
+    "date": {
+      "date": "20230414",
+      "year": 2023,
+      "month": 4,
+      "day": 14
+    },
+    "coverId": "20230414_MakeLodzkieTechnoGreatAgain_01",
+    "place": null
+  },
+  {
+    "event": "PowitanieWiosny",
+    "date": {
+      "date": "20230325",
+      "year": 2023,
+      "month": 3,
+      "day": 25
+    },
+    "coverId": "20230325_PowitanieWiosny_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20230311",
+      "year": 2023,
+      "month": 3,
+      "day": 11
+    },
+    "coverId": "20230311_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "WalentynkowyBalMaskowy",
+    "date": {
+      "date": "20230218",
+      "year": 2023,
+      "month": 2,
+      "day": 18
+    },
+    "coverId": "20230218_WalentynkowyBalMaskowy_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20230210",
+      "year": 2023,
+      "month": 2,
+      "day": 10
+    },
+    "coverId": "20230210_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20230204",
+      "year": 2023,
+      "month": 2,
+      "day": 4
+    },
+    "coverId": "20230204_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "WillowkaCzyliWiekszaDomowka",
+    "date": {
+      "date": "20230113",
+      "year": 2023,
+      "month": 1,
+      "day": 13
+    },
+    "coverId": "20230113_WillowkaCzyliWiekszaDomowka_01",
+    "place": null
+  },
+  {
+    "event": "WillaTechnoDancing",
+    "date": {
+      "date": "20230107",
+      "year": 2023,
+      "month": 1,
+      "day": 7
+    },
+    "coverId": "20230107_WillaTechnoDancing_01",
+    "place": null
+  },
+  {
+    "event": "NewYearsWillon",
+    "date": {
+      "date": "20221231",
+      "year": 2022,
+      "month": 12,
+      "day": 31
+    },
+    "coverId": "20221231_NewYearsWillon_01",
+    "place": null
+  },
+  {
+    "event": "Halloween",
+    "date": {
+      "date": "20221029",
+      "year": 2022,
+      "month": 10,
+      "day": 29
+    },
+    "coverId": "20221029_Halloween_01",
+    "place": null
+  },
+  {
+    "event": "LabiryntAtakKosmitow",
+    "date": {
+      "date": "20220917",
+      "year": 2022,
+      "month": 9,
+      "day": 17
+    },
+    "coverId": "20220917_LabiryntAtakKosmitow_01",
+    "place": null
+  },
+  {
+    "event": "SzukamChlopakaDziewczynyTechno",
+    "date": {
+      "date": "20220512",
+      "year": 2022,
+      "month": 5,
+      "day": 12
+    },
+    "coverId": "20220512_SzukamChlopakaDziewczynyTechno_02",
+    "place": null
+  },
+  {
+    "event": "WielkieOtwarcie",
+    "date": {
+      "date": "20220423",
+      "year": 2022,
+      "month": 4,
+      "day": 23
+    },
+    "coverId": "20220423_WielkieOtwarcie_01",
+    "place": null
+  },
+  {
+    "event": "PowitanieWiosny",
+    "date": {
+      "date": "20220322",
+      "year": 2022,
+      "month": 3,
+      "day": 22
+    },
+    "coverId": "20220322_PowitanieWiosny_02",
+    "place": null
+  },
+  {
+    "event": "PowitanieWiosny",
+    "date": {
+      "date": "20220319",
+      "year": 2022,
+      "month": 3,
+      "day": 19
+    },
+    "coverId": "20220319_PowitanieWiosny_01",
+    "place": null
+  },
+  {
+    "event": "NewYearsWilla",
+    "date": {
+      "date": "20211231",
+      "year": 2021,
+      "month": 12,
+      "day": 31
+    },
+    "coverId": "20211231_NewYearsWilla_01",
+    "place": null
+  },
+  {
+    "event": "BoomImprezkaPrzedLockdownem",
+    "date": {
+      "date": "20211210",
+      "year": 2021,
+      "month": 12,
+      "day": 10
+    },
+    "coverId": "20211210_BoomImprezkaPrzedLockdownem_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20211126",
+      "year": 2021,
+      "month": 11,
+      "day": 26
+    },
+    "coverId": "20211126_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20211009",
+      "year": 2021,
+      "month": 10,
+      "day": 9
+    },
+    "coverId": "20211009_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20210814",
+      "year": 2021,
+      "month": 8,
+      "day": 14
+    },
+    "coverId": "20210814_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "TesknilismyZaTechno",
+    "date": {
+      "date": "20210731",
+      "year": 2021,
+      "month": 7,
+      "day": 31
+    },
+    "coverId": "20210731_TesknilismyZaTechno_01",
+    "place": null
+  },
+  {
+    "event": "WystawaMuzykiTechno",
+    "date": {
+      "date": "20210717",
+      "year": 2021,
+      "month": 7,
+      "day": 17
+    },
+    "coverId": "20210717_WystawaMuzykiTechno_01",
+    "place": null
+  },
+  {
+    "event": "LabiryntIsland",
+    "date": {
+      "date": "20210626",
+      "year": 2021,
+      "month": 6,
+      "day": 26
+    },
+    "coverId": "20210626_LabiryntIsland_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20201017",
+      "year": 2020,
+      "month": 10,
+      "day": 17
+    },
+    "coverId": "20201017_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20200926",
+      "year": 2020,
+      "month": 9,
+      "day": 26
+    },
+    "coverId": "20200926_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "LabiryntIsland",
+    "date": {
+      "date": "20200829",
+      "year": 2020,
+      "month": 8,
+      "day": 29
+    },
+    "coverId": "20200829_LabiryntIsland_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20200820",
+      "year": 2020,
+      "month": 8,
+      "day": 20
+    },
+    "coverId": "20200820_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "PodziemnaLodz",
+    "date": {
+      "date": "20200627",
+      "year": 2020,
+      "month": 6,
+      "day": 27
+    },
+    "coverId": "20200627_PodziemnaLodz_01",
+    "place": null
+  },
+  {
+    "event": "2UrodzinySody",
+    "date": {
+      "date": "20200409",
+      "year": 2020,
+      "month": 4,
+      "day": 9
+    },
+    "coverId": "20200409_2UrodzinySody_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20200208",
+      "year": 2020,
+      "month": 2,
+      "day": 8
+    },
+    "coverId": "20200208_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "Prototypy",
+    "date": {
+      "date": "20200122",
+      "year": 2020,
+      "month": 1,
+      "day": 22
+    },
+    "coverId": "20200122_Prototypy_01",
+    "place": null
+  },
+  {
+    "event": "3UrodzinyRevo",
+    "date": {
+      "date": "20200111",
+      "year": 2020,
+      "month": 1,
+      "day": 11
+    },
+    "coverId": "20200111_3UrodzinyRevo_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20191220",
+      "year": 2019,
+      "month": 12,
+      "day": 20
+    },
+    "coverId": "20191220_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "Kemal",
+    "date": {
+      "date": "20191206",
+      "year": 2019,
+      "month": 12,
+      "day": 6
+    },
+    "coverId": "20191206_Kemal_01",
+    "place": null
+  },
+  {
+    "event": "NightmareCreatures",
+    "date": {
+      "date": "20191102",
+      "year": 2019,
+      "month": 11,
+      "day": 2
+    },
+    "coverId": "20191102_NightmareCreatures_01",
+    "place": null
+  },
+  {
+    "event": "Prototypy",
+    "date": {
+      "date": "20191016",
+      "year": 2019,
+      "month": 10,
+      "day": 16
+    },
+    "coverId": "20191016_Prototypy_01",
+    "place": null
+  },
+  {
+    "event": "HiddenNoises&T&GNight",
+    "date": {
+      "date": "20191005",
+      "year": 2019,
+      "month": 10,
+      "day": 5
+    },
+    "coverId": "20191005_HiddenNoises&T&GNight_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20190824",
+      "year": 2019,
+      "month": 8,
+      "day": 24
+    },
+    "coverId": "20190824_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "BlackHole2",
+    "date": {
+      "date": "20190810",
+      "year": 2019,
+      "month": 8,
+      "day": 10
+    },
+    "coverId": "20190810_BlackHole2_01",
+    "place": null
+  },
+  {
+    "event": "HiddenNoises&Pylon",
+    "date": {
+      "date": "20190713",
+      "year": 2019,
+      "month": 7,
+      "day": 13
+    },
+    "coverId": "20190713_HiddenNoises&Pylon_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20190713",
+      "year": 2019,
+      "month": 7,
+      "day": 13
+    },
+    "coverId": "20190713_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "JaSzanujeJaRejwuje",
+    "date": {
+      "date": "20190622",
+      "year": 2019,
+      "month": 6,
+      "day": 22
+    },
+    "coverId": "20190622_JaSzanujeJaRejwuje_01",
+    "place": null
+  },
+  {
+    "event": "ElectronicSummer",
+    "date": {
+      "date": "20190621",
+      "year": 2019,
+      "month": 6,
+      "day": 21
+    },
+    "coverId": "20190621_ElectronicSummer_01",
+    "place": null
+  },
+  {
+    "event": "CantStopRaving",
+    "date": {
+      "date": "20190309",
+      "year": 2019,
+      "month": 3,
+      "day": 9
+    },
+    "coverId": "20190309_CantStopRaving_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20190209",
+      "year": 2019,
+      "month": 2,
+      "day": 9
+    },
+    "coverId": "20190209_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "CyklPrawdziweTechno",
+    "date": {
+      "date": "20181222",
+      "year": 2018,
+      "month": 12,
+      "day": 22
+    },
+    "coverId": "20181222_CyklPrawdziweTechno_01",
+    "place": null
+  },
+  {
+    "event": "VytiTautaBday",
+    "date": {
+      "date": "20181013",
+      "year": 2018,
+      "month": 10,
+      "day": 13
+    },
+    "coverId": "20181013_VytiTautaBday_01",
+    "place": null
+  },
+  {
+    "event": "OstatniPlenerSezonu2018",
+    "date": {
+      "date": "20180907",
+      "year": 2018,
+      "month": 9,
+      "day": 7
+    },
+    "coverId": "20180907_OstatniPlenerSezonu2018_01",
+    "place": null
+  },
+  {
+    "event": "BlackHole",
+    "date": {
+      "date": "20180811",
+      "year": 2018,
+      "month": 8,
+      "day": 11
+    },
+    "coverId": "20180811_BlackHole_01",
+    "place": null
+  },
+  {
+    "event": "4na4",
+    "date": {
+      "date": "20180720",
+      "year": 2018,
+      "month": 7,
+      "day": 20
+    },
+    "coverId": "20180720_4na4_01",
+    "place": null
+  },
+  {
+    "event": "PlaskaZiemia",
+    "date": {
+      "date": "20180602",
+      "year": 2018,
+      "month": 6,
+      "day": 2
+    },
+    "coverId": "20180602_PlaskaZiemia_01",
+    "place": null
+  },
+  {
+    "event": "SzukamChlopakaDziewczynyTechno",
+    "date": {
+      "date": "20180512",
+      "year": 2018,
+      "month": 5,
+      "day": 12
+    },
+    "coverId": "20180512_SzukamChlopakaDziewczynyTechno_01",
+    "place": null
+  },
+  {
+    "event": "DirtyStuffNight",
+    "date": {
+      "date": "20180505",
+      "year": 2018,
+      "month": 5,
+      "day": 5
+    },
+    "coverId": "20180505_DirtyStuffNight_01",
+    "place": null
+  },
+  {
+    "event": "SayYesToTechno",
+    "date": {
+      "date": "20180316",
+      "year": 2018,
+      "month": 3,
+      "day": 16
+    },
+    "coverId": "20180316_SayYesToTechno_01",
+    "place": null
+  },
+  {
+    "event": "SNTS",
+    "date": {
+      "date": "20180120",
+      "year": 2018,
+      "month": 1,
+      "day": 20
+    },
+    "coverId": "20180120_SNTS_01",
+    "place": null
+  },
+  {
+    "event": "BoatToBerlin",
+    "date": {
+      "date": "20171223",
+      "year": 2017,
+      "month": 12,
+      "day": 23
+    },
+    "coverId": "20171223_BoatToBerlin_01",
+    "place": null
+  },
+  {
+    "event": "BRWSH",
+    "date": {
+      "date": "20171215",
+      "year": 2017,
+      "month": 12,
+      "day": 15
+    },
+    "coverId": "20171215_BRWSH_01",
+    "place": null
+  },
+  {
+    "event": "ElektrodiskoRadioZak",
+    "date": {
+      "date": "20171130",
+      "year": 2017,
+      "month": 11,
+      "day": 30
+    },
+    "coverId": "20171130_ElektrodiskoRadioZak_01",
+    "place": null
+  },
+  {
+    "event": "EdRush",
+    "date": {
+      "date": "20171111",
+      "year": 2017,
+      "month": 11,
+      "day": 11
+    },
+    "coverId": "20171111_EdRush_01",
+    "place": null
+  },
+  {
+    "event": "Blackout3",
+    "date": {
+      "date": "20171021",
+      "year": 2017,
+      "month": 10,
+      "day": 21
+    },
+    "coverId": "20171021_Blackout3_01",
+    "place": null
+  },
+  {
+    "event": "SamoGesteX20",
+    "date": {
+      "date": "20171020",
+      "year": 2017,
+      "month": 10,
+      "day": 20
+    },
+    "coverId": "20171020_SamoGesteX20_01",
+    "place": null
+  },
+  {
+    "event": "LTronica",
+    "date": {
+      "date": "20171008",
+      "year": 2017,
+      "month": 10,
+      "day": 8
+    },
+    "coverId": "20171008_LTronica_01",
+    "place": null
+  },
+  {
+    "event": "Blackout2",
+    "date": {
+      "date": "20170819",
+      "year": 2017,
+      "month": 8,
+      "day": 19
+    },
+    "coverId": "20170819_Blackout2_01",
+    "place": null
+  },
+  {
+    "event": "2ŁodzkaKonferencja",
+    "date": {
+      "date": "20170624",
+      "year": 2017,
+      "month": 6,
+      "day": 24
+    },
+    "coverId": "20170624_2ŁodzkaKonferencja_01",
+    "place": null
+  },
+  {
+    "event": "SamoGęste",
+    "date": {
+      "date": "20170513",
+      "year": 2017,
+      "month": 5,
+      "day": 13
+    },
+    "coverId": "20170513_SamoGęste_01",
+    "place": null
+  },
+  {
+    "event": "Majbasówka",
+    "date": {
+      "date": "20170502",
+      "year": 2017,
+      "month": 5,
+      "day": 2
+    },
+    "coverId": "20170502_Majbasówka_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20170429",
+      "year": 2017,
+      "month": 4,
+      "day": 29
+    },
+    "coverId": "20170429_UDS_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20170422",
+      "year": 2017,
+      "month": 4,
+      "day": 22
+    },
+    "coverId": "20170422_UDS_01",
+    "place": null
+  },
+  {
+    "event": "PoNaszemu#3",
+    "date": {
+      "date": "20170311",
+      "year": 2017,
+      "month": 3,
+      "day": 11
+    },
+    "coverId": "20170311_PoNaszemu#3_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20170211",
+      "year": 2017,
+      "month": 2,
+      "day": 11
+    },
+    "coverId": "20170211_UDS_01",
+    "place": null
+  },
+  {
+    "event": "Technosoul",
+    "date": {
+      "date": "20170128",
+      "year": 2017,
+      "month": 1,
+      "day": 28
+    },
+    "coverId": "20170128_Technosoul_01",
+    "place": null
+  },
+  {
+    "event": "Ravester",
+    "date": {
+      "date": "20161231",
+      "year": 2016,
+      "month": 12,
+      "day": 31
+    },
+    "coverId": "20161231_Ravester_01",
+    "place": null
+  },
+  {
+    "event": "PoNaszemu#2",
+    "date": {
+      "date": "20161217",
+      "year": 2016,
+      "month": 12,
+      "day": 17
+    },
+    "coverId": "20161217_PoNaszemu#2_01",
+    "place": null
+  },
+  {
+    "event": "25YearsOfTresor",
+    "date": {
+      "date": "20161203",
+      "year": 2016,
+      "month": 12,
+      "day": 3
+    },
+    "coverId": "20161203_25YearsOfTresor_01",
+    "place": null
+  },
+  {
+    "event": "TechnosoulNight",
+    "date": {
+      "date": "20161029",
+      "year": 2016,
+      "month": 10,
+      "day": 29
+    },
+    "coverId": "20161029_TechnosoulNight_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20161008",
+      "year": 2016,
+      "month": 10,
+      "day": 8
+    },
+    "coverId": "20161008_UDS_01",
+    "place": null
+  },
+  {
+    "event": "NaukiTechniczne",
+    "date": {
+      "date": "20161001",
+      "year": 2016,
+      "month": 10,
+      "day": 1
+    },
+    "coverId": "20161001_NaukiTechniczne_01",
+    "place": null
+  },
+  {
+    "event": "3UrodzinyBoomEvents",
+    "date": {
+      "date": "20160806",
+      "year": 2016,
+      "month": 8,
+      "day": 6
+    },
+    "coverId": "20160806_3UrodzinyBoomEvents_01",
+    "place": null
+  },
+  {
+    "event": "VeniViniTechno#2",
+    "date": {
+      "date": "20160617",
+      "year": 2016,
+      "month": 6,
+      "day": 17
+    },
+    "coverId": "20160617_VeniViniTechno#2_01",
+    "place": null
+  },
+  {
+    "event": "MatmaGeburstag",
+    "date": {
+      "date": "20160611",
+      "year": 2016,
+      "month": 6,
+      "day": 11
+    },
+    "coverId": "20160611_MatmaGeburstag_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20160514",
+      "year": 2016,
+      "month": 5,
+      "day": 14
+    },
+    "coverId": "20160514_UDS_01",
+    "place": null
+  },
+  {
+    "event": "WernisażWystawyFotografii",
+    "date": {
+      "date": "20160421",
+      "year": 2016,
+      "month": 4,
+      "day": 21
+    },
+    "coverId": "20160421_WernisażWystawyFotografii_01",
+    "place": null
+  },
+  {
+    "event": "TechnoMeetsDrum'n'bass",
+    "date": {
+      "date": "20160402",
+      "year": 2016,
+      "month": 4,
+      "day": 2
+    },
+    "coverId": "20160402_TechnoMeetsDrum'n'bass_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20160213",
+      "year": 2016,
+      "month": 2,
+      "day": 13
+    },
+    "coverId": "20160213_UDS_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20151205",
+      "year": 2015,
+      "month": 12,
+      "day": 5
+    },
+    "coverId": "20151205_UDS_01",
+    "place": null
+  },
+  {
+    "event": "LightMoveFestival",
+    "date": {
+      "date": "20151010",
+      "year": 2015,
+      "month": 10,
+      "day": 10
+    },
+    "coverId": "20151010_LightMoveFestival_01",
+    "place": null
+  },
+  {
+    "event": "DarkSideOfTheBoom",
+    "date": {
+      "date": "20150828",
+      "year": 2015,
+      "month": 8,
+      "day": 28
+    },
+    "coverId": "20150828_DarkSideOfTheBoom_01",
+    "place": null
+  },
+  {
+    "event": "UDSSierociniec2",
+    "date": {
+      "date": "20150808",
+      "year": 2015,
+      "month": 8,
+      "day": 8
+    },
+    "coverId": "20150808_UDSSierociniec2_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20150410",
+      "year": 2015,
+      "month": 4,
+      "day": 10
+    },
+    "coverId": "20150410_UDS_01",
+    "place": null
+  },
+  {
+    "event": "Bassówka",
+    "date": {
+      "date": "20150403",
+      "year": 2015,
+      "month": 4,
+      "day": 3
+    },
+    "coverId": "20150403_Bassówka_01",
+    "place": null
+  },
+  {
+    "event": "HardeImStadt",
+    "date": {
+      "date": "20141024",
+      "year": 2014,
+      "month": 10,
+      "day": 24
+    },
+    "coverId": "20141024_HardeImStadt_01",
+    "place": null
+  },
+  {
+    "event": "Trubass",
+    "date": {
+      "date": "20140621",
+      "year": 2014,
+      "month": 6,
+      "day": 21
+    },
+    "coverId": "20140621_Trubass_01",
+    "place": null
+  },
+  {
+    "event": "MegaMajówka",
+    "date": {
+      "date": "20140503",
+      "year": 2014,
+      "month": 5,
+      "day": 3
+    },
+    "coverId": "20140503_MegaMajówka_01",
+    "place": null
+  },
+  {
+    "event": "SpaceInvaders",
+    "date": {
+      "date": "20140426",
+      "year": 2014,
+      "month": 4,
+      "day": 26
+    },
+    "coverId": "20140426_SpaceInvaders_01",
+    "place": null
+  },
+  {
+    "event": "ŁupanKO",
+    "date": {
+      "date": "20140125",
+      "year": 2014,
+      "month": 1,
+      "day": 25
+    },
+    "coverId": "20140125_ŁupanKO_01",
+    "place": null
+  },
+  {
+    "event": "Sylwester",
+    "date": {
+      "date": "20131231",
+      "year": 2013,
+      "month": 12,
+      "day": 31
+    },
+    "coverId": "20131231_Sylwester_01",
+    "place": null
+  },
+  {
+    "event": "Neuj_ahrs_wirr_warr",
+    "date": {
+      "date": "20131231",
+      "year": 2013,
+      "month": 12,
+      "day": 31
+    },
+    "coverId": "20131231_Neuj_ahrs_wirr_warr_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20131207",
+      "year": 2013,
+      "month": 12,
+      "day": 7
+    },
+    "coverId": "20131207_UDS_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20131102",
+      "year": 2013,
+      "month": 11,
+      "day": 2
+    },
+    "coverId": "20131102_UDS_01",
+    "place": null
+  },
+  {
+    "event": "SuperSonic",
+    "date": {
+      "date": "20130921",
+      "year": 2013,
+      "month": 9,
+      "day": 21
+    },
+    "coverId": "20130921_SuperSonic_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20130810",
+      "year": 2013,
+      "month": 8,
+      "day": 10
+    },
+    "coverId": "20130810_UDS_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20130608",
+      "year": 2013,
+      "month": 6,
+      "day": 8
+    },
+    "coverId": "20130608_UDS_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20130427",
+      "year": 2013,
+      "month": 4,
+      "day": 27
+    },
+    "coverId": "20130427_UDS_01",
+    "place": null
+  },
+  {
+    "event": "WarOfSounds",
+    "date": {
+      "date": "20130216",
+      "year": 2013,
+      "month": 2,
+      "day": 16
+    },
+    "coverId": "20130216_WarOfSounds_01",
+    "place": null
+  },
+  {
+    "event": "WarsawMechanizmVsUDS",
+    "date": {
+      "date": "20130119",
+      "year": 2013,
+      "month": 1,
+      "day": 19
+    },
+    "coverId": "20130119_WarsawMechanizmVsUDS_01",
+    "place": null
+  },
+  {
+    "event": "NeuroReanimacja",
+    "date": {
+      "date": "20121229",
+      "year": 2012,
+      "month": 12,
+      "day": 29
+    },
+    "coverId": "20121229_NeuroReanimacja_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20121123",
+      "year": 2012,
+      "month": 11,
+      "day": 23
+    },
+    "coverId": "20121123_UDS_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20121006",
+      "year": 2012,
+      "month": 10,
+      "day": 6
+    },
+    "coverId": "20121006_UDS_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20120831",
+      "year": 2012,
+      "month": 8,
+      "day": 31
+    },
+    "coverId": "20120831_UDS_01",
+    "place": null
+  },
+  {
+    "event": "UDS",
+    "date": {
+      "date": "20120707",
+      "year": 2012,
+      "month": 7,
+      "day": 7
+    },
+    "coverId": "20120707_UDS_01",
+    "place": null
+  },
+  {
+    "event": "Double_Impact",
+    "date": {
+      "date": "20120409",
+      "year": 2012,
+      "month": 4,
+      "day": 9
+    },
+    "coverId": "20120409_Double_Impact_01",
+    "place": null
+  },
+  {
+    "event": "Ultimate_session_Toruń",
+    "date": {
+      "date": "20120323",
+      "year": 2012,
+      "month": 3,
+      "day": 23
+    },
+    "coverId": "20120323_Ultimate_session_Toruń_01",
+    "place": null
+  },
+  {
+    "event": "Hemuguguli",
+    "date": {
+      "date": "20120302",
+      "year": 2012,
+      "month": 3,
+      "day": 2
+    },
+    "coverId": "20120302_Hemuguguli_01",
+    "place": null
+  },
+  {
+    "event": "UDS_6",
+    "date": {
+      "date": "20111126",
+      "year": 2011,
+      "month": 11,
+      "day": 26
+    },
+    "coverId": "20111126_UDS_6_01",
+    "place": null
+  },
+  {
+    "event": "Prototyp",
+    "date": {
+      "date": "20110910",
+      "year": 2011,
+      "month": 9,
+      "day": 10
+    },
+    "coverId": "20110910_Prototyp_01",
+    "place": null
+  },
+  {
+    "event": "UDS_4",
+    "date": {
+      "date": "20110409",
+      "year": 2011,
+      "month": 4,
+      "day": 9
+    },
+    "coverId": "20110409_UDS_4_01",
+    "place": null
+  },
+  {
+    "event": "UDS_3",
+    "date": {
+      "date": "20110226",
+      "year": 2011,
+      "month": 2,
+      "day": 26
+    },
+    "coverId": "20110226_UDS_3_01",
+    "place": null
+  },
+  {
+    "event": "UDS_2",
+    "date": {
+      "date": "20101127",
+      "year": 2010,
+      "month": 11,
+      "day": 27
+    },
+    "coverId": "20101127_UDS_2_01",
+    "place": null
+  }
+]

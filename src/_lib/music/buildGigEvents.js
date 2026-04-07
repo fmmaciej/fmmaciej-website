@@ -137,11 +137,12 @@ function normalizeGigItem(item) {
     }
 
     if (item.image) {
-        const thumb = pickVariantUrl(item.image.variants, item.image.thumb || 480);
-        const thumb480 = pickVariantUrl(item.image.variants, 480) || thumb;
-        const thumb960 = pickVariantUrl(item.image.variants, 960) || thumb || thumb480;
-        const display1600 = pickVariantUrl(item.image.variants, 1600)
-            || pickVariantUrl(item.image.variants, item.image.display || 1600)
+        const prefix = item.image.prefix || GIG_IMAGE_PREFIX;
+        const thumb = pickVariantUrl(item.image.variants, item.image.thumb || 480, prefix);
+        const thumb480 = pickVariantUrl(item.image.variants, 480, prefix) || thumb;
+        const thumb960 = pickVariantUrl(item.image.variants, 960, prefix) || thumb || thumb480;
+        const display1600 = pickVariantUrl(item.image.variants, 1600, prefix)
+            || pickVariantUrl(item.image.variants, item.image.display || 1600, prefix)
             || thumb960
             || thumb480;
 
@@ -221,7 +222,10 @@ module.exports = function buildGigEvents(rawGigs, options = {}) {
                 return String(a.rel || a.src || "").localeCompare(String(b.rel || b.src || ""));
             });
 
-            const cover = ev.items.find((item) => (item.seq ?? 1) === 1) || ev.items[0];
+            const preferredCoverId = ev.items.find((item) => item.coverId)?.coverId || null;
+            const cover = ev.items.find((item) => (item.image?.id || item.rel) === preferredCoverId)
+                || ev.items.find((item) => (item.seq ?? 1) === 1)
+                || ev.items[0];
             ev.cover = {
                 src: cover.src,
                 thumb480: cover.thumb480 || cover.thumb || cover.src,
