@@ -27,7 +27,7 @@
         },
 
         {
-            "cmd": "clang++ -std=c++23 -Wall -Wextra -pedantic src/app.cpp -o bin/app",
+            "cmd": "clang++ -std=c++23 -Wall -Wextra -pedantic src/app.cpp",
             "type": "text",
             "output": [
                 "src/app.cpp:45:10: note: ‘std::expected’ is a C++23 extension",

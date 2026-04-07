@@ -8,6 +8,7 @@
                 "poster_02.jpg"
             ]
         },
+
         {
             "cmd": "feh poster_01.jpg",
             "type": "text",
