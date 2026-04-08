@@ -1,118 +1,18 @@
 (() => {
-    function normalizePathname(pathname) {
-        if (!pathname || pathname === '/') return '/';
-
-        return pathname.endsWith('/') ? pathname : `${pathname}/`;
-    }
-
-    function buildTerminalPath(pathname) {
-        const normalized = normalizePathname(pathname);
-        const rawSegments = normalized.split('/').filter(Boolean);
-        const parts = [
-            { href: '/', label: '/home/fm' }
-        ];
-
-        let currentPath = '';
-        rawSegments.forEach((segment) => {
-            currentPath += `/${segment}`;
-            parts.push({
-                href: `${currentPath}/`,
-                label: `/${segment}`
-            });
-        });
-
-        return parts;
-    }
-
-    function toShellPath(pathname) {
-        return buildTerminalPath(pathname)
-            .map((part) => part.label)
-            .join('');
-    }
-
-    function buildShellPathFromLabels(labels = []) {
-        let currentShellPath = '';
-
-        return labels.map((label, index) => {
-            currentShellPath = index === 0 ? label : `${currentShellPath}${label}`;
-            return currentShellPath;
-        });
-    }
-
-    function isInternalNav(anchor, event) {
-        if (!anchor || anchor.target === '_blank' || event.metaKey || event.ctrlKey || event.shiftKey) return false;
-        const url = new URL(anchor.href, location.href);
-
-        return url.origin === location.origin;
-    }
-
-    function isMailLink(anchor, event) {
-        if (!anchor || event.metaKey || event.ctrlKey || event.shiftKey) return false;
-        if (anchor.dataset.terminalBypass === '1') return false;
-
-        return (anchor.getAttribute('href') || '').startsWith('mailto:');
-    }
-
-    function isDownloadLink(anchor, event) {
-        if (!anchor || event.metaKey || event.ctrlKey || event.shiftKey) return false;
-        if (anchor.dataset.terminalBypass === '1') return false;
-        if (anchor.hasAttribute('download')) return true;
-
-        try {
-            const url = new URL(anchor.href, location.href);
-            return /\.(zip|pdf|dmg|pkg|tar|tgz|gz|bz2|xz|7z)$/i.test(url.pathname);
-        } catch (_) {
-            return false;
-        }
-    }
-
-    function isOpenableWebLink(anchor, event) {
-        if (!anchor || event.metaKey || event.ctrlKey || event.shiftKey) return false;
-        if (anchor.dataset.terminalBypass === '1') return false;
-
-        const href = anchor.getAttribute('href') || '';
-        if (!/^https?:\/\//i.test(href)) return false;
-
-        try {
-            const url = new URL(anchor.href, location.href);
-            return url.origin !== location.origin || anchor.target === '_blank';
-        } catch (_) {
-            return false;
-        }
-    }
-
-    function getMailAddress(anchor) {
-        const href = anchor?.href || '';
-        if (!href.startsWith('mailto:')) return 'mailbox';
-
-        try {
-            const url = new URL(href);
-            return decodeURIComponent(url.pathname || 'mailbox');
-        } catch (_) {
-            return href.replace(/^mailto:/, '') || 'mailbox';
-        }
-    }
-
-    function getDownloadDisplayPath(anchor) {
-        const href = anchor?.href;
-        if (!href) return '/home/fm/assets/download';
-
-        try {
-            const url = new URL(href, location.href);
-            const fileName = decodeURIComponent(url.pathname.split('/').filter(Boolean).pop() || 'download');
-            return `/home/fm/assets/${fileName}`;
-        } catch (_) {
-            return '/home/fm/assets/download';
-        }
-    }
-
-    function resolveInternalShellPath(anchor) {
-        if (anchor?.dataset?.terminalCd) {
-            return anchor.dataset.terminalCd;
-        }
-
-        return toShellPath(new URL(anchor.href, location.href).pathname);
-    }
+    const utils = window.terminalActionUtils || {};
+    const {
+        buildTerminalPath,
+        buildShellPathFromLabels,
+        isInternalNav,
+        isBlogPostPath,
+        isMailLink,
+        isDownloadLink,
+        isOpenableWebLink,
+        getMailAddress,
+        getDownloadDisplayPath,
+        resolveInternalShellPath,
+        toBlogSourcePath
+    } = utils;
 
     const actions = [
         {
@@ -135,6 +35,13 @@
             buildCommand: (anchor) => `open "${anchor.href}"`,
             mode: 'native',
             resumeCycleAfterMs: 1200
+        },
+        {
+            name: 'blog-post',
+            match: (anchor, event) => isInternalNav(anchor, event) && isBlogPostPath(new URL(anchor.href, location.href).pathname),
+            buildCommand: (anchor) => `cat ${toBlogSourcePath(anchor)}`,
+            mode: 'transition',
+            href: (anchor) => anchor.href
         },
         {
             name: 'internal-navigation',
@@ -186,8 +93,8 @@
 
     window.terminalActions = {
         actions,
-        buildTerminalPath,
-        buildShellPathFromLabels,
+        buildTerminalPath: buildTerminalPath || ((pathname) => [{ href: pathname || '/', label: pathname || '/home/fm' }]),
+        buildShellPathFromLabels: buildShellPathFromLabels || ((labels = []) => labels),
         resolveAction,
         triggerNativeLink,
         commands
