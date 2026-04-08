@@ -179,43 +179,82 @@
         });
     }
 
+    function findOpenGroup(groups) {
+        return groups.find((group) => group.open);
+    }
+
+    function setActiveGroup(groups, activeGroup) {
+        groups.forEach((group) => group.classList.toggle('is-active', group === activeGroup));
+    }
+
+    function syncCollectionHash(slug) {
+        try {
+            if (slug) history.replaceState(null, '', `#${slug}`);
+            else history.replaceState(null, '', location.pathname);
+        } catch (_) {}
+    }
+
+    function syncCollectionSuffix(suffix, options, slug, label) {
+        if (!suffix) return;
+        suffix.innerHTML = slug ? options.formatCrumb(slug, label) : '';
+    }
+
+    function createCollectionState(groups, suffix, options) {
+        let activeId = null;
+
+        return {
+            getActiveId() {
+                return activeId;
+            },
+            apply(group) {
+                if (!group) {
+                    activeId = null;
+                    syncCollectionSuffix(suffix, options, null, null);
+                    syncCollectionHash(null);
+                    setActiveGroup(groups, null);
+                    return;
+                }
+
+                activeId = group.id;
+                syncCollectionSuffix(
+                    suffix,
+                    options,
+                    group.dataset.slug,
+                    (group.dataset.group || '').toLowerCase()
+                );
+                syncCollectionHash(group.dataset.slug);
+                setActiveGroup(groups, group);
+            }
+        };
+    }
+
+    function openGroupWithMotion(summary, group, content, state) {
+        group.dataset.animating = '1';
+        state.apply(group);
+        startDots(summary, group);
+        group._openDelay = window.setTimeout(() => {
+            group._openDelay = null;
+            animateOpen(group, content, () => {
+                stopDots(group);
+                delete group.dataset.animating;
+            });
+        }, prefersReducedMotion ? 0 : OPEN_DOTS_MS);
+    }
+
+    function closeGroupWithMotion(group, content, groups, state) {
+        group.dataset.animating = '1';
+        animateClose(group, content, () => {
+            delete group.dataset.animating;
+            state.apply(findOpenGroup(groups));
+        });
+    }
+
     function initCollectionPage(root, options, cleanups) {
         const suffix = root.querySelector(options.suffixSelector);
 
         const groups = Array.from(root.querySelectorAll('details.group'));
         if (!groups.length) return;
-
-        let activeId = null;
-
-        const setBreadcrumb = (slug, label) => {
-            if (suffix) {
-                suffix.innerHTML = slug ? options.formatCrumb(slug, label) : '';
-            }
-            try {
-                if (slug) history.replaceState(null, '', `#${slug}`);
-                else history.replaceState(null, '', location.pathname);
-            } catch (_) {}
-        };
-
-        const applyBreadcrumbForGroup = (group) => {
-            if (!group) {
-                activeId = null;
-                setBreadcrumb(null, null);
-                setActive(null);
-                return;
-            }
-
-            activeId = group.id;
-            setBreadcrumb(group.dataset.slug, (group.dataset.group || '').toLowerCase());
-            setActive(group);
-        };
-
-        const findOpenGroup = () => groups.find((group) => group.open);
-
-        const setActive = (el) => {
-            groups.forEach((group) => group.classList.remove('is-active'));
-            if (el) el.classList.add('is-active');
-        };
+        const state = createCollectionState(groups, suffix, options);
 
         const clickHandlers = [];
         root.querySelectorAll('details.group > summary').forEach((summary) => {
@@ -224,8 +263,6 @@
 
                 const wrap = summary.parentElement;
                 const content = wrap?.querySelector('.group-items');
-                const slug = wrap?.dataset?.slug;
-                const label = (wrap?.dataset?.group || '').toLowerCase();
 
                 if (!wrap || wrap.dataset.animating === '1') {
                     return;
@@ -234,25 +271,11 @@
                 stopGroupMotion(wrap);
 
                 if (wrap.open) {
-                    wrap.dataset.animating = '1';
-                    animateClose(wrap, content, () => {
-                        delete wrap.dataset.animating;
-                        applyBreadcrumbForGroup(findOpenGroup());
-                    });
+                    closeGroupWithMotion(wrap, content, groups, state);
                     return;
                 }
 
-                wrap.dataset.animating = '1';
-                setBreadcrumb(slug, label);
-                setActive(wrap);
-                startDots(summary, wrap);
-                wrap._openDelay = window.setTimeout(() => {
-                    wrap._openDelay = null;
-                    animateOpen(wrap, content, () => {
-                        stopDots(wrap);
-                        delete wrap.dataset.animating;
-                    });
-                }, prefersReducedMotion ? 0 : OPEN_DOTS_MS);
+                openGroupWithMotion(summary, wrap, content, state);
             };
 
             summary.addEventListener('click', onClick);
@@ -268,17 +291,17 @@
                 .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0));
 
             if (!visible.length) {
-                const openGroup = findOpenGroup();
+                const openGroup = findOpenGroup(groups);
                 if (!openGroup) {
-                    applyBreadcrumbForGroup(null);
+                    state.apply(null);
                 }
                 return;
             }
 
             const top = (visible.find((entry) => entry.target.open) || visible[0]).target;
 
-            if (top.open && top.id !== activeId) {
-                applyBreadcrumbForGroup(top);
+            if (top.open && top.id !== state.getActiveId()) {
+                state.apply(top);
             }
         }, {
             root: null,
@@ -290,16 +313,15 @@
 
         const slug = (location.hash || '').replace(/^#/, '');
         if (!slug) {
-            setBreadcrumb(null, null);
+            state.apply(null);
         } else {
             const el = root.querySelector('#group-' + slug);
             if (el) {
                 if (!el.open) el.open = true;
                 el.scrollIntoView({ behavior: 'instant', block: 'start' });
-                setBreadcrumb(slug, (el.dataset.group || '').toLowerCase());
-                setActive(el);
+                state.apply(el);
             } else {
-                setBreadcrumb(null, null);
+                state.apply(null);
             }
         }
 

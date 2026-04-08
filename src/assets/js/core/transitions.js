@@ -135,7 +135,9 @@
         }
     }
 
-    async function navigate(url) {
+    async function navigate(url, options = {}) {
+        const pushHistory = options.pushHistory !== false;
+
         if (window.closeDrawer) window.closeDrawer();
 
         if (!supportsVTA) { location.href = url; return; }
@@ -178,7 +180,9 @@
                 curTerminal.remove();
             }
 
-            history.pushState(null, '', url);
+            if (pushHistory) {
+                history.pushState(null, '', url);
+            }
 
             if (window.initTerminal) window.initTerminal(document);
             if (window.initNav) window.initNav(document);
@@ -204,7 +208,7 @@
                 }
 
                 if (window.closeDrawer) window.closeDrawer();
-                await navigate(action.href || a.href);
+                await navigate(action.href || a.href, { pushHistory: true });
             };
 
             if (window.playTerminalCommand && action.command) {
@@ -224,7 +228,7 @@
 
     window.addEventListener('popstate', () => {
         if (window.closeDrawer) window.closeDrawer();
-        navigate(location.href);
+        navigate(location.href, { pushHistory: false });
     });
 
     if (window.initTerminal) window.initTerminal(document);
