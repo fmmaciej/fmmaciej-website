@@ -1,0 +1,92 @@
+<h1>s01e02</h1>
+<h2>Zadanie</h2>
+<p>Musisz namierzyć, która z podejrzanych osób z poprzedniego zadania <strong>przebywała blisko jednej z elektrowni atomowych.</strong> Musisz także ustalić jej <strong>poziom dostępu</strong> oraz informację koło której elektrowni widziano tę osobę. Zebrane tak dane prześlij do <code>/verify</code>. Nazwa zadania to <strong>findhim</strong>.</p>
+<h3>Skąd wziąć dane?</h3>
+<ol>
+<li>
+<p><strong>Lista elektrowni + ich kody</strong></p>
+<ul>
+<li>Pobierz JSON z listą elektrowni (wraz z kodami identyfikacyjnymi) z:
+<ul>
+<li><code>https://hub.ag3nts.org/data/tutaj-twój-klucz/findhim_locations.json</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Gdzie widziano konkretną osobę (lokalizacje)</strong></p>
+<ul>
+<li>Endpoint: <code>https://hub.ag3nts.org/api/location</code></li>
+<li>Metoda: <code>POST</code></li>
+<li>Body: <code>raw JSON</code> (nie form-data!)</li>
+<li>Zawsze wysyłasz pole <code>apikey</code> oraz dane osoby (<code>name</code>, <code>surname</code>)</li>
+<li>Odpowiedź: lista współrzędnych (koordynatów), w których daną osobę widziano.</li>
+</ul>
+<p>Przykładowy payload:</p>
+<pre><code class="language-json">{
+  &quot;apikey&quot;: &quot;tutaj-twój-klucz&quot;,
+  &quot;name&quot;: &quot;Jan&quot;,
+  &quot;surname&quot;: &quot;Kowalski&quot;
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Jaki poziom dostępu ma wskazana osoba</strong></p>
+<ul>
+<li>Endpoint: <code>https://hub.ag3nts.org/api/accesslevel</code></li>
+<li>Metoda: <code>POST</code></li>
+<li>Body: <code>raw JSON</code></li>
+<li>Wymagane: <code>apikey</code>, <code>name</code>, <code>surname</code> oraz <code>birthYear</code> (rok urodzenia bierzesz z danych z poprzedniego zadania, np. z CSV)</li>
+</ul>
+<p>Przykładowy payload:</p>
+<pre><code class="language-json">{
+  &quot;apikey&quot;: &quot;tutaj-twój-klucz&quot;,
+  &quot;name&quot;: &quot;Jan&quot;,
+  &quot;surname&quot;: &quot;Kowalski&quot;,
+  &quot;birthYear&quot;: 1987
+}
+</code></pre>
+</li>
+</ol>
+<h4>Co masz zrobić krok po kroku?</h4>
+<p>Dla każdej podejrzanej osoby:</p>
+<ol>
+<li>Pobierz listę jej lokalizacji z <code>/api/location</code>.</li>
+<li>Porównaj otrzymane koordynaty z koordynatami elektrowni z <code>findhim_locations.json</code>.</li>
+<li>Jeśli lokalizacja jest bardzo blisko jednej z elektrowni — masz kandydata.</li>
+<li>Dla tej osoby pobierz <code>accessLevel</code> z <code>/api/accesslevel</code>.</li>
+<li>Zidentyfikuj <strong>kod elektrowni</strong> (format: <code>PWR0000PL</code>) i przygotuj raport.</li>
+</ol>
+<h4>Jak wysłać odpowiedź?</h4>
+<p>Wysyłasz ją metodą <strong>POST</strong> na <code>https://hub.ag3nts.org/verify</code>.</p>
+<p>Nazwa zadania to: <strong>findhim</strong>.</p>
+<p>Pole <code>answer</code> to <strong>pojedynczy obiekt</strong> zawierający:</p>
+<ul>
+<li><code>name</code> – imię podejrzanego</li>
+<li><code>surname</code> – nazwisko podejrzanego</li>
+<li><code>accessLevel</code> – poziom dostępu z <code>/api/accesslevel</code></li>
+<li><code>powerPlant</code> – kod elektrowni z <code>findhim_locations.json</code> (np. <code>PWR1234PL</code>)</li>
+</ul>
+<p>Przykład JSON do wysłania na <code>/verify</code>:</p>
+<pre><code class="language-json">{
+  &quot;apikey&quot;: &quot;tutaj-twój-klucz&quot;,
+  &quot;task&quot;: &quot;findhim&quot;,
+  &quot;answer&quot;: {
+    &quot;name&quot;: &quot;Jan&quot;,
+    &quot;surname&quot;: &quot;Kowalski&quot;,
+    &quot;accessLevel&quot;: 3,
+    &quot;powerPlant&quot;: &quot;PWR1234PL&quot;
+  }
+}
+</code></pre>
+<h4>Nagroda</h4>
+<p>Jeśli Twoja odpowiedź będzie poprawna, Hub odeśle Ci flagę w formacie {FLG:JAKIES_SLOWO} - flagę należy wpisać pod adresem: <a href="https://hub.ag3nts.org/" target="_blank" rel="noopener">https://hub.ag3nts.org/</a> (wejdź na tą stronę w swojej przeglądarce, zaloguj się kontem którym robiłeś zakup kursu i wpisz flagę w odpowiednie pole na stronie).</p>
+<h3>Wskazówki</h3>
+<ul>
+<li><strong>Dane wejściowe z poprzedniego zadania</strong> — lista podejrzanych pochodzi z zadania S01E01. Potrzebujesz imienia, nazwiska i roku urodzenia każdej osoby — warto zachować wynik S01E01 w formie nadającej się do ponownego użycia. Pamiętaj że chodzi tylko o osoby które wysyłałeś jako podejrzanych do Hubu.</li>
+<li><strong>Obliczanie odległości geograficznej</strong> — API zwraca współrzędne (latitude/longitude). Żeby sprawdzić, czy dana lokalizacja jest &quot;bardzo blisko&quot; elektrowni, użyj wzoru na odległość na kuli ziemskiej (np. <a href="https://en.wikipedia.org/wiki/Haversine_formula" target="_blank" rel="noopener">Haversine</a>). LLM pomoże Ci w napisaniu takiej funkcji. Szukamy osoby która była najbliżej którejś elektrowni.</li>
+<li><strong>Wykorzystaj Function Calling</strong> — to technika, w której model LLM zamiast odpowiadać tekstem wywołuje zdefiniowane przez Ciebie funkcje (narzędzia). Opisujesz narzędzia w formacie JSON Schema (nazwa, opis, parametry), a model sam decyduje, które wywołać i z jakimi argumentami. Ty obsługujesz wywołania i zwracasz wyniki z powrotem do modelu. W tym zadaniu Function Calling sprawdza się szczególnie dobrze: agent może samodzielnie iterować przez listę podejrzanych, odpytywać kolejne endpointy i wysłać gotową odpowiedź — bez sztywnego kodowania kolejności kroków w kodzie.</li>
+<li><strong>Format <code>birthYear</code></strong> — endpoint <code>/api/accesslevel</code> oczekuje roku urodzenia jako liczby całkowitej (np. <code>1987</code>). Jeśli Twoje dane zawierają pełną datę (np. <code>&quot;1987-08-07&quot;</code>), pamiętaj o wyciągnięciu samego roku przed wysłaniem żądania.</li>
+<li><strong>Zabezpieczenie pętli agenta</strong> — jeśli stosujesz podejście agentowe z Function Calling, ustal maksymalną liczbę iteracji (np. 10-15), żeby uchronić się przed nieskończoną pętlą w razie błędu modelu.</li>
+<li><strong>Wybór modelu</strong> - jeśli Twój agent myli się lub pracuje w kółko nie podając prawidłowej odpowiedzi, spróbuj użyć mocniejszego modelu lub lepiej sformułować prompt systemowy. W tym zadaniu dobrze sprawdza się na przykład model <code>gpt-5-mini</code> lub jego mocniejsza wersja <code>gpt-5</code>.</li>
+</ul>

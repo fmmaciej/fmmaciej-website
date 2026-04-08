@@ -1,0 +1,62 @@
+<h1>s01e01</h1>
+<h2>Zadanie</h2>
+<p>Pobierz listę osób, które przeżyły 'Wielką Korektę' i które współpracują z systemem. Znajdziesz ją pod linkiem:
+<a href="https://hub.ag3nts.org/data/tutaj-tw%C3%B3j-klucz/people.csv" target="_blank" rel="noopener">https://hub.ag3nts.org/data/tutaj-twój-klucz/people.csv</a></p>
+<p>Wiemy, że do organizacji transportów między elektrowniami angażowani są ludzie, którzy:</p>
+<ul>
+<li>są mężczyznami, którzy teraz w 2026 roku mają między 20, a 40 lat</li>
+<li>urodzonych w Grudziądzu</li>
+<li>pracują w branży transportowej</li>
+</ul>
+<p>Każdą z potencjalnych osób musisz odpowiednio otagować. Mamy do dyspozycji następujące tagi:</p>
+<ul>
+<li>IT</li>
+<li>transport</li>
+<li>edukacja</li>
+<li>medycyna</li>
+<li>praca z ludźmi</li>
+<li>praca z pojazdami</li>
+<li>praca fizyczna</li>
+</ul>
+<p>Jedna osoba może mieć wiele tagów. Nas interesują tylko ludzie pracujący w transporcie, którzy spełniają też poprzednie warunki.</p>
+<p>Prześlij nam listę osób, którymi powinniśmy się zainteresować. Oczekujemy formatu odpowiedzi jak poniżej, wysłanego na adres <a href="https://hub.ag3nts.org/verify" target="_blank" rel="noopener">https://hub.ag3nts.org/verify</a></p>
+<p>Nazwa zadania to: <strong>people</strong>.</p>
+<pre><code class="language-json">{
+       &quot;apikey&quot;: &quot;tutaj-twój-klucz-api&quot;,
+       &quot;task&quot;: &quot;people&quot;,
+       &quot;answer&quot;: [
+         {
+           &quot;name&quot;: &quot;Jan&quot;,
+           &quot;surname&quot;: &quot;Kowalski&quot;,
+           &quot;gender&quot;: &quot;M&quot;,
+           &quot;born&quot;: 1987,
+           &quot;city&quot;: &quot;Warszawa&quot;,
+           &quot;tags&quot;: [&quot;tag1&quot;, &quot;tag2&quot;]
+         },
+         {
+           &quot;name&quot;: &quot;Anna&quot;,
+           &quot;surname&quot;: &quot;Nowak&quot;,
+           &quot;gender&quot;: &quot;F&quot;,
+           &quot;born&quot;: 1993,
+           &quot;city&quot;: &quot;Grudziądz&quot;,
+           &quot;tags&quot;: [&quot;tagA&quot;, &quot;tagB&quot;, &quot;tagC&quot;]
+         }
+       ]
+     }
+</code></pre>
+<h3>Co należy zrobić w zadaniu?</h3>
+<ol>
+<li><strong>Pobierz dane z hubu</strong> - plik <code>people.csv</code> dostępny pod linkiem z treści zadania (wstaw swój klucz API z <a href="https://hub.ag3nts.org/" target="_blank" rel="noopener">https://hub.ag3nts.org/</a>). Plik zawiera dane osobowe wraz z opisem stanowiska pracy (<code>job</code>).</li>
+<li><strong>Przefiltruj dane</strong> - zostaw wyłącznie osoby spełniające wszystkie kryteria: płeć, miejsce urodzenia, wiek.</li>
+<li><strong>Otaguj zawody modelem językowym</strong> - wyślij opisy stanowisk (<code>job</code>) do LLM i poproś o przypisanie tagów z listy dostępnej w zadaniu. Użyj mechanizmu Structured Output, aby wymusić odpowiedź modelu w określonym formacie JSON. Szczegóły we Wskazówkach.</li>
+<li><strong>Wybierz odpowiednie osoby</strong> - z otagowanych rekordów wybierz wyłącznie te z tagiem <code>transport</code>.</li>
+<li><strong>Wyślij odpowiedź</strong> - prześlij tablicę obiektów na adres <code>https://hub.ag3nts.org/verify</code> w formacie pokazanym powyżej (nazwa zadania: <code>people</code>).</li>
+<li><strong>Zdobycie flagi</strong> - jeśli wysłane dane będą poprawne, Hub w odpowiedzi odeśle flagę w formacie {FLG:JAKIES_SLOWO} - flagę należy wpisać pod adresem: <a href="https://hub.ag3nts.org/" target="_blank" rel="noopener">https://hub.ag3nts.org/</a> (wejdź na tą stronę w swojej przeglądarce, zaloguj się kontem którym robiłeś zakup kursu i wpisz flagę w odpowiednie pole na stronie)</li>
+</ol>
+<h3>Wskazówki</h3>
+<ul>
+<li><strong>Structured Output - cel i sposób użycia:</strong> Celem zadania jest zastosowanie mechanizmu Structured Output przy klasyfikacji zawodów przez LLM. Polega on na wymuszeniu odpowiedzi modelu w ściśle określonym formacie JSON przez przekazanie schematu (JSON Schema) w polu <code>response_format</code> wywołania API. Dokumentacja: <a href="https://platform.openai.com/docs/guides/structured-outputs#supported-schemas" target="_blank" rel="noopener">OpenAI</a>, <a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs" target="_blank" rel="noopener">Anthropic</a>, <a href="https://ai.google.dev/gemini-api/docs/structured-output?example=recipe" target="_blank" rel="noopener">Gemini</a>. Zadanie da się rozwiązać bez Structured Output, na przykład prosząc model o zwrócenie JSON-a i parsując go ręcznie - ale Structured Output eliminuje całą klasę błędów. Możesz też użyć bibliotek jak <strong>Instructor</strong> (<a href="https://python.useinstructor.com/" target="_blank" rel="noopener">Python</a>/<a href="https://js.useinstructor.com/" target="_blank" rel="noopener">JS/TypeScript</a>), które obsługują ten mechanizm za Ciebie.</li>
+<li><strong>Batch tagging - jedno wywołanie dla wielu rekordów:</strong> Zamiast wywoływać LLM osobno dla każdej osoby, możesz na przykład wysłać w jednym żądaniu ponumerowaną listę opisów stanowisk i poprosić o zwrócenie listy obiektów z numerem rekordu i przypisanymi tagami. Znacznie zredukuje to liczbę wywołań API.</li>
+<li><strong>Opisy tagów pomagają modelowi:</strong> Do każdej kategorii dołącz krótki opis zakresu - pomaga to modelowi poprawnie sklasyfikować niejednoznaczne stanowiska.</li>
+<li><strong>Format pól w odpowiedzi:</strong> Pole <code>born</code> to liczba całkowita (sam rok urodzenia). Pole <code>tags</code> to tablica stringów, nie jeden string z przecinkami.</li>
+</ul>

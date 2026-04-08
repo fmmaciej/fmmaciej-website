@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en" class="preload">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script>
+        (function(){
+            var KEY='theme';
+            var saved = localStorage.getItem(KEY);
+            if(saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+            } else {
+                // brak wyboru - użyj systemowego
+                var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            }
+        })();
+    </script>
+
+    <title>AIDevs4 s01e02: findhim</title>
+    <meta name="description" content="FM - software engineer. Minimal terminal-style personal site." />
+
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="8" width="64" height="64" fill="%23000"/><text x="50%" y="56%" text-anchor="middle" font-family="monospace" font-size="26" fill="white">FM</text></svg>' />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/assets/css/effects/boot.css" />
+    <link rel="stylesheet" href="/assets/css/base/global.css" />
+    <link rel="stylesheet" href="/assets/css/components/icons.css" />
+    <link rel="stylesheet" href="/assets/css/base/layout.css" />
+    <link rel="stylesheet" href="/assets/css/effects/markdown.css" />
+    <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+    <link rel="stylesheet" href="/assets/css/components/page_loader.css" />
+    <link rel="stylesheet" href="/assets/css/components/page-content.css" />
+    <link rel="stylesheet" href="/assets/css/base/root.css" />
+    <link rel="stylesheet" href="/assets/css/components/terminal.css" />
+    <link rel="stylesheet" href="/assets/css/effects/transitions.css" />
+    
+        
+    <link rel="stylesheet" href="/assets/css/sections/blog-post.css" data-page-style />
+        
+    
+</head>
+
+<body>
+    <div class="wrap">
+
+    <header>
+    <a href="/" class="no-underline"><strong>FM</strong></a>
+    <nav class="primary" aria-label="Primary navigation">
+        <div class="primary-links">
+            <a href="/">/me</a>
+            <a href="/projects/">/projects</a>
+            <a href="/blog/">/blog</a>
+            <a href="/music/">/music</a>
+            <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
+        </div>
+        <button class="hamburger" id="hamburger" type="button" aria-controls="mobileDrawer" aria-expanded="false" aria-label="Open menu">
+            MENU<i class="fas fa-bars"></i>
+        </button>
+
+        <button class="theme-toggle" id="themeToggle" type="button" title="Toggle theme" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+    <div style="clear:both"></div>
+    </header>
+
+    
+    
+        <div class="terminal-box" data-terminal="/assets/terminal/default.json">
+            <div class="terminal-viewport">
+                <div class="terminal-meta-line">
+                    <div class="terminal-location">
+                        <nav class="terminal-path" id="terminalPath" aria-label="Current path"></nav><span id="terminalPathSuffix" class="terminal-path-suffix"></span>
+                    </div>
+                    <div class="terminal-meta">
+                        <span class="terminal-session">[fm@void]</span>
+                        <span id="terminalClock" class="terminal-clock"></span>
+                    </div>
+                </div>
+                <div class="terminal-command-line">
+                    <span class="prompt-mark">&gt;</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
+                </div>
+            </div>
+        </div>
+    
+
+    <div class="content-host">
+        <main>
+            
+<article>
+    <nav class="terminal-path-source" hidden aria-hidden="true">
+        <a href="/" title="Jump to: home">/home/fm</a>
+        <a href="/blog/" title="Jump to: blog">/blog</a>
+        <span>/AIDevs4 s01e02: findhim</span>
+    </nav>
+    <header class="blog-entry-header">
+        <div class="blog-entry-heading-row">
+            <div class="blog-entry-heading-main">
+                <h2 class="blog-entry-title">AIDevs4 s01e02: findhim</h2>
+                
+                <span class="blog-entry-tags">tags: AI, LLM, Python, aidev4</span>
+                
+            </div>
+            <div class="blog-entry-date">10 marca 2026</div>
+        </div>
+        
+        <p class="blog-entry-subtitle">Zadanie: znajdź podejrzanego na podstawie danych lokalizacji</p>
+        
+    </header>
+    <h2>Zadanie</h2>
+<p>Musisz namierzyć, która z podejrzanych osób z poprzedniego zadania <strong>przebywała blisko jednej z elektrowni atomowych.</strong> Musisz także ustalić jej <strong>poziom dostępu</strong> oraz informację koło której elektrowni widziano tę osobę. Zebrane tak dane prześlij do <code>/verify</code>. Nazwa zadania to <strong>findhim</strong>.</p>
+<h3>Skąd wziąć dane?</h3>
+<ol>
+<li>
+<p><strong>Lista elektrowni + ich kody</strong></p>
+<ul>
+<li>Pobierz JSON z listą elektrowni (wraz z kodami identyfikacyjnymi) z:
+<ul>
+<li><code>https://hub.ag3nts.org/data/tutaj-twój-klucz/findhim_locations.json</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Gdzie widziano konkretną osobę (lokalizacje)</strong></p>
+<ul>
+<li>Endpoint: <code>https://hub.ag3nts.org/api/location</code></li>
+<li>Metoda: <code>POST</code></li>
+<li>Body: <code>raw JSON</code> (nie form-data!)</li>
+<li>Zawsze wysyłasz pole <code>apikey</code> oraz dane osoby (<code>name</code>, <code>surname</code>)</li>
+<li>Odpowiedź: lista współrzędnych (koordynatów), w których daną osobę widziano.</li>
+</ul>
+<p>Przykładowy payload:</p>
+<pre><code class="language-json">{
+  &quot;apikey&quot;: &quot;tutaj-twój-klucz&quot;,
+  &quot;name&quot;: &quot;Jan&quot;,
+  &quot;surname&quot;: &quot;Kowalski&quot;
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Jaki poziom dostępu ma wskazana osoba</strong></p>
+<ul>
+<li>Endpoint: <code>https://hub.ag3nts.org/api/accesslevel</code></li>
+<li>Metoda: <code>POST</code></li>
+<li>Body: <code>raw JSON</code></li>
+<li>Wymagane: <code>apikey</code>, <code>name</code>, <code>surname</code> oraz <code>birthYear</code> (rok urodzenia bierzesz z danych z poprzedniego zadania, np. z CSV)</li>
+</ul>
+<p>Przykładowy payload:</p>
+<pre><code class="language-json">{
+  &quot;apikey&quot;: &quot;tutaj-twój-klucz&quot;,
+  &quot;name&quot;: &quot;Jan&quot;,
+  &quot;surname&quot;: &quot;Kowalski&quot;,
+  &quot;birthYear&quot;: 1987
+}
+</code></pre>
+</li>
+</ol>
+<h4>Co masz zrobić krok po kroku?</h4>
+<p>Dla każdej podejrzanej osoby:</p>
+<ol>
+<li>Pobierz listę jej lokalizacji z <code>/api/location</code>.</li>
+<li>Porównaj otrzymane koordynaty z koordynatami elektrowni z <code>findhim_locations.json</code>.</li>
+<li>Jeśli lokalizacja jest bardzo blisko jednej z elektrowni — masz kandydata.</li>
+<li>Dla tej osoby pobierz <code>accessLevel</code> z <code>/api/accesslevel</code>.</li>
+<li>Zidentyfikuj <strong>kod elektrowni</strong> (format: <code>PWR0000PL</code>) i przygotuj raport.</li>
+</ol>
+<h4>Jak wysłać odpowiedź?</h4>
+<p>Wysyłasz ją metodą <strong>POST</strong> na <code>https://hub.ag3nts.org/verify</code>.</p>
+<p>Nazwa zadania to: <strong>findhim</strong>.</p>
+<p>Pole <code>answer</code> to <strong>pojedynczy obiekt</strong> zawierający:</p>
+<ul>
+<li><code>name</code> – imię podejrzanego</li>
+<li><code>surname</code> – nazwisko podejrzanego</li>
+<li><code>accessLevel</code> – poziom dostępu z <code>/api/accesslevel</code></li>
+<li><code>powerPlant</code> – kod elektrowni z <code>findhim_locations.json</code> (np. <code>PWR1234PL</code>)</li>
+</ul>
+<p>Przykład JSON do wysłania na <code>/verify</code>:</p>
+<pre><code class="language-json">{
+  &quot;apikey&quot;: &quot;tutaj-twój-klucz&quot;,
+  &quot;task&quot;: &quot;findhim&quot;,
+  &quot;answer&quot;: {
+    &quot;name&quot;: &quot;Jan&quot;,
+    &quot;surname&quot;: &quot;Kowalski&quot;,
+    &quot;accessLevel&quot;: 3,
+    &quot;powerPlant&quot;: &quot;PWR1234PL&quot;
+  }
+}
+</code></pre>
+<h4>Nagroda</h4>
+<p>Jeśli Twoja odpowiedź będzie poprawna, Hub odeśle Ci flagę w formacie {FLG:JAKIES_SLOWO} - flagę należy wpisać pod adresem: <a href="https://hub.ag3nts.org/" target="_blank" rel="noopener">https://hub.ag3nts.org/</a> (wejdź na tą stronę w swojej przeglądarce, zaloguj się kontem którym robiłeś zakup kursu i wpisz flagę w odpowiednie pole na stronie).</p>
+<h3>Wskazówki</h3>
+<ul>
+<li><strong>Dane wejściowe z poprzedniego zadania</strong> — lista podejrzanych pochodzi z zadania S01E01. Potrzebujesz imienia, nazwiska i roku urodzenia każdej osoby — warto zachować wynik S01E01 w formie nadającej się do ponownego użycia. Pamiętaj że chodzi tylko o osoby które wysyłałeś jako podejrzanych do Hubu.</li>
+<li><strong>Obliczanie odległości geograficznej</strong> — API zwraca współrzędne (latitude/longitude). Żeby sprawdzić, czy dana lokalizacja jest &quot;bardzo blisko&quot; elektrowni, użyj wzoru na odległość na kuli ziemskiej (np. <a href="https://en.wikipedia.org/wiki/Haversine_formula" target="_blank" rel="noopener">Haversine</a>). LLM pomoże Ci w napisaniu takiej funkcji. Szukamy osoby która była najbliżej którejś elektrowni.</li>
+<li><strong>Wykorzystaj Function Calling</strong> — to technika, w której model LLM zamiast odpowiadać tekstem wywołuje zdefiniowane przez Ciebie funkcje (narzędzia). Opisujesz narzędzia w formacie JSON Schema (nazwa, opis, parametry), a model sam decyduje, które wywołać i z jakimi argumentami. Ty obsługujesz wywołania i zwracasz wyniki z powrotem do modelu. W tym zadaniu Function Calling sprawdza się szczególnie dobrze: agent może samodzielnie iterować przez listę podejrzanych, odpytywać kolejne endpointy i wysłać gotową odpowiedź — bez sztywnego kodowania kolejności kroków w kodzie.</li>
+<li><strong>Format <code>birthYear</code></strong> — endpoint <code>/api/accesslevel</code> oczekuje roku urodzenia jako liczby całkowitej (np. <code>1987</code>). Jeśli Twoje dane zawierają pełną datę (np. <code>&quot;1987-08-07&quot;</code>), pamiętaj o wyciągnięciu samego roku przed wysłaniem żądania.</li>
+<li><strong>Zabezpieczenie pętli agenta</strong> — jeśli stosujesz podejście agentowe z Function Calling, ustal maksymalną liczbę iteracji (np. 10-15), żeby uchronić się przed nieskończoną pętlą w razie błędu modelu.</li>
+<li><strong>Wybór modelu</strong> - jeśli Twój agent myli się lub pracuje w kółko nie podając prawidłowej odpowiedzi, spróbuj użyć mocniejszego modelu lub lepiej sformułować prompt systemowy. W tym zadaniu dobrze sprawdza się na przykład model <code>gpt-5-mini</code> lub jego mocniejsza wersja <code>gpt-5</code>.</li>
+</ul>
+
+</article>
+
+        </main>
+    </div>
+
+    <footer>
+        <div>© <span id="year"></span> FM - served plain & simple</div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/organisciak-maciej/" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.github.com/fmmaciej" title="Github" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://stackoverflow.com/users/8387639/maciej-fm" title="Stack Overflow" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-stack-overflow"></i>
+            </a>
+            <a href="https://pl.ra.co/dj/fmpl" title="Resident Advisor" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/icons/ra.png" alt="Resident Advisor">
+            </a>
+            <a href="https://instagram.com/fmmaciej" title="Instagram" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.mixcloud.com/fmmaciej" title="MixCloud" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-mixcloud"></i>
+            </a>
+            <a href="https://www.soundcloud.com/fmmaciej" title="SoundCloud" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-soundcloud"></i>
+            </a>
+        </div>
+    </footer>
+    </div>
+
+    <!-- Drawer + backdrop -->
+    <div class="backdrop" id="backdrop" hidden></div>
+    <aside class="drawer" id="mobileDrawer" aria-hidden="true" aria-label="Mobile menu">
+        <header>
+        <strong>Menu</strong>
+        <button class="close" id="closeDrawer" aria-label="Close menu">×</button>
+        </header>
+        <nav>
+            <a href="/">/me</a>
+            <a href="/projects/">/projects</a>
+            <a href="/blog/">/blog</a>
+            <a href="/music/">/music</a>
+            <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
+        </nav>
+    </aside>
+
+    <script src="/assets/js/core/boot.js" defer></script>
+    <script src="/assets/js/components/loader.js" defer></script>
+    <script src="/assets/js/core/theme.js" defer></script>
+    <script src="/assets/js/components/nav.js" defer></script>
+    <script src="/assets/js/components/collection-page.js" defer></script>
+    <script src="/assets/js/components/terminal-actions-utils.js" defer></script>
+    <script src="/assets/js/components/terminal-actions.js" defer></script>
+    <script src="/assets/js/components/terminal.js" defer></script>
+    
+    <script src="/assets/js/core/transitions.js" defer></script>
+
+    <div id="pageLoader">
+        <span>loading<span class="dots"></span></span>
+    </div>
+
+</body>
+</html>
