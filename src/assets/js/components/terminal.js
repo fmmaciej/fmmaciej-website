@@ -55,12 +55,25 @@ window.initTerminal = function initTerminal(root = document){
         if (!locationEl) return;
 
         const links = Array.from(locationEl.querySelectorAll('a'));
-        const labels = links.map((link) => (link.textContent || '').trim()).filter(Boolean);
+        const labels = links.map((link) => link.dataset.shellPath || (link.textContent || '').trim()).filter(Boolean);
         const shellPaths = buildShellPathFromLabels(labels);
 
         links.forEach((link, index) => {
             link.dataset.terminalCd = shellPaths[index] || '';
         });
+    }
+
+    function normalizeHomeLink(link) {
+        if (!link) return;
+
+        const text = (link.textContent || '').trim();
+        const shellPath = link.dataset.shellPath || '';
+        if (text !== '/home/fm' && shellPath !== '/home/fm') return;
+        if (window.location.pathname === '/') return;
+
+        link.textContent = '~';
+        link.title = 'Jump to: /home/fm';
+        link.dataset.shellPath = '/home/fm';
     }
 
     function renderTerminalPath() {
@@ -69,13 +82,14 @@ window.initTerminal = function initTerminal(root = document){
         const customPathSource = getCustomPathSource();
         if (customPathSource) {
             pathEl.innerHTML = customPathSource.innerHTML;
+            normalizeHomeLink(pathEl.querySelector('a, span'));
             annotateTerminalPathLinks();
             return;
         }
 
         const parts = buildTerminalPath(window.location.pathname);
         pathEl.innerHTML = parts
-            .map((part) => `<a href="${part.href}" title="Jump to: ${part.label.replace(/^\//, '')}">${part.label}</a>`)
+            .map((part) => `<a href="${part.href}" title="Jump to: ${part.title || part.label.replace(/^\//, '')}" data-shell-path="${part.shellPath || ''}">${part.label}</a>`)
             .join('');
         annotateTerminalPathLinks();
     }

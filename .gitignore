@@ -3,11 +3,6 @@
 .AppleDouble
 .LSOverride
 
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
 # Linux
 *~
 
@@ -34,6 +29,7 @@ src/assets/music/photos/incoming/
 
 docs/
 node_modules/
+tmp/
 tools/
 www/
 
