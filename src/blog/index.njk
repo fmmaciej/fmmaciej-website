@@ -1,15 +1,14 @@
 ---
 title: FM — /blog
 layout: layout.njk
-pagination:
-    data: collections.blog
-    size: 5                # 5 wpisów na stronę
-    alias: posts
-permalink: "blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+permalink: /blog/index.html
 terminalFile: /assets/terminal/blog.json
 pageStyles:
+  - /assets/css/components/music-collections.css
   - /assets/css/sections/blog.css
 ---
+
+{% from "macros/music-collections.njk" import renderGroup %}
 
 <div class="page-intro">
 {% importMd "blog/_content/intro/index.md" %}
@@ -18,25 +17,41 @@ pageStyles:
 <nav class="terminal-path-source" hidden aria-hidden="true">
     <a href="/" title="Jump to: home">/home/fm</a>
     <a href="/blog/" title="Jump to: blog">/blog</a>
-    {% if pagination.pageNumber > 0 %}
-    <span>/page-{{ pagination.pageNumber + 1 }}</span>
-    {% endif %}
 </nav>
 
-<ul class="blog-list">
-    {% for post in posts %}
-        <li class="blog-post-item">
-        <a href="{{ post.url }}">{{ post.data.title }}</a>
-        <div class="blog-post-date">{{ post.date | blogDate }}</div>
-        {% if post.data.description %}<div>{{ post.data.description }}</div>{% endif %}
-        </li>
+{% set archive = blogArchive or [] %}
+
+{% if archive.length %}
+<div class="blog-archive">
+    {% for year in archive %}
+    {% call renderGroup(year, year.count, "list") %}
+        <div class="blog-months">
+            {% for month in year.months %}
+            {% call renderGroup(month, month.count, "list") %}
+                <ul class="blog-list">
+                    {% for post in month.items %}
+                    <li class="blog-post-item">
+                        <div class="blog-post-head">
+                            <div class="blog-post-main">
+                                <a href="{{ post.url }}">{{ post.title }}</a>
+                                {% if post.tags and post.tags.length %}
+                                <span class="blog-post-tags">tags: {{ post.tags | join(", ") }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="blog-post-date">{{ post.date | blogDate }}</div>
+                        </div>
+                        {% if post.description %}<div class="blog-post-desc">{{ post.description }}</div>{% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endcall %}
+            {% endfor %}
+        </div>
+    {% endcall %}
     {% endfor %}
-</ul>
-
-<nav class="blog-pagination">
-    {% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">← nowsze</a>{% endif %}
-    {% if pagination.href.previous and pagination.href.next %} · {% endif %}
-    {% if pagination.href.next %}<a href="{{ pagination.href.next }}">starsze →</a>{% endif %}
-</nav>
+</div>
+{% else %}
+<div class="group-empty">No blog posts added yet.</div>
+{% endif %}
 
 <br>

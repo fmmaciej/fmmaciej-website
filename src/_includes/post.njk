@@ -1,20 +1,26 @@
-{% extends "layout.njk" %}
-{% block content %}
+---
+layout: layout.njk
+---
+
 <article>
     <nav class="terminal-path-source" hidden aria-hidden="true">
         <a href="/" title="Jump to: home">/home/fm</a>
         <a href="/blog/" title="Jump to: blog">/blog</a>
         <span>/{{ title }}</span>
     </nav>
-    <header style="margin-bottom:16px">
-        <h1>{{ title }}</h1>
-        <p style="color:var(--muted);font-size:14px">
-        {{ date | blogDate }}
-        {% if tags and tags.length %} • Tags: {{ tags | join(", ") }}{% endif %}
-        </p>
-        {% if description %}<p>{{ description }}</p>{% endif %}
-        <hr style="border:0;border-top:1px solid var(--border)">
+    <header class="blog-entry-header">
+        <div class="blog-entry-heading-row">
+            <div class="blog-entry-heading-main">
+                <h2 class="blog-entry-title">{{ title }}</h2>
+                {% if tags and tags.length %}
+                <span class="blog-entry-tags">tags: {{ tags | join(", ") }}</span>
+                {% endif %}
+            </div>
+            <div class="blog-entry-date">{{ date | blogDate }}</div>
+        </div>
+        {% if description %}
+        <p class="blog-entry-subtitle">{{ description }}</p>
+        {% endif %}
     </header>
     {{ content | safe }}
 </article>
-{% endblock %}
