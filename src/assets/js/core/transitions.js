@@ -12,7 +12,7 @@
         'main > .md',
         'main > p.booking',
         'main > p.presskit',
-        'main > nav.blog-pagination',
+        '.blog-archive > .group',
         '.music-list > li',
         '.blog-list > li',
         '.proj-list > .proj-item',
