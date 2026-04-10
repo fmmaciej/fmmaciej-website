@@ -211,61 +211,43 @@
       "date": "01.2011",
       "duration": "35min",
       "genre": "Drum and bass",
-      "img": "/assets/music/mixes/_images/fm_01-960.webp"
-    },
-    {
-      "group": "Mixcloud",
-      "url": "https://www.mixcloud.com/fmmaciej/podcast-broken-mindz-radio/",
-      "title": "FM | Broken Mindz Radio",
-      "date": "12.2010",
-      "duration": "1h 06min",
-      "genre": "Drum and bass",
-      "img": "/assets/music/mixes/_images/bmr_logo-960.webp"
-    },
-    {
-      "group": "Mixcloud",
-      "url": "https://www.mixcloud.com/fmmaciej/techstep-mix-1-102010/",
-      "title": "Techstep mix 1 (10.2010)",
-      "date": "10.2010",
-      "duration": "58min",
-      "genre": "Drum and bass",
-      "img": "/assets/music/mixes/_images/fm_01-960.webp"
-    },
-    {
-      "group": "Mixcloud",
-      "url": "https://www.mixcloud.com/fmmaciej/dnb-radio-joint-broken-mindz-radio-emisja-23022010/",
-      "title": "FM | DnB Radio Joint | Broken Mindz Radio",
-      "date": "23.02.2010",
-      "duration": "62min",
-      "genre": "Drum and bass",
-      "img": "/assets/music/mixes/_images/bmr_logo-960.webp"
+      "img": "/assets/music/mixes/_images/2011_01-960.webp"
     },
     {
       "group": "SoundCloud",
-      "url": "https://soundcloud.com/fmmaciej/fm-untitled-mix-12-2021",
-      "title": "FM | Untitled Mix",
-      "date": "12.2021",
-      "duration": "52min",
-      "genre": "Electro",
-      "img": "/assets/music/mixes/_images/fm_01-960.webp"
-    },
-    {
-      "group": "SoundCloud",
-      "url": "https://soundcloud.com/fmmaciej/fm-techno-mix-032019",
-      "title": "FM | Techno Mix",
-      "date": "03.2019",
-      "duration": "58min",
+      "url": "https://soundcloud.com/unknowntimeline/unknown-stories-with-fm",
+      "title": "FM | Unknown Stories with FM",
+      "date": "03.04.2026",
+      "duration": "1h 08min",
       "genre": "Techno",
-      "img": "/assets/music/mixes/_images/fm_01-960.webp"
+      "img": "/assets/music/mixes/_images/20260403_UnknownTimeline_01-960.webp"
+    },
+    {
+      "group": "SoundCloud",
+      "url": "https://soundcloud.com/mwtg-podcast/mwtg-498-maciej-fm",
+      "title": "FM | MWTG #498",
+      "date": "01.02.2026",
+      "duration": "1h 08min",
+      "genre": "Techno",
+      "img": "/assets/music/mixes/_images/20260201_MWTG_01-960.webp"
+    },
+    {
+      "group": "SoundCloud",
+      "url": "https://soundcloud.com/fmmaciej/fm-at_broken_mindz_radio_31-07-2020",
+      "title": "FM | Broken Mindz Radio",
+      "date": "31.07.2020",
+      "duration": "48min",
+      "genre": "Techno",
+      "img": "/assets/music/mixes/_images/20200731_BrokenMindz_01-960.webp"
     },
     {
       "group": "Other",
-      "url": "https://fm.fmmaciej.com",
-      "title": "FM | Live recordings archive",
-      "date": "2010-2025",
-      "duration": "Various",
-      "genre": "Various",
-      "img": "/assets/music/mixes/_images/fm_01-960.webp"
+      "url": "https://www.mixcloud.com/techbreak/",
+      "title": "Tech.Break Archive | Radio break.fm",
+      "date": "2012-2013",
+      "duration": "",
+      "genre": "Drum and bass",
+      "img": "/assets/music/mixes/_images/techbreak_logo-960.webp"
     }
   ]
 }
