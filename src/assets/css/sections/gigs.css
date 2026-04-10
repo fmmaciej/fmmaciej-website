@@ -1,3 +1,40 @@
+.gig-archive {
+    margin-top: 4px;
+}
+
+.gig-archive > .group {
+    margin: 16px 0;
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+}
+
+.gig-years {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gig-years > .group {
+    margin: 0;
+    border-radius: 8px;
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+}
+
+.gig-years > .group > summary {
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.gig-years > .group > summary::before {
+    font-size: 12px;
+}
+
+.gig-years > .group > summary .badge {
+    font-size: 11px;
+}
+
 /* meta */
 .gig-meta {
     padding: 8px 10px;
