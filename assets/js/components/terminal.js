@@ -55,11 +55,11 @@ window.initTerminal = function initTerminal(root = document){
         if (!locationEl) return;
 
         const links = Array.from(locationEl.querySelectorAll('a'));
-        const labels = links.map((link) => link.dataset.shellPath || (link.textContent || '').trim()).filter(Boolean);
+        const labels = links.map((link) => (link.textContent || '').trim()).filter(Boolean);
         const shellPaths = buildShellPathFromLabels(labels);
 
         links.forEach((link, index) => {
-            link.dataset.terminalCd = shellPaths[index] || '';
+            link.dataset.terminalCd = link.dataset.shellPath || shellPaths[index] || '';
         });
     }
 
