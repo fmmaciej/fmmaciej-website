@@ -8,7 +8,7 @@ eleventyExcludeFromCollections: true
 {% for item in collections.all %}
 {% if item.url and not item.data.draft and item.url != '/sitemap.xml' and item.url != '/robots.txt' and '/_content/' not in item.inputPath %}
   <url>
-    <loc>https://fmmaciej.com{{ item.url }}</loc>
+    <loc>{{ site.url }}{{ item.url }}</loc>
   </url>
 {% endif %}
 {% endfor %}
