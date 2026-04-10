@@ -24,6 +24,7 @@ fmmaciej.code-workspace
 .git-ftp-ignore
 
 src/assets/music/gigs/incoming/
+src/assets/music/gigs/upcoming_incoming/
 src/assets/music/mixes/incoming/
 src/assets/music/photos/incoming/
 
