@@ -40,7 +40,7 @@ pageScripts:
 {% endmacro %}
 
 {# --- zgrupowane dane z _data/gigData.js (korzysta z gigEvents.js) --- #}
-{% set groups = gigData.groups | default([]) %}
+{% set decades = gigData.decades | default([]) %}
 {% set upcomingEvents = gigUpcomingEvents | default([]) %}
 {% set upcomingGroup = { name: "Upcoming", slug: "upcoming" } %}
 
@@ -56,13 +56,25 @@ pageScripts:
     {% endif %}
 {% endcall %}
 
-{% for g in groups %}
-{% call renderGroup(g, g.count, "grid") %}
-    {% for ev in g.items %}
-        {% set eager = loop.index0 < 6 %}
-        {{ renderGigCard(ev, eager) }}
+{% if decades | length %}
+<div class="gig-archive">
+{% for decade in decades %}
+{% call renderGroup(decade, decade.count, "list") %}
+    <div class="gig-years">
+    {% for year in decade.years %}
+    {% call renderGroup(year, year.count, "grid") %}
+        {% for ev in year.items %}
+            {% set eager = loop.index0 < 6 %}
+            {{ renderGigCard(ev, eager) }}
+        {% endfor %}
+    {% endcall %}
     {% endfor %}
+    </div>
 {% endcall %}
 {% endfor %}
+</div>
+{% else %}
+<div class="group-empty">No gigs added yet.</div>
+{% endif %}
 
 <br>
