@@ -1,7 +1,7 @@
 const gigEvents = require("./gigEvents.js");
-const gigTbaEvents = require("./gigTbaEvents.js");
+const gigUpcomingEvents = require("./gigUpcomingEvents.js");
 
 module.exports = [
-    ...(Array.isArray(gigTbaEvents) ? gigTbaEvents : []),
+    ...(Array.isArray(gigUpcomingEvents) ? gigUpcomingEvents : []),
     ...(Array.isArray(gigEvents) ? gigEvents : [])
 ];

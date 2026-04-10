@@ -1,7 +1,7 @@
 [
   {
     "event": "__default__",
-    "imagePreset": "tba-default"
+    "imagePreset": "upcoming-default"
   },
   {
     "event": "Subterra 2.0",
@@ -23,7 +23,7 @@
       "month": 6,
       "day": 6
     },
-    "imagePreset": "tba-default"
+    "imagePreset": "upcoming-default"
   },
   {
     "event": "Drum & Bass",
@@ -34,6 +34,6 @@
       "month": 9,
       "day": 12
     },
-    "imagePreset": "tba-default"
+    "imagePreset": "upcoming-default"
   }
 ]

@@ -1188,8 +1188,8 @@
       "thumb_w": 480,
       "thumb_h": 177,
       "variants": {
-        "480": "20161029_TechnosoulNight_02-480.webp",
         "960": "20161029_TechnosoulNight_02-960.webp",
+        "480": "20161029_TechnosoulNight_02-480.webp",
         "1600": "20161029_TechnosoulNight_02-1600.webp"
       }
     },
@@ -5566,6 +5566,6 @@
         "1600": "20260417_Subterra2.0_01-1600.webp"
       }
     },
-    "kind": "tba"
+    "kind": "upcoming"
   }
 ]

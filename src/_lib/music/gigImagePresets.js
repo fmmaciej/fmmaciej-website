@@ -1,5 +1,8 @@
 const musicImagePresets = require("./musicImagePresets.js");
 
 module.exports = {
-    "tba-default": musicImagePresets["tba-default"]
+    "upcoming-default": {
+        ...musicImagePresets["upcoming-default"],
+        alt: "Upcoming event"
+    }
 };

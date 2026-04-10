@@ -41,13 +41,13 @@ pageScripts:
 
 {# --- zgrupowane dane z _data/gigData.js (korzysta z gigEvents.js) --- #}
 {% set groups = gigData.groups | default([]) %}
-{% set tbaEvents = gigTbaEvents | default([]) %}
-{% set tbaGroup = { name: "To Be Announced", slug: "tba" } %}
+{% set upcomingEvents = gigUpcomingEvents | default([]) %}
+{% set upcomingGroup = { name: "Upcoming", slug: "upcoming" } %}
 
 {# --- render --- #}
-{% call renderGroup(tbaGroup, tbaEvents | length, "grid") %}
-    {% if tbaEvents | length %}
-    {% for ev in tbaEvents %}
+{% call renderGroup(upcomingGroup, upcomingEvents | length, "grid") %}
+    {% if upcomingEvents | length %}
+    {% for ev in upcomingEvents %}
         {% set eager = loop.index0 < 6 %}
         {{ renderGigCard(ev, eager) }}
     {% endfor %}
