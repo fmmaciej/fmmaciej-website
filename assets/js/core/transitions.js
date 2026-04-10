@@ -124,6 +124,20 @@
         });
     }
 
+    function reserveExternalWindow(anchor, action) {
+        if (!anchor || action?.name !== 'external-link') return null;
+        if (anchor.target !== '_blank') return null;
+
+        const popup = window.open('about:blank', '_blank');
+        if (!popup) return null;
+
+        try {
+            popup.opener = null;
+        } catch (_) {}
+
+        return popup;
+    }
+
     async function ensurePageScripts(dom) {
         const nextScripts = collectPageAssets(dom, PAGE_SCRIPT_SELECTOR, 'src');
 
@@ -200,9 +214,14 @@
         const action = window.terminalActions?.resolveAction?.(a, e);
         if (action) {
             e.preventDefault();
+            const reservedWindow = reserveExternalWindow(a, action);
 
             const runAction = async () => {
                 if (action.mode === 'native') {
+                    if (reservedWindow && action.name === 'external-link') {
+                        return;
+                    }
+
                     window.terminalActions?.triggerNativeLink?.(a);
                     return;
                 }
@@ -210,6 +229,27 @@
                 if (window.closeDrawer) window.closeDrawer();
                 await navigate(action.href || a.href, { pushHistory: true });
             };
+
+            if (reservedWindow && action.name === 'external-link') {
+                try {
+                    reservedWindow.location.replace(action.href || a.href);
+                } catch (_) {
+                    try {
+                        reservedWindow.close();
+                    } catch (_) {}
+                    runAction();
+                    return;
+                }
+
+                if (window.playTerminalCommand && action.command) {
+                    window.playTerminalCommand(action.command, {
+                        resumeCycleAfterMs: action.resumeCycleAfterMs || 0
+                    });
+                    return;
+                }
+
+                return;
+            }
 
             if (window.playTerminalCommand && action.command) {
                 window.playTerminalCommand(action.command, {
