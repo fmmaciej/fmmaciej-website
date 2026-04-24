@@ -1,5 +1,16 @@
 [
   {
+    "event": "Subterra2.0",
+    "date": {
+      "date": "20260417",
+      "year": 2026,
+      "month": 4,
+      "day": 17
+    },
+    "coverId": "20260417_Subterra2.0_01",
+    "place": null
+  },
+  {
     "event": "SektaSelektaTakeover",
     "date": {
       "date": "20260327",

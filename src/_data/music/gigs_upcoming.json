@@ -4,26 +4,26 @@
     "imagePreset": "upcoming-default"
   },
   {
-    "event": "Subterra 2.0",
-    "place": "Mastak Records, Warszawa",
+    "event": "CzwarteUrodzinyWilli",
     "date": {
-      "date": "20260417",
+      "date": "20260425",
       "year": 2026,
       "month": 4,
-      "day": 17
+      "day": 25
     },
-    "coverId": "20260417_Subterra2.0_01"
+    "coverId": "20260425_CzwarteUrodzinyWilli_01",
+    "place": null
   },
   {
-    "event": "Techno, Hardtek, Hardhouse",
-    "place": "P29, Łódź",
+    "event": "BackToTheGame",
     "date": {
       "date": "20260606",
       "year": 2026,
       "month": 6,
       "day": 6
     },
-    "imagePreset": "upcoming-default"
+    "coverId": "20260606_BackToTheGame_01",
+    "place": null
   },
   {
     "event": "Drum & Bass",
