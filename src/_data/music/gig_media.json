@@ -1188,8 +1188,8 @@
       "thumb_w": 480,
       "thumb_h": 177,
       "variants": {
-        "960": "20161029_TechnosoulNight_02-960.webp",
         "480": "20161029_TechnosoulNight_02-480.webp",
+        "960": "20161029_TechnosoulNight_02-960.webp",
         "1600": "20161029_TechnosoulNight_02-1600.webp"
       }
     },
@@ -1671,8 +1671,8 @@
       "thumb_w": 480,
       "thumb_h": 480,
       "variants": {
-        "480": "20171008_LTronica_03-480.webp",
         "960": "20171008_LTronica_03-960.webp",
+        "480": "20171008_LTronica_03-480.webp",
         "1600": "20171008_LTronica_03-1600.webp"
       }
     },
@@ -5564,6 +5564,75 @@
         "480": "20260417_Subterra2.0_01-480.webp",
         "960": "20260417_Subterra2.0_01-960.webp",
         "1600": "20260417_Subterra2.0_01-1600.webp"
+      }
+    },
+    "kind": "archive"
+  },
+  {
+    "event": "CzwarteUrodzinyWilli",
+    "date": {
+      "date": "20260425",
+      "year": 2026,
+      "month": 4,
+      "day": 25
+    },
+    "seq": 1,
+    "image": {
+      "id": "20260425_CzwarteUrodzinyWilli_01",
+      "thumb": 480,
+      "display": 1600,
+      "thumb_w": 480,
+      "thumb_h": 600,
+      "variants": {
+        "480": "20260425_CzwarteUrodzinyWilli_01-480.webp",
+        "960": "20260425_CzwarteUrodzinyWilli_01-960.webp",
+        "1600": "20260425_CzwarteUrodzinyWilli_01-1600.webp"
+      }
+    },
+    "kind": "upcoming"
+  },
+  {
+    "event": "BackToTheGame",
+    "date": {
+      "date": "20260606",
+      "year": 2026,
+      "month": 6,
+      "day": 6
+    },
+    "seq": 1,
+    "image": {
+      "id": "20260606_BackToTheGame_01",
+      "thumb": 480,
+      "display": 1600,
+      "thumb_w": 480,
+      "thumb_h": 678,
+      "variants": {
+        "480": "20260606_BackToTheGame_01-480.webp",
+        "960": "20260606_BackToTheGame_01-960.webp",
+        "1600": "20260606_BackToTheGame_01-1600.webp"
+      }
+    },
+    "kind": "upcoming"
+  },
+  {
+    "event": "BackToTheGame",
+    "date": {
+      "date": "20260606",
+      "year": 2026,
+      "month": 6,
+      "day": 6
+    },
+    "seq": 2,
+    "image": {
+      "id": "20260606_BackToTheGame_02",
+      "thumb": 480,
+      "display": 1600,
+      "thumb_w": 480,
+      "thumb_h": 251,
+      "variants": {
+        "480": "20260606_BackToTheGame_02-480.webp",
+        "960": "20260606_BackToTheGame_02-960.webp",
+        "1600": "20260606_BackToTheGame_02-1600.webp"
       }
     },
     "kind": "upcoming"
