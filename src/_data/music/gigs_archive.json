@@ -1,5 +1,27 @@
 [
   {
+    "event": "BackToTheGame",
+    "date": {
+      "date": "20260606",
+      "year": 2026,
+      "month": 6,
+      "day": 6
+    },
+    "coverId": "20260606_BackToTheGame_01",
+    "place": null
+  },
+  {
+    "event": "CzwarteUrodzinyWilli",
+    "date": {
+      "date": "20260425",
+      "year": 2026,
+      "month": 4,
+      "day": 25
+    },
+    "coverId": "20260425_CzwarteUrodzinyWilli_01",
+    "place": null
+  },
+  {
     "event": "Subterra2.0",
     "date": {
       "date": "20260417",

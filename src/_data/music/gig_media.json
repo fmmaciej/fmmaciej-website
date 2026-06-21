@@ -5589,7 +5589,7 @@
         "1600": "20260425_CzwarteUrodzinyWilli_01-1600.webp"
       }
     },
-    "kind": "upcoming"
+    "kind": "archive"
   },
   {
     "event": "BackToTheGame",
@@ -5612,7 +5612,7 @@
         "1600": "20260606_BackToTheGame_01-1600.webp"
       }
     },
-    "kind": "upcoming"
+    "kind": "archive"
   },
   {
     "event": "BackToTheGame",
@@ -5633,6 +5633,52 @@
         "480": "20260606_BackToTheGame_02-480.webp",
         "960": "20260606_BackToTheGame_02-960.webp",
         "1600": "20260606_BackToTheGame_02-1600.webp"
+      }
+    },
+    "kind": "archive"
+  },
+  {
+    "event": "AudioRiver",
+    "date": {
+      "date": "20260711",
+      "year": 2026,
+      "month": 7,
+      "day": 11
+    },
+    "seq": 1,
+    "image": {
+      "id": "20260711_AudioRiver_01",
+      "thumb": 480,
+      "display": 1600,
+      "thumb_w": 480,
+      "thumb_h": 600,
+      "variants": {
+        "480": "20260711_AudioRiver_01-480.webp",
+        "960": "20260711_AudioRiver_01-960.webp",
+        "1600": "20260711_AudioRiver_01-1600.webp"
+      }
+    },
+    "kind": "upcoming"
+  },
+  {
+    "event": "AudioRiver",
+    "date": {
+      "date": "20260711",
+      "year": 2026,
+      "month": 7,
+      "day": 11
+    },
+    "seq": 2,
+    "image": {
+      "id": "20260711_AudioRiver_02",
+      "thumb": 480,
+      "display": 1600,
+      "thumb_w": 480,
+      "thumb_h": 600,
+      "variants": {
+        "480": "20260711_AudioRiver_02-480.webp",
+        "960": "20260711_AudioRiver_02-960.webp",
+        "1600": "20260711_AudioRiver_02-1600.webp"
       }
     },
     "kind": "upcoming"
