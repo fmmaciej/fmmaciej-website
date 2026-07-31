@@ -1,0 +1,74 @@
+---
+title: FM — /music/events
+layout: layout.njk
+terminalFile: /assets/terminal/music/events.json
+permalink: /music/events/index.html
+pageStyles:
+  - /assets/css/components/music-collections.css
+  - /assets/css/components/music-media-cards.css
+  - /assets/css/sections/events.css
+pageScripts:
+  - /assets/js/pages/page-boot.js
+---
+
+{% from "macros/music-collections.njk" import renderGroup %}
+
+<div class="music-intro">
+{% importMd "music/_content/intro/events.md" %}
+</div>
+
+{% macro renderEventCard(event, eager) %}
+<a class="event-card" href="{{ event.path }}" aria-label="{{ event.cover.alt }}">
+    <img
+        src="{{ event.cover.thumb480 }}"
+        srcset="{{ event.cover.thumb480 }} 480w, {{ event.cover.thumb960 }} 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="{{ event.cover.alt }}"
+        width="{{ event.cover.thumb_w }}"
+        height="{{ event.cover.thumb_h }}"
+        {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
+        decoding="async">
+    <div class="event-meta">
+        <div class="event-date">{{ event.date }}</div>
+        <div class="event-name">{{ event.name }}</div>
+        {% if event.place %}<div class="event-place">{{ event.place }}</div>{% endif %}
+        <div class="event-count">{{ event.count }} material{% if event.count != 1 %}s{% endif %}</div>
+    </div>
+</a>
+{% endmacro %}
+
+{% set decades = eventData.decades | default([]) %}
+{% set upcomingEvents = eventUpcomingEvents | default([]) %}
+{% set upcomingGroup = { name: "Upcoming", slug: "upcoming" } %}
+
+{% call renderGroup(upcomingGroup, upcomingEvents | length, "grid") %}
+    {% if upcomingEvents | length %}
+        {% for event in upcomingEvents %}
+            {{ renderEventCard(event, loop.index0 < 6) }}
+        {% endfor %}
+    {% else %}
+        <div class="group-empty">No events added yet.</div>
+    {% endif %}
+{% endcall %}
+
+{% if decades | length %}
+<div class="event-archive">
+{% for decade in decades %}
+{% call renderGroup(decade, decade.count, "list") %}
+    <div class="event-years">
+    {% for year in decade.years %}
+    {% call renderGroup(year, year.count, "grid") %}
+        {% for event in year.items %}
+            {{ renderEventCard(event, loop.index0 < 6) }}
+        {% endfor %}
+    {% endcall %}
+    {% endfor %}
+    </div>
+{% endcall %}
+{% endfor %}
+</div>
+{% else %}
+<div class="group-empty">No events added yet.</div>
+{% endif %}
+
+<br>

@@ -1,4 +1,4 @@
-.gig-card,
+.event-card,
 .music-event-card,
 .music-photo-card {
     display: block;
@@ -11,7 +11,7 @@
     color: var(--text);
 }
 
-.gig-card:hover,
+.event-card:hover,
 .music-event-card:hover,
 .music-photo-card:hover {
     transform: translateY(-1px);
@@ -19,7 +19,7 @@
     box-shadow: 0 10px 24px color-mix(in srgb, var(--bg) 72%, transparent);
 }
 
-.gig-card img,
+.event-card img,
 .music-event-card img,
 .music-photo-card img {
     width: 100%;
@@ -30,17 +30,27 @@
     transition: transform .28s ease;
 }
 
-.gig-card:hover img,
+.event-card:hover img,
 .music-event-card:hover img,
 .music-photo-card:hover img {
     transform: scale(1.025);
 }
 
 @media (max-width: 600px) {
-    .gig-card img,
+    .event-card img,
     .music-event-card img,
     .music-photo-card img {
         height: 52vw;
         max-height: 360px;
     }
+}
+
+.music-event-card .event-meta {
+    padding: 8px 10px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
 }

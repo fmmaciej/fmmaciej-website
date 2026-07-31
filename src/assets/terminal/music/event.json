@@ -1,7 +1,7 @@
 {
     "commands": [
         {
-            "cmd": "ls ~/music/gigs/2023-05-01-void-club",
+            "cmd": "ls ~/music/events/2023-05-01-void-club",
             "type": "text",
             "output": [
                 "poster_01.jpg",

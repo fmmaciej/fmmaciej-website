@@ -12,11 +12,11 @@
         "dev": "eleventy --serve",
 
         "build:hash": "echo $(git rev-parse HEAD:src) > www/build.txt",
-        "build:gigs": "tools/build_gigs.sh",
+        "build:events": "tools/build_events.sh",
         "build:mixes": "tools/build_mixes.sh",
         "build:photos": "tools/build_photos.sh",
         "bundle:press-kit": "./tools/bundle_press_kit.sh",
-        "build:content": "npm run build:gigs && npm run build:mixes && npm run build:photos && npm run bundle:press-kit",
+        "build:content": "npm run build:events && npm run build:mixes && npm run build:photos && npm run bundle:press-kit",
 
         "build": "eleventy && npm run build:hash",
         "rebuild": "npm run clean && npm run build:content && npm run build",

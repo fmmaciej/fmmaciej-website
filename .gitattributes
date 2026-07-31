@@ -20,5 +20,6 @@
 *.tif  merge=ours
 *.tiff merge=ours
 
-src/assets/music/gigs/_thumbs/** linguist-generated
-src/assets/music/gigs/_display/** linguist-generated
+src/assets/music/events/generated/** linguist-generated
+src/assets/music/photos/generated/** linguist-generated
+src/assets/music/mixes/generated/** linguist-generated

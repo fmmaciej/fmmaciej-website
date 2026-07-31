@@ -6,15 +6,11 @@
         }, cleanups);
     }
 
-    function initGigsPage(root, cleanups) {
+    function initEventsPage(root, cleanups) {
         window.initCollectionPage?.(root, {
             suffixSelector: '#terminalPathSuffix',
             formatCrumb: (slug, label) => {
-                if (slug === 'tba') {
-                    return '<a href="/music/gigs#tba">/to-be-announced</a>';
-                }
-
-                return `<a href="/music/gigs#${slug}">/${label || slug.replace(/^y-/, '')}</a>`;
+                return `<a href="/music/events#${slug}">/${label || slug.replace(/^y-/, '')}</a>`;
             }
         }, cleanups);
     }
@@ -40,8 +36,8 @@
 
         if (path.startsWith('/music/mixes')) {
             initMixesPage(root, cleanups);
-        } else if (path.startsWith('/music/gigs')) {
-            initGigsPage(root, cleanups);
+        } else if (path.startsWith('/music/events')) {
+            initEventsPage(root, cleanups);
         } else if (path.startsWith('/music/photos')) {
             initPhotosPage(root, cleanups);
         } else if (path.startsWith('/blog')) {

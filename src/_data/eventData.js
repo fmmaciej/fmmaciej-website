@@ -1,7 +1,7 @@
-const gigEvents = require("./gigEvents.js");
+const eventEvents = require("./eventEvents.js");
 
 module.exports = () => {
-    const events = gigEvents || [];
+    const events = eventEvents || [];
 
     const grouped = new Map();
     for (const ev of events) {
@@ -14,7 +14,7 @@ module.exports = () => {
     const groups = years.map((year) => {
         const items = grouped.get(year);
         const count = items.length;
-        const photoCount = items.reduce((acc, ev) => acc + (ev.count || 0), 0);
+        const mediaCount = items.reduce((acc, ev) => acc + (ev.count || 0), 0);
 
         return {
             year,
@@ -22,7 +22,7 @@ module.exports = () => {
             slug: `y-${year}`,
             items,
             count,
-            photoCount
+            mediaCount
         };
     });
 
@@ -43,7 +43,7 @@ module.exports = () => {
                 slug: `d-${decade}`,
                 years: yearGroups,
                 count: yearGroups.reduce((acc, yearGroup) => acc + (yearGroup.count || 0), 0),
-                photoCount: yearGroups.reduce((acc, yearGroup) => acc + (yearGroup.photoCount || 0), 0)
+                mediaCount: yearGroups.reduce((acc, yearGroup) => acc + (yearGroup.mediaCount || 0), 0)
             };
         });
 

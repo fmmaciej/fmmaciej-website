@@ -2,7 +2,7 @@
 layout: layout.njk
 terminalFile: /assets/terminal/music/event.json
 pagination:
-  data: allGigEvents
+  data: allEvents
   size: 1
   alias: event
 permalink: "{{ event.path }}"
@@ -18,7 +18,7 @@ pageStyles:
 <nav class="terminal-path-source" hidden aria-hidden="true">
     <a href="/" title="Jump to: home">/home/fm</a>
     <a href="/music/" title="Jump to: music">/music</a>
-    <a href="/music/gigs/" title="Jump to: gigs">/gigs</a>
+    <a href="/music/events/" title="Jump to: events">/events</a>
     <a href="{{ event.listHref }}" title="Jump to: {{ event.listLabel }}">{{ "/" ~ (event.listLabel | lower | replace(" ", "-")) }}</a>
     <span>/{{ event.name or event.date }}</span>
 </nav>
@@ -39,8 +39,8 @@ pageStyles:
         width="{{ it.thumb_w or 480 }}"
         height="{{ it.thumb_h or 300 }}"
         loading="lazy" decoding="async">
-    <div class="gig-meta">
-        <span class="dot">{{ fmtDate(it.date) }}</span>
+    <div class="event-meta">
+        <span class="dot">{{ fmtDate(event.date) }}</span>
         {% if event.name %}<span class="dot">{{ event.name }}</span>{% endif %}
         {% if it.seq %}<span class="dot">#{{ it.seq }}</span>{% endif %}
     </div>

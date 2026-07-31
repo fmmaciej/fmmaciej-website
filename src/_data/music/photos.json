@@ -1,300 +1,391 @@
-[
-  {
-    "date": {
-      "date": "20190209",
-      "year": 2019,
-      "month": 2,
-      "day": 9
+{
+  "defaults": {},
+  "items": [
+    {
+      "id": "20250321__subterra",
+      "slug": "subterra",
+      "date": "2025-03-21",
+      "title": "Subterra",
+      "place": "P29",
+      "eventId": "20250321__subterra",
+      "author": {
+        "name": "werifesteria.photography",
+        "instagram": "@werifesteria.photography",
+        "facebook": null,
+        "email": null
+      }
     },
-    "place": "SodaUndergroundStage",
-    "author": {
-      "name": "unknown",
-      "instagram": null,
-      "facebook": null,
-      "email": null
+    {
+      "id": "20240510__portrait",
+      "slug": "portrait",
+      "date": "2024-05-10",
+      "title": "Portrait",
+      "place": null,
+      "eventId": null,
+      "author": {
+        "name": null,
+        "instagram": null,
+        "facebook": null,
+        "email": null
+      }
     },
-    "seq": 1,
-    "image": {
-      "id": "20190209_SodaUndergroundStage_unknown_01",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 473,
-      "variants": {
-        "480": "20190209_SodaUndergroundStage_unknown_01-480.webp",
-        "960": "20190209_SodaUndergroundStage_unknown_01-960.webp",
-        "1600": "20190209_SodaUndergroundStage_unknown_01-1600.webp"
+    {
+      "id": "20240127__lodzki_towar",
+      "slug": "lodzki_towar",
+      "date": "2024-01-27",
+      "title": "Łódzki Towar",
+      "place": "Luzztro",
+      "eventId": "20240127__lodzki_towar",
+      "author": {
+        "name": "unknown",
+        "instagram": null,
+        "facebook": null,
+        "email": null
+      }
+    },
+    {
+      "id": "20231031__not_so_abandoned_willa",
+      "slug": "not_so_abandoned_willa",
+      "date": "2023-10-31",
+      "title": "Not So Abandoned Willa",
+      "place": "Willa",
+      "eventId": "20231031__not_so_abandoned_willa",
+      "author": {
+        "name": "unknown",
+        "instagram": null,
+        "facebook": null,
+        "email": null
+      }
+    },
+    {
+      "id": "20230422__portrait",
+      "slug": "portrait",
+      "date": "2023-04-22",
+      "title": "Portrait",
+      "place": null,
+      "eventId": null,
+      "author": {
+        "name": null,
+        "instagram": null,
+        "facebook": null,
+        "email": null
+      }
+    },
+    {
+      "id": "20221029__halloween",
+      "slug": "halloween",
+      "date": "2022-10-29",
+      "title": "Halloween",
+      "place": "Willa",
+      "eventId": "20221029__halloween",
+      "author": {
+        "name": "unknown",
+        "instagram": null,
+        "facebook": null,
+        "email": null
+      }
+    },
+    {
+      "id": "20190209__cykl_prawdziwe_techno",
+      "slug": "cykl_prawdziwe_techno",
+      "date": "2019-02-09",
+      "title": "Cykl Prawdziwe Techno",
+      "place": "Soda Underground Stage",
+      "eventId": "20190209__cykl_prawdziwe_techno",
+      "author": {
+        "name": "unknown",
+        "instagram": null,
+        "facebook": null,
+        "email": null
       }
     }
-  },
-  {
-    "date": {
-      "date": "20221029",
-      "year": 2022,
-      "month": 10,
-      "day": 29
+  ],
+  "media": [
+    {
+      "alt": null,
+      "id": "20190209__cykl_prawdziwe_techno__01",
+      "groupId": "20190209__cykl_prawdziwe_techno",
+      "seq": 1,
+      "sourceHash": "sha256:f49b4ca1c960b244f6fb60c54b7fc318120884b2dbbd0c353a2c8f53a4da7d3a",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20190209__cykl_prawdziwe_techno__01-480.webp",
+            "width": 480,
+            "height": 473
+          },
+          "960": {
+            "src": "20190209__cykl_prawdziwe_techno__01-960.webp",
+            "width": 960,
+            "height": 947
+          },
+          "1600": {
+            "src": "20190209__cykl_prawdziwe_techno__01-1600.webp",
+            "width": 1600,
+            "height": 1579
+          }
+        }
+      }
     },
-    "place": "Willa",
-    "author": {
-      "name": "unknown",
-      "instagram": null,
-      "facebook": null,
-      "email": null
+    {
+      "alt": null,
+      "id": "20221029__halloween__04",
+      "groupId": "20221029__halloween",
+      "seq": 4,
+      "sourceHash": "sha256:54ab43b9e3d333057535fdcd9ba9be0988fba1194c7486e7350f60ee72b3de1a",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20221029__halloween__04-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          "960": {
+            "src": "20221029__halloween__04-960.webp",
+            "width": 960,
+            "height": 960
+          },
+          "1600": {
+            "src": "20221029__halloween__04-1600.webp",
+            "width": 1600,
+            "height": 1600
+          }
+        }
+      }
     },
-    "seq": 4,
-    "image": {
-      "id": "20221029_Willa_unknown_04",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 480,
-      "variants": {
-        "480": "20221029_Willa_unknown_04-480.webp",
-        "960": "20221029_Willa_unknown_04-960.webp",
-        "1600": "20221029_Willa_unknown_04-1600.webp"
+    {
+      "alt": null,
+      "id": "20230422__portrait__01",
+      "groupId": "20230422__portrait",
+      "seq": 1,
+      "sourceHash": "sha256:a8e6466ccf5f9909cebe4641176d8a0b87330a799fc08598dbfce038f6d20193",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20230422__portrait__01-480.webp",
+            "width": 480,
+            "height": 730
+          },
+          "960": {
+            "src": "20230422__portrait__01-960.webp",
+            "width": 960,
+            "height": 1461
+          },
+          "1600": {
+            "src": "20230422__portrait__01-1600.webp",
+            "width": 1600,
+            "height": 2435
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20231031__not_so_abandoned_willa__01",
+      "groupId": "20231031__not_so_abandoned_willa",
+      "seq": 1,
+      "sourceHash": "sha256:2a54254dfde71c97bfdfd4948dc569a5f0ac08ae527ee6a01a72635afaa75de8",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20231031__not_so_abandoned_willa__01-480.webp",
+            "width": 480,
+            "height": 270
+          },
+          "960": {
+            "src": "20231031__not_so_abandoned_willa__01-960.webp",
+            "width": 960,
+            "height": 540
+          },
+          "1600": {
+            "src": "20231031__not_so_abandoned_willa__01-1600.webp",
+            "width": 1600,
+            "height": 900
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20231031__not_so_abandoned_willa__02",
+      "groupId": "20231031__not_so_abandoned_willa",
+      "seq": 2,
+      "sourceHash": "sha256:c9189898015f9b69b434bbe5cfcac571dcb6c6a8e7c6bf7c526a37fa0ed523fe",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20231031__not_so_abandoned_willa__02-480.webp",
+            "width": 480,
+            "height": 667
+          },
+          "960": {
+            "src": "20231031__not_so_abandoned_willa__02-960.webp",
+            "width": 960,
+            "height": 1335
+          },
+          "1600": {
+            "src": "20231031__not_so_abandoned_willa__02-1600.webp",
+            "width": 1600,
+            "height": 2226
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20231031__not_so_abandoned_willa__03",
+      "groupId": "20231031__not_so_abandoned_willa",
+      "seq": 3,
+      "sourceHash": "sha256:68da6f3a1af2640a2277cd2f8f7fc1b3505660c03d53bc618b1f470313b0b87f",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20231031__not_so_abandoned_willa__03-480.webp",
+            "width": 480,
+            "height": 320
+          },
+          "960": {
+            "src": "20231031__not_so_abandoned_willa__03-960.webp",
+            "width": 960,
+            "height": 641
+          },
+          "1600": {
+            "src": "20231031__not_so_abandoned_willa__03-1600.webp",
+            "width": 1600,
+            "height": 1069
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20240127__lodzki_towar__01",
+      "groupId": "20240127__lodzki_towar",
+      "seq": 1,
+      "sourceHash": "sha256:64ce554527a9eb9792898585b80ed2f2a8a5855fff6287bcffcc07f0347e11c9",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20240127__lodzki_towar__01-480.webp",
+            "width": 480,
+            "height": 640
+          },
+          "960": {
+            "src": "20240127__lodzki_towar__01-960.webp",
+            "width": 960,
+            "height": 1280
+          },
+          "1600": {
+            "src": "20240127__lodzki_towar__01-1600.webp",
+            "width": 1600,
+            "height": 2133
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20240127__lodzki_towar__02",
+      "groupId": "20240127__lodzki_towar",
+      "seq": 2,
+      "sourceHash": "sha256:2f9310863447c56c55755af0b375f6cdea15a67a2d0d3db9c1d8dc1c8273f6d7",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20240127__lodzki_towar__02-480.webp",
+            "width": 480,
+            "height": 640
+          },
+          "960": {
+            "src": "20240127__lodzki_towar__02-960.webp",
+            "width": 960,
+            "height": 1280
+          },
+          "1600": {
+            "src": "20240127__lodzki_towar__02-1600.webp",
+            "width": 1600,
+            "height": 2133
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20240127__lodzki_towar__03",
+      "groupId": "20240127__lodzki_towar",
+      "seq": 3,
+      "sourceHash": "sha256:55bfbca77c39262e10af7d3a6fcd67ca672b5e4dc18241b631f9d88aa0f05531",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20240127__lodzki_towar__03-480.webp",
+            "width": 480,
+            "height": 640
+          },
+          "960": {
+            "src": "20240127__lodzki_towar__03-960.webp",
+            "width": 960,
+            "height": 1280
+          },
+          "1600": {
+            "src": "20240127__lodzki_towar__03-1600.webp",
+            "width": 1600,
+            "height": 2133
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20240510__portrait__01",
+      "groupId": "20240510__portrait",
+      "seq": 1,
+      "sourceHash": "sha256:852a3dcac9b1d728bbae27da74222990cf06d27ebd0648daee4bed21d699f2ce",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20240510__portrait__01-480.webp",
+            "width": 480,
+            "height": 625
+          },
+          "960": {
+            "src": "20240510__portrait__01-960.webp",
+            "width": 960,
+            "height": 1251
+          },
+          "1600": {
+            "src": "20240510__portrait__01-1600.webp",
+            "width": 1600,
+            "height": 2085
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20250321__subterra__01",
+      "groupId": "20250321__subterra",
+      "seq": 1,
+      "sourceHash": "sha256:b31cf4e0cc5ef322b10c70cb4b8ba75c2e251d88d4dbc1e04eedf22cc50537f0",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20250321__subterra__01-480.webp",
+            "width": 480,
+            "height": 319
+          },
+          "960": {
+            "src": "20250321__subterra__01-960.webp",
+            "width": 960,
+            "height": 639
+          },
+          "1600": {
+            "src": "20250321__subterra__01-1600.webp",
+            "width": 1600,
+            "height": 1066
+          }
+        }
       }
     }
-  },
-  {
-    "date": null,
-    "place": null,
-    "author": {
-      "name": null,
-      "instagram": null,
-      "facebook": null,
-      "email": null
-    },
-    "seq": null,
-    "image": {
-      "id": "20230422_01",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 730,
-      "variants": {
-        "480": "20230422_01-480.webp",
-        "960": "20230422_01-960.webp",
-        "1600": "20230422_01-1600.webp"
-      }
-    }
-  },
-  {
-    "date": {
-      "date": "20231031",
-      "year": 2023,
-      "month": 10,
-      "day": 31
-    },
-    "place": "Willa",
-    "author": {
-      "name": "unknown",
-      "instagram": null,
-      "facebook": null,
-      "email": null
-    },
-    "seq": 1,
-    "image": {
-      "id": "20231031_Willa_unknown_01",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 270,
-      "variants": {
-        "480": "20231031_Willa_unknown_01-480.webp",
-        "960": "20231031_Willa_unknown_01-960.webp",
-        "1600": "20231031_Willa_unknown_01-1600.webp"
-      }
-    }
-  },
-  {
-    "date": {
-      "date": "20231031",
-      "year": 2023,
-      "month": 10,
-      "day": 31
-    },
-    "place": "Willa",
-    "author": {
-      "name": "unknown",
-      "instagram": null,
-      "facebook": null,
-      "email": null
-    },
-    "seq": 2,
-    "image": {
-      "id": "20231031_Willa_unknown_02",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 667,
-      "variants": {
-        "480": "20231031_Willa_unknown_02-480.webp",
-        "960": "20231031_Willa_unknown_02-960.webp",
-        "1600": "20231031_Willa_unknown_02-1600.webp"
-      }
-    }
-  },
-  {
-    "date": {
-      "date": "20231031",
-      "year": 2023,
-      "month": 10,
-      "day": 31
-    },
-    "place": "Willa",
-    "author": {
-      "name": "unknown",
-      "instagram": null,
-      "facebook": null,
-      "email": null
-    },
-    "seq": 3,
-    "image": {
-      "id": "20231031_Willa_unknown_03",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 320,
-      "variants": {
-        "480": "20231031_Willa_unknown_03-480.webp",
-        "960": "20231031_Willa_unknown_03-960.webp",
-        "1600": "20231031_Willa_unknown_03-1600.webp"
-      }
-    }
-  },
-  {
-    "date": {
-      "date": "20240127",
-      "year": 2024,
-      "month": 1,
-      "day": 27
-    },
-    "place": "Luzztro",
-    "author": {
-      "name": "unknown",
-      "instagram": null,
-      "facebook": null,
-      "email": null
-    },
-    "seq": 1,
-    "image": {
-      "id": "20240127_Luzztro_unknown_01",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 640,
-      "variants": {
-        "480": "20240127_Luzztro_unknown_01-480.webp",
-        "960": "20240127_Luzztro_unknown_01-960.webp",
-        "1600": "20240127_Luzztro_unknown_01-1600.webp"
-      }
-    }
-  },
-  {
-    "date": {
-      "date": "20240127",
-      "year": 2024,
-      "month": 1,
-      "day": 27
-    },
-    "place": "Luzztro",
-    "author": {
-      "name": "unknown",
-      "instagram": null,
-      "facebook": null,
-      "email": null
-    },
-    "seq": 2,
-    "image": {
-      "id": "20240127_Luzztro_unknown_02",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 640,
-      "variants": {
-        "480": "20240127_Luzztro_unknown_02-480.webp",
-        "960": "20240127_Luzztro_unknown_02-960.webp",
-        "1600": "20240127_Luzztro_unknown_02-1600.webp"
-      }
-    }
-  },
-  {
-    "date": {
-      "date": "20240127",
-      "year": 2024,
-      "month": 1,
-      "day": 27
-    },
-    "place": "Luzztro",
-    "author": {
-      "name": "unknown",
-      "instagram": null,
-      "facebook": null,
-      "email": null
-    },
-    "seq": 3,
-    "image": {
-      "id": "20240127_Luzztro_unknown_03",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 640,
-      "variants": {
-        "480": "20240127_Luzztro_unknown_03-480.webp",
-        "960": "20240127_Luzztro_unknown_03-960.webp",
-        "1600": "20240127_Luzztro_unknown_03-1600.webp"
-      }
-    }
-  },
-  {
-    "date": null,
-    "place": null,
-    "author": {
-      "name": null,
-      "instagram": null,
-      "facebook": null,
-      "email": null
-    },
-    "seq": null,
-    "image": {
-      "id": "20240510_01",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 625,
-      "variants": {
-        "480": "20240510_01-480.webp",
-        "960": "20240510_01-960.webp",
-        "1600": "20240510_01-1600.webp"
-      }
-    }
-  },
-  {
-    "date": {
-      "date": "20250321",
-      "year": 2025,
-      "month": 3,
-      "day": 21
-    },
-    "place": "P29",
-    "author": {
-      "name": "werifesteria.photography",
-      "instagram": "@werifesteria.photography",
-      "facebook": null,
-      "email": null
-    },
-    "seq": 1,
-    "image": {
-      "id": "20250321_P29_werifesteria.photography_01",
-      "thumb": 480,
-      "display": 1600,
-      "thumb_w": 480,
-      "thumb_h": 319,
-      "variants": {
-        "480": "20250321_P29_werifesteria.photography_01-480.webp",
-        "960": "20250321_P29_werifesteria.photography_01-960.webp",
-        "1600": "20250321_P29_werifesteria.photography_01-1600.webp"
-      }
-    }
-  }
-]
+  ]
+}

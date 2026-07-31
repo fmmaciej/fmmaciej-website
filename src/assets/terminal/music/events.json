@@ -1,7 +1,7 @@
 {
     "commands": [
         {
-            "cmd": "ls ~/music/gigs",
+            "cmd": "ls ~/music/events",
             "type": "text",
             "output": [
                 "2025/",
@@ -15,7 +15,7 @@
         },
 
         {
-            "cmd": "ls -al ~/music/gigs/2023",
+            "cmd": "ls -al ~/music/events/2023",
             "type": "text",
             "output": [
                 "drwxr-xr-x  5 fm fm  160 Jul 15 23:59 .",

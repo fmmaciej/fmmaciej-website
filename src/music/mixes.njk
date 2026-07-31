@@ -29,12 +29,12 @@ pageScripts:
         <figcaption>
             {{ it.title }}
             {% set meta = [] %}
-            {% if it.date %}{% set meta = meta.concat([it.date]) %}{% endif %}
+            {% if it.displayDate %}{% set meta = meta.concat([it.displayDate]) %}{% endif %}
             {% if it.duration %}{% set meta = meta.concat([it.duration]) %}{% endif %}
             {% if it.genre %}{% set meta = meta.concat([it.genre]) %}{% endif %}
             {% if it.status %}{% set meta = meta.concat([it.status]) %}{% endif %}
             {% if meta.length %}<small>{{ meta | join(" | ") }}</small>{% endif %}
-            {% if it.desc %}<small>{{ it.desc }}</small>{% endif %}
+            {% if it.description %}<small>{{ it.description }}</small>{% endif %}
         </figcaption>
     {% if isLink %}
     </a>

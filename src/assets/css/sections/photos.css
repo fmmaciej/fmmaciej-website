@@ -1,16 +1,35 @@
-.photo-meta {
-    padding: 8px 10px;
-    border-top: 1px solid var(--border);
-    font-size: 14px;
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+.photo-set {
+    margin: 8px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: clip;
 }
 
-.photo-label {
+.photo-set > summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 20px;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+.photo-set-title {
+    font-weight: 600;
+}
+
+.photo-set-details {
     color: var(--muted);
     font-size: 13px;
+}
+
+.photo-set-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    padding: 12px;
+    border-top: 1px solid var(--border);
 }
 
 .photo-preview {
@@ -20,19 +39,10 @@
 
 .photo-contact-list {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding-left: 14px;
-}
-
-.photo-contact-item {
-    display: flex;
-    gap: 8px;
-    align-items: baseline;
-}
-
-.photo-contact-key {
-    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    padding: 8px 12px;
+    border-top: 1px solid var(--border);
     font-size: 13px;
 }
 
@@ -43,4 +53,15 @@
 
 .photo-contact-list a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .photo-set > summary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .photo-set-gallery {
+        grid-template-columns: 1fr;
+    }
 }

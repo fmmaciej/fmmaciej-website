@@ -17,9 +17,9 @@ pageScripts:
 {% importMd "music/_content/intro/photos.md" %}
 </div>
 
-{% macro renderPhotoCard(photo, eager) %}
-    <div class="music-photo-card">
-        <a class="photo-preview" href="{{ photo.display1600 }}" target="_blank" rel="noopener" aria-label="{{ photo.alt }}">
+{% macro renderPhotoCard(photo) %}
+<div class="music-photo-card">
+    <a class="photo-preview" href="{{ photo.display1600 }}" target="_blank" rel="noopener" aria-label="{{ photo.alt }}">
         <img
             src="{{ photo.thumb480 }}"
             srcset="{{ photo.thumb480 }} 480w, {{ photo.thumb960 }} 960w, {{ photo.display1600 }} 1600w"
@@ -27,58 +27,45 @@ pageScripts:
             alt="{{ photo.alt }}"
             width="{{ photo.thumb_w }}"
             height="{{ photo.thumb_h }}"
-            {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
-            decoding="async">
-        </a>
-        <div class="photo-meta">
-            <div><span class="photo-label">data:</span> {{ photo.date }}</div>
-            <div><span class="photo-label">miejsce:</span> {{ photo.place }}</div>
-            <div><span class="photo-label">Autor:</span> {{ photo.author }}</div>
-            {% if photo.authorInfo.instagram or photo.authorInfo.facebook or photo.authorInfo.email %}
-            <div><span class="photo-label">Kontakt:</span></div>
-            <div class="photo-contact-list">
-                {% if photo.authorInfo.instagram %}
-                <div class="photo-contact-item">
-                    <span class="photo-contact-key">ig:</span>
-                    <a href="{{ photo.authorInfo.instagram.href }}" target="_blank" rel="noopener">{{ photo.authorInfo.instagram.label }}</a>
-                </div>
-                {% endif %}
-                {% if photo.authorInfo.facebook %}
-                <div class="photo-contact-item">
-                    <span class="photo-contact-key">fb:</span>
-                    <a href="{{ photo.authorInfo.facebook.href }}" target="_blank" rel="noopener">{{ photo.authorInfo.facebook.label }}</a>
-                </div>
-                {% endif %}
-                {% if photo.authorInfo.email %}
-                <div class="photo-contact-item">
-                    <span class="photo-contact-key">email:</span>
-                    <a href="{{ photo.authorInfo.email.href }}">{{ photo.authorInfo.email.label }}</a>
-                </div>
-                {% endif %}
-            </div>
-            {% endif %}
-        </div>
+            loading="lazy" decoding="async">
+    </a>
+</div>
+{% endmacro %}
+
+{% macro renderPhotoSet(set) %}
+<details class="photo-set" id="set-{{ set.id }}">
+    <summary>
+        <span class="photo-set-title">{{ set.date }} · {{ set.title }}</span>
+        <span class="photo-set-details">
+            {% if set.place %}{{ set.place }} · {% endif %}
+            {% if set.authorInfo.name %}{{ set.authorInfo.name }} · {% endif %}
+            {{ set.count }} photo{% if set.count != 1 %}s{% endif %}
+        </span>
+    </summary>
+    {% if set.authorInfo.instagram or set.authorInfo.facebook or set.authorInfo.email %}
+    <div class="photo-contact-list">
+        {% if set.authorInfo.instagram %}<a href="{{ set.authorInfo.instagram.href }}" target="_blank" rel="noopener">{{ set.authorInfo.instagram.label }}</a>{% endif %}
+        {% if set.authorInfo.facebook %}<a href="{{ set.authorInfo.facebook.href }}" target="_blank" rel="noopener">{{ set.authorInfo.facebook.label }}</a>{% endif %}
+        {% if set.authorInfo.email %}<a href="{{ set.authorInfo.email.href }}">{{ set.authorInfo.email.label }}</a>{% endif %}
     </div>
+    {% endif %}
+    <div class="photo-set-gallery">
+    {% for photo in set.photos %}
+        {{ renderPhotoCard(photo) }}
+    {% endfor %}
+    </div>
+</details>
 {% endmacro %}
 
 {% set groups = photoData.groups | default([]) %}
-
 {% if groups | length %}
-{% for group in groups %}
-{% set isFirstGroup = loop.first %}
-{% call renderGroup(group, group.count, "grid") %}
-    {% for photo in group.items %}
-        {% set eager = isFirstGroup and loop.first %}
-        {{ renderPhotoCard(photo, eager) }}
+    {% for group in groups %}
+    {% call renderGroup(group, group.photoCount, "list") %}
+        {% for set in group.items %}{{ renderPhotoSet(set) }}{% endfor %}
+    {% endcall %}
     {% endfor %}
-{% endcall %}
-{% endfor %}
 {% else %}
-<div class="group">
-    <div class="group-items" data-layout="list">
-        <div class="group-empty">No photos added yet.</div>
-    </div>
-</div>
+<div class="group-empty">No photos added yet.</div>
 {% endif %}
 
 <br>
