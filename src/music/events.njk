@@ -38,7 +38,7 @@ pageScripts:
 {% endmacro %}
 
 {% set decades = eventData.decades | default([]) %}
-{% set upcomingEvents = eventUpcomingEvents | default([]) %}
+{% set upcomingEvents = eventData.upcoming | default([]) %}
 {% set upcomingGroup = { name: "Upcoming", slug: "upcoming" } %}
 
 {% call renderGroup(upcomingGroup, upcomingEvents | length, "grid") %}

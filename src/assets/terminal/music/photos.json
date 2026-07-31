@@ -8,20 +8,14 @@
                 "2024/",
                 "2023/",
                 "2022/",
-                "2021/",
-                "2020/",
-                "..."
+                "2019/"
             ]
         },
-
         {
-            "cmd": "ls -al ~/music/photos/2025",
+            "cmd": "find ~/music/photos/2025/2025-03-21-subterra -type f",
             "type": "text",
             "output": [
-                "drwxr-xr-x  4 fm fm  128 Mar 21 23:59 .",
-                "drwxr-xr-x 10 fm fm  320 Dec 31 23:59 ..",
-                "-rw-r--r--  1 fm fm 421K Mar 21 23:59 20250321_P29_photography_01.webp",
-                "-rw-r--r--  1 fm fm 398K Mar 07 23:59 20250307_Willa-Lodz_unknown_01.webp"
+                "/home/fm/music/photos/2025/2025-03-21-subterra/20250321__subterra__01-1600.webp"
             ]
         }
     ]

@@ -1,20 +1,19 @@
 {
     "commands": [
         {
-            "cmd": "ls ~/music/events/2023-05-01-void-club",
+            "cmd": "find ~/music/events -type f -name '*-1600.webp' | head -3",
             "type": "text",
             "output": [
-                "poster_01.jpg",
-                "poster_02.jpg"
+                "/home/fm/music/events/2023/2023-07-15-willa-techno-dancing/20230715__willa_techno_dancing__01-1600.webp",
+                "/home/fm/music/events/2023/2023-10-07-willa-techno-dancing/20231007__willa_techno_dancing__01-1600.webp",
+                "/home/fm/music/events/2023/2023-10-07-willa-techno-dancing/20231007__willa_techno_dancing__02-1600.webp"
             ]
         },
-
         {
-            "cmd": "feh poster_01.jpg",
+            "cmd": "find ~/music/events -type f -name '*-1600.webp' | wc -l",
             "type": "text",
             "output": [
-                "[void-club-poster-01] JPEG 1200x1600 400KB",
-                "Displayed in new window..."
+                "244"
             ]
         }
     ]

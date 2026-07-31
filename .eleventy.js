@@ -4,7 +4,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "src/assets/icons": "assets/icons" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/events/generated": "assets/music/events/generated" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/mixes/generated": "assets/music/mixes/generated" });
-    eleventyConfig.addPassthroughCopy({ "src/assets/music/_presets": "assets/music/_presets" });
+    eleventyConfig.addPassthroughCopy({ "src/assets/music/fallbacks": "assets/music/fallbacks" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/photos/generated": "assets/music/photos/generated" });
     eleventyConfig.addPassthroughCopy({ "src/assets/terminal": "assets/terminal" });
     eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });

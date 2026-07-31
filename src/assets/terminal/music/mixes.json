@@ -1,25 +1,20 @@
 {
     "commands": [
         {
-            "cmd": "ls ~/music/mixes",
+            "cmd": "ls -1 ~/music/mixes",
             "type": "text",
             "output": [
-                "Mixes/",
-                "  ├─ warehouse_pulse.mp3",
-                "  ├─ night_drive.mp3",
-                "  ├─ downtempo_journey.mp3",
-                "  └─ rickroll_special.mp3"
+                "unknown-stories-with-fm.url",
+                "mwtg-498.url",
+                "skff-b-2-b-fm-proper-techno-dj-mix.url"
             ]
         },
-
         {
-            "cmd": "mpv warehouse_pulse.mp3",
+            "cmd": "open \"$(cat ~/music/mixes/mwtg-498.url)\"",
             "type": "text",
             "output": [
-                "Playing: warehouse_pulse.mp3",
-                "Audio: 320 kbps • Techno • 90 min",
-                "Output: PulseAudio • Headphones",
-                "▶▶▶────────────────────────────── 00:00 / 1:30:00"
+                "Opening: https://soundcloud.com/mwtg-podcast/mwtg-498-maciej-fm",
+                "FM | MWTG #498 · SoundCloud · Techno · 1h 08min"
             ]
         }
     ]

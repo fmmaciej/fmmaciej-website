@@ -1,7 +1,3 @@
-const eventEvents = require("./eventEvents.js");
-const eventUpcomingEvents = require("./eventUpcomingEvents.js");
+const eventData = require("./eventData.js");
 
-module.exports = [
-    ...(Array.isArray(eventUpcomingEvents) ? eventUpcomingEvents : []),
-    ...(Array.isArray(eventEvents) ? eventEvents : [])
-];
+module.exports = eventData.all;

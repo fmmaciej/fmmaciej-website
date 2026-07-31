@@ -13,16 +13,15 @@
                 "..."
             ]
         },
-
         {
             "cmd": "ls -al ~/music/events/2023",
             "type": "text",
             "output": [
-                "drwxr-xr-x  5 fm fm  160 Jul 15 23:59 .",
-                "drwxr-xr-x 10 fm fm  320 Dec 31 23:59 ..",
-                "-rw-r--r--  1 fm fm 480K Jul 15 23:59 2023-07-15_willa-techno-dancing_01.webp",
-                "-rw-r--r--  1 fm fm 356K May 01 23:59 2023-05-01_void-club_01.webp",
-                "-rw-r--r--  1 fm fm 512K Mar 11 23:59 2023-03-11_electro-district_01.webp"
+                "drwxr-xr-x  5 fm fm 160 Dec 31 23:59 .",
+                "drwxr-xr-x 10 fm fm 320 Dec 31 23:59 ..",
+                "drwxr-xr-x  2 fm fm  96 Dec 31 23:59 2023-12-31-new-years-willa/",
+                "drwxr-xr-x  2 fm fm 160 Oct 07 23:59 2023-10-07-willa-techno-dancing/",
+                "drwxr-xr-x  2 fm fm  96 Jul 15 23:59 2023-07-15-willa-techno-dancing/"
             ]
         }
     ]
