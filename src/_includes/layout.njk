@@ -88,7 +88,12 @@
     {% endif %}
 
     <div class="content-host">
-        <main>
+        <main{% if collectionPage %}
+            data-collection-page
+            data-collection-base-path="{{ collectionPage.basePath }}"
+            data-collection-sync-hash="{% if collectionPage.syncHash %}true{% else %}false{% endif %}"
+            data-collection-terminal-crumb="{% if collectionPage.showTerminalCrumb %}true{% else %}false{% endif %}"
+        {% endif %}>
             {{ content | safe }}
         </main>
     </div>

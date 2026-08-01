@@ -179,8 +179,31 @@
         });
     }
 
-    function findOpenGroup(groups) {
-        return groups.find((group) => group.open);
+    function groupAncestors(group) {
+        const ancestors = [];
+        let parent = group.parentElement?.closest('details.group');
+
+        while (parent) {
+            ancestors.unshift(parent);
+            parent = parent.parentElement?.closest('details.group');
+        }
+
+        return ancestors;
+    }
+
+    function revealGroup(group) {
+        groupAncestors(group).forEach((ancestor) => {
+            ancestor.open = true;
+        });
+        group.open = true;
+    }
+
+    function isVisibleOpenGroup(group) {
+        return group.open && groupAncestors(group).every((ancestor) => ancestor.open);
+    }
+
+    function findVisibleOpenGroup(groups) {
+        return groups.find((group) => isVisibleOpenGroup(group));
     }
 
     function setActiveGroup(groups, activeGroup) {
@@ -192,13 +215,24 @@
 
         try {
             if (slug) history.replaceState(null, '', `#${slug}`);
-            else history.replaceState(null, '', location.pathname);
+            else history.replaceState(null, '', `${location.pathname}${location.search}`);
         } catch (_) {}
+    }
+
+    function currentHashSlug() {
+        return (location.hash || '').replace(/^#/, '');
     }
 
     function syncCollectionSuffix(suffix, options, slug, label) {
         if (!suffix) return;
-        suffix.innerHTML = slug ? options.formatCrumb(slug, label) : '';
+        suffix.replaceChildren();
+
+        if (!slug || !options.showTerminalCrumb) return;
+
+        const link = suffix.ownerDocument.createElement('a');
+        link.href = `${options.basePath}#${slug}`;
+        link.textContent = `/${label || slug}`;
+        suffix.append(link);
     }
 
     function createCollectionState(groups, suffix, options) {
@@ -209,11 +243,15 @@
             getActiveId() {
                 return activeId;
             },
-            apply(group) {
+            apply(group, updateUrl = true) {
                 if (!group) {
+                    const hashSlug = currentHashSlug();
+                    const canClearHash = !hashSlug
+                        || groups.some((item) => item.dataset.slug === hashSlug);
+
                     activeId = null;
                     syncCollectionSuffix(suffix, options, null, null);
-                    syncCollectionHash(null, syncHash);
+                    syncCollectionHash(null, syncHash && updateUrl && canClearHash);
                     setActiveGroup(groups, null);
                     return;
                 }
@@ -225,7 +263,7 @@
                     group.dataset.slug,
                     (group.dataset.group || '').toLowerCase()
                 );
-                syncCollectionHash(group.dataset.slug, syncHash);
+                syncCollectionHash(group.dataset.slug, syncHash && updateUrl);
                 setActiveGroup(groups, group);
             }
         };
@@ -248,12 +286,12 @@
         group.dataset.animating = '1';
         animateClose(group, content, () => {
             delete group.dataset.animating;
-            state.apply(findOpenGroup(groups));
+            state.apply(findVisibleOpenGroup(groups));
         });
     }
 
     function initCollectionPage(root, options, cleanups) {
-        const suffix = root.querySelector(options.suffixSelector);
+        const suffix = options.suffix;
         const groups = Array.from(root.querySelectorAll('details.group'));
         if (!groups.length) return;
 
@@ -265,7 +303,7 @@
                 event.preventDefault();
 
                 const wrap = summary.parentElement;
-                const content = wrap?.querySelector('.group-items');
+                const content = wrap?.querySelector(':scope > .group-items');
 
                 if (!wrap || wrap.dataset.animating === '1') {
                     return;
@@ -294,7 +332,7 @@
                 .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0));
 
             if (!visible.length) {
-                const openGroup = findOpenGroup(groups);
+                const openGroup = findVisibleOpenGroup(groups);
                 if (!openGroup) {
                     state.apply(null);
                 }
@@ -314,17 +352,17 @@
 
         groups.forEach((group) => observer.observe(group));
 
-        const slug = (location.hash || '').replace(/^#/, '');
+        const slug = currentHashSlug();
         if (!slug) {
-            state.apply(null);
+            state.apply(null, false);
         } else {
-            const el = root.querySelector(`#group-${slug}`);
+            const el = groups.find((group) => group.dataset.slug === slug);
             if (el) {
-                if (!el.open) el.open = true;
+                revealGroup(el);
                 el.scrollIntoView({ behavior: 'instant', block: 'start' });
                 state.apply(el);
             } else {
-                state.apply(null);
+                state.apply(null, false);
             }
         }
 
