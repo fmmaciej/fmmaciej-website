@@ -20,6 +20,7 @@
 
         "build": "eleventy && npm run build:hash",
         "rebuild": "npm run clean && npm run build:content && npm run build",
+        "test:data": "node --test tests/data-builders.test.js",
 
         "push": "git push",
         "deploy:check": "./tools/build_check.sh",
