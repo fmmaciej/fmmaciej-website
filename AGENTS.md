@@ -1,0 +1,172 @@
+# AGENTS.md
+
+## Project overview
+
+This repository contains `fmmaciej.com`, a static personal site built with
+Eleventy 3. The site uses Nunjucks templates, Markdown content, CommonJS data
+modules, plain browser JavaScript, and hand-written CSS. Eleventy reads from
+`src/` and writes the generated site to `www/`.
+
+## Repository map
+
+- `.eleventy.js` configures passthrough assets, Markdown rendering, filters,
+  shortcodes, and the blog collection.
+- `src/_includes/` contains the shared layout, post layout, and Nunjucks macros.
+- `src/_data/` contains thin Eleventy data adapters. Files in
+  `src/_data/music/` are the editorial and generated music catalogues consumed
+  by those adapters through builders in `src/_lib/`.
+- `src/_lib/` contains pure CommonJS builders for shaping blog and music view
+  models without mutating their inputs.
+- `src/blog/posts/` contains Markdown blog posts.
+- `src/music/`, `src/projects/`, and `src/me/` contain page templates and their
+  Markdown fragments.
+- `src/assets/css/` and `src/assets/js/` contain unbundled browser assets copied
+  directly to the output.
+- `src/assets/terminal/` contains the JSON sequences used by the terminal UI.
+- `src/assets/music/{events,photos,mixes}/generated/` contains generated WebP
+  variants that are committed because the site references them directly.
+- `src/assets/music/fallbacks/` contains the shared `upcoming.png` fallback and
+  the retained `to-be-announced.png` image.
+- `tests/` contains tracked Node tests for the blog and music data builders and
+  their Eleventy adapters.
+- `www/` is generated output. Never edit or commit it.
+- `tools/` and `docs/` are ignored developer-local helpers/documentation in
+  this checkout. Package scripts depend on some of those helpers, but changes
+  under ignored paths will not normally be part of a commit.
+
+## Setup and commands
+
+Use the lockfile and install dependencies with:
+
+```bash
+npm ci
+```
+
+Useful commands:
+
+- `npm run dev` starts Eleventy's development server with watch mode.
+- `npm run build` builds `src/` into `www/` and creates `www/build.txt`.
+- `npm run test:data` runs the tracked `node:test` suite for the pure data
+  builders and Eleventy adapters.
+- `npm run clean` removes `www/`.
+- `npm run rebuild` removes `www/`, regenerates music assets/data and the press
+  kit, then performs the Eleventy build. It can make broad source-tree changes;
+  use it only when the task calls for regeneration.
+- `npm run build:events`, `npm run build:mixes`, and `npm run build:photos`
+  regenerate the corresponding media. These commands require the local
+  scripts and `originals/` directories under ignored `tools/`/asset paths.
+
+There is no configured lint command or general browser/application test suite.
+The tracked data-builder tests run through `npm run test:data`. The ignored
+local tooling additionally includes catalogue synchronization tests under
+`tools/tests/test_sync_music.py`; run them with:
+
+```bash
+python3 -m unittest discover -s tools/tests -v
+```
+
+For normal template, CSS, JavaScript, or content changes, `npm run build` is the
+minimum validation. Run `npm run test:data` for changes under `src/_data/`,
+`src/_lib/`, or their consumers. Inspect the affected generated page in a
+browser when layout, interaction, responsive behavior, or accessibility may
+have changed.
+
+Do not run `npm run deploy`, `npm run deploy:ovh`, or push the `ovh-deploy`
+branch unless the user explicitly requests a deployment. Deployment performs
+network and remote Git operations. `deploy:check` also requires `main`, a clean
+worktree, an up-to-date `origin/main`, and a build matching the committed
+`src` tree.
+
+## Architecture and implementation conventions
+
+- Keep the project dependency-light. Prefer the existing Nunjucks, vanilla JS,
+  and CSS patterns over introducing a bundler or framework.
+- Server-side files use CommonJS (`require` and `module.exports`). Follow the
+  data flow `raw source -> pure builder in src/_lib/ -> thin Eleventy adapter in
+  src/_data/ (or local *.11tydata.js) -> template`. Builders own normalization,
+  sorting, grouping, and view-model shaping and must not mutate their inputs.
+  Adapters should only load the source, invoke a builder, and export its result.
+  Keep this logic out of templates.
+- Page templates use YAML frontmatter and explicit permalinks. Page-specific
+  styles and scripts belong in the `pageStyles` and `pageScripts` arrays so the
+  shared layout loads them correctly.
+- Reuse macros from `src/_includes/macros/` for repeated markup. Keep meaningful
+  HTML, `aria-*` attributes, image dimensions, lazy loading, and responsive
+  `srcset` behavior intact.
+- Browser JavaScript is loaded as classic deferred scripts, not ES modules.
+  Avoid imports, build-time assumptions, and dependencies on execution before
+  the DOM is available. Follow the existing IIFE/event-listener style and make
+  initialization safe when an element is absent.
+- Blog, events, mixes, and photos configure the shared collapsible collection
+  component through `collectionPage` frontmatter rendered as `data-*`
+  attributes on `<main>`. Keep `page-boot.js` route-agnostic; add or change a
+  collection through declarative configuration rather than pathname checks.
+- CSS is organized by responsibility: tokens and site-wide rules in `base/`,
+  reusable UI in `components/`, animation behavior in `effects/`, and
+  route-specific rules in `sections/`. Reuse custom properties from
+  `src/assets/css/base/root.css` and support both light and dark themes.
+- Follow `.editorconfig`: UTF-8, LF, final newline, trimmed trailing whitespace,
+  and two-space indentation. Preserve established local formatting when a file
+  consistently differs, and avoid unrelated reformatting.
+- Root-relative public URLs such as `/assets/...` and `/music/...` are the
+  established convention.
+
+## Content and data workflows
+
+### Blog
+
+Add posts under `src/blog/posts/` with a date-prefixed filename and frontmatter
+including `title`, `date`, `layout: post.njk`, and a permalink such as
+`"blog/{{ page.fileSlug }}/"`. Use `draft: true` to suppress both the post page
+and its archive entry. The blog collection sorts published posts newest first.
+`src/blog/index.11tydata.js` is intentionally a local thin adapter because it
+depends on `collections.blog`; `src/_lib/blog/buildBlogArchive.js` owns archive
+grouping.
+
+### Music catalogues
+
+- `events.json`, `photos.json`, and `mixes.json` each contain `defaults`,
+  editorial `items`, and generated `media`. Build scripts preserve manual
+  fields while refreshing technical media fields.
+- Original source filenames follow `YYYYMMDD__slug__NN.ext`; shared mix images
+  follow `shared__slug__NN.ext`. Slugs use lowercase ASCII, digits, `_`, and
+  `-`, while the sequence is exactly two digits. Do not rename them casually:
+  IDs come from filenames and SHA-256 is used to recognize renamed content.
+- Event `section` is generated from the date in `Europe/Rome`. Mix `status` is
+  editorial and remains explicitly `planned` or `published`.
+- Prefer the relevant build command over manual bulk edits. If a task changes
+  generated assets, review and include every matching variant (events/photos:
+  `480`, `960`, `1600`; mixes: `480`, `960`) and the JSON together.
+- JSON must remain valid and should retain the surrounding schema and ordering.
+  Avoid opportunistic normalization of large catalogue files.
+- `buildEventData`, `buildMixData`, and `buildPhotoData` in `src/_lib/music/`
+  produce the complete view models used by templates. Keep their corresponding
+  global data files thin and preserve the existing template-facing contracts.
+
+### Markdown fragments and terminal data
+
+Page copy is often split into `_content/intro/`, `_content/outro/`, or
+`_content/pages/` and rendered through the `importMd` shortcode. Edit the
+fragment rather than duplicating copy in its Nunjucks page. The directory data
+file `src/music/_content/_content.11tydata.js` prevents music fragments from
+creating public pages; it does not affect direct `importMd` reads.
+
+The press-kit bundle uses `src/music/_content/notes/contact.md` and
+`src/music/_content/notes/mixes.md` as required source content. Do not treat
+those fragments as unused merely because page templates do not import them.
+
+Terminal JSON files are public runtime data. Keep their action schema
+consistent with neighboring files, use real catalogue entries and current
+filename conventions in examples, and verify referenced paths/actions against
+the browser handlers.
+
+## Working-tree discipline
+
+- Treat existing modifications as user-owned. Do not overwrite, revert, or
+  reformat unrelated changes.
+- Before finishing, check `git diff --check` and `git status --short` so generated
+  output or unrelated files are not accidentally included.
+- Keep changes focused. When regeneration touches many media or JSON files,
+  confirm that the full diff is a necessary consequence of the requested task.
+- Do not add secrets, hosting credentials, analytics configuration, local
+  virtual environments, original source media, or build output to Git.
