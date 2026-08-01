@@ -17,7 +17,7 @@ pageScripts:
 {% importMd "music/_content/intro/events.md" %}
 </div>
 
-{% macro renderEventCard(event, eager) %}
+{% macro renderEventCard(event) %}
 <a class="event-card" href="{{ event.path }}" aria-label="{{ event.cover.alt }}">
     <img
         src="{{ event.cover.thumb480 }}"
@@ -26,8 +26,7 @@ pageScripts:
         alt="{{ event.cover.alt }}"
         width="{{ event.cover.thumb_w }}"
         height="{{ event.cover.thumb_h }}"
-        {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
-        decoding="async">
+        loading="lazy" decoding="async">
     <div class="event-meta">
         <div class="event-date">{{ event.date }}</div>
         <div class="event-name">{{ event.name }}</div>
@@ -44,7 +43,7 @@ pageScripts:
 {% call renderGroup(upcomingGroup, upcomingEvents | length, "grid") %}
     {% if upcomingEvents | length %}
         {% for event in upcomingEvents %}
-            {{ renderEventCard(event, loop.index0 < 6) }}
+            {{ renderEventCard(event) }}
         {% endfor %}
     {% else %}
         <div class="group-empty">No events added yet.</div>
@@ -59,7 +58,7 @@ pageScripts:
     {% for year in decade.years %}
     {% call renderGroup(year, year.count, "grid") %}
         {% for event in year.items %}
-            {{ renderEventCard(event, loop.index0 < 6) }}
+            {{ renderEventCard(event) }}
         {% endfor %}
     {% endcall %}
     {% endfor %}

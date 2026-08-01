@@ -24,7 +24,12 @@ pageScripts:
     {% else %}
     <div class="mix-item is-disabled" aria-disabled="true">
     {% endif %}
-        {% if thumb %}<img src="{{ thumb }}" alt="Thumbnail for {{ it.alt or it.title or 'mix' }}">{% endif %}
+        {% if thumb %}
+        <img
+            src="{{ thumb }}"
+            alt="Thumbnail for {{ it.alt or it.title or 'mix' }}"
+            loading="lazy" decoding="async">
+        {% endif %}
 
         <figcaption>
             {{ it.title }}
