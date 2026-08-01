@@ -1,0 +1,3633 @@
+<!doctype html>
+<html lang="en" class="preload">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script>
+        (function(){
+            var KEY='theme';
+            var saved = localStorage.getItem(KEY);
+            if(saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+            } else {
+                // brak wyboru - użyj systemowego
+                var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            }
+        })();
+    </script>
+
+    <title>FM — /music/events</title>
+    <meta name="description" content="FM - software engineer. Minimal terminal-style personal site." />
+
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="8" width="64" height="64" fill="%23000"/><text x="50%" y="56%" text-anchor="middle" font-family="monospace" font-size="26" fill="white">FM</text></svg>' />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/assets/css/effects/boot.css" />
+    <link rel="stylesheet" href="/assets/css/base/global.css" />
+    <link rel="stylesheet" href="/assets/css/components/icons.css" />
+    <link rel="stylesheet" href="/assets/css/base/layout.css" />
+    <link rel="stylesheet" href="/assets/css/effects/markdown.css" />
+    <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+    <link rel="stylesheet" href="/assets/css/components/page_loader.css" />
+    <link rel="stylesheet" href="/assets/css/components/page-content.css" />
+    <link rel="stylesheet" href="/assets/css/base/root.css" />
+    <link rel="stylesheet" href="/assets/css/components/terminal.css" />
+    <link rel="stylesheet" href="/assets/css/effects/transitions.css" />
+    
+        
+    <link rel="stylesheet" href="/assets/css/components/music-collections.css" data-page-style />
+        
+    <link rel="stylesheet" href="/assets/css/components/music-media-cards.css" data-page-style />
+        
+    <link rel="stylesheet" href="/assets/css/sections/events.css" data-page-style />
+        
+    
+</head>
+
+<body>
+    <div class="wrap">
+
+    <header>
+    <a href="/" class="no-underline"><strong>FM</strong></a>
+    <nav class="primary" aria-label="Primary navigation">
+        <div class="primary-links">
+            <a href="/">/me</a>
+            <a href="/projects/">/projects</a>
+            <a href="/blog/">/blog</a>
+            <a href="/music/">/music</a>
+            <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
+        </div>
+        <button class="hamburger" id="hamburger" type="button" aria-controls="mobileDrawer" aria-expanded="false" aria-label="Open menu">
+            MENU<i class="fas fa-bars"></i>
+        </button>
+
+        <button class="theme-toggle" id="themeToggle" type="button" title="Toggle theme" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+    <div style="clear:both"></div>
+    </header>
+
+    
+    
+        <div class="terminal-box" data-terminal="/assets/terminal/music/events.json">
+            <div class="terminal-viewport">
+                <div class="terminal-meta-line">
+                    <div class="terminal-location">
+                        <nav class="terminal-path" id="terminalPath" aria-label="Current path"></nav><span id="terminalPathSuffix" class="terminal-path-suffix"></span>
+                    </div>
+                    <div class="terminal-meta">
+                        <span class="terminal-session">[fm@void]</span>
+                        <span id="terminalClock" class="terminal-clock"></span>
+                    </div>
+                </div>
+                <div class="terminal-command-line">
+                    <span class="prompt-mark">&gt;</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
+                </div>
+            </div>
+        </div>
+    
+
+    <div class="content-host">
+        <main
+            data-collection-page
+            data-collection-base-path="/music/events/"
+            data-collection-sync-hash="true"
+            data-collection-terminal-crumb="true"
+        >
+            
+
+
+<div class="music-intro">
+<p>A collection of posters and flyers from events I’ve been part of.<br>
+Sorted by year, they show where and when the music happened.</p>
+
+</div>
+
+
+
+
+
+
+
+
+<details class="group" id="group-upcoming" data-key="upcoming" data-group="Upcoming" data-slug="upcoming">
+    <summary>
+        <span class="group-label">Upcoming</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">2</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+    
+        
+            
+<a class="event-card" href="/music/events/2026-09-12-drum-bass/" aria-label="Upcoming event">
+    <img
+        src="/assets/music/fallbacks/upcoming.png"
+        srcset="/assets/music/fallbacks/upcoming.png 480w, /assets/music/fallbacks/upcoming.png 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Upcoming event"
+        width="1536"
+        height="1024"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-09-12</div>
+        <div class="event-name">Drum &amp; Bass</div>
+        <div class="event-place">Łódź</div>
+        <div class="event-count">0 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-09-26-techno/" aria-label="Upcoming event">
+    <img
+        src="/assets/music/fallbacks/upcoming.png"
+        srcset="/assets/music/fallbacks/upcoming.png 480w, /assets/music/fallbacks/upcoming.png 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Upcoming event"
+        width="1536"
+        height="1024"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-09-26</div>
+        <div class="event-name">Techno</div>
+        <div class="event-place">Warszawa</div>
+        <div class="event-count">0 materials</div>
+    </div>
+</a>
+
+        
+    
+
+    </div>
+</details>
+
+
+
+<div class="event-archive">
+
+
+<details class="group" id="group-d-2020" data-key="d-2020" data-group="2020s" data-slug="d-2020">
+    <summary>
+        <span class="group-label">2020s</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">73</span>
+    </summary>
+
+    <div class="group-items" data-layout="list">
+        
+    <div class="event-years">
+    
+    
+<details class="group" id="group-y-2026" data-key="y-2026" data-group="2026" data-slug="y-2026">
+    <summary>
+        <span class="group-label">2026</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">9</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2026-07-11-audio-river/" aria-label="AudioRiver">
+    <img
+        src="/assets/music/events/generated/20260711__audio_river__01-480.webp"
+        srcset="/assets/music/events/generated/20260711__audio_river__01-480.webp 480w, /assets/music/events/generated/20260711__audio_river__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="AudioRiver"
+        width="480"
+        height="600"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-07-11</div>
+        <div class="event-name">AudioRiver</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-06-06-back-to-the-game/" aria-label="BackToTheGame">
+    <img
+        src="/assets/music/events/generated/20260606__back_to_the_game__01-480.webp"
+        srcset="/assets/music/events/generated/20260606__back_to_the_game__01-480.webp 480w, /assets/music/events/generated/20260606__back_to_the_game__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="BackToTheGame"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-06-06</div>
+        <div class="event-name">BackToTheGame</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-04-25-czwarte-urodziny-willi/" aria-label="CzwarteUrodzinyWilli">
+    <img
+        src="/assets/music/events/generated/20260425__czwarte_urodziny_willi__01-480.webp"
+        srcset="/assets/music/events/generated/20260425__czwarte_urodziny_willi__01-480.webp 480w, /assets/music/events/generated/20260425__czwarte_urodziny_willi__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CzwarteUrodzinyWilli"
+        width="480"
+        height="600"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-04-25</div>
+        <div class="event-name">CzwarteUrodzinyWilli</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-04-17-subterra-2-0/" aria-label="Subterra2.0">
+    <img
+        src="/assets/music/events/generated/20260417__subterra_2_0__01-480.webp"
+        srcset="/assets/music/events/generated/20260417__subterra_2_0__01-480.webp 480w, /assets/music/events/generated/20260417__subterra_2_0__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Subterra2.0"
+        width="480"
+        height="392"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-04-17</div>
+        <div class="event-name">Subterra2.0</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-03-27-sekta-selekta-takeover/" aria-label="SektaSelektaTakeover">
+    <img
+        src="/assets/music/events/generated/20260327__sekta_selekta_takeover__01-480.webp"
+        srcset="/assets/music/events/generated/20260327__sekta_selekta_takeover__01-480.webp 480w, /assets/music/events/generated/20260327__sekta_selekta_takeover__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SektaSelektaTakeover"
+        width="480"
+        height="853"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-03-27</div>
+        <div class="event-name">SektaSelektaTakeover</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-03-21-powitanie-wiosny/" aria-label="PowitanieWiosny">
+    <img
+        src="/assets/music/events/generated/20260321__powitanie_wiosny__01-480.webp"
+        srcset="/assets/music/events/generated/20260321__powitanie_wiosny__01-480.webp 480w, /assets/music/events/generated/20260321__powitanie_wiosny__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PowitanieWiosny"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-03-21</div>
+        <div class="event-name">PowitanieWiosny</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-03-07-private-press/" aria-label="PrivatePress">
+    <img
+        src="/assets/music/events/generated/20260307__private_press__01-480.webp"
+        srcset="/assets/music/events/generated/20260307__private_press__01-480.webp 480w, /assets/music/events/generated/20260307__private_press__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PrivatePress"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-03-07</div>
+        <div class="event-name">PrivatePress</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-02-12-karnawalowy-bal-maskowy/" aria-label="KarnawałowyBalMaskowy">
+    <img
+        src="/assets/music/events/generated/20260212__karnawalowy_bal_maskowy__01-480.webp"
+        srcset="/assets/music/events/generated/20260212__karnawalowy_bal_maskowy__01-480.webp 480w, /assets/music/events/generated/20260212__karnawalowy_bal_maskowy__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="KarnawałowyBalMaskowy"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-02-12</div>
+        <div class="event-name">KarnawałowyBalMaskowy</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2026-01-24-proper/" aria-label="Proper">
+    <img
+        src="/assets/music/events/generated/20260124__proper__01-480.webp"
+        srcset="/assets/music/events/generated/20260124__proper__01-480.webp 480w, /assets/music/events/generated/20260124__proper__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Proper"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2026-01-24</div>
+        <div class="event-name">Proper</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2025" data-key="y-2025" data-group="2025" data-slug="y-2025">
+    <summary>
+        <span class="group-label">2025</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">6</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2025-12-31-new-years-willa-on-tour/" aria-label="NewYearsWillaOnTour">
+    <img
+        src="/assets/music/events/generated/20251231__new_years_willa_on_tour__01-480.webp"
+        srcset="/assets/music/events/generated/20251231__new_years_willa_on_tour__01-480.webp 480w, /assets/music/events/generated/20251231__new_years_willa_on_tour__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NewYearsWillaOnTour"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2025-12-31</div>
+        <div class="event-name">NewYearsWillaOnTour</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2025-10-11-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20251011__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20251011__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20251011__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2025-10-11</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2025-03-29-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20250329__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20250329__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20250329__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2025-03-29</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2025-03-22-powitanie-wiosny/" aria-label="PowitanieWiosny">
+    <img
+        src="/assets/music/events/generated/20250322__powitanie_wiosny__01-480.webp"
+        srcset="/assets/music/events/generated/20250322__powitanie_wiosny__01-480.webp 480w, /assets/music/events/generated/20250322__powitanie_wiosny__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PowitanieWiosny"
+        width="480"
+        height="599"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2025-03-22</div>
+        <div class="event-name">PowitanieWiosny</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2025-03-21-subterra/" aria-label="Subterra">
+    <img
+        src="/assets/music/events/generated/20250321__subterra__01-480.webp"
+        srcset="/assets/music/events/generated/20250321__subterra__01-480.webp 480w, /assets/music/events/generated/20250321__subterra__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Subterra"
+        width="480"
+        height="392"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2025-03-21</div>
+        <div class="event-name">Subterra</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2025-02-15-karnawalowy-bal-maskowy/" aria-label="KarnawalowyBalMaskowy">
+    <img
+        src="/assets/music/events/generated/20250215__karnawalowy_bal_maskowy__01-480.webp"
+        srcset="/assets/music/events/generated/20250215__karnawalowy_bal_maskowy__01-480.webp 480w, /assets/music/events/generated/20250215__karnawalowy_bal_maskowy__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="KarnawalowyBalMaskowy"
+        width="480"
+        height="910"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2025-02-15</div>
+        <div class="event-name">KarnawalowyBalMaskowy</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2024" data-key="y-2024" data-group="2024" data-slug="y-2024">
+    <summary>
+        <span class="group-label">2024</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">13</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2024-12-31-new-years-willa/" aria-label="NewYearsWilla">
+    <img
+        src="/assets/music/events/generated/20241231__new_years_willa__01-480.webp"
+        srcset="/assets/music/events/generated/20241231__new_years_willa__01-480.webp 480w, /assets/music/events/generated/20241231__new_years_willa__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NewYearsWilla"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-12-31</div>
+        <div class="event-name">NewYearsWilla</div>
+        
+        <div class="event-count">4 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-12-14-interstellars/" aria-label="Interstellars">
+    <img
+        src="/assets/music/events/generated/20241214__interstellars__01-480.webp"
+        srcset="/assets/music/events/generated/20241214__interstellars__01-480.webp 480w, /assets/music/events/generated/20241214__interstellars__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Interstellars"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-12-14</div>
+        <div class="event-name">Interstellars</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-10-12-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20241012__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20241012__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20241012__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-10-12</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-08-31-parada-wolnosci-platforma/" aria-label="ParadaWolnosciPlatforma">
+    <img
+        src="/assets/music/events/generated/20240831__parada_wolnosci_platforma__01-480.webp"
+        srcset="/assets/music/events/generated/20240831__parada_wolnosci_platforma__01-480.webp 480w, /assets/music/events/generated/20240831__parada_wolnosci_platforma__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="ParadaWolnosciPlatforma"
+        width="480"
+        height="853"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-08-31</div>
+        <div class="event-name">ParadaWolnosciPlatforma</div>
+        
+        <div class="event-count">5 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-08-31-parada-wolnosci-after/" aria-label="ParadaWolnosciAfter">
+    <img
+        src="/assets/music/events/generated/20240831__parada_wolnosci_after__01-480.webp"
+        srcset="/assets/music/events/generated/20240831__parada_wolnosci_after__01-480.webp 480w, /assets/music/events/generated/20240831__parada_wolnosci_after__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="ParadaWolnosciAfter"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-08-31</div>
+        <div class="event-name">ParadaWolnosciAfter</div>
+        
+        <div class="event-count">5 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-07-19-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20240719__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20240719__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20240719__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="253"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-07-19</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-06-29-summer-at-finest/" aria-label="SummerAtFinest">
+    <img
+        src="/assets/music/events/generated/20240629__summer_at_finest__01-480.webp"
+        srcset="/assets/music/events/generated/20240629__summer_at_finest__01-480.webp 480w, /assets/music/events/generated/20240629__summer_at_finest__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SummerAtFinest"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-06-29</div>
+        <div class="event-name">SummerAtFinest</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-04-27-2-urodziny-willi/" aria-label="2UrodzinyWilli">
+    <img
+        src="/assets/music/events/generated/20240427__2_urodziny_willi__01-480.webp"
+        srcset="/assets/music/events/generated/20240427__2_urodziny_willi__01-480.webp 480w, /assets/music/events/generated/20240427__2_urodziny_willi__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="2UrodzinyWilli"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-04-27</div>
+        <div class="event-name">2UrodzinyWilli</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-04-05-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20240405__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20240405__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20240405__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-04-05</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-03-23-powitanie-wiosny/" aria-label="PowitanieWiosny">
+    <img
+        src="/assets/music/events/generated/20240323__powitanie_wiosny__01-480.webp"
+        srcset="/assets/music/events/generated/20240323__powitanie_wiosny__01-480.webp 480w, /assets/music/events/generated/20240323__powitanie_wiosny__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PowitanieWiosny"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-03-23</div>
+        <div class="event-name">PowitanieWiosny</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-02-17-karnawalowy-bal-maskowy/" aria-label="KarnawalowyBalMaskowy">
+    <img
+        src="/assets/music/events/generated/20240217__karnawalowy_bal_maskowy__01-480.webp"
+        srcset="/assets/music/events/generated/20240217__karnawalowy_bal_maskowy__01-480.webp 480w, /assets/music/events/generated/20240217__karnawalowy_bal_maskowy__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="KarnawalowyBalMaskowy"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-02-17</div>
+        <div class="event-name">KarnawalowyBalMaskowy</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-01-28-speeds-of-techno/" aria-label="SpeedsOfTechno">
+    <img
+        src="/assets/music/events/generated/20240128__speeds_of_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20240128__speeds_of_techno__01-480.webp 480w, /assets/music/events/generated/20240128__speeds_of_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SpeedsOfTechno"
+        width="480"
+        height="859"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-01-28</div>
+        <div class="event-name">SpeedsOfTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2024-01-27-lodzki-towar/" aria-label="LodzkiTowar">
+    <img
+        src="/assets/music/events/generated/20240127__lodzki_towar__01-480.webp"
+        srcset="/assets/music/events/generated/20240127__lodzki_towar__01-480.webp 480w, /assets/music/events/generated/20240127__lodzki_towar__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="LodzkiTowar"
+        width="480"
+        height="252"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2024-01-27</div>
+        <div class="event-name">LodzkiTowar</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2023" data-key="y-2023" data-group="2023" data-slug="y-2023">
+    <summary>
+        <span class="group-label">2023</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">20</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2023-12-31-new-years-willa/" aria-label="NewYearsWilla">
+    <img
+        src="/assets/music/events/generated/20231231__new_years_willa__01-480.webp"
+        srcset="/assets/music/events/generated/20231231__new_years_willa__01-480.webp 480w, /assets/music/events/generated/20231231__new_years_willa__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NewYearsWilla"
+        width="480"
+        height="477"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-12-31</div>
+        <div class="event-name">NewYearsWilla</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-12-24-pasterka/" aria-label="Pasterka">
+    <img
+        src="/assets/music/events/generated/20231224__pasterka__01-480.webp"
+        srcset="/assets/music/events/generated/20231224__pasterka__01-480.webp 480w, /assets/music/events/generated/20231224__pasterka__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Pasterka"
+        width="480"
+        height="474"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-12-24</div>
+        <div class="event-name">Pasterka</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-12-02-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20231202__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20231202__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20231202__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="477"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-12-02</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-10-31-not-so-abandoned-willa/" aria-label="NotSoAbandonedWilla">
+    <img
+        src="/assets/music/events/generated/20231031__not_so_abandoned_willa__01-480.webp"
+        srcset="/assets/music/events/generated/20231031__not_so_abandoned_willa__01-480.webp 480w, /assets/music/events/generated/20231031__not_so_abandoned_willa__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NotSoAbandonedWilla"
+        width="480"
+        height="598"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-10-31</div>
+        <div class="event-name">NotSoAbandonedWilla</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-10-17-dobra-nocka/" aria-label="DobraNocka">
+    <img
+        src="/assets/music/events/generated/20231017__dobra_nocka__01-480.webp"
+        srcset="/assets/music/events/generated/20231017__dobra_nocka__01-480.webp 480w, /assets/music/events/generated/20231017__dobra_nocka__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="DobraNocka"
+        width="480"
+        height="604"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-10-17</div>
+        <div class="event-name">DobraNocka</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-10-07-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20231007__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20231007__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20231007__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="250"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-10-07</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-09-16-willa-is-on-fire/" aria-label="WillaIsOnFire">
+    <img
+        src="/assets/music/events/generated/20230916__willa_is_on_fire__01-480.webp"
+        srcset="/assets/music/events/generated/20230916__willa_is_on_fire__01-480.webp 480w, /assets/music/events/generated/20230916__willa_is_on_fire__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaIsOnFire"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-09-16</div>
+        <div class="event-name">WillaIsOnFire</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-07-15-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20230715__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20230715__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20230715__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="478"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-07-15</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-05-19-brwsh/" aria-label="Brwsh">
+    <img
+        src="/assets/music/events/generated/20230519__brwsh__01-480.webp"
+        srcset="/assets/music/events/generated/20230519__brwsh__01-480.webp 480w, /assets/music/events/generated/20230519__brwsh__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Brwsh"
+        width="480"
+        height="600"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-05-19</div>
+        <div class="event-name">Brwsh</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-05-06-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20230506__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20230506__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20230506__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-05-06</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-04-29-urodziny-willi/" aria-label="UrodzinyWilli">
+    <img
+        src="/assets/music/events/generated/20230429__urodziny_willi__01-480.webp"
+        srcset="/assets/music/events/generated/20230429__urodziny_willi__01-480.webp 480w, /assets/music/events/generated/20230429__urodziny_willi__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UrodzinyWilli"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-04-29</div>
+        <div class="event-name">UrodzinyWilli</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-04-22-10-years-of-boom-events/" aria-label="10YearsOfBoomEvents">
+    <img
+        src="/assets/music/events/generated/20230422__10_years_of_boom_events__01-480.webp"
+        srcset="/assets/music/events/generated/20230422__10_years_of_boom_events__01-480.webp 480w, /assets/music/events/generated/20230422__10_years_of_boom_events__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="10YearsOfBoomEvents"
+        width="480"
+        height="562"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-04-22</div>
+        <div class="event-name">10YearsOfBoomEvents</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-04-14-make-lodzkie-techno-great-again/" aria-label="MakeLodzkieTechnoGreatAgain">
+    <img
+        src="/assets/music/events/generated/20230414__make_lodzkie_techno_great_again__01-480.webp"
+        srcset="/assets/music/events/generated/20230414__make_lodzkie_techno_great_again__01-480.webp 480w, /assets/music/events/generated/20230414__make_lodzkie_techno_great_again__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="MakeLodzkieTechnoGreatAgain"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-04-14</div>
+        <div class="event-name">MakeLodzkieTechnoGreatAgain</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-03-25-powitanie-wiosny/" aria-label="PowitanieWiosny">
+    <img
+        src="/assets/music/events/generated/20230325__powitanie_wiosny__01-480.webp"
+        srcset="/assets/music/events/generated/20230325__powitanie_wiosny__01-480.webp 480w, /assets/music/events/generated/20230325__powitanie_wiosny__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PowitanieWiosny"
+        width="480"
+        height="481"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-03-25</div>
+        <div class="event-name">PowitanieWiosny</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-03-11-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20230311__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20230311__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20230311__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="809"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-03-11</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-02-18-walentynkowy-bal-maskowy/" aria-label="WalentynkowyBalMaskowy">
+    <img
+        src="/assets/music/events/generated/20230218__walentynkowy_bal_maskowy__01-480.webp"
+        srcset="/assets/music/events/generated/20230218__walentynkowy_bal_maskowy__01-480.webp 480w, /assets/music/events/generated/20230218__walentynkowy_bal_maskowy__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WalentynkowyBalMaskowy"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-02-18</div>
+        <div class="event-name">WalentynkowyBalMaskowy</div>
+        
+        <div class="event-count">6 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-02-10-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20230210__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20230210__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20230210__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="479"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-02-10</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-02-04-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20230204__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20230204__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20230204__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="375"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-02-04</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-01-13-willowka-czyli-wieksza-domowka/" aria-label="WillowkaCzyliWiekszaDomowka">
+    <img
+        src="/assets/music/events/generated/20230113__willowka_czyli_wieksza_domowka__01-480.webp"
+        srcset="/assets/music/events/generated/20230113__willowka_czyli_wieksza_domowka__01-480.webp 480w, /assets/music/events/generated/20230113__willowka_czyli_wieksza_domowka__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillowkaCzyliWiekszaDomowka"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-01-13</div>
+        <div class="event-name">WillowkaCzyliWiekszaDomowka</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2023-01-07-willa-techno-dancing/" aria-label="WillaTechnoDancing">
+    <img
+        src="/assets/music/events/generated/20230107__willa_techno_dancing__01-480.webp"
+        srcset="/assets/music/events/generated/20230107__willa_techno_dancing__01-480.webp 480w, /assets/music/events/generated/20230107__willa_techno_dancing__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WillaTechnoDancing"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2023-01-07</div>
+        <div class="event-name">WillaTechnoDancing</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2022" data-key="y-2022" data-group="2022" data-slug="y-2022">
+    <summary>
+        <span class="group-label">2022</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">7</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2022-12-31-new-years-willon/" aria-label="NewYearsWillon">
+    <img
+        src="/assets/music/events/generated/20221231__new_years_willon__01-480.webp"
+        srcset="/assets/music/events/generated/20221231__new_years_willon__01-480.webp 480w, /assets/music/events/generated/20221231__new_years_willon__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NewYearsWillon"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2022-12-31</div>
+        <div class="event-name">NewYearsWillon</div>
+        
+        <div class="event-count">5 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2022-10-29-halloween/" aria-label="Halloween">
+    <img
+        src="/assets/music/events/generated/20221029__halloween__01-480.webp"
+        srcset="/assets/music/events/generated/20221029__halloween__01-480.webp 480w, /assets/music/events/generated/20221029__halloween__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Halloween"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2022-10-29</div>
+        <div class="event-name">Halloween</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2022-09-17-labirynt-atak-kosmitow/" aria-label="LabiryntAtakKosmitow">
+    <img
+        src="/assets/music/events/generated/20220917__labirynt_atak_kosmitow__01-480.webp"
+        srcset="/assets/music/events/generated/20220917__labirynt_atak_kosmitow__01-480.webp 480w, /assets/music/events/generated/20220917__labirynt_atak_kosmitow__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="LabiryntAtakKosmitow"
+        width="480"
+        height="720"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2022-09-17</div>
+        <div class="event-name">LabiryntAtakKosmitow</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2022-05-12-szukam-chlopaka-dziewczyny-techno/" aria-label="SzukamChlopakaDziewczynyTechno">
+    <img
+        src="/assets/music/events/generated/20220512__szukam_chlopaka_dziewczyny_techno__02-480.webp"
+        srcset="/assets/music/events/generated/20220512__szukam_chlopaka_dziewczyny_techno__02-480.webp 480w, /assets/music/events/generated/20220512__szukam_chlopaka_dziewczyny_techno__02-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SzukamChlopakaDziewczynyTechno"
+        width="480"
+        height="252"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2022-05-12</div>
+        <div class="event-name">SzukamChlopakaDziewczynyTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2022-04-23-wielkie-otwarcie/" aria-label="WielkieOtwarcie">
+    <img
+        src="/assets/music/events/generated/20220423__wielkie_otwarcie__01-480.webp"
+        srcset="/assets/music/events/generated/20220423__wielkie_otwarcie__01-480.webp 480w, /assets/music/events/generated/20220423__wielkie_otwarcie__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WielkieOtwarcie"
+        width="480"
+        height="442"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2022-04-23</div>
+        <div class="event-name">WielkieOtwarcie</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2022-03-22-powitanie-wiosny/" aria-label="PowitanieWiosny">
+    <img
+        src="/assets/music/events/generated/20220322__powitanie_wiosny__02-480.webp"
+        srcset="/assets/music/events/generated/20220322__powitanie_wiosny__02-480.webp 480w, /assets/music/events/generated/20220322__powitanie_wiosny__02-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PowitanieWiosny"
+        width="480"
+        height="477"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2022-03-22</div>
+        <div class="event-name">PowitanieWiosny</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2022-03-19-powitanie-wiosny/" aria-label="PowitanieWiosny">
+    <img
+        src="/assets/music/events/generated/20220319__powitanie_wiosny__01-480.webp"
+        srcset="/assets/music/events/generated/20220319__powitanie_wiosny__01-480.webp 480w, /assets/music/events/generated/20220319__powitanie_wiosny__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PowitanieWiosny"
+        width="480"
+        height="279"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2022-03-19</div>
+        <div class="event-name">PowitanieWiosny</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2021" data-key="y-2021" data-group="2021" data-slug="y-2021">
+    <summary>
+        <span class="group-label">2021</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">9</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2021-12-31-new-years-willa/" aria-label="NewYearsWilla">
+    <img
+        src="/assets/music/events/generated/20211231__new_years_willa__01-480.webp"
+        srcset="/assets/music/events/generated/20211231__new_years_willa__01-480.webp 480w, /assets/music/events/generated/20211231__new_years_willa__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NewYearsWilla"
+        width="480"
+        height="282"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-12-31</div>
+        <div class="event-name">NewYearsWilla</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2021-12-10-boom-imprezka-przed-lockdownem/" aria-label="BoomImprezkaPrzedLockdownem">
+    <img
+        src="/assets/music/events/generated/20211210__boom_imprezka_przed_lockdownem__01-480.webp"
+        srcset="/assets/music/events/generated/20211210__boom_imprezka_przed_lockdownem__01-480.webp 480w, /assets/music/events/generated/20211210__boom_imprezka_przed_lockdownem__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="BoomImprezkaPrzedLockdownem"
+        width="480"
+        height="247"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-12-10</div>
+        <div class="event-name">BoomImprezkaPrzedLockdownem</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2021-11-26-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20211126__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20211126__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20211126__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="245"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-11-26</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2021-11-06-cykl-prawdziwe-techno/" aria-label="Cykl Prawdziwe Techno">
+    <img
+        src="/assets/music/events/generated/20211106__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20211106__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20211106__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Cykl Prawdziwe Techno"
+        width="480"
+        height="472"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-11-06</div>
+        <div class="event-name">Cykl Prawdziwe Techno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2021-10-09-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20211009__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20211009__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20211009__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="315"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-10-09</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2021-08-14-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20210814__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20210814__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20210814__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="285"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-08-14</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2021-07-31-tesknilismy-za-techno/" aria-label="TesknilismyZaTechno">
+    <img
+        src="/assets/music/events/generated/20210731__tesknilismy_za_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20210731__tesknilismy_za_techno__01-480.webp 480w, /assets/music/events/generated/20210731__tesknilismy_za_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="TesknilismyZaTechno"
+        width="480"
+        height="246"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-07-31</div>
+        <div class="event-name">TesknilismyZaTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2021-07-17-wystawa-muzyki-techno/" aria-label="WystawaMuzykiTechno">
+    <img
+        src="/assets/music/events/generated/20210717__wystawa_muzyki_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20210717__wystawa_muzyki_techno__01-480.webp 480w, /assets/music/events/generated/20210717__wystawa_muzyki_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WystawaMuzykiTechno"
+        width="480"
+        height="263"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-07-17</div>
+        <div class="event-name">WystawaMuzykiTechno</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2021-06-26-labirynt-island/" aria-label="LabiryntIsland">
+    <img
+        src="/assets/music/events/generated/20210626__labirynt_island__01-480.webp"
+        srcset="/assets/music/events/generated/20210626__labirynt_island__01-480.webp 480w, /assets/music/events/generated/20210626__labirynt_island__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="LabiryntIsland"
+        width="480"
+        height="471"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2021-06-26</div>
+        <div class="event-name">LabiryntIsland</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2020" data-key="y-2020" data-group="2020" data-slug="y-2020">
+    <summary>
+        <span class="group-label">2020</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">9</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2020-10-17-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20201017__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20201017__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20201017__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="262"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-10-17</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2020-09-26-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20200926__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20200926__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20200926__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="249"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-09-26</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2020-08-29-labirynt-island/" aria-label="LabiryntIsland">
+    <img
+        src="/assets/music/events/generated/20200829__labirynt_island__01-480.webp"
+        srcset="/assets/music/events/generated/20200829__labirynt_island__01-480.webp 480w, /assets/music/events/generated/20200829__labirynt_island__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="LabiryntIsland"
+        width="480"
+        height="573"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-08-29</div>
+        <div class="event-name">LabiryntIsland</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2020-08-20-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20200820__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20200820__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20200820__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="235"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-08-20</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2020-06-27-podziemna-lodz/" aria-label="PodziemnaLodz">
+    <img
+        src="/assets/music/events/generated/20200627__podziemna_lodz__01-480.webp"
+        srcset="/assets/music/events/generated/20200627__podziemna_lodz__01-480.webp 480w, /assets/music/events/generated/20200627__podziemna_lodz__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PodziemnaLodz"
+        width="480"
+        height="247"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-06-27</div>
+        <div class="event-name">PodziemnaLodz</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2020-04-09-2-urodziny-sody/" aria-label="2UrodzinySody">
+    <img
+        src="/assets/music/events/generated/20200409__2_urodziny_sody__01-480.webp"
+        srcset="/assets/music/events/generated/20200409__2_urodziny_sody__01-480.webp 480w, /assets/music/events/generated/20200409__2_urodziny_sody__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="2UrodzinySody"
+        width="480"
+        height="246"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-04-09</div>
+        <div class="event-name">2UrodzinySody</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2020-02-08-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20200208__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20200208__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20200208__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="250"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-02-08</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2020-01-22-prototypy/" aria-label="Prototypy">
+    <img
+        src="/assets/music/events/generated/20200122__prototypy__01-480.webp"
+        srcset="/assets/music/events/generated/20200122__prototypy__01-480.webp 480w, /assets/music/events/generated/20200122__prototypy__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Prototypy"
+        width="480"
+        height="243"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-01-22</div>
+        <div class="event-name">Prototypy</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2020-01-11-3-urodziny-revo/" aria-label="3UrodzinyRevo">
+    <img
+        src="/assets/music/events/generated/20200111__3_urodziny_revo__01-480.webp"
+        srcset="/assets/music/events/generated/20200111__3_urodziny_revo__01-480.webp 480w, /assets/music/events/generated/20200111__3_urodziny_revo__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="3UrodzinyRevo"
+        width="480"
+        height="248"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2020-01-11</div>
+        <div class="event-name">3UrodzinyRevo</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    </div>
+
+    </div>
+</details>
+
+
+
+<details class="group" id="group-d-2010" data-key="d-2010" data-group="2010s" data-slug="d-2010">
+    <summary>
+        <span class="group-label">2010s</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">89</span>
+    </summary>
+
+    <div class="group-items" data-layout="list">
+        
+    <div class="event-years">
+    
+    
+<details class="group" id="group-y-2019" data-key="y-2019" data-group="2019" data-slug="y-2019">
+    <summary>
+        <span class="group-label">2019</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">14</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2019-12-26-revo-jaselka-online-stream/" aria-label="Revo Jaselka Online Stream">
+    <img
+        src="/assets/music/events/generated/20191226__revo_jaselka_online_stream__01-480.webp"
+        srcset="/assets/music/events/generated/20191226__revo_jaselka_online_stream__01-480.webp 480w, /assets/music/events/generated/20191226__revo_jaselka_online_stream__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Revo Jaselka Online Stream"
+        width="480"
+        height="275"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-12-26</div>
+        <div class="event-name">Revo Jaselka Online Stream</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-12-20-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20191220__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20191220__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20191220__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="286"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-12-20</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-12-06-kemal/" aria-label="Kemal">
+    <img
+        src="/assets/music/events/generated/20191206__kemal__01-480.webp"
+        srcset="/assets/music/events/generated/20191206__kemal__01-480.webp 480w, /assets/music/events/generated/20191206__kemal__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Kemal"
+        width="480"
+        height="476"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-12-06</div>
+        <div class="event-name">Kemal</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-11-02-nightmare-creatures/" aria-label="NightmareCreatures">
+    <img
+        src="/assets/music/events/generated/20191102__nightmare_creatures__01-480.webp"
+        srcset="/assets/music/events/generated/20191102__nightmare_creatures__01-480.webp 480w, /assets/music/events/generated/20191102__nightmare_creatures__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NightmareCreatures"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-11-02</div>
+        <div class="event-name">NightmareCreatures</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-10-16-prototypy/" aria-label="Prototypy">
+    <img
+        src="/assets/music/events/generated/20191016__prototypy__01-480.webp"
+        srcset="/assets/music/events/generated/20191016__prototypy__01-480.webp 480w, /assets/music/events/generated/20191016__prototypy__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Prototypy"
+        width="480"
+        height="258"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-10-16</div>
+        <div class="event-name">Prototypy</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-10-05-hidden-noises-t-gnight/" aria-label="HiddenNoises&amp;T&amp;GNight">
+    <img
+        src="/assets/music/events/generated/20191005__hidden_noises_t_gnight__01-480.webp"
+        srcset="/assets/music/events/generated/20191005__hidden_noises_t_gnight__01-480.webp 480w, /assets/music/events/generated/20191005__hidden_noises_t_gnight__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="HiddenNoises&amp;T&amp;GNight"
+        width="480"
+        height="247"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-10-05</div>
+        <div class="event-name">HiddenNoises&amp;T&amp;GNight</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-08-24-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20190824__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20190824__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20190824__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="248"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-08-24</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-08-10-black-hole-2/" aria-label="BlackHole2">
+    <img
+        src="/assets/music/events/generated/20190810__black_hole_2__01-480.webp"
+        srcset="/assets/music/events/generated/20190810__black_hole_2__01-480.webp 480w, /assets/music/events/generated/20190810__black_hole_2__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="BlackHole2"
+        width="480"
+        height="304"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-08-10</div>
+        <div class="event-name">BlackHole2</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-07-13-hidden-noises-pylon/" aria-label="HiddenNoises&amp;Pylon">
+    <img
+        src="/assets/music/events/generated/20190713__hidden_noises_pylon__01-480.webp"
+        srcset="/assets/music/events/generated/20190713__hidden_noises_pylon__01-480.webp 480w, /assets/music/events/generated/20190713__hidden_noises_pylon__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="HiddenNoises&amp;Pylon"
+        width="480"
+        height="182"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-07-13</div>
+        <div class="event-name">HiddenNoises&amp;Pylon</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-07-13-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20190713__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20190713__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20190713__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-07-13</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-06-22-ja-szanuje-ja-rejwuje/" aria-label="JaSzanujeJaRejwuje">
+    <img
+        src="/assets/music/events/generated/20190622__ja_szanuje_ja_rejwuje__01-480.webp"
+        srcset="/assets/music/events/generated/20190622__ja_szanuje_ja_rejwuje__01-480.webp 480w, /assets/music/events/generated/20190622__ja_szanuje_ja_rejwuje__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="JaSzanujeJaRejwuje"
+        width="480"
+        height="599"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-06-22</div>
+        <div class="event-name">JaSzanujeJaRejwuje</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-06-21-electronic-summer/" aria-label="ElectronicSummer">
+    <img
+        src="/assets/music/events/generated/20190621__electronic_summer__01-480.webp"
+        srcset="/assets/music/events/generated/20190621__electronic_summer__01-480.webp 480w, /assets/music/events/generated/20190621__electronic_summer__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="ElectronicSummer"
+        width="480"
+        height="244"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-06-21</div>
+        <div class="event-name">ElectronicSummer</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-03-09-cant-stop-raving/" aria-label="CantStopRaving">
+    <img
+        src="/assets/music/events/generated/20190309__cant_stop_raving__01-480.webp"
+        srcset="/assets/music/events/generated/20190309__cant_stop_raving__01-480.webp 480w, /assets/music/events/generated/20190309__cant_stop_raving__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CantStopRaving"
+        width="480"
+        height="177"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-03-09</div>
+        <div class="event-name">CantStopRaving</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2019-02-09-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20190209__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20190209__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20190209__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2019-02-09</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2018" data-key="y-2018" data-group="2018" data-slug="y-2018">
+    <summary>
+        <span class="group-label">2018</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">12</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2018-12-22-cykl-prawdziwe-techno/" aria-label="CyklPrawdziweTechno">
+    <img
+        src="/assets/music/events/generated/20181222__cykl_prawdziwe_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20181222__cykl_prawdziwe_techno__01-480.webp 480w, /assets/music/events/generated/20181222__cykl_prawdziwe_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="CyklPrawdziweTechno"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-12-22</div>
+        <div class="event-name">CyklPrawdziweTechno</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-10-26-manoid-truth/" aria-label="Manoid Truth">
+    <img
+        src="/assets/music/events/generated/20181026__manoid_truth__01-480.webp"
+        srcset="/assets/music/events/generated/20181026__manoid_truth__01-480.webp 480w, /assets/music/events/generated/20181026__manoid_truth__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Manoid Truth"
+        width="480"
+        height="671"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-10-26</div>
+        <div class="event-name">Manoid Truth</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-10-13-vyti-tauta-bday/" aria-label="VytiTautaBday">
+    <img
+        src="/assets/music/events/generated/20181013__vyti_tauta_bday__01-480.webp"
+        srcset="/assets/music/events/generated/20181013__vyti_tauta_bday__01-480.webp 480w, /assets/music/events/generated/20181013__vyti_tauta_bday__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="VytiTautaBday"
+        width="480"
+        height="720"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-10-13</div>
+        <div class="event-name">VytiTautaBday</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-09-07-ostatni-plener-sezonu-2018/" aria-label="OstatniPlenerSezonu2018">
+    <img
+        src="/assets/music/events/generated/20180907__ostatni_plener_sezonu_2018__01-480.webp"
+        srcset="/assets/music/events/generated/20180907__ostatni_plener_sezonu_2018__01-480.webp 480w, /assets/music/events/generated/20180907__ostatni_plener_sezonu_2018__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="OstatniPlenerSezonu2018"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-09-07</div>
+        <div class="event-name">OstatniPlenerSezonu2018</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-08-11-black-hole/" aria-label="BlackHole">
+    <img
+        src="/assets/music/events/generated/20180811__black_hole__01-480.webp"
+        srcset="/assets/music/events/generated/20180811__black_hole__01-480.webp 480w, /assets/music/events/generated/20180811__black_hole__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="BlackHole"
+        width="480"
+        height="317"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-08-11</div>
+        <div class="event-name">BlackHole</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-07-20-4-na-4/" aria-label="4na4">
+    <img
+        src="/assets/music/events/generated/20180720__4_na_4__01-480.webp"
+        srcset="/assets/music/events/generated/20180720__4_na_4__01-480.webp 480w, /assets/music/events/generated/20180720__4_na_4__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="4na4"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-07-20</div>
+        <div class="event-name">4na4</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-06-02-plaska-ziemia/" aria-label="PlaskaZiemia">
+    <img
+        src="/assets/music/events/generated/20180602__plaska_ziemia__01-480.webp"
+        srcset="/assets/music/events/generated/20180602__plaska_ziemia__01-480.webp 480w, /assets/music/events/generated/20180602__plaska_ziemia__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PlaskaZiemia"
+        width="480"
+        height="425"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-06-02</div>
+        <div class="event-name">PlaskaZiemia</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-05-26-say-yes-to-techno-sept/" aria-label="Say Yes To Techno Sept">
+    <img
+        src="/assets/music/events/generated/20180526__say_yes_to_techno_sept__01-480.webp"
+        srcset="/assets/music/events/generated/20180526__say_yes_to_techno_sept__01-480.webp 480w, /assets/music/events/generated/20180526__say_yes_to_techno_sept__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Say Yes To Techno Sept"
+        width="480"
+        height="359"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-05-26</div>
+        <div class="event-name">Say Yes To Techno Sept</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-05-12-szukam-chlopaka-dziewczyny-techno/" aria-label="SzukamChlopakaDziewczynyTechno">
+    <img
+        src="/assets/music/events/generated/20180512__szukam_chlopaka_dziewczyny_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20180512__szukam_chlopaka_dziewczyny_techno__01-480.webp 480w, /assets/music/events/generated/20180512__szukam_chlopaka_dziewczyny_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SzukamChlopakaDziewczynyTechno"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-05-12</div>
+        <div class="event-name">SzukamChlopakaDziewczynyTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-05-05-dirty-stuff-night/" aria-label="DirtyStuffNight">
+    <img
+        src="/assets/music/events/generated/20180505__dirty_stuff_night__01-480.webp"
+        srcset="/assets/music/events/generated/20180505__dirty_stuff_night__01-480.webp 480w, /assets/music/events/generated/20180505__dirty_stuff_night__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="DirtyStuffNight"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-05-05</div>
+        <div class="event-name">DirtyStuffNight</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-03-16-say-yes-to-techno/" aria-label="SayYesToTechno">
+    <img
+        src="/assets/music/events/generated/20180316__say_yes_to_techno__01-480.webp"
+        srcset="/assets/music/events/generated/20180316__say_yes_to_techno__01-480.webp 480w, /assets/music/events/generated/20180316__say_yes_to_techno__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SayYesToTechno"
+        width="480"
+        height="270"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-03-16</div>
+        <div class="event-name">SayYesToTechno</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2018-01-20-snts/" aria-label="SNTS">
+    <img
+        src="/assets/music/events/generated/20180120__snts__01-480.webp"
+        srcset="/assets/music/events/generated/20180120__snts__01-480.webp 480w, /assets/music/events/generated/20180120__snts__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SNTS"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2018-01-20</div>
+        <div class="event-name">SNTS</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2017" data-key="y-2017" data-group="2017" data-slug="y-2017">
+    <summary>
+        <span class="group-label">2017</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">16</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2017-12-23-boat-to-berlin/" aria-label="BoatToBerlin">
+    <img
+        src="/assets/music/events/generated/20171223__boat_to_berlin__01-480.webp"
+        srcset="/assets/music/events/generated/20171223__boat_to_berlin__01-480.webp 480w, /assets/music/events/generated/20171223__boat_to_berlin__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="BoatToBerlin"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-12-23</div>
+        <div class="event-name">BoatToBerlin</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-12-15-brwsh/" aria-label="BRWSH">
+    <img
+        src="/assets/music/events/generated/20171215__brwsh__01-480.webp"
+        srcset="/assets/music/events/generated/20171215__brwsh__01-480.webp 480w, /assets/music/events/generated/20171215__brwsh__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="BRWSH"
+        width="480"
+        height="250"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-12-15</div>
+        <div class="event-name">BRWSH</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-11-30-elektrodisko-radio-zak/" aria-label="ElektrodiskoRadioZak">
+    <img
+        src="/assets/music/events/generated/20171130__elektrodisko_radio_zak__01-480.webp"
+        srcset="/assets/music/events/generated/20171130__elektrodisko_radio_zak__01-480.webp 480w, /assets/music/events/generated/20171130__elektrodisko_radio_zak__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="ElektrodiskoRadioZak"
+        width="480"
+        height="251"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-11-30</div>
+        <div class="event-name">ElektrodiskoRadioZak</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-11-11-ed-rush/" aria-label="EdRush">
+    <img
+        src="/assets/music/events/generated/20171111__ed_rush__01-480.webp"
+        srcset="/assets/music/events/generated/20171111__ed_rush__01-480.webp 480w, /assets/music/events/generated/20171111__ed_rush__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="EdRush"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-11-11</div>
+        <div class="event-name">EdRush</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-10-21-blackout-3/" aria-label="Blackout3">
+    <img
+        src="/assets/music/events/generated/20171021__blackout_3__01-480.webp"
+        srcset="/assets/music/events/generated/20171021__blackout_3__01-480.webp 480w, /assets/music/events/generated/20171021__blackout_3__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Blackout3"
+        width="480"
+        height="250"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-10-21</div>
+        <div class="event-name">Blackout3</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-10-20-samo-geste-x-20/" aria-label="SamoGesteX20">
+    <img
+        src="/assets/music/events/generated/20171020__samo_geste_x_20__01-480.webp"
+        srcset="/assets/music/events/generated/20171020__samo_geste_x_20__01-480.webp 480w, /assets/music/events/generated/20171020__samo_geste_x_20__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SamoGesteX20"
+        width="480"
+        height="270"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-10-20</div>
+        <div class="event-name">SamoGesteX20</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-10-08-ltronica/" aria-label="LTronica">
+    <img
+        src="/assets/music/events/generated/20171008__ltronica__01-480.webp"
+        srcset="/assets/music/events/generated/20171008__ltronica__01-480.webp 480w, /assets/music/events/generated/20171008__ltronica__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="LTronica"
+        width="480"
+        height="680"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-10-08</div>
+        <div class="event-name">LTronica</div>
+        
+        <div class="event-count">7 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-08-19-blackout-2/" aria-label="Blackout2">
+    <img
+        src="/assets/music/events/generated/20170819__blackout_2__01-480.webp"
+        srcset="/assets/music/events/generated/20170819__blackout_2__01-480.webp 480w, /assets/music/events/generated/20170819__blackout_2__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Blackout2"
+        width="480"
+        height="177"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-08-19</div>
+        <div class="event-name">Blackout2</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-06-24-2-lodzka-konferencja/" aria-label="2ŁodzkaKonferencja">
+    <img
+        src="/assets/music/events/generated/20170624__2_lodzka_konferencja__01-480.webp"
+        srcset="/assets/music/events/generated/20170624__2_lodzka_konferencja__01-480.webp 480w, /assets/music/events/generated/20170624__2_lodzka_konferencja__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="2ŁodzkaKonferencja"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-06-24</div>
+        <div class="event-name">2ŁodzkaKonferencja</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-05-13-samo-geste/" aria-label="SamoGęste">
+    <img
+        src="/assets/music/events/generated/20170513__samo_geste__01-480.webp"
+        srcset="/assets/music/events/generated/20170513__samo_geste__01-480.webp 480w, /assets/music/events/generated/20170513__samo_geste__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SamoGęste"
+        width="480"
+        height="676"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-05-13</div>
+        <div class="event-name">SamoGęste</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-05-02-majbasowka/" aria-label="Majbasówka">
+    <img
+        src="/assets/music/events/generated/20170502__majbasowka__01-480.webp"
+        srcset="/assets/music/events/generated/20170502__majbasowka__01-480.webp 480w, /assets/music/events/generated/20170502__majbasowka__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Majbasówka"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-05-02</div>
+        <div class="event-name">Majbasówka</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-04-29-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20170429__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20170429__uds__01-480.webp 480w, /assets/music/events/generated/20170429__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="714"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-04-29</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-04-22-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20170422__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20170422__uds__01-480.webp 480w, /assets/music/events/generated/20170422__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="640"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-04-22</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-03-11-po-naszemu-3/" aria-label="PoNaszemu#3">
+    <img
+        src="/assets/music/events/generated/20170311__po_naszemu_3__01-480.webp"
+        srcset="/assets/music/events/generated/20170311__po_naszemu_3__01-480.webp 480w, /assets/music/events/generated/20170311__po_naszemu_3__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PoNaszemu#3"
+        width="480"
+        height="182"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-03-11</div>
+        <div class="event-name">PoNaszemu#3</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-02-11-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20170211__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20170211__uds__01-480.webp 480w, /assets/music/events/generated/20170211__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="178"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-02-11</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2017-01-28-technosoul/" aria-label="Technosoul">
+    <img
+        src="/assets/music/events/generated/20170128__technosoul__01-480.webp"
+        srcset="/assets/music/events/generated/20170128__technosoul__01-480.webp 480w, /assets/music/events/generated/20170128__technosoul__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Technosoul"
+        width="480"
+        height="184"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2017-01-28</div>
+        <div class="event-name">Technosoul</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2016" data-key="y-2016" data-group="2016" data-slug="y-2016">
+    <summary>
+        <span class="group-label">2016</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">13</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2016-12-31-ravester/" aria-label="Ravester">
+    <img
+        src="/assets/music/events/generated/20161231__ravester__01-480.webp"
+        srcset="/assets/music/events/generated/20161231__ravester__01-480.webp 480w, /assets/music/events/generated/20161231__ravester__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Ravester"
+        width="480"
+        height="180"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-12-31</div>
+        <div class="event-name">Ravester</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-12-17-po-naszemu-2/" aria-label="PoNaszemu#2">
+    <img
+        src="/assets/music/events/generated/20161217__po_naszemu_2__01-480.webp"
+        srcset="/assets/music/events/generated/20161217__po_naszemu_2__01-480.webp 480w, /assets/music/events/generated/20161217__po_naszemu_2__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="PoNaszemu#2"
+        width="480"
+        height="180"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-12-17</div>
+        <div class="event-name">PoNaszemu#2</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-12-03-25-years-of-tresor/" aria-label="25YearsOfTresor">
+    <img
+        src="/assets/music/events/generated/20161203__25_years_of_tresor__01-480.webp"
+        srcset="/assets/music/events/generated/20161203__25_years_of_tresor__01-480.webp 480w, /assets/music/events/generated/20161203__25_years_of_tresor__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="25YearsOfTresor"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-12-03</div>
+        <div class="event-name">25YearsOfTresor</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-10-29-technosoul-night/" aria-label="TechnosoulNight">
+    <img
+        src="/assets/music/events/generated/20161029__technosoul_night__01-480.webp"
+        srcset="/assets/music/events/generated/20161029__technosoul_night__01-480.webp 480w, /assets/music/events/generated/20161029__technosoul_night__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="TechnosoulNight"
+        width="480"
+        height="182"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-10-29</div>
+        <div class="event-name">TechnosoulNight</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-10-08-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20161008__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20161008__uds__01-480.webp 480w, /assets/music/events/generated/20161008__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="1155"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-10-08</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-10-01-nauki-techniczne/" aria-label="NaukiTechniczne">
+    <img
+        src="/assets/music/events/generated/20161001__nauki_techniczne__01-480.webp"
+        srcset="/assets/music/events/generated/20161001__nauki_techniczne__01-480.webp 480w, /assets/music/events/generated/20161001__nauki_techniczne__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NaukiTechniczne"
+        width="480"
+        height="186"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-10-01</div>
+        <div class="event-name">NaukiTechniczne</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-08-06-3-urodziny-boom-events/" aria-label="3UrodzinyBoomEvents">
+    <img
+        src="/assets/music/events/generated/20160806__3_urodziny_boom_events__01-480.webp"
+        srcset="/assets/music/events/generated/20160806__3_urodziny_boom_events__01-480.webp 480w, /assets/music/events/generated/20160806__3_urodziny_boom_events__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="3UrodzinyBoomEvents"
+        width="480"
+        height="180"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-08-06</div>
+        <div class="event-name">3UrodzinyBoomEvents</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-06-17-veni-vini-techno-2/" aria-label="VeniViniTechno#2">
+    <img
+        src="/assets/music/events/generated/20160617__veni_vini_techno_2__01-480.webp"
+        srcset="/assets/music/events/generated/20160617__veni_vini_techno_2__01-480.webp 480w, /assets/music/events/generated/20160617__veni_vini_techno_2__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="VeniViniTechno#2"
+        width="480"
+        height="177"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-06-17</div>
+        <div class="event-name">VeniViniTechno#2</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-06-11-matma-geburstag/" aria-label="MatmaGeburstag">
+    <img
+        src="/assets/music/events/generated/20160611__matma_geburstag__01-480.webp"
+        srcset="/assets/music/events/generated/20160611__matma_geburstag__01-480.webp 480w, /assets/music/events/generated/20160611__matma_geburstag__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="MatmaGeburstag"
+        width="480"
+        height="180"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-06-11</div>
+        <div class="event-name">MatmaGeburstag</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-05-14-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20160514__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20160514__uds__01-480.webp 480w, /assets/music/events/generated/20160514__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="698"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-05-14</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-04-21-wernisazwystawy-fotografii/" aria-label="WernisażWystawyFotografii">
+    <img
+        src="/assets/music/events/generated/20160421__wernisazwystawy_fotografii__01-480.webp"
+        srcset="/assets/music/events/generated/20160421__wernisazwystawy_fotografii__01-480.webp 480w, /assets/music/events/generated/20160421__wernisazwystawy_fotografii__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WernisażWystawyFotografii"
+        width="480"
+        height="180"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-04-21</div>
+        <div class="event-name">WernisażWystawyFotografii</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-04-02-techno-meets-drum-n-bass/" aria-label="TechnoMeetsDrum&#39;n&#39;bass">
+    <img
+        src="/assets/music/events/generated/20160402__techno_meets_drum_n_bass__01-480.webp"
+        srcset="/assets/music/events/generated/20160402__techno_meets_drum_n_bass__01-480.webp 480w, /assets/music/events/generated/20160402__techno_meets_drum_n_bass__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="TechnoMeetsDrum&#39;n&#39;bass"
+        width="480"
+        height="180"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-04-02</div>
+        <div class="event-name">TechnoMeetsDrum&#39;n&#39;bass</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2016-02-13-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20160213__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20160213__uds__01-480.webp 480w, /assets/music/events/generated/20160213__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="178"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2016-02-13</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2015" data-key="y-2015" data-group="2015" data-slug="y-2015">
+    <summary>
+        <span class="group-label">2015</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">6</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2015-12-05-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20151205__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20151205__uds__01-480.webp 480w, /assets/music/events/generated/20151205__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="178"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2015-12-05</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2015-10-10-light-move-festival/" aria-label="LightMoveFestival">
+    <img
+        src="/assets/music/events/generated/20151010__light_move_festival__01-480.webp"
+        srcset="/assets/music/events/generated/20151010__light_move_festival__01-480.webp 480w, /assets/music/events/generated/20151010__light_move_festival__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="LightMoveFestival"
+        width="480"
+        height="181"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2015-10-10</div>
+        <div class="event-name">LightMoveFestival</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2015-08-28-dark-side-of-the-boom/" aria-label="DarkSideOfTheBoom">
+    <img
+        src="/assets/music/events/generated/20150828__dark_side_of_the_boom__01-480.webp"
+        srcset="/assets/music/events/generated/20150828__dark_side_of_the_boom__01-480.webp 480w, /assets/music/events/generated/20150828__dark_side_of_the_boom__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="DarkSideOfTheBoom"
+        width="480"
+        height="180"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2015-08-28</div>
+        <div class="event-name">DarkSideOfTheBoom</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2015-08-08-udssierociniec-2/" aria-label="UDSSierociniec2">
+    <img
+        src="/assets/music/events/generated/20150808__udssierociniec_2__01-480.webp"
+        srcset="/assets/music/events/generated/20150808__udssierociniec_2__01-480.webp 480w, /assets/music/events/generated/20150808__udssierociniec_2__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDSSierociniec2"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2015-08-08</div>
+        <div class="event-name">UDSSierociniec2</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2015-04-10-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20150410__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20150410__uds__01-480.webp 480w, /assets/music/events/generated/20150410__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="706"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2015-04-10</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2015-04-03-bassowka/" aria-label="Bassówka">
+    <img
+        src="/assets/music/events/generated/20150403__bassowka__01-480.webp"
+        srcset="/assets/music/events/generated/20150403__bassowka__01-480.webp 480w, /assets/music/events/generated/20150403__bassowka__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Bassówka"
+        width="480"
+        height="673"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2015-04-03</div>
+        <div class="event-name">Bassówka</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2014" data-key="y-2014" data-group="2014" data-slug="y-2014">
+    <summary>
+        <span class="group-label">2014</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">5</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2014-10-24-harde-im-stadt/" aria-label="HardeImStadt">
+    <img
+        src="/assets/music/events/generated/20141024__harde_im_stadt__01-480.webp"
+        srcset="/assets/music/events/generated/20141024__harde_im_stadt__01-480.webp 480w, /assets/music/events/generated/20141024__harde_im_stadt__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="HardeImStadt"
+        width="480"
+        height="179"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2014-10-24</div>
+        <div class="event-name">HardeImStadt</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2014-06-21-trubass/" aria-label="Trubass">
+    <img
+        src="/assets/music/events/generated/20140621__trubass__01-480.webp"
+        srcset="/assets/music/events/generated/20140621__trubass__01-480.webp 480w, /assets/music/events/generated/20140621__trubass__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Trubass"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2014-06-21</div>
+        <div class="event-name">Trubass</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2014-05-03-mega-majowka/" aria-label="MegaMajówka">
+    <img
+        src="/assets/music/events/generated/20140503__mega_majowka__01-480.webp"
+        srcset="/assets/music/events/generated/20140503__mega_majowka__01-480.webp 480w, /assets/music/events/generated/20140503__mega_majowka__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="MegaMajówka"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2014-05-03</div>
+        <div class="event-name">MegaMajówka</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2014-04-26-space-invaders/" aria-label="SpaceInvaders">
+    <img
+        src="/assets/music/events/generated/20140426__space_invaders__01-480.webp"
+        srcset="/assets/music/events/generated/20140426__space_invaders__01-480.webp 480w, /assets/music/events/generated/20140426__space_invaders__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SpaceInvaders"
+        width="480"
+        height="672"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2014-04-26</div>
+        <div class="event-name">SpaceInvaders</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2014-01-25-lupan-ko/" aria-label="ŁupanKO">
+    <img
+        src="/assets/music/events/generated/20140125__lupan_ko__01-480.webp"
+        srcset="/assets/music/events/generated/20140125__lupan_ko__01-480.webp 480w, /assets/music/events/generated/20140125__lupan_ko__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="ŁupanKO"
+        width="480"
+        height="709"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2014-01-25</div>
+        <div class="event-name">ŁupanKO</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2013" data-key="y-2013" data-group="2013" data-slug="y-2013">
+    <summary>
+        <span class="group-label">2013</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">10</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2013-12-31-sylwester/" aria-label="Sylwester">
+    <img
+        src="/assets/music/events/generated/20131231__sylwester__01-480.webp"
+        srcset="/assets/music/events/generated/20131231__sylwester__01-480.webp 480w, /assets/music/events/generated/20131231__sylwester__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Sylwester"
+        width="480"
+        height="177"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-12-31</div>
+        <div class="event-name">Sylwester</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-12-31-neuj-ahrs-wirr-warr/" aria-label="Neuj_ahrs_wirr_warr">
+    <img
+        src="/assets/music/events/generated/20131231__neuj_ahrs_wirr_warr__01-480.webp"
+        srcset="/assets/music/events/generated/20131231__neuj_ahrs_wirr_warr__01-480.webp 480w, /assets/music/events/generated/20131231__neuj_ahrs_wirr_warr__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Neuj_ahrs_wirr_warr"
+        width="480"
+        height="177"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-12-31</div>
+        <div class="event-name">Neuj_ahrs_wirr_warr</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-12-07-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20131207__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20131207__uds__01-480.webp 480w, /assets/music/events/generated/20131207__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-12-07</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-11-02-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20131102__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20131102__uds__01-480.webp 480w, /assets/music/events/generated/20131102__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-11-02</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-09-21-super-sonic/" aria-label="SuperSonic">
+    <img
+        src="/assets/music/events/generated/20130921__super_sonic__01-480.webp"
+        srcset="/assets/music/events/generated/20130921__super_sonic__01-480.webp 480w, /assets/music/events/generated/20130921__super_sonic__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="SuperSonic"
+        width="480"
+        height="338"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-09-21</div>
+        <div class="event-name">SuperSonic</div>
+        
+        <div class="event-count">3 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-08-10-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20130810__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20130810__uds__01-480.webp 480w, /assets/music/events/generated/20130810__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-08-10</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-06-08-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20130608__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20130608__uds__01-480.webp 480w, /assets/music/events/generated/20130608__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="177"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-06-08</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-04-27-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20130427__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20130427__uds__01-480.webp 480w, /assets/music/events/generated/20130427__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="658"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-04-27</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-02-16-war-of-sounds/" aria-label="WarOfSounds">
+    <img
+        src="/assets/music/events/generated/20130216__war_of_sounds__01-480.webp"
+        srcset="/assets/music/events/generated/20130216__war_of_sounds__01-480.webp 480w, /assets/music/events/generated/20130216__war_of_sounds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WarOfSounds"
+        width="480"
+        height="401"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-02-16</div>
+        <div class="event-name">WarOfSounds</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2013-01-19-warsaw-mechanizm-vs-uds/" aria-label="WarsawMechanizmVsUDS">
+    <img
+        src="/assets/music/events/generated/20130119__warsaw_mechanizm_vs_uds__01-480.webp"
+        srcset="/assets/music/events/generated/20130119__warsaw_mechanizm_vs_uds__01-480.webp 480w, /assets/music/events/generated/20130119__warsaw_mechanizm_vs_uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="WarsawMechanizmVsUDS"
+        width="480"
+        height="302"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2013-01-19</div>
+        <div class="event-name">WarsawMechanizmVsUDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2012" data-key="y-2012" data-group="2012" data-slug="y-2012">
+    <summary>
+        <span class="group-label">2012</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">8</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2012-12-29-neuro-reanimacja/" aria-label="NeuroReanimacja">
+    <img
+        src="/assets/music/events/generated/20121229__neuro_reanimacja__01-480.webp"
+        srcset="/assets/music/events/generated/20121229__neuro_reanimacja__01-480.webp 480w, /assets/music/events/generated/20121229__neuro_reanimacja__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="NeuroReanimacja"
+        width="480"
+        height="231"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2012-12-29</div>
+        <div class="event-name">NeuroReanimacja</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2012-11-23-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20121123__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20121123__uds__01-480.webp 480w, /assets/music/events/generated/20121123__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="678"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2012-11-23</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2012-10-06-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20121006__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20121006__uds__01-480.webp 480w, /assets/music/events/generated/20121006__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2012-10-06</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2012-08-31-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20120831__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20120831__uds__01-480.webp 480w, /assets/music/events/generated/20120831__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="243"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2012-08-31</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2012-07-07-uds/" aria-label="UDS">
+    <img
+        src="/assets/music/events/generated/20120707__uds__01-480.webp"
+        srcset="/assets/music/events/generated/20120707__uds__01-480.webp 480w, /assets/music/events/generated/20120707__uds__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2012-07-07</div>
+        <div class="event-name">UDS</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2012-04-09-double-impact/" aria-label="Double_Impact">
+    <img
+        src="/assets/music/events/generated/20120409__double_impact__01-480.webp"
+        srcset="/assets/music/events/generated/20120409__double_impact__01-480.webp 480w, /assets/music/events/generated/20120409__double_impact__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Double_Impact"
+        width="480"
+        height="685"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2012-04-09</div>
+        <div class="event-name">Double_Impact</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2012-03-23-ultimate-session-torun/" aria-label="Ultimate_session_Toruń">
+    <img
+        src="/assets/music/events/generated/20120323__ultimate_session_torun__01-480.webp"
+        srcset="/assets/music/events/generated/20120323__ultimate_session_torun__01-480.webp 480w, /assets/music/events/generated/20120323__ultimate_session_torun__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Ultimate_session_Toruń"
+        width="480"
+        height="339"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2012-03-23</div>
+        <div class="event-name">Ultimate_session_Toruń</div>
+        
+        <div class="event-count">2 materials</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2012-03-02-hemuguguli/" aria-label="Hemuguguli">
+    <img
+        src="/assets/music/events/generated/20120302__hemuguguli__01-480.webp"
+        srcset="/assets/music/events/generated/20120302__hemuguguli__01-480.webp 480w, /assets/music/events/generated/20120302__hemuguguli__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Hemuguguli"
+        width="480"
+        height="1352"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2012-03-02</div>
+        <div class="event-name">Hemuguguli</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2011" data-key="y-2011" data-group="2011" data-slug="y-2011">
+    <summary>
+        <span class="group-label">2011</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">4</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2011-11-26-uds-6/" aria-label="UDS_6">
+    <img
+        src="/assets/music/events/generated/20111126__uds_6__01-480.webp"
+        srcset="/assets/music/events/generated/20111126__uds_6__01-480.webp 480w, /assets/music/events/generated/20111126__uds_6__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS_6"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2011-11-26</div>
+        <div class="event-name">UDS_6</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2011-09-10-prototyp/" aria-label="Prototyp">
+    <img
+        src="/assets/music/events/generated/20110910__prototyp__01-480.webp"
+        srcset="/assets/music/events/generated/20110910__prototyp__01-480.webp 480w, /assets/music/events/generated/20110910__prototyp__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="Prototyp"
+        width="480"
+        height="480"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2011-09-10</div>
+        <div class="event-name">Prototyp</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2011-04-09-uds-4/" aria-label="UDS_4">
+    <img
+        src="/assets/music/events/generated/20110409__uds_4__01-480.webp"
+        srcset="/assets/music/events/generated/20110409__uds_4__01-480.webp 480w, /assets/music/events/generated/20110409__uds_4__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS_4"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2011-04-09</div>
+        <div class="event-name">UDS_4</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+            
+<a class="event-card" href="/music/events/2011-02-26-uds-3/" aria-label="UDS_3">
+    <img
+        src="/assets/music/events/generated/20110226__uds_3__01-480.webp"
+        srcset="/assets/music/events/generated/20110226__uds_3__01-480.webp 480w, /assets/music/events/generated/20110226__uds_3__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS_3"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2011-02-26</div>
+        <div class="event-name">UDS_3</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    
+<details class="group" id="group-y-2010" data-key="y-2010" data-group="2010" data-slug="y-2010">
+    <summary>
+        <span class="group-label">2010</span>
+        <span class="group-dots" aria-hidden="true"></span>
+        <span class="badge">1</span>
+    </summary>
+
+    <div class="group-items" data-layout="grid">
+        
+        
+            
+<a class="event-card" href="/music/events/2010-11-27-uds-2/" aria-label="UDS_2">
+    <img
+        src="/assets/music/events/generated/20101127__uds_2__01-480.webp"
+        srcset="/assets/music/events/generated/20101127__uds_2__01-480.webp 480w, /assets/music/events/generated/20101127__uds_2__01-960.webp 960w"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 33vw, 25vw"
+        alt="UDS_2"
+        width="480"
+        height="679"
+        loading="lazy" decoding="async">
+    <div class="event-meta">
+        <div class="event-date">2010-11-27</div>
+        <div class="event-name">UDS_2</div>
+        
+        <div class="event-count">1 material</div>
+    </div>
+</a>
+
+        
+    
+    </div>
+</details>
+
+    
+    </div>
+
+    </div>
+</details>
+
+
+</div>
+
+
+<br>
+
+        </main>
+    </div>
+
+    <footer>
+        <div>© 2026 FM</div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/organisciak-maciej/" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.github.com/fmmaciej" title="Github" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://stackoverflow.com/users/8387639/maciej-fm" title="Stack Overflow" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-stack-overflow"></i>
+            </a>
+            <a href="https://pl.ra.co/dj/fmpl" title="Resident Advisor" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/icons/ra.png" alt="Resident Advisor">
+            </a>
+            <a href="https://instagram.com/fmmaciej" title="Instagram" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.mixcloud.com/fmmaciej" title="MixCloud" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-mixcloud"></i>
+            </a>
+            <a href="https://www.soundcloud.com/fmmaciej" title="SoundCloud" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-soundcloud"></i>
+            </a>
+        </div>
+    </footer>
+    </div>
+
+    <!-- Drawer + backdrop -->
+    <div class="backdrop" id="backdrop" hidden></div>
+    <aside class="drawer" id="mobileDrawer" aria-hidden="true" aria-label="Mobile menu">
+        <header>
+        <strong>Menu</strong>
+        <button class="close" id="closeDrawer" aria-label="Close menu">×</button>
+        </header>
+        <nav>
+            <a href="/">/me</a>
+            <a href="/projects/">/projects</a>
+            <a href="/blog/">/blog</a>
+            <a href="/music/">/music</a>
+            <a href="https://www.buymeacoffee.com/fmmaciej" target="_blank">/buy_me_a_coffee</a>
+        </nav>
+    </aside>
+
+    <script src="/assets/js/core/boot.js" defer></script>
+    <script src="/assets/js/components/loader.js" defer></script>
+    <script src="/assets/js/core/theme.js" defer></script>
+    <script src="/assets/js/components/nav.js" defer></script>
+    <script src="/assets/js/components/collection-page.js" defer></script>
+    <script src="/assets/js/components/terminal-actions-utils.js" defer></script>
+    <script src="/assets/js/components/terminal-actions.js" defer></script>
+    <script src="/assets/js/components/terminal.js" defer></script>
+    
+        
+    <script src="/assets/js/pages/page-boot.js" defer data-page-script></script>
+        
+    
+    <script src="/assets/js/core/transitions.js" defer></script>
+
+    <div id="pageLoader">
+        <span>loading<span class="dots"></span></span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+    "commands": [
+        {
+            "cmd": "cat ~/music/links/links.txt",
+            "type": "text",
+            "output": [
+                "/willa   https://www.facebook.com/Willa.w.parku.lodz/",
+                "/skylark https://www.skylarkmusicstore.com",
+                "/g-sound https://www.mixcloud.com/gsound/",
+                "/skff    https://soundcloud.com/skffmusic"
+            ]
+        },
+        {
+            "cmd": "wc -l ~/music/links/links.txt",
+            "type": "text",
+            "output": [
+                "4 /home/fm/music/links/links.txt"
+            ]
+        }
+    ]
+}

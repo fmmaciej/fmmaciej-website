@@ -34,32 +34,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <url>
     <loc>https://fmmaciej.com/music/bio/</loc>
   </url>
@@ -67,7 +41,7 @@
 
 
   <url>
-    <loc>https://fmmaciej.com/music/gigs/upcoming/2026-07-11-audioriver/</loc>
+    <loc>https://fmmaciej.com/music/events/2026-09-12-drum-bass/</loc>
   </url>
 
 
@@ -91,12 +65,6 @@
 
 
   <url>
-    <loc>https://fmmaciej.com/music/photos/</loc>
-  </url>
-
-
-
-  <url>
     <loc>https://fmmaciej.com/music/rider/</loc>
   </url>
 
@@ -115,10 +83,14 @@
 
 
   <url>
-    <loc>https://fmmaciej.com/music/gigs/</loc>
+    <loc>https://fmmaciej.com/music/events/</loc>
   </url>
 
 
+
+  <url>
+    <loc>https://fmmaciej.com/music/photos/</loc>
+  </url>
 
 
 </urlset>
