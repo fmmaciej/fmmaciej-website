@@ -1,20 +1,14 @@
 {
     "commands": [
         {
-            "cmd": "find ~/music/events -type f -name '*-1600.webp' | head -3",
+            "cmd": "pwd",
             "type": "text",
-            "output": [
-                "/home/fm/music/events/2023/2023-07-15-willa-techno-dancing/20230715__willa_techno_dancing__01-1600.webp",
-                "/home/fm/music/events/2023/2023-10-07-willa-techno-dancing/20231007__willa_techno_dancing__01-1600.webp",
-                "/home/fm/music/events/2023/2023-10-07-willa-techno-dancing/20231007__willa_techno_dancing__02-1600.webp"
-            ]
+            "output": ["/home/fm/music/events"]
         },
         {
-            "cmd": "find ~/music/events -type f -name '*-1600.webp' | wc -l",
+            "cmd": "ls ~/music/events",
             "type": "text",
-            "output": [
-                "244"
-            ]
+            "output": ["Select an event directory to inspect its README.md and public media."]
         }
     ]
 }

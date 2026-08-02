@@ -15,24 +15,28 @@ modules, plain browser JavaScript, and hand-written CSS. Eleventy reads from
 - `src/_data/` contains thin Eleventy data adapters. Files in
   `src/_data/music/` are the editorial and generated music catalogues consumed
   by those adapters through builders in `src/_lib/`.
-- `src/_lib/` contains pure CommonJS builders for shaping blog and music view
-  models without mutating their inputs.
+- `src/_lib/` contains pure CommonJS builders for shaping blog, music, and
+  terminal filesystem models without mutating their inputs.
 - `src/blog/posts/` contains Markdown blog posts.
 - `src/music/`, `src/projects/`, and `src/me/` contain page templates and their
   Markdown fragments.
 - `src/assets/css/` and `src/assets/js/` contain unbundled browser assets copied
   directly to the output.
-- `src/assets/terminal/` contains the JSON sequences used by the terminal UI.
+- `src/assets/terminal/` contains the JSON sequences used by the terminal idle
+  animator. `src/terminal-filesystem.11ty.js` publishes the generated virtual
+  filesystem manifest consumed lazily by the interactive shell.
 - `src/assets/music/{events,photos,mixes}/generated/` contains generated WebP
   variants that are committed because the site references them directly.
 - `src/assets/music/fallbacks/` contains the shared `upcoming.png` fallback and
   the retained `to-be-announced.png` image.
-- `tests/` contains tracked Node tests for the blog and music data builders and
-  their Eleventy adapters.
+- `tests/` contains tracked Node tests for data builders, the deterministic
+  shell, runtime coordinators, and generated-site smoke checks.
 - `www/` is generated output. Never edit or commit it.
-- `tools/` and `docs/` are ignored developer-local helpers/documentation in
-  this checkout. Package scripts depend on some of those helpers, but changes
-  under ignored paths will not normally be part of a commit.
+- `docs/` contains tracked architecture, terminal, and maintenance backlog
+  documentation. Keep it synchronized with changes to runtime contracts.
+- `tools/` contains ignored developer-local helpers. Package scripts depend on
+  some of those helpers, but changes under this path will not normally be part
+  of a commit.
 
 ## Setup and commands
 
@@ -46,8 +50,15 @@ Useful commands:
 
 - `npm run dev` starts Eleventy's development server with watch mode.
 - `npm run build` builds `src/` into `www/` and creates `www/build.txt`.
+- `npm test` runs the data, terminal, and runtime Node test suites.
 - `npm run test:data` runs the tracked `node:test` suite for the pure data
   builders and Eleventy adapters.
+- `npm run test:terminal` tests the virtual filesystem, parser, commands,
+  completion, permissions, and persisted shell session.
+- `npm run test:runtime` tests navigation cancellation and fallback, lazy shell
+  initialization and retry, binding cleanup, and boot lifecycle.
+- `npm run test:smoke` checks the generated `www/index.html`; run it after a
+  successful build.
 - `npm run clean` removes `www/`.
 - `npm run rebuild` removes `www/`, regenerates music assets/data and the press
   kit, then performs the Eleventy build. It can make broad source-tree changes;
@@ -56,20 +67,20 @@ Useful commands:
   regenerate the corresponding media. These commands require the local
   scripts and `originals/` directories under ignored `tools/`/asset paths.
 
-There is no configured lint command or general browser/application test suite.
-The tracked data-builder tests run through `npm run test:data`. The ignored
-local tooling additionally includes catalogue synchronization tests under
-`tools/tests/test_sync_music.py`; run them with:
+There is no configured lint command or real-browser automation suite. The
+tracked Node suites run through `npm test`; the smoke suite additionally
+requires a current build. The ignored local tooling includes catalogue
+synchronization tests under `tools/tests/test_sync_music.py`; run them with:
 
 ```bash
 python3 -m unittest discover -s tools/tests -v
 ```
 
 For normal template, CSS, JavaScript, or content changes, `npm run build` is the
-minimum validation. Run `npm run test:data` for changes under `src/_data/`,
-`src/_lib/`, or their consumers. Inspect the affected generated page in a
-browser when layout, interaction, responsive behavior, or accessibility may
-have changed.
+minimum validation. Run `npm test` for shared data or browser-runtime changes.
+For terminal or navigation work, also run `npm run test:smoke` after the build.
+Inspect the affected generated page in a browser when layout, interaction,
+responsive behavior, accessibility, history, or focus may have changed.
 
 Do not run `npm run deploy`, `npm run deploy:ovh`, or push the `ovh-deploy`
 branch unless the user explicitly requests a deployment. Deployment performs
@@ -97,6 +108,14 @@ worktree, an up-to-date `origin/main`, and a build matching the committed
   Avoid imports, build-time assumptions, and dependencies on execution before
   the DOM is available. Follow the existing IIFE/event-listener style and make
   initialization safe when an element is absent.
+- Browser logic that also needs Node tests uses the existing UMD-style factory:
+  export through `module.exports` when available and attach the same API to
+  `window` for classic scripts. Keep coordinators DOM-independent and inject
+  browser operations at their boundary.
+- Runtime bindings must be disposable and safe to recreate after partial
+  navigation. A new navigation supersedes the previous one; stale responses
+  must not update DOM or history. Preserve the hard-navigation fallback for
+  network, document, and required-asset failures.
 - Blog, events, mixes, and photos configure the shared collapsible collection
   component through `collectionPage` frontmatter rendered as `data-*`
   attributes on `<main>`. Keep `page-boot.js` route-agnostic; add or change a
@@ -155,10 +174,17 @@ The press-kit bundle uses `src/music/_content/notes/contact.md` and
 `src/music/_content/notes/mixes.md` as required source content. Do not treat
 those fragments as unused merely because page templates do not import them.
 
-Terminal JSON files are public runtime data. Keep their action schema
+Terminal JSON files are public idle-animation data. Keep their action schema
 consistent with neighboring files, use real catalogue entries and current
 filename conventions in examples, and verify referenced paths/actions against
-the browser handlers.
+the browser handlers and virtual filesystem.
+
+The interactive shell manifest follows the existing flow: public sources ->
+pure `buildTerminalFilesystem` builder -> thin Eleventy template ->
+`/assets/terminal/filesystem.json`. It remains deterministic and read-only.
+Manifest loading is lazy and retryable; do not move it back into page startup.
+Keep `docs/terminal.md` current when changing commands, filesystem schema,
+runtime states, navigation integration, persistence, or accessibility.
 
 ## Working-tree discipline
 

@@ -4,24 +4,17 @@
             "cmd": "ls ~/music/events",
             "type": "text",
             "output": [
-                "2025/",
-                "2024/",
-                "2023/",
-                "2022/",
-                "2021/",
-                "2020/",
-                "..."
+                "2026-07-11--audio-river/  2026-09-12--drum-bass/  2026-09-26--techno/  ..."
             ]
         },
         {
-            "cmd": "ls -al ~/music/events/2023",
+            "cmd": "cat ~/music/events/2026-07-11--audio-river/README.md",
             "type": "text",
             "output": [
-                "drwxr-xr-x  5 fm fm 160 Dec 31 23:59 .",
-                "drwxr-xr-x 10 fm fm 320 Dec 31 23:59 ..",
-                "drwxr-xr-x  2 fm fm  96 Dec 31 23:59 2023-12-31-new-years-willa/",
-                "drwxr-xr-x  2 fm fm 160 Oct 07 23:59 2023-10-07-willa-techno-dancing/",
-                "drwxr-xr-x  2 fm fm  96 Jul 15 23:59 2023-07-15-willa-techno-dancing/"
+                "# AudioRiver",
+                "",
+                "Date: 2026-07-11",
+                "Materials: 2"
             ]
         }
     ]

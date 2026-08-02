@@ -21,6 +21,10 @@
         "build": "eleventy && npm run build:hash",
         "rebuild": "npm run clean && npm run build:content && npm run build",
         "test:data": "node --test tests/data-builders.test.js",
+        "test:terminal": "node --test tests/terminal.test.js",
+        "test:runtime": "node --test tests/runtime-reliability.test.js",
+        "test:smoke": "node --test tests/build-smoke.test.js",
+        "test": "npm run test:data && npm run test:terminal && npm run test:runtime",
 
         "push": "git push",
         "deploy:check": "./tools/build_check.sh",

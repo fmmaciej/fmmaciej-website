@@ -80,8 +80,36 @@
                         <span id="terminalClock" class="terminal-clock"></span>
                     </div>
                 </div>
-                <div class="terminal-command-line">
+                <div
+                    class="terminal-command-line terminal-activator"
+                    id="terminalActivator"
+                    role="button"
+                    tabindex="0"
+                    aria-expanded="false"
+                    aria-controls="terminalShellPanel"
+                    aria-label="Activate portfolio shell">
                     <span class="prompt-mark">&gt;</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
+                    <span class="terminal-shell-status" id="terminalShellStatus" role="status" aria-live="polite" hidden></span>
+                </div>
+                <div class="terminal-shell-panel" id="terminalShellPanel" hidden>
+                    <div
+                        class="terminal-shell-transcript"
+                        id="terminalShellTranscript"
+                        role="log"
+                        aria-live="polite"
+                        aria-relevant="additions text"></div>
+                    <form class="terminal-shell-form" id="terminalShellForm">
+                        <label class="terminal-shell-label" for="terminalShellInput">Command</label>
+                        <span class="terminal-shell-prompt" id="terminalShellPrompt">[fm@void] ~ &gt;</span>
+                        <input
+                            class="terminal-shell-input"
+                            id="terminalShellInput"
+                            type="text"
+                            autocomplete="off"
+                            autocapitalize="none"
+                            spellcheck="false"
+                            enterkeyhint="send">
+                    </form>
                 </div>
             </div>
         </div>
@@ -149,12 +177,16 @@
     <script src="/assets/js/components/collection-page.js" defer></script>
     <script src="/assets/js/components/terminal-actions-utils.js" defer></script>
     <script src="/assets/js/components/terminal-actions.js" defer></script>
+    <script src="/assets/js/components/terminal-shell-core.js" defer></script>
+    <script src="/assets/js/components/terminal-shell-coordinator.js" defer></script>
+    <script src="/assets/js/components/terminal-shell.js" defer></script>
     <script src="/assets/js/components/terminal.js" defer></script>
     {% if pageScripts %}
         {% for src in pageScripts %}
     <script src="{{ src }}" defer data-page-script></script>
         {% endfor %}
     {% endif %}
+    <script src="/assets/js/core/navigation-coordinator.js" defer></script>
     <script src="/assets/js/core/transitions.js" defer></script>
 
     <div id="pageLoader">

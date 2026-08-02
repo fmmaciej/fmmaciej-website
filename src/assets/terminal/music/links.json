@@ -1,20 +1,18 @@
 {
     "commands": [
         {
-            "cmd": "cat ~/music/links/links.txt",
+            "cmd": "ls ~/music/links",
             "type": "text",
             "output": [
-                "/willa   https://www.facebook.com/Willa.w.parku.lodz/",
-                "/skylark https://www.skylarkmusicstore.com",
-                "/g-sound https://www.mixcloud.com/gsound/",
-                "/skff    https://soundcloud.com/skffmusic"
+                "g-sound.url  skff.url  skylark.url  willa.url"
             ]
         },
         {
-            "cmd": "wc -l ~/music/links/links.txt",
+            "cmd": "cat ~/music/links/skylark.url",
             "type": "text",
             "output": [
-                "4 /home/fm/music/links/links.txt"
+                "https://www.skylarkmusicstore.com",
+                "# a place to dig for records and music gear"
             ]
         }
     ]

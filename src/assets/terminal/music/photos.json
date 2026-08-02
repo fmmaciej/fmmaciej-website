@@ -4,18 +4,19 @@
             "cmd": "ls ~/music/photos",
             "type": "text",
             "output": [
-                "2025/",
-                "2024/",
-                "2023/",
-                "2022/",
-                "2019/"
+                "2022-10-29--halloween/  2023-04-22--portrait/  2023-10-31--not-so-abandoned-willa/",
+                "2024-01-27--lodzki-towar/  2024-05-10--portrait/  2025-03-21--subterra/"
             ]
         },
         {
-            "cmd": "find ~/music/photos/2025/2025-03-21-subterra -type f",
+            "cmd": "cat ~/music/photos/2025-03-21--subterra/README.md",
             "type": "text",
             "output": [
-                "/home/fm/music/photos/2025/2025-03-21-subterra/20250321__subterra__01-1600.webp"
+                "# Subterra",
+                "",
+                "Date: 2025-03-21",
+                "Place: P29",
+                "Photos: 1"
             ]
         }
     ]

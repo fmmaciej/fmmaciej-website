@@ -16,7 +16,7 @@ pageStyles:
 
 <div class="proj-list">
 {% for p in byYear %}
-    <article class="proj-item">
+    <article class="proj-item" id="{{ p.name | slugify }}">
         <div class="proj-head">
             <div class="proj-name">{{ p.name }}</div>
             <div class="proj-year">{{ p.year }}</div>
