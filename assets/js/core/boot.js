@@ -1,5 +1,48 @@
-(function(){
+(function initPortfolioBoot(){
+    if (window.portfolioBootController) return;
+
+    const timers = new Set();
+    const frames = new Set();
+    let overlay = null;
+    let disposed = false;
+
+    function schedule(callback, delay) {
+        const timer = window.setTimeout(() => {
+            timers.delete(timer);
+            if (!disposed) callback();
+        }, delay);
+        timers.add(timer);
+        return timer;
+    }
+
+    function nextFrame(callback) {
+        const frame = window.requestAnimationFrame(() => {
+            frames.delete(frame);
+            if (!disposed) callback();
+        });
+        frames.add(frame);
+    }
+
+    function cleanup() {
+        disposed = true;
+        timers.forEach((timer) => window.clearTimeout(timer));
+        frames.forEach((frame) => window.cancelAnimationFrame(frame));
+        timers.clear();
+        frames.clear();
+        overlay?.remove();
+        overlay = null;
+        document.body.classList.remove('booting', 'show-loader');
+    }
+
+    window.portfolioBootController = { cleanup };
+
     try {
+        const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+        if (reducedMotion) {
+            cleanup();
+            return;
+        }
+
         const LINES = [
             "[    0.000000] Linux version 6.8.7 (x86_64-unknown-linux-gnu) #1 SMP PREEMPT_DYNAMIC",
             "[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz root=UUID=xxxx rw quiet",
@@ -59,8 +102,8 @@
         const LOADER_MS = 420;
         document.body.classList.add('booting');
 
-        // BOOT overlay
-        const overlay = document.createElement('div');
+        document.getElementById('bootOverlay')?.remove();
+        overlay = document.createElement('div');
         overlay.id = 'bootOverlay';
         overlay.innerHTML = `
             <div class="boot-scroll" id="bootScroll" aria-live="polite" aria-atomic="false"></div>
@@ -78,17 +121,15 @@
 
         function step(){
             if (i >= LINES.length) {
-                setTimeout(() => {
+                schedule(() => {
                     overlay.classList.add('is-complete');
 
-                    setTimeout(() => {
+                    schedule(() => {
                         overlay.remove();
+                        overlay = null;
                         document.body.classList.add('show-loader');
 
-                        setTimeout(() => {
-                            document.body.classList.remove('show-loader');
-                            document.body.classList.remove('booting');
-                        }, LOADER_MS);
+                        schedule(cleanup, LOADER_MS);
                     }, OVERLAY_OUT_MS);
                 }, END_PAUSE);
 
@@ -107,18 +148,16 @@
             ln.textContent = txt;
 
             scroll.appendChild(ln);
-            requestAnimationFrame(() => ln.classList.add('is-visible'));
+            nextFrame(() => ln.classList.add('is-visible'));
             scroll.scrollTop = scroll.scrollHeight;
 
-            setTimeout(step, nextDelay(i));
+            schedule(step, nextDelay(i));
         }
 
         step();
 
     } catch(e) {
-        // awaryjnie
-        document.body.classList.remove('booting');
-        document.body.classList.remove('show-loader');
-        const o = document.getElementById('bootOverlay'); if (o) o.remove();
+        cleanup();
+        console.warn('[boot] initialization failed', e);
     }
 })();

@@ -1,20 +1,22 @@
 {
     "commands": [
         {
-            "cmd": "ls -1 ~/music/mixes",
+            "cmd": "ls ~/music/mixes",
             "type": "text",
             "output": [
-                "unknown-stories-with-fm.url",
-                "mwtg-498.url",
-                "skff-b-2-b-fm-proper-techno-dj-mix.url"
+                "2026-02-01--mwtg-498/  2026-04-03--unknown-stories-with-fm/  ..."
             ]
         },
         {
-            "cmd": "open \"$(cat ~/music/mixes/mwtg-498.url)\"",
+            "cmd": "cat ~/music/mixes/2026-02-01--mwtg-498/README.md",
             "type": "text",
             "output": [
-                "Opening: https://soundcloud.com/mwtg-podcast/mwtg-498-maciej-fm",
-                "FM | MWTG #498 · SoundCloud · Techno · 1h 08min"
+                "# FM | MWTG #498",
+                "",
+                "Date: 01.02.2026",
+                "Duration: 1h 08min",
+                "Genre: Techno",
+                "Platform: SoundCloud"
             ]
         }
     ]

@@ -4,29 +4,25 @@
             "cmd": "ls ~/blog",
             "type": "text",
             "output": [
-                "2025-09-01-initial-draft.md",
-                "2025-09-02-eleventy-setup.md",
-                "2025-09-03-terminal-tricks.md"
+                "20250901-initial.md",
+                "20260309-aidevs4-s01e01-zadanie.md",
+                "20260310-aidevs4-s01e02-zadanie.md"
             ]
         },
-
         {
-            "cmd": "cat ~/blog/2025-09-02-eleventy-setup.md",
+            "cmd": "cat ~/blog/20250901-initial.md",
             "type": "text",
             "output": [
-                "# Setting up Eleventy",
+                "# Hello World",
                 "",
-                "Minimal static site with Nunjucks layouts.",
-                "Includes blog collection, terminal widget, and press kit generator."
+                "Pierwszy wpis"
             ]
         },
-
         {
-            "cmd": "grep -i 'eleventy' ~/blog/*.md",
+            "cmd": "open ~/blog/20260310-aidevs4-s01e02-zadanie.md",
             "type": "text",
             "output": [
-                "2025-09-02-eleventy-setup.md: Setting up Eleventy",
-                "2025-09-03-terminal-tricks.md: Using Eleventy with custom filters"
+                "Opening /blog/20260310_aidevs4_s01e02_zadanie/"
             ]
         }
     ]

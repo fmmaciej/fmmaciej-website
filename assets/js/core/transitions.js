@@ -22,6 +22,7 @@
     const loadedPageScripts = new Set(
         Array.from(document.querySelectorAll(PAGE_SCRIPT_SELECTOR), (script) => new URL(script.src, location.href).href)
     );
+    let renderedUrl = location.href;
 
     function toAbsoluteUrl(value) {
         return new URL(value, location.href).href;
@@ -42,18 +43,21 @@
     }
 
     function loadStyle(href) {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
             link.href = href;
             link.dataset.pageStyle = '';
-            link.onload = () => resolve();
-            link.onerror = () => resolve();
+            link.onload = () => resolve(link);
+            link.onerror = () => {
+                link.remove();
+                reject(new Error(`Unable to load stylesheet: ${href}`));
+            };
             document.head.appendChild(link);
         });
     }
 
-    async function syncPageStyles(dom) {
+    async function syncPageStyles(dom, assertCurrent) {
         const currentStyles = new Map(
             Array.from(document.querySelectorAll(PAGE_STYLE_SELECTOR), (link) => [toAbsoluteUrl(link.href), link])
         );
@@ -65,6 +69,7 @@
                 .filter((style) => !currentStyles.has(style.absolute))
                 .map((style) => loadStyle(style.value))
         );
+        assertCurrent();
 
         currentStyles.forEach((link, absolute) => {
             if (!nextStyleUrls.has(absolute)) {
@@ -74,13 +79,16 @@
     }
 
     function loadScript(src) {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const script = document.createElement('script');
             script.src = src;
             script.async = false;
             script.dataset.pageScript = '';
             script.onload = () => resolve();
-            script.onerror = () => resolve();
+            script.onerror = () => {
+                script.remove();
+                reject(new Error(`Unable to load script: ${src}`));
+            };
             document.body.appendChild(script);
         });
     }
@@ -138,7 +146,7 @@
         return popup;
     }
 
-    async function ensurePageScripts(dom) {
+    async function ensurePageScripts(dom, assertCurrent) {
         const nextScripts = collectPageAssets(dom, PAGE_SCRIPT_SELECTOR, 'src');
 
         for (const script of nextScripts) {
@@ -146,65 +154,132 @@
 
             await loadScript(script.value);
             loadedPageScripts.add(script.absolute);
+            assertCurrent();
         }
     }
 
-    async function navigate(url, options = {}) {
-        const pushHistory = options.pushHistory !== false;
-
-        if (window.closeDrawer) window.closeDrawer();
-
-        if (!supportsVTA) { location.href = url; return; }
-
-        document.startViewTransition(async () => {
-            const res = await fetch(url, { credentials: 'same-origin' });
-            if (!res.ok) {
-                location.href = url;
-                return;
-            }
-
-            const html = await res.text();
-            const dom  = new DOMParser().parseFromString(html, 'text/html');
-
-            const newHost = dom.querySelector('.content-host');
-            const curHost = document.querySelector('.content-host');
-            if (!newHost || !curHost) {
-                location.href = url;
-                return;
-            }
-
-            const newTerminal = dom.querySelector('.terminal-box');
-            const curTerminal = document.querySelector('.terminal-box');
-
-            curHost._terminalCleanup?.();
-            curHost._pageCleanup?.();
-
-            await syncPageStyles(dom);
-            await ensurePageScripts(dom);
-
-            document.title = dom.title || document.title;
-            prepareReveal(newHost);
-            curHost.replaceWith(newHost);
-
-            if (newTerminal && curTerminal) {
-                curTerminal.replaceWith(newTerminal);
-            } else if (newTerminal && !curTerminal) {
-                newHost.insertAdjacentElement('beforebegin', newTerminal);
-            } else if (!newTerminal && curTerminal) {
-                curTerminal.remove();
-            }
-
-            if (pushHistory) {
-                history.pushState(null, '', url);
-            }
-
-            if (window.initTerminal) window.initTerminal(document);
-            if (window.initNav) window.initNav(document);
-            if (window.initPageScripts) window.initPageScripts(document);
-            if (window.closeDrawer) window.closeDrawer();
-            startReveal(newHost);
-        });
+    function sameDocument(currentValue, targetValue) {
+        const current = new URL(currentValue, location.href);
+        const target = new URL(targetValue, current);
+        return current.origin === target.origin
+            && current.pathname === target.pathname
+            && current.search === target.search;
     }
+
+    function dispatchNavigated(targetUrl, context) {
+        window.dispatchEvent(new CustomEvent('terminal:navigated', {
+            detail: {
+                url: targetUrl,
+                preserveShell: context.preserveShell,
+                shellPath: context.shellPath
+            }
+        }));
+    }
+
+    function scrollToHash(targetUrl, preserveShell) {
+        if (preserveShell) return;
+        const target = new URL(targetUrl, location.href);
+        if (!target.hash) return;
+        const element = document.getElementById(decodeURIComponent(target.hash.slice(1)));
+        element?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+
+    function assertCurrent(context) {
+        if (context.isCurrent()) return;
+        const error = new Error('Navigation superseded');
+        error.name = 'AbortError';
+        throw error;
+    }
+
+    const navigationCoordinator = window.terminalNavigationCore?.createNavigationCoordinator({
+        getCurrentUrl: () => renderedUrl,
+        resolveUrl: (value, base) => new URL(value, base).href,
+        isSameDocument: sameDocument,
+        loadPage: async (targetUrl, context) => {
+            const target = new URL(targetUrl, location.href);
+            if (target.origin !== location.origin) throw new Error('Cross-origin soft navigation is not supported');
+            const page = await window.terminalNavigationCore.loadNavigationDocument(target.href, context, {
+                fetchPage: (value, signal) => fetch(value, {
+                    credentials: 'same-origin',
+                    signal
+                }),
+                parseDocument: (html) => new DOMParser().parseFromString(html, 'text/html')
+            });
+            assertCurrent(context);
+            return page;
+        },
+        commitHash: async (targetUrl, context) => {
+            assertCurrent(context);
+            if (context.pushHistory && targetUrl !== renderedUrl) history.pushState(null, '', targetUrl);
+            renderedUrl = targetUrl;
+            scrollToHash(targetUrl, context.preserveShell);
+            dispatchNavigated(targetUrl, context);
+        },
+        commitPage: async ({ dom, newHost }, context) => {
+            const updatePage = async () => {
+                const curHost = document.querySelector('.content-host');
+                if (!curHost) throw new Error('Current page host is missing');
+
+                await syncPageStyles(dom, () => assertCurrent(context));
+                await ensurePageScripts(dom, () => assertCurrent(context));
+                assertCurrent(context);
+
+                const newTerminal = dom.querySelector('.terminal-box');
+                const curTerminal = document.querySelector('.terminal-box');
+                curHost._terminalCleanup?.();
+                curHost._pageCleanup?.();
+
+                document.title = dom.title || document.title;
+                prepareReveal(newHost);
+                curHost.replaceWith(newHost);
+
+                if (newTerminal && curTerminal) {
+                    curTerminal.setAttribute(
+                        'data-terminal',
+                        newTerminal.getAttribute('data-terminal') || '/assets/terminal/default.json'
+                    );
+                } else if (newTerminal && !curTerminal) {
+                    newHost.insertAdjacentElement('beforebegin', newTerminal);
+                } else if (!newTerminal && curTerminal) {
+                    curTerminal.remove();
+                }
+
+                if (context.pushHistory) history.pushState(null, '', context.targetUrl);
+                renderedUrl = context.targetUrl;
+
+                window.initTerminal?.(document);
+                window.initNav?.(document);
+                window.initPageScripts?.(document);
+                window.closeDrawer?.();
+                scrollToHash(context.targetUrl, context.preserveShell);
+                startReveal(newHost);
+                dispatchNavigated(context.targetUrl, context);
+            };
+
+            if (supportsVTA) {
+                const transition = document.startViewTransition(updatePage);
+                await transition.updateCallbackDone;
+            } else {
+                await updatePage();
+            }
+        },
+        hardNavigate: (targetUrl, context) => {
+            if (context.pushHistory) location.assign(targetUrl);
+            else location.replace(targetUrl);
+        }
+    });
+
+    async function navigate(url, options = {}) {
+        if (window.closeDrawer) window.closeDrawer();
+        if (!navigationCoordinator) {
+            if (options.pushHistory === false) location.replace(url);
+            else location.assign(url);
+            return;
+        }
+        await navigationCoordinator.navigate(url, options);
+    }
+
+    window.terminalNavigate = navigate;
 
     document.addEventListener('click', (e) => {
         const a = e.target.closest('a[href]');

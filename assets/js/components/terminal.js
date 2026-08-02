@@ -229,12 +229,18 @@ window.initTerminal = function initTerminal(root = document){
     }
 
     let intervalHandle = null;
+    let restartTimeout = null;
     let clockHandle = window.setInterval(updateClock, 30000);
     let pathObserver = null;
     let restartCycle = null;
+    let shellBinding = null;
 
     function stopTerminalCycle() {
         runId += 1;
+        if (restartTimeout) {
+            clearTimeout(restartTimeout);
+            restartTimeout = null;
+        }
         if (intervalHandle) {
             clearInterval(intervalHandle);
             intervalHandle = null;
@@ -327,15 +333,19 @@ window.initTerminal = function initTerminal(root = document){
         restartCycle = (delayMs = 1200) => {
             if (intervalHandle) {
                 clearInterval(intervalHandle);
+                intervalHandle = null;
             }
 
-            window.setTimeout(() => {
+            if (restartTimeout) window.clearTimeout(restartTimeout);
+            restartTimeout = window.setTimeout(() => {
+                restartTimeout = null;
                 if (!termBox.isConnected) return;
                 runOne();
                 intervalHandle = setInterval(runOne, intervalMs);
             }, delayMs);
         };
 
+        if (window.isTerminalShellBusy?.()) return;
         await runOne();
         intervalHandle = setInterval(runOne, intervalMs);
 
@@ -349,10 +359,22 @@ window.initTerminal = function initTerminal(root = document){
 
     window.playTerminalCommand = playTerminalCommand;
 
+    shellBinding = window.initTerminalShell?.({
+        termBox,
+        host,
+        stopIdle: stopTerminalCycle,
+        resumeIdle: (delayMs) => restartCycle?.(delayMs),
+        renderPagePath: renderTerminalPath
+    });
+
     host._terminalCleanup?.();
     host._terminalCleanup = () => {
         try {
             intervalHandle && clearInterval(intervalHandle);
+        } catch {}
+
+        try {
+            restartTimeout && clearTimeout(restartTimeout);
         } catch {}
 
         try {
@@ -361,6 +383,8 @@ window.initTerminal = function initTerminal(root = document){
 
         runId += 1;
         restartCycle = null;
+        shellBinding?.dispose?.();
+        shellBinding = null;
         pathObserver?.disconnect();
         window.removeEventListener('resize', onResize);
         host.querySelectorAll('.terminal-overlay').forEach(n => n.remove());

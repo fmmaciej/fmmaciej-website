@@ -1,25 +1,19 @@
 {
     "commands": [
         {
-            "cmd": "ls -1 ~/music",
+            "cmd": "ls ~/music",
             "type": "text",
             "output": [
-                "bio/",
-                "rider/",
-                "photos/",
-                "mixes/",
-                "events/",
-                "links/"
+                "README.md  bio/  events/  links/  mixes/  photos/  rider/"
             ]
         },
         {
-            "cmd": "find ~/music -maxdepth 2 -type f | sort | head",
+            "cmd": "cat ~/music/README.md",
             "type": "text",
             "output": [
-                "/home/fm/music/bio/bio.md",
-                "/home/fm/music/links/links.txt",
-                "/home/fm/music/mixes/mwtg-498.url",
-                "/home/fm/music/rider/rider.md"
+                "Two things that really drew me to vinyl were the expense and the inconvenience.",
+                "",
+                "All mixes and events are archived here."
             ]
         }
     ]
