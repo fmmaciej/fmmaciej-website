@@ -5,7 +5,7 @@
 })(typeof window !== 'undefined' ? window : null, function terminalShellCoreFactory() {
     const COMMANDS = [
         'cat', 'cd', 'clear', 'cmatrix', 'exit', 'help', 'history', 'hostname',
-        'ls', 'open', 'pwd', 'uname', 'whoami'
+        'ls', 'open', 'pwd', 'uname', 'whoami', '🐇'
     ];
     const SESSION_VERSION = 1;
     const MAX_HISTORY = 100;
@@ -335,6 +335,7 @@
                 action: { type: 'effect', name: 'matrix' }
             };
         }
+        if (command === '🐇') return { state: nextState, output: '...' };
         if (command === 'clear') return { state: nextState, output: '', clear: true };
         if (command === 'exit') return { state: nextState, output: '', exit: true };
 

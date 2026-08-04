@@ -10,9 +10,11 @@
         isOpenableWebLink,
         getMailAddress,
         getDownloadDisplayPath,
+        isSameDocumentUrl,
         resolveInternalShellPath,
         toBlogSourcePath
     } = utils;
+    const SAME_DOCUMENT_RESUME_MS = 1200;
 
     const actions = [
         {
@@ -61,12 +63,20 @@
         const action = actions.find((entry) => entry.match(anchor, event));
         if (!action) return null;
 
+        const href = action.href ? action.href(anchor, event) : anchor.href;
+        const hasConfiguredResume = Object.prototype.hasOwnProperty.call(action, 'resumeCycleAfterMs');
+        const resumeCycleAfterMs = hasConfiguredResume
+            ? action.resumeCycleAfterMs
+            : action.mode === 'transition' && isSameDocumentUrl?.(location.href, href)
+                ? SAME_DOCUMENT_RESUME_MS
+                : 0;
+
         return {
             name: action.name,
             command: action.buildCommand(anchor, event),
             mode: action.mode,
-            href: action.href ? action.href(anchor, event) : anchor.href,
-            resumeCycleAfterMs: action.resumeCycleAfterMs || 0
+            href,
+            resumeCycleAfterMs
         };
     }
 

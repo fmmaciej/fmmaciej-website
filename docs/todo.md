@@ -30,7 +30,8 @@ przyszłe `ask` nie może traktować jej jako mechanizmu bezpieczeństwa.
 
 - [ ] Przeprowadzić ręczne QA w prawdziwej przeglądarce na desktopie i mobile:
   oba motywy, reduced motion, fokus, Tab completion, Escape, klik poza terminal,
-  `cd`, `open`, hash navigation oraz back/forward.
+  `cd`, `open`, hash navigation, back/forward oraz powtarzane kliknięcie linku
+  prowadzącego do aktualnej strony.
 - [ ] Sprawdzić scenariusze z throttlingiem i offline: wolny manifest, pierwszy
   błąd i udany retry, anulowanie wolniejszej nawigacji A przez szybszą B oraz
   twardy fallback po błędzie dokumentu lub assetu.
@@ -40,7 +41,9 @@ przyszłe `ask` nie może traktować jej jako mechanizmu bezpieczeństwa.
 ## P1 — jedno źródło prawdy i testy integracyjne
 
 - [ ] Wprowadzić rejestr komend jako jedno źródło dla wykonania, `help`,
-  autouzupełniania oraz atrap `/bin` i `/usr/bin`.
+  autouzupełniania oraz atrap `/bin` i `/usr/bin`. Rejestr musi zawierać jawne
+  metadane widoczności dla każdego z tych interfejsów, aby komendy-easter eggi
+  mogły działać i podlegać completion bez pojawiania się w `help`.
 - [ ] Zdefiniować ogólny kontrakt rendererów obejmujący start, asynchroniczne
   zakończenie, anulowanie i reduced motion; włączyć do niego wyspecjalizowany
   helper Matrixa bez zmiany zachowania `cmatrix`.

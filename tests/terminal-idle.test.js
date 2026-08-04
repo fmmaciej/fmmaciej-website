@@ -5,6 +5,7 @@ const path = require('node:path');
 
 const idle = require('../src/assets/js/components/terminal-idle-core.js');
 const buildTerminalFilesystem = require('../src/_lib/terminal/buildTerminalFilesystem.js');
+const shell = require('../src/assets/js/components/terminal-shell-core.js');
 
 function deferred() {
   let resolve;
@@ -128,8 +129,25 @@ test('terminal JSON files use the versioned global and contextual schemas', () =
   assert.deepEqual(globalConfig.pools.matrix.map((entry) => entry.cmd), [
     'cmatrix',
     'cat ~/.matrix/message.txt',
-    'cat ~/.matrix/white-rabbit.txt'
+    '🐇'
   ]);
+  assert.equal(globalConfig.pools.matrix[2].timingProfile, 'cinematic');
+  assert.deepEqual(globalConfig.pools.matrix[2].output, ['...']);
+  assert.equal(globalConfig.pools.matrix.some(
+    (entry) => entry.cmd === 'cat ~/.matrix/white-rabbit.txt'
+  ), false);
+
+  const selector = idle.createCommandSelector({
+    contextual: [{ cmd: 'local' }],
+    common: [{ cmd: 'global' }],
+    matrix: globalConfig.pools.matrix,
+    contextualPerCommon: globalConfig.selection.contextualPerCommon,
+    easterEggEvery: globalConfig.selection.easterEggEvery
+  });
+  const sequence = Array.from({ length: 18 }, () => selector.next().cmd);
+  assert.equal(sequence[5], 'cmatrix');
+  assert.equal(sequence[11], 'cat ~/.matrix/message.txt');
+  assert.equal(sequence[17], '🐇');
 
   const contextualFiles = [
     'default.json', 'projects.json', 'blog.json',
@@ -145,18 +163,41 @@ test('terminal JSON files use the versioned global and contextual schemas', () =
   });
 });
 
-test('white rabbit idle output matches the compact filesystem artwork', () => {
+test('white rabbit artwork remains available in the filesystem but not in idle', () => {
   const config = JSON.parse(fs.readFileSync(
     path.join(__dirname, '..', 'src', 'assets', 'terminal', 'config.json'),
     'utf8'
   ));
-  const idleRabbit = config.pools.matrix.find((entry) => entry.cmd.endsWith('white-rabbit.txt'));
   const manifestRabbit = buildTerminalFilesystem({}).entries.find(
     (entry) => entry.path === '/home/fm/.matrix/white-rabbit.txt'
   );
 
-  assert.equal(`${idleRabbit.output.join('\n')}\n`, manifestRabbit.content);
-  assert.ok(idleRabbit.output.every((line) => line.length <= 28));
+  assert.equal(config.pools.matrix.some(
+    (entry) => entry.cmd.endsWith('white-rabbit.txt')
+  ), false);
+  assert.ok(manifestRabbit.content.split('\n').every((line) => line.length <= 28));
   assert.match(manifestRabbit.content, /\${10}/);
   assert.doesNotMatch(manifestRabbit.content, /Follow the white rabbit/);
+});
+
+test('Matrix message and symbolic response stay consistent across idle and shell sources', () => {
+  const config = JSON.parse(fs.readFileSync(
+    path.join(__dirname, '..', 'src', 'assets', 'terminal', 'config.json'),
+    'utf8'
+  ));
+  const manifest = buildTerminalFilesystem({});
+  const idleMessage = config.pools.matrix.find((entry) => entry.cmd.endsWith('message.txt'));
+  const manifestMessage = manifest.entries.find(
+    (entry) => entry.path === '/home/fm/.matrix/message.txt'
+  );
+  const idleRabbit = config.pools.matrix.find((entry) => entry.cmd === '🐇');
+  const filesystem = shell.createFilesystem(manifest);
+  const shellRabbit = shell.executeCommand(
+    filesystem,
+    { cwd: '/home/fm', previousCwd: null, history: [] },
+    '🐇'
+  );
+
+  assert.equal(`${idleMessage.output.join('\n')}\n`, manifestMessage.content);
+  assert.equal(idleRabbit.output.join('\n'), shellRabbit.output);
 });

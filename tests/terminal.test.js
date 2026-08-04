@@ -81,10 +81,12 @@ test("filesystem builder creates a complete read-only tree without mutating inpu
     "/sys", "/tmp", "/usr/bin", "/var/log", "/home/fm/projects/tool",
     "/home/fm/.matrix", "/home/fm/.matrix/message.txt",
     "/home/fm/.matrix/white-rabbit.txt", "/home/fm/.matrix/choice.txt",
-    "/dev/spoon", "/bin/cmatrix"
+    "/dev/spoon", "/bin/cmatrix", "/bin/🐇", "/usr/bin/🐇"
   ].forEach((fsPath) => assert.ok(paths.has(fsPath), fsPath));
   assert.equal(manifest.entries.find((entry) => entry.path === "/root").mode, "dr-x------");
   assert.equal(manifest.entries.find((entry) => entry.path === "/bin/ls").type, "symlink");
+  assert.equal(manifest.entries.find((entry) => entry.path === "/bin/🐇").target, "/usr/bin/🐇");
+  assert.equal(manifest.entries.find((entry) => entry.path === "/usr/bin/🐇").type, "executable");
 });
 
 test("builder maps all supplied public portfolio catalogues", () => {
@@ -107,6 +109,7 @@ test("tokenizer handles quotes and escaping and rejects shell operators", () => 
     tokens: ["cat", "a file.md", "b file.md"]
   });
   assert.deepEqual(shell.tokenize("cat a\\ file.md"), { tokens: ["cat", "a file.md"] });
+  assert.deepEqual(shell.tokenize("🐇"), { tokens: ["🐇"] });
   assert.equal(shell.tokenize("cat file | less").error, "unsupported shell syntax");
   assert.equal(shell.tokenize("echo $(uname)").error, "unsupported shell syntax");
   assert.equal(shell.tokenize("cat 'file").error, "unterminated quote");
@@ -170,8 +173,15 @@ test("ls, cat, cd, open, and standard errors follow the manifest", () => {
   const matrixEffect = shell.executeCommand(fs, state(), "cmatrix");
   assert.deepEqual(matrixEffect.action, { type: "effect", name: "matrix" });
   assert.equal(matrixEffect.output, "");
-  assert.match(shell.executeCommand(fs, state(), "help").output, /cmatrix/);
+  const help = shell.executeCommand(fs, state(), "help").output;
+  assert.match(help, /cmatrix/);
+  assert.doesNotMatch(help, /🐇/);
+  const rabbit = shell.executeCommand(fs, state(), "🐇");
+  assert.equal(rabbit.output, "...");
+  assert.equal(rabbit.action, undefined);
+  assert.deepEqual(rabbit.state.history, ["🐇"]);
   assert.match(shell.executeCommand(fs, state(), "cat ~/.matrix/message.txt").output, /Wake up, Neo/);
+  assert.match(shell.executeCommand(fs, state(), "cat ~/.matrix/white-rabbit.txt").output, /\${10}/);
   assert.equal(shell.executeCommand(fs, state(), "cat ~/.matrix/choice.txt").output, "status=pending\n");
 });
 
@@ -184,6 +194,10 @@ test("tab completion expands commands and paths", () => {
   assert.deepEqual(shell.completeInput(fs, "cma", "/home/fm"), {
     value: "cmatrix ",
     candidates: ["cmatrix"]
+  });
+  assert.deepEqual(shell.completeInput(fs, "🐇", "/home/fm"), {
+    value: "🐇 ",
+    candidates: ["🐇"]
   });
   const pathCompletion = shell.completeInput(fs, "cd pro", "/home/fm");
   assert.equal(pathCompletion.value, "cd projects/");

@@ -5,6 +5,19 @@
         return pathname.endsWith('/') ? pathname : `${pathname}/`;
     }
 
+    function isSameDocumentUrl(currentValue, targetValue) {
+        try {
+            const current = new URL(currentValue);
+            const target = new URL(targetValue, current);
+
+            return current.origin === target.origin
+                && current.pathname === target.pathname
+                && current.search === target.search;
+        } catch (_) {
+            return false;
+        }
+    }
+
     function buildTerminalPath(pathname) {
         const normalized = normalizePathname(pathname);
         const rawSegments = normalized.split('/').filter(Boolean);
@@ -142,6 +155,7 @@
 
     window.terminalActionUtils = {
         normalizePathname,
+        isSameDocumentUrl,
         buildTerminalPath,
         toShellPath,
         buildShellPathFromLabels,

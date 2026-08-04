@@ -6,6 +6,40 @@ const vm = require('node:vm');
 const navigation = require('../src/assets/js/core/navigation-coordinator.js');
 const shellRuntime = require('../src/assets/js/components/terminal-shell-coordinator.js');
 
+function terminalActionsFixture(currentHref = 'https://example.com/music/') {
+  const context = {
+    URL,
+    location: new URL(currentHref),
+    window: {}
+  };
+  vm.runInNewContext(
+    fs.readFileSync('src/assets/js/components/terminal-actions-utils.js', 'utf8'),
+    context
+  );
+  vm.runInNewContext(
+    fs.readFileSync('src/assets/js/components/terminal-actions.js', 'utf8'),
+    context
+  );
+
+  function anchor(href, options = {}) {
+    return {
+      dataset: {},
+      href: new URL(href, currentHref).href,
+      rel: options.rel || '',
+      target: options.target || '',
+      getAttribute: (name) => name === 'href' ? href : null,
+      hasAttribute: (name) => name === 'download' && !!options.download
+    };
+  }
+
+  return {
+    actions: context.window.terminalActions,
+    anchor,
+    event: { ctrlKey: false, metaKey: false, shiftKey: false },
+    utils: context.window.terminalActionUtils
+  };
+}
+
 function deferred() {
   let resolve;
   let reject;
@@ -118,6 +152,55 @@ function bootFixture(reducedMotion) {
     timers
   };
 }
+
+test('same-document URL classification ignores hashes but respects route, query, and origin', () => {
+  const { utils } = terminalActionsFixture();
+
+  assert.equal(utils.isSameDocumentUrl(
+    'https://example.com/music/?view=grid#first',
+    'https://example.com/music/?view=grid#second'
+  ), true);
+  assert.equal(utils.isSameDocumentUrl(
+    'https://example.com/music/?view=grid',
+    'https://example.com/music/?view=list'
+  ), false);
+  assert.equal(utils.isSameDocumentUrl(
+    'https://example.com/music/',
+    'https://example.com/projects/'
+  ), false);
+  assert.equal(utils.isSameDocumentUrl(
+    'https://example.com/music/',
+    'https://portfolio.example/music/'
+  ), false);
+  assert.equal(utils.isSameDocumentUrl('not-an-absolute-url', '/music/'), false);
+  assert.equal(utils.isSameDocumentUrl('https://example.com/music/', 'http://['), false);
+});
+
+test('terminal link actions resume idle only when a transition keeps the current document', () => {
+  const fixture = terminalActionsFixture();
+  const resolve = (href, options) => fixture.actions.resolveAction(
+    fixture.anchor(href, options),
+    fixture.event
+  );
+
+  const current = resolve('/music/');
+  assert.equal(current.name, 'internal-navigation');
+  assert.equal(current.resumeCycleAfterMs, 1200);
+
+  const currentHash = resolve('/music/#section');
+  assert.equal(currentHash.name, 'internal-navigation');
+  assert.equal(currentHash.resumeCycleAfterMs, 1200);
+
+  const otherPage = resolve('/projects/');
+  assert.equal(otherPage.name, 'internal-navigation');
+  assert.equal(otherPage.resumeCycleAfterMs, 0);
+
+  const native = resolve('https://outside.example/profile', { target: '_blank' });
+  assert.equal(native.name, 'external-link');
+  assert.equal(native.resumeCycleAfterMs, 1200);
+
+  assert.equal(resolve('#section'), null);
+});
 
 test('latest navigation wins and a stale response never commits', async () => {
   const first = deferred();

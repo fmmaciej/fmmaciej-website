@@ -169,8 +169,10 @@ Terminal ma dwa tryby: pasywny animator idle oraz aktywny, deterministyczny
 shell. Idle miesza komendy kontekstowe z globalnymi, resetuje cykl przy zmianie
 trasy i zaczyna od lokalnego przykładu. Zwykła rotacja zachowuje proporcję dwie
 komendy lokalne na jedną globalną, a co szósta prezentacja pochodzi z osobnej
-puli Matrixa. Nazwane profile sterują tempem, a sekwencyjny scheduler czeka na
-pełne zakończenie outputu lub efektu i pozwala anulować cały cykl.
+puli Matrixa. Pula rotuje efekt, cinematic message i symboliczną komendę;
+ASCII-art pozostaje treścią do ręcznego odkrycia. Nazwane profile sterują
+tempem, a sekwencyjny scheduler czeka na pełne zakończenie outputu lub efektu i
+pozwala anulować cały cykl.
 
 Idle nadal tłumaczy zwykłe kliknięcia na `cd`, `cat`, `open` lub `wget`. Active
 udostępnia read-only, linuksowy filesystem zbudowany z publicznych treści

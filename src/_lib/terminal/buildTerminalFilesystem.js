@@ -142,7 +142,7 @@ function buildTerminalFilesystem(input = {}) {
   device("/dev/random", "unsupported");
   symlink("/dev/spoon", "/dev/null");
 
-  const commands = ["cat", "clear", "cmatrix", "help", "history", "hostname", "ls", "open", "pwd", "uname", "whoami"];
+  const commands = ["cat", "clear", "cmatrix", "help", "history", "hostname", "ls", "open", "pwd", "uname", "whoami", "🐇"];
   commands.forEach((command) => {
     executable(`/usr/bin/${command}`);
     symlink(`/bin/${command}`, `/usr/bin/${command}`);

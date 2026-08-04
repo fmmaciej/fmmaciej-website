@@ -37,6 +37,8 @@ Najważniejsze własności:
 - każda podstrona zaczyna od lokalnej komendy, a zwykła rotacja zachowuje rytm
   dwie lokalne na jedną globalną;
 - co szósta prezentacja pochodzi z osobnej, deterministycznej puli Matrixa;
+- pula Matrixa rotuje efekt, cinematic message i symboliczną komendę; ASCII-art
+  królika pozostaje dostępny wyłącznie przez ręczną eksplorację shella;
 - nazwane profile `standard`, `cinematic` i `ambient` sterują tempem prezentacji;
 - scheduler czeka na pełne zakończenie outputu lub efektu przed wyborem kolejnej
   komendy i pozwala anulować cały cykl jednym sygnałem;
@@ -167,7 +169,9 @@ Najważniejsza gałąź to publiczne portfolio:
 `white-rabbit.txt` zawiera wyłącznie kompaktowy ASCII-art, bez podpisu, natomiast
 `choice.txt` jest nieaktywnym entrypointem o treści `status=pending`. Dokładna
 grafika i komunikaty pozostają w konfiguracji oraz builderze, a nie w tym
-dokumencie. Dodatkowy easter egg `/dev/spoon` jest dowiązaniem do `/dev/null`.
+dokumencie. ASCII-art nie jest odtwarzany automatycznie w idle i wymaga ręcznego
+odczytania pliku. Dodatkowy easter egg `/dev/spoon` jest dowiązaniem do
+`/dev/null`.
 
 ### Źródła treści
 
@@ -223,6 +227,7 @@ Obsługiwane polecenia:
 | `cd [path]` | Zmiana katalogu oraz opcjonalna synchronizacja strony. |
 | `cat <file> [...]` | Pełna treść pliku w przewijanym transcripcie. |
 | `cmatrix` | Lokalny, automatycznie kończony efekt Matrixa; `Ctrl+C` przerywa. |
+| `🐇` | Symboliczna komenda zwracająca `...`; celowo pominięta w `help`. |
 | `open <path>` | Otwarcie strony, linku, pobrania lub publicznego medium. |
 | `clear` | Usunięcie transcriptu bez kasowania historii poleceń. |
 | `history` | Historia poleceń bieżącej, trwałej sesji. |
@@ -250,6 +255,11 @@ Kolory pochodzą ze zmiennych `--matrix-head` i `--matrix-trail`, osobnych dla
 jasnego i ciemnego motywu. Losowe są jedynie znaki oraz parametry dekoracyjnych
 kolumn; dobór komend i wyniki shella pozostają deterministyczne.
 
+Globalna pula idle pokazuje kolejno `cmatrix`, cinematic message i `🐇` na co
+szóstej prezentacji. Symboliczna komenda używa profilu `cinematic`, odpowiada
+wyłącznie `...`, jest wykonywalna i autouzupełnialna, ale nie pojawia się w
+`help`. Nie uruchamia efektu, nawigacji ani przyszłej interakcji `choice.txt`.
+
 ## Integracja ze stroną
 
 Shell i klasyczna strona korzystają z jednej mapy położenia:
@@ -272,7 +282,10 @@ klasycznej nawigacji przeglądarki.
 Istniejący system terminalowych akcji dla linków nadal działa w idle: kliknięcia
 wewnętrzne wyglądają jak `cd` lub `cat`, linki zewnętrzne jak `open`, a pobrania
 jak `wget`. Jest to warstwa prezentacji klasycznej nawigacji, niezależna od
-wykonywania komend przez aktywny shell.
+wykonywania komend przez aktywny shell. Jeśli link prowadzi do aktualnego
+dokumentu i nie powoduje ponownej inicjalizacji terminala, podgląd komendy sam
+wznawia idle po 1,2 sekundy. Przejście do innej strony pozostawia wznowienie jej
+nowej instancji animatora.
 
 ## Runtime i odpowiedzialności
 

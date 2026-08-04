@@ -180,10 +180,12 @@ version 2, global timing profiles, selection policy, and the common/Matrix
 pools. Route files own only their versioned `contextual` arrays. Keep command
 paths and outputs executable by the active shell, preserve deterministic pool
 selection, and test every schema or profile change through
-`npm run test:terminal`. Matrix text and ASCII outputs are currently duplicated
-between the idle configuration and `buildTerminalFilesystem`; keep both copies
-identical until the single-source backlog item is completed. The terminal tests
-enforce that contract.
+`npm run test:terminal`. The Matrix message is currently duplicated between the
+idle configuration and `buildTerminalFilesystem`, while the symbolic command
+response is duplicated between the idle configuration and shell core. Keep
+those copies identical until the single-source backlog item is completed. The
+ASCII rabbit remains filesystem-only and must not be restored to automatic idle
+rotation. The terminal tests enforce these contracts.
 
 The interactive shell manifest follows the existing flow: public sources ->
 pure `buildTerminalFilesystem` builder -> thin Eleventy template ->
