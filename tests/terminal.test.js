@@ -78,7 +78,10 @@ test("filesystem builder creates a complete read-only tree without mutating inpu
   [
     "/", "/bin", "/boot", "/dev", "/etc", "/home/fm", "/lib", "/lib64",
     "/media", "/mnt", "/opt", "/proc", "/root", "/run", "/sbin", "/srv",
-    "/sys", "/tmp", "/usr/bin", "/var/log", "/home/fm/projects/tool"
+    "/sys", "/tmp", "/usr/bin", "/var/log", "/home/fm/projects/tool",
+    "/home/fm/.matrix", "/home/fm/.matrix/message.txt",
+    "/home/fm/.matrix/white-rabbit.txt", "/home/fm/.matrix/choice.txt",
+    "/dev/spoon", "/bin/cmatrix"
   ].forEach((fsPath) => assert.ok(paths.has(fsPath), fsPath));
   assert.equal(manifest.entries.find((entry) => entry.path === "/root").mode, "dr-x------");
   assert.equal(manifest.entries.find((entry) => entry.path === "/bin/ls").type, "symlink");
@@ -115,6 +118,7 @@ test("filesystem resolves Linux paths, home aliases, symlinks, and permissions",
   assert.equal(fs.resolve("projects/../about.md", "/home/fm").path, "/home/fm/about.md");
   assert.equal(fs.resolve("~/projects", "/etc").path, "/home/fm/projects");
   assert.equal(fs.resolve("/bin/ls", "/home/fm").path, "/usr/bin/ls");
+  assert.equal(fs.resolve("/dev/spoon", "/home/fm").path, "/dev/null");
   assert.equal(fs.canEnter(fs.resolve("/root", "/home/fm").entry), false);
   assert.equal(fs.canRead(fs.resolve("/etc/shadow", "/home/fm").entry), false);
   assert.equal(fs.pathForRoute("https://fmmaciej.com/"), "/home/fm");
@@ -162,6 +166,13 @@ test("ls, cat, cd, open, and standard errors follow the manifest", () => {
   const opened = shell.executeCommand(fs, state(), "open projects/example-tool");
   assert.equal(opened.action.url, "/projects/#example-tool");
   assert.equal(opened.action.type, "open");
+
+  const matrixEffect = shell.executeCommand(fs, state(), "cmatrix");
+  assert.deepEqual(matrixEffect.action, { type: "effect", name: "matrix" });
+  assert.equal(matrixEffect.output, "");
+  assert.match(shell.executeCommand(fs, state(), "help").output, /cmatrix/);
+  assert.match(shell.executeCommand(fs, state(), "cat ~/.matrix/message.txt").output, /Wake up, Neo/);
+  assert.equal(shell.executeCommand(fs, state(), "cat ~/.matrix/choice.txt").output, "status=pending\n");
 });
 
 test("tab completion expands commands and paths", () => {
@@ -169,6 +180,10 @@ test("tab completion expands commands and paths", () => {
   assert.deepEqual(shell.completeInput(fs, "pw", "/home/fm"), {
     value: "pwd ",
     candidates: ["pwd"]
+  });
+  assert.deepEqual(shell.completeInput(fs, "cma", "/home/fm"), {
+    value: "cmatrix ",
+    candidates: ["cmatrix"]
   });
   const pathCompletion = shell.completeInput(fs, "cd pro", "/home/fm");
   assert.equal(pathCompletion.value, "cd projects/");

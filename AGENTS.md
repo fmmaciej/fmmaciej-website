@@ -54,7 +54,8 @@ Useful commands:
 - `npm run test:data` runs the tracked `node:test` suite for the pure data
   builders and Eleventy adapters.
 - `npm run test:terminal` tests the virtual filesystem, parser, commands,
-  completion, permissions, and persisted shell session.
+  completion, permissions, persisted shell session, idle scheduler, timing
+  profiles, and Matrix model.
 - `npm run test:runtime` tests navigation cancellation and fallback, lazy shell
   initialization and retry, binding cleanup, and boot lifecycle.
 - `npm run test:smoke` checks the generated `www/index.html`; run it after a
@@ -174,10 +175,15 @@ The press-kit bundle uses `src/music/_content/notes/contact.md` and
 `src/music/_content/notes/mixes.md` as required source content. Do not treat
 those fragments as unused merely because page templates do not import them.
 
-Terminal JSON files are public idle-animation data. Keep their action schema
-consistent with neighboring files, use real catalogue entries and current
-filename conventions in examples, and verify referenced paths/actions against
-the browser handlers and virtual filesystem.
+Terminal JSON files are public idle-animation data. `config.json` owns schema
+version 2, global timing profiles, selection policy, and the common/Matrix
+pools. Route files own only their versioned `contextual` arrays. Keep command
+paths and outputs executable by the active shell, preserve deterministic pool
+selection, and test every schema or profile change through
+`npm run test:terminal`. Matrix text and ASCII outputs are currently duplicated
+between the idle configuration and `buildTerminalFilesystem`; keep both copies
+identical until the single-source backlog item is completed. The terminal tests
+enforce that contract.
 
 The interactive shell manifest follows the existing flow: public sources ->
 pure `buildTerminalFilesystem` builder -> thin Eleventy template ->

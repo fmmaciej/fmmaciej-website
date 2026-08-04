@@ -1,12 +1,6 @@
 {
-    "commands": [
-        {
-            "cmd": "uname -a",
-            "type": "text",
-            "output": [
-                "Linux void 6.10.12_1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux"
-            ]
-        },
+    "schemaVersion": 2,
+    "contextual": [
         {
             "cmd": "pwd",
             "type": "text",
@@ -18,15 +12,7 @@
             "cmd": "ls -a ~",
             "type": "text",
             "output": [
-                "./  ../  .config/  .gitconfig  .profile  about.md  blog/  contact.txt  cv/  links/  music/  projects/"
-            ]
-        },
-        {
-            "cmd": "cat /etc/motd",
-            "type": "text",
-            "output": [
-                "fmmaciej.com virtual shell",
-                "Read-only portfolio filesystem. Type help to begin."
+                "./  ../  .config/  .gitconfig  .matrix/  .profile  about.md  blog/  contact.txt  cv/  links/  music/  projects/"
             ]
         }
     ]

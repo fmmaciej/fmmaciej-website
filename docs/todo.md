@@ -3,6 +3,7 @@
 Ten dokument zbiera pozostałe prace techniczne po wdrożeniu deterministycznego
 shella i refaktoru niezawodności. Nie jest listą nowych funkcji produktowych.
 Priorytety opisują kolejność zalecaną przed rozpoczęciem integracji AI.
+Aktualny kontrakt subsystemu opisuje [docs/terminal.md](terminal.md).
 
 ## P0 — weryfikacja obecnego runtime
 
@@ -17,6 +18,11 @@ Priorytety opisują kolejność zalecaną przed rozpoczęciem integracji AI.
 
 ## P1 — jedno źródło prawdy i testy integracyjne
 
+- [ ] Wprowadzić rejestr komend jako jedno źródło dla wykonania, `help`,
+  autouzupełniania oraz atrap `/bin` i `/usr/bin`.
+- [ ] Zdefiniować ogólny kontrakt rendererów obejmujący start, asynchroniczne
+  zakończenie, anulowanie i reduced motion; włączyć do niego wyspecjalizowany
+  helper Matrixa bez zmiany zachowania `cmatrix`.
 - [ ] Wydzielić publiczny profil z kontaktem, CV i linkami. Layout, treść strony
   i builder terminala nie powinny utrzymywać osobnych kopii tych samych URL-i.
 - [ ] Generować wyniki animacji idle z rdzenia shella albo podczas builda,

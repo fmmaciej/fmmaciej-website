@@ -4,7 +4,7 @@
     if (root) root.terminalShellCore = api;
 })(typeof window !== 'undefined' ? window : null, function terminalShellCoreFactory() {
     const COMMANDS = [
-        'cat', 'cd', 'clear', 'exit', 'help', 'history', 'hostname',
+        'cat', 'cd', 'clear', 'cmatrix', 'exit', 'help', 'history', 'hostname',
         'ls', 'open', 'pwd', 'uname', 'whoami'
     ];
     const SESSION_VERSION = 1;
@@ -300,6 +300,7 @@
                     'ls [-al] [path]       list directory contents',
                     'cd [path]             change directory',
                     'cat <file> [...]      print complete file contents',
+                    'cmatrix               run a local Matrix effect',
                     'open <path>           open a page, link, or download',
                     'clear                 clear the transcript',
                     'history               show command history',
@@ -325,6 +326,13 @@
             return {
                 state: nextState,
                 output: nextState.history.map((item, index) => `${String(index + 1).padStart(4)}  ${item}`).join('\n')
+            };
+        }
+        if (command === 'cmatrix') {
+            return {
+                state: nextState,
+                output: '',
+                action: { type: 'effect', name: 'matrix' }
             };
         }
         if (command === 'clear') return { state: nextState, output: '', clear: true };

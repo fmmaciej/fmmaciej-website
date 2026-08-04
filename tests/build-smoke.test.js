@@ -8,7 +8,17 @@ test('built homepage loads boot and runtime coordinators exactly once and in ord
 
   assert.equal(count(/\/assets\/js\/core\/boot\.js/g), 1);
   assert.equal(count(/\/assets\/js\/components\/terminal-shell-coordinator\.js/g), 1);
+  assert.equal(count(/\/assets\/js\/components\/terminal-idle-core\.js/g), 1);
+  assert.equal(count(/\/assets\/js\/components\/terminal-matrix\.js/g), 1);
   assert.equal(count(/\/assets\/js\/core\/navigation-coordinator\.js/g), 1);
+  assert.ok(
+    html.indexOf('/assets/js/components/terminal-matrix.js')
+      < html.indexOf('/assets/js/components/terminal-shell.js')
+  );
+  assert.ok(
+    html.indexOf('/assets/js/components/terminal-matrix.js')
+      < html.indexOf('/assets/js/components/terminal.js')
+  );
   assert.ok(
     html.indexOf('/assets/js/components/terminal-shell-coordinator.js')
       < html.indexOf('/assets/js/components/terminal-shell.js')

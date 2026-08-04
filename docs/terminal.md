@@ -26,18 +26,39 @@ plików, nie ma dostępu do systemu użytkownika i nie interpretuje dowolnego ko
 ### Idle
 
 Idle jest domyślnym stanem po wejściu na stronę. Terminal ma stałą wysokość i
-odtwarza przypisane do bieżącej sekcji przykłady obsługiwanych komend. Odpowiedzi
-są wyświetlane jako subtelna warstwa w tle treści strony.
+odtwarza deterministyczną mieszankę komend kontekstowych, wspólnych dla całej
+strony oraz rzadkich easter eggów Matrixa. Odpowiedzi są wyświetlane jako
+subtelna warstwa w tle treści strony.
 
 Najważniejsze własności:
 
 - stała wysokość zapobiega przesuwaniu layoutu przez dłuższe komendy;
-- konfiguracja animacji pochodzi z `src/assets/terminal/`;
+- wersjonowana konfiguracja animacji pochodzi z `src/assets/terminal/`;
+- każda podstrona zaczyna od lokalnej komendy, a zwykła rotacja zachowuje rytm
+  dwie lokalne na jedną globalną;
+- co szósta prezentacja pochodzi z osobnej, deterministycznej puli Matrixa;
+- nazwane profile `standard`, `cinematic` i `ambient` sterują tempem prezentacji;
+- scheduler czeka na pełne zakończenie outputu lub efektu przed wyborem kolejnej
+  komendy i pozwala anulować cały cykl jednym sygnałem;
 - animacja nie przechwytuje klawiatury;
 - hover i fokus klawiatury pokazują delikatną, odsuniętą ramkę sugerującą
   możliwość aktywacji;
 - ścieżka terminala odzwierciedla bieżącą trasę strony;
 - przykłady używają wyłącznie poleceń i ścieżek dostępnych w aktywnym shellu.
+
+#### Konfiguracja idle
+
+Globalny `src/assets/terminal/config.json` ma `schemaVersion: 2` i definiuje
+politykę `selection`, nazwane `timingProfiles` oraz pule `pools.common` i
+`pools.matrix`. Konfiguracja każdej trasy ma własne `schemaVersion: 2` i tablicę
+`contextual`; nie powiela ustawień globalnych.
+
+Tempo wpisu powstaje przez nałożenie wbudowanego profilu `standard`, wybranego
+profilu z konfiguracji i opcjonalnych nadpisań konkretnej komendy. Nieznana
+nazwa profilu wraca do `standard` i generuje pojedyncze ostrzeżenie w konsoli.
+Brak puli kontekstowej powoduje użycie globalnej, a brak globalnej — użycie
+kontekstowej. Błędna konfiguracja idle nie może blokować aktywnego shella ani
+klasycznej strony.
 
 ### Loading, error i active shell
 
@@ -125,6 +146,10 @@ Najważniejsza gałąź to publiczne portfolio:
 /home/fm/
 ├── about.md
 ├── contact.txt
+├── .matrix/
+│   ├── message.txt
+│   ├── white-rabbit.txt
+│   └── choice.txt
 ├── cv/
 ├── links/
 ├── projects/
@@ -137,6 +162,12 @@ Najważniejsza gałąź to publiczne portfolio:
     ├── photos/
     └── links/
 ```
+
+`.matrix/message.txt` przechowuje komunikaty używane przez cinematic idle.
+`white-rabbit.txt` zawiera wyłącznie kompaktowy ASCII-art, bez podpisu, natomiast
+`choice.txt` jest nieaktywnym entrypointem o treści `status=pending`. Dokładna
+grafika i komunikaty pozostają w konfiguracji oraz builderze, a nie w tym
+dokumencie. Dodatkowy easter egg `/dev/spoon` jest dowiązaniem do `/dev/null`.
 
 ### Źródła treści
 
@@ -191,6 +222,7 @@ Obsługiwane polecenia:
 | `ls [-al] [path]` | Listing katalogu; `-a` pokazuje dotfiles, `-l` metadane. |
 | `cd [path]` | Zmiana katalogu oraz opcjonalna synchronizacja strony. |
 | `cat <file> [...]` | Pełna treść pliku w przewijanym transcripcie. |
+| `cmatrix` | Lokalny, automatycznie kończony efekt Matrixa; `Ctrl+C` przerywa. |
 | `open <path>` | Otwarcie strony, linku, pobrania lub publicznego medium. |
 | `clear` | Usunięcie transcriptu bez kasowania historii poleceń. |
 | `history` | Historia poleceń bieżącej, trwałej sesji. |
@@ -200,6 +232,23 @@ Obsługiwane polecenia:
 Parser wspiera cudzysłowy i podstawowe escapowanie. Potoki, przekierowania,
 operatory łączenia, substytucje poleceń oraz wykonywanie kodu są jawnie
 odrzucane jako nieobsługiwana składnia.
+
+### Matrix
+
+`cmatrix` jest dekoracyjnym efektem wykonywanym lokalnie na canvasie. Nie jest
+prawdziwym procesem, nie zmienia filesystemu i nie zapisuje klatek w
+transcripcie. Idle i aktywny shell korzystają z jednego wyspecjalizowanego
+modułu, który modeluje niezależne kolumny, prędkości i wygaszane ogony.
+
+W active efekt kończy się po 6,5 sekundy albo po `Ctrl+C`. Escape, kliknięcie
+poza terminalem i cleanup również go anulują. Canvas jest dekoracyjny dla
+technologii asystujących, natomiast status live informuje o uruchomieniu i
+sposobie przerwania. Przy reduced motion wyświetlana jest statyczna klatka przez
+1,2 sekundy.
+
+Kolory pochodzą ze zmiennych `--matrix-head` i `--matrix-trail`, osobnych dla
+jasnego i ciemnego motywu. Losowe są jedynie znaki oraz parametry dekoracyjnych
+kolumn; dobór komend i wyniki shella pozostają deterministyczne.
 
 ## Integracja ze stroną
 
@@ -230,6 +279,8 @@ wykonywania komend przez aktywny shell.
 | Obszar | Odpowiedzialność |
 | --- | --- |
 | `terminal.js` | Animator idle, ścieżka strony, zegar, output w tle i lifecycle. |
+| `terminal-idle-core.js` | Selekcja pul, profile tempa i sekwencyjny scheduler idle. |
+| `terminal-matrix.js` | Współdzielony model i canvas dekoracyjnego efektu Matrixa. |
 | `terminal-shell-core.js` | Czysta logika filesystemu, parsera, komend i sesji. |
 | `terminal-shell-coordinator.js` | Współdzielone ładowanie manifestu i stany runtime. |
 | `terminal-shell.js` | DOM aktywnego shella, fokus, klawiatura, transcript i akcje. |
@@ -272,7 +323,8 @@ powodują bezpieczny reset do ścieżki odpowiadającej aktualnej stronie.
 
 - Tab przenosi fokus na aktywator, Enter/Space otwiera shell;
 - w aktywnym shellu Tab autouzupełnia, strzałki przeglądają historię;
-- Escape zwija terminal, `Ctrl+L` czyści transcript, `Ctrl+C` czyści input;
+- Escape zwija terminal, `Ctrl+L` czyści transcript, `Ctrl+C` czyści input albo
+  przerywa aktywny `cmatrix`;
 - aktywator utrzymuje `aria-expanded`, transcript ma semantykę logu, a input
   posiada etykietę dla technologii asystujących;
 - fokus nie jest zamykany w terminalu jak w modalu;
@@ -310,6 +362,12 @@ Komenda powinna zostać dodana do czystego rdzenia, `help`, autouzupełniania or
 atrapy katalogów poleceń. Musi zwracać tekst lub jawny deskryptor akcji, a jej
 zachowanie wymaga testów jednostkowych.
 
+Obecnie miejsca te są synchronizowane ręcznie. Następny refaktor ma zastąpić je
+rejestrem komend oraz ogólnym kontraktem rendererów. Do tego czasu nowe efekty
+nie powinny rozszerzać wyspecjalizowanego helpera Matrixa o niepowiązane typy.
+Szczegółowy zakres dalszych porządków znajduje się w
+[docs/todo.md](todo.md).
+
 ### Przyszłe `ask`
 
 `ask` powinno pozostać pojedynczą komendą korzystającą wyłącznie z publicznych
@@ -320,7 +378,8 @@ odpowiedzi, jeśli portfolio nie zawiera wymaganych informacji.
 ## Testowanie i walidacja
 
 `npm run test:terminal` sprawdza builder, parser, ścieżki, symlinki, uprawnienia,
-komendy, autouzupełnianie i trwałość sesji. `npm run test:runtime` sprawdza
+komendy, autouzupełnianie, trwałość sesji, selekcję idle, profile tempa,
+sekwencyjny scheduler i model Matrixa. `npm run test:runtime` sprawdza
 anulowanie nawigacji, fallbacki, lazy loading manifestu oraz retry shella.
 `npm run test:data` chroni istniejące buildery danych, a wspólne `npm test`
 uruchamia wszystkie trzy zestawy. Po `npm run build`, `npm run test:smoke`

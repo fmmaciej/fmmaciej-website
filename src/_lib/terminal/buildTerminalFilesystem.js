@@ -140,8 +140,9 @@ function buildTerminalFilesystem(input = {}) {
   device("/dev/tty", "unsupported");
   device("/dev/zero", "unsupported");
   device("/dev/random", "unsupported");
+  symlink("/dev/spoon", "/dev/null");
 
-  const commands = ["cat", "clear", "help", "history", "hostname", "ls", "open", "pwd", "uname", "whoami"];
+  const commands = ["cat", "clear", "cmatrix", "help", "history", "hostname", "ls", "open", "pwd", "uname", "whoami"];
   commands.forEach((command) => {
     executable(`/usr/bin/${command}`);
     symlink(`/bin/${command}`, `/usr/bin/${command}`);
@@ -156,6 +157,34 @@ function buildTerminalFilesystem(input = {}) {
   file("/home/fm/.profile", "export EDITOR=vim\nexport PAGER=less\n", { owner: "fm", group: "fm", modified: FM_DATE });
   file("/home/fm/.gitconfig", "[user]\n\tname = FM\n[init]\n\tdefaultBranch = main\n", { owner: "fm", group: "fm", modified: FM_DATE });
   file("/home/fm/.config/terminal.conf", "mode=portfolio\nfilesystem=read-only\n", { owner: "fm", group: "fm", modified: FM_DATE });
+
+  directory("/home/fm/.matrix", { owner: "fm", group: "fm", modified: FM_DATE });
+  file("/home/fm/.matrix/message.txt", [
+    "Wake up, Neo...",
+    "The Matrix has you...",
+    "Follow the white rabbit.",
+    "Knock, knock, Neo.",
+    ""
+  ].join("\n"), { owner: "fm", group: "fm", modified: FM_DATE });
+  file("/home/fm/.matrix/white-rabbit.txt", [
+    "        \"e.  \"$$$.",
+    "         ^$$bc \"$$b",
+    "           ^\"*$$c$$F",
+    "                ^\"3$",
+    "       .....   .z$$$$\"$.",
+    "    .d$$$$$$$$$$$$$$$$$$%",
+    "   J$$$$$$$$$$$$$$$$$\"",
+    "  4$$$$$$$$$$$$$$$$$$",
+    "  $$$$$$$$$$$$$$$$$$$",
+    "  *$$$$$$$$$$$$$$$$\"",
+    " . $$$$$$$$$$$$$$$F",
+    "'$$$$$$$$$$$$$\"  *$.",
+    "  \"\"\"\"\"\"\"\"\"\"\"\"\"   \"\"\"\"",
+    ""
+  ].join("\n"), { owner: "fm", group: "fm", modified: FM_DATE });
+  file("/home/fm/.matrix/choice.txt", "status=pending\n", {
+    owner: "fm", group: "fm", modified: FM_DATE
+  });
 
   file("/home/fm/about.md", source.about || "", {
     owner: "fm", group: "fm", modified: FM_DATE, route: "/", openUrl: "/"

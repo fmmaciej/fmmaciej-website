@@ -62,7 +62,8 @@ Najważniejsze katalogi:
   poszczególnych sekcji;
 - `src/assets/css/` — style bazowe, komponentowe, efekty i style tras;
 - `src/assets/js/` — klasyczny JavaScript wykonywany w przeglądarce;
-- `src/assets/terminal/` — publiczne sekwencje poleceń i odpowiedzi terminala;
+- `src/assets/terminal/` — wersjonowana konfiguracja idle, globalne profile i
+  pule poleceń oraz kontekstowe sekwencje poszczególnych tras;
 - `src/assets/music/` — wygenerowane warianty obrazów oraz fallbacki;
 - `tests/` — testy builderów, shella, koordynatorów runtime i smoke test builda;
 - `docs/` — architektura, kontrakt terminala i backlog porządków technicznych;
@@ -164,10 +165,16 @@ flowchart TD
 ### Terminal
 
 Terminal ma dwa tryby: pasywny animator idle oraz aktywny, deterministyczny
-shell. Idle prezentuje kontekstowe komendy i nadal tłumaczy zwykłe kliknięcia na
-`cd`, `cat`, `open` lub `wget`. Active udostępnia read-only, linuksowy filesystem
-zbudowany z publicznych treści strony, historię, autouzupełnianie i nawigację za
-pomocą komend.
+shell. Idle miesza komendy kontekstowe z globalnymi, resetuje cykl przy zmianie
+trasy i zaczyna od lokalnego przykładu. Zwykła rotacja zachowuje proporcję dwie
+komendy lokalne na jedną globalną, a co szósta prezentacja pochodzi z osobnej
+puli Matrixa. Nazwane profile sterują tempem, a sekwencyjny scheduler czeka na
+pełne zakończenie outputu lub efektu i pozwala anulować cały cykl.
+
+Idle nadal tłumaczy zwykłe kliknięcia na `cd`, `cat`, `open` lub `wget`. Active
+udostępnia read-only, linuksowy filesystem zbudowany z publicznych treści
+strony, historię, autouzupełnianie i nawigację za pomocą komend. `cmatrix`
+korzysta w obu trybach ze wspólnego, wyspecjalizowanego helpera canvas.
 
 Manifest filesystemu powstaje podczas builda przez czysty builder w
 `src/_lib/terminal/` i jest publikowany jako
@@ -271,7 +278,7 @@ Najważniejsze polecenia:
 | `npm run build` | Standardowy build `src/` → `www/` i zapis hasha źródeł. |
 | `npm test` | Wszystkie testy danych, terminala i runtime. |
 | `npm run test:data` | Testy czystych builderów i adapterów danych. |
-| `npm run test:terminal` | Testy filesystemu, parsera, komend i trwałej sesji terminala. |
+| `npm run test:terminal` | Testy filesystemu, komend, sesji, selektora idle, profili, schedulera, modelu Matrixa i spójności treści. |
 | `npm run test:runtime` | Testy anulowania/fallbacku nawigacji, lazy init, retry i bootu. |
 | `npm run test:smoke` | Kontrola wygenerowanego HTML po `npm run build`. |
 | `npm run rebuild` | Pełna regeneracja mediów, danych, press kitu i strony. |
