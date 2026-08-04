@@ -1,8 +1,128 @@
 {
-    "intervalMs": 5000,
-    "typingDelayMs": 25,
-    "preDelayMs": 200,
-    "charDelayMs": 1,
-    "linePauseMs": 110,
-    "random": false
+    "schemaVersion": 2,
+    "selection": {
+        "contextualPerCommon": 2,
+        "easterEggEvery": 6
+    },
+    "timingProfiles": {
+        "standard": {
+            "typingDelayMs": 22,
+            "preDelayMs": 180,
+            "charDelayMs": 2,
+            "linePauseMs": 90,
+            "holdMs": 1400
+        },
+        "cinematic": {
+            "typingDelayMs": 42,
+            "preDelayMs": 650,
+            "charDelayMs": 45,
+            "linePauseMs": 850,
+            "holdMs": 2200
+        },
+        "ambient": {
+            "typingDelayMs": 28,
+            "preDelayMs": 250,
+            "holdMs": 700,
+            "durationMs": 6500,
+            "frameDelayMs": 85
+        }
+    },
+    "pools": {
+        "common": [
+            {
+                "cmd": "uname -a",
+                "type": "text",
+                "output": [
+                    "Linux void 6.10.12_1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux"
+                ]
+            },
+            {
+                "cmd": "whoami",
+                "type": "text",
+                "output": ["fm"]
+            },
+            {
+                "cmd": "hostname",
+                "type": "text",
+                "output": ["void"]
+            },
+            {
+                "cmd": "cat /etc/motd",
+                "type": "text",
+                "output": [
+                    "fmmaciej.com virtual shell",
+                    "Read-only portfolio filesystem. Type help to begin."
+                ]
+            },
+            {
+                "cmd": "cat /proc/version",
+                "type": "text",
+                "output": [
+                    "Linux version 6.10.12_1 (void@fmmaciej.com) #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux"
+                ]
+            },
+            {
+                "cmd": "help",
+                "type": "text",
+                "output": [
+                    "Portfolio shell — read-only",
+                    "",
+                    "help                 show available commands",
+                    "pwd                  print working directory",
+                    "ls [-al] [path]       list directory contents",
+                    "cd [path]             change directory",
+                    "cat <file> [...]      print complete file contents",
+                    "cmatrix               run a local Matrix effect",
+                    "open <path>           open a page, link, or download",
+                    "clear                 clear the transcript",
+                    "history               show command history",
+                    "whoami | hostname     show session information",
+                    "uname [-a]            show virtual system information",
+                    "exit                  end and forget this shell session",
+                    "",
+                    "Tab completes paths. ↑/↓ browse history. Esc returns to idle."
+                ]
+            }
+        ],
+        "matrix": [
+            {
+                "cmd": "cmatrix",
+                "type": "matrix",
+                "timingProfile": "ambient"
+            },
+            {
+                "cmd": "cat ~/.matrix/message.txt",
+                "type": "text",
+                "timingProfile": "cinematic",
+                "output": [
+                    "Wake up, Neo...",
+                    "The Matrix has you...",
+                    "Follow the white rabbit.",
+                    "Knock, knock, Neo."
+                ]
+            },
+            {
+                "cmd": "cat ~/.matrix/white-rabbit.txt",
+                "type": "text",
+                "timingProfile": "cinematic",
+                "charDelayMs": 5,
+                "linePauseMs": 180,
+                "output": [
+                    "        \"e.  \"$$$.",
+                    "         ^$$bc \"$$b",
+                    "           ^\"*$$c$$F",
+                    "                ^\"3$",
+                    "       .....   .z$$$$\"$.",
+                    "    .d$$$$$$$$$$$$$$$$$$%",
+                    "   J$$$$$$$$$$$$$$$$$\"",
+                    "  4$$$$$$$$$$$$$$$$$$",
+                    "  $$$$$$$$$$$$$$$$$$$",
+                    "  *$$$$$$$$$$$$$$$$\"",
+                    " . $$$$$$$$$$$$$$$F",
+                    "'$$$$$$$$$$$$$\"  *$.",
+                    "  \"\"\"\"\"\"\"\"\"\"\"\"\"   \"\"\"\""
+                ]
+            }
+        ]
+    }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentId": "b87e20f25de0649f",
+  "contentId": "af416674c4dfc9d2",
   "user": {
     "name": "fm",
     "group": "fm",
@@ -45,6 +45,16 @@
       "modified": "2026-01-01T00:00:00.000Z",
       "target": "/usr/bin/clear",
       "size": 14
+    },
+    {
+      "path": "/bin/cmatrix",
+      "type": "symlink",
+      "mode": "lrwxrwxrwx",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "target": "/usr/bin/cmatrix",
+      "size": 16
     },
     {
       "path": "/bin/help",
@@ -173,6 +183,16 @@
       "modified": "2026-01-01T00:00:00.000Z",
       "deviceBehavior": "unsupported",
       "size": 0
+    },
+    {
+      "path": "/dev/spoon",
+      "type": "symlink",
+      "mode": "lrwxrwxrwx",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "target": "/dev/null",
+      "size": 9
     },
     {
       "path": "/dev/tty",
@@ -310,6 +330,45 @@
       "modified": "2026-03-10T00:00:00.000Z",
       "content": "[user]\n\tname = FM\n[init]\n\tdefaultBranch = main\n",
       "size": 47
+    },
+    {
+      "path": "/home/fm/.matrix",
+      "type": "directory",
+      "mode": "dr-xr-xr-x",
+      "owner": "fm",
+      "group": "fm",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "size": 0
+    },
+    {
+      "path": "/home/fm/.matrix/choice.txt",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "fm",
+      "group": "fm",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "status=pending\n",
+      "size": 15
+    },
+    {
+      "path": "/home/fm/.matrix/message.txt",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "fm",
+      "group": "fm",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "Wake up, Neo...\nThe Matrix has you...\nFollow the white rabbit.\nKnock, knock, Neo.\n",
+      "size": 82
+    },
+    {
+      "path": "/home/fm/.matrix/white-rabbit.txt",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "fm",
+      "group": "fm",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "        \"e.  \"$$$.\n         ^$$bc \"$$b\n           ^\"*$$c$$F\n                ^\"3$\n       .....   .z$$$$\"$.\n    .d$$$$$$$$$$$$$$$$$$%\n   J$$$$$$$$$$$$$$$$$\"\n  4$$$$$$$$$$$$$$$$$$\n  $$$$$$$$$$$$$$$$$$$\n  *$$$$$$$$$$$$$$$$\"\n . $$$$$$$$$$$$$$$F\n'$$$$$$$$$$$$$\"  *$.\n  \"\"\"\"\"\"\"\"\"\"\"\"\"   \"\"\"\"\n",
+      "size": 284
     },
     {
       "path": "/home/fm/.profile",
@@ -9308,6 +9367,16 @@
     },
     {
       "path": "/usr/bin/clear",
+      "type": "executable",
+      "mode": "-r-xr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "content": "",
+      "size": 0
+    },
+    {
+      "path": "/usr/bin/cmatrix",
       "type": "executable",
       "mode": "-r-xr-xr-x",
       "owner": "root",

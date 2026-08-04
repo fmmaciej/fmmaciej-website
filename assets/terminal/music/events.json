@@ -1,5 +1,6 @@
 {
-    "commands": [
+    "schemaVersion": 2,
+    "contextual": [
         {
             "cmd": "ls ~/music/events",
             "type": "text",

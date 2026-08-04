@@ -16,6 +16,8 @@
     --overlay-bleed: 72px;
     --overlay-shift: 0px;
     --overlay-offset: 20px;
+    --matrix-head: #b9f6c7;
+    --matrix-trail: #4eaa68;
 }
 
 :root[data-theme="light"] {
@@ -30,6 +32,8 @@
     --scrim: rgba(0, 0, 0, .25);
 
     --terminal-opacity: .10;
+    --matrix-head: #12632d;
+    --matrix-trail: #2f8a4b;
 }
 
 @media (max-width: 720px) {

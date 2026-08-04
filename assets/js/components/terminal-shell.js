@@ -58,6 +58,7 @@
             this.bindingCleanup = [];
             this.options = null;
             this.onStateChange = onStateChange;
+            this.effect = null;
         }
 
         bind(options) {
@@ -71,6 +72,7 @@
             this.input = this.termBox.querySelector('#terminalShellInput');
             this.prompt = this.termBox.querySelector('#terminalShellPrompt');
             this.pathEl = this.termBox.querySelector('#terminalPath');
+            this.effectStatus = this.termBox.querySelector('#terminalShellEffectStatus');
 
             if (!this.activator || !this.panel || !this.form || !this.input) return;
 
@@ -106,6 +108,7 @@
         }
 
         unbind() {
+            this.cancelEffect('dispose');
             this.bindingCleanup.splice(0).forEach((cleanup) => {
                 try { cleanup(); } catch (_) {}
             });
@@ -131,6 +134,7 @@
 
         collapse(options = {}) {
             if (!this.active) return;
+            this.cancelEffect('collapse');
             this.active = false;
             this.termBox.classList.remove('is-shell-active');
             this.panel.hidden = true;
@@ -238,7 +242,71 @@
                 this.input.focus({ preventScroll: true });
             } else if (result.action?.type === 'open') {
                 await this.openAction(result.action);
+            } else if (result.action?.type === 'effect' && result.action.name === 'matrix') {
+                await this.runMatrixEffect();
             }
+        }
+
+        async runMatrixEffect() {
+            const matrix = window.terminalMatrix;
+            const panel = this.panel;
+            const input = this.input;
+            const status = this.effectStatus;
+            if (!panel || !input || this.effect) return;
+
+            const transcriptIndex = this.transcript.length - 1;
+            const fail = (error) => {
+                console.warn('[terminal] matrix effect failed', error);
+                if (this.transcript[transcriptIndex]) {
+                    this.transcript[transcriptIndex].output = 'cmatrix: effect unavailable';
+                    this.renderTranscript();
+                    this.persist();
+                }
+            };
+            if (!matrix) {
+                fail(new Error('Matrix runtime unavailable'));
+                return;
+            }
+
+            input.readOnly = true;
+            panel.setAttribute('aria-busy', 'true');
+            if (status) status.textContent = 'cmatrix running; press Control+C to stop';
+
+            let handle;
+            try {
+                handle = matrix.start({ mount: panel });
+            } catch (error) {
+                input.readOnly = false;
+                panel.removeAttribute('aria-busy');
+                if (status) status.textContent = '';
+                fail(error);
+                return;
+            }
+            const effect = { handle, input, panel, status, transcriptIndex };
+            this.effect = effect;
+            let outcome;
+            try {
+                outcome = await handle.finished;
+            } catch (error) {
+                outcome = { reason: 'error' };
+                fail(error);
+            }
+            if (this.effect !== effect) return;
+            this.effect = null;
+
+            input.readOnly = false;
+            panel.removeAttribute('aria-busy');
+            if (status) status.textContent = '';
+            if (outcome?.reason === 'interrupt' && this.transcript[transcriptIndex]) {
+                this.transcript[transcriptIndex].output = '^C';
+                this.renderTranscript();
+                this.persist();
+            }
+            if (this.active && this.input === input) input.focus({ preventScroll: true });
+        }
+
+        cancelEffect(reason = 'cancel') {
+            this.effect?.handle.cancel(reason);
         }
 
         async navigate(url, options) {
@@ -275,6 +343,13 @@
             if (event.key === 'Escape') {
                 event.preventDefault();
                 this.collapse();
+                return;
+            }
+            if (this.effect) {
+                event.preventDefault();
+                if (event.ctrlKey && event.key.toLowerCase() === 'c') {
+                    this.cancelEffect('interrupt');
+                }
                 return;
             }
             if (event.ctrlKey && event.key.toLowerCase() === 'l') {
