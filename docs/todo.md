@@ -5,6 +5,27 @@ shella i refaktoru niezawodności. Nie jest listą nowych funkcji produktowych.
 Priorytety opisują kolejność zalecaną przed rozpoczęciem integracji AI.
 Aktualny kontrakt subsystemu opisuje [docs/terminal.md](terminal.md).
 
+## Warunek rozpoczęcia prac nad `ask` — polityka bez spoilerów
+
+Publiczny plik `/llms.txt` prosi zewnętrzne modele o nieujawnianie easter eggów,
+ukrytych interakcji i rozwiązań zagadek. Jest to deklaracja dobrowolna, dlatego
+przyszłe `ask` nie może traktować jej jako mechanizmu bezpieczeństwa.
+
+- [ ] Zdefiniować metadane widoczności dla źródeł AI, rozróżniające zwykłe
+  publiczne treści od spoilerów oraz danych całkowicie wyłączonych z `ask`.
+- [ ] Budować kontekst wyłącznie z jawnej allowlisty. Treści chronione, ich
+  lokalizacje, nazwy plików, komendy aktywujące i rozwiązania nie mogą trafiać
+  do kontekstu modelu.
+- [ ] Dodać deterministyczną kontrolę wejścia i wyniku, która blokuje prośby o
+  ujawnienie, wyliczenie, zlokalizowanie lub rozwiązanie easter eggów i zagadek,
+  również gdy są sformułowane pośrednio.
+- [ ] Przyjąć neutralną odpowiedź odmowną zachęcającą do samodzielnej
+  eksploracji, bez potwierdzania domysłów i bez udzielania dodatkowej wskazówki.
+- [ ] Nie opierać ochrony wyłącznie na system prompcie. Warstwa wyboru źródeł i
+  reguły aplikacji muszą obowiązywać niezależnie od zachowania modelu.
+- [ ] Przetestować pytania bezpośrednie, parafrazy, prośby o fragmenty źródeł,
+  kodowanie treści, zmianę języka oraz próby nadpisania instrukcji.
+
 ## P0 — weryfikacja obecnego runtime
 
 - [ ] Przeprowadzić ręczne QA w prawdziwej przeglądarce na desktopie i mobile:

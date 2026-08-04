@@ -1,5 +1,6 @@
 module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "src/.htaccess": ".htaccess" });
+    eleventyConfig.addPassthroughCopy({ "src/llms.txt": "llms.txt" });
     eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
     eleventyConfig.addPassthroughCopy({ "src/assets/icons": "assets/icons" });
     eleventyConfig.addPassthroughCopy({ "src/assets/music/events/generated": "assets/music/events/generated" });

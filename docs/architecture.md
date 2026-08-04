@@ -50,6 +50,7 @@ System ma dwie wyraźne fazy:
 | `/music/photos/` | Zestawy zdjęć pogrupowane według roku. |
 | `/music/links/` | Redakcyjny katalog odnośników muzycznych. |
 | `/sitemap.xml`, `/robots.txt` | Automatycznie generowane dane dla robotów. |
+| `/llms.txt` | Dobrowolna polityka bez spoilerów dla zewnętrznych modeli. |
 
 ## Organizacja źródeł
 

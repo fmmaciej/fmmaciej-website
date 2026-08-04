@@ -375,6 +375,13 @@ treści manifestu lub ich źródeł. Awaria AI nie może wpływać na pozostałe
 komendy, nawigację ani idle. Odpowiedzi powinny wskazywać źródła i odmawiać
 odpowiedzi, jeśli portfolio nie zawiera wymaganych informacji.
 
+Publiczny `/llms.txt` komunikuje zewnętrznym modelom politykę bez spoilerów, ale
+ma charakter dobrowolny. Własne `ask` musi egzekwować tę politykę poza modelem:
+chronione treści, ścieżki i rozwiązania nie mogą trafiać do jego kontekstu, a
+reguły aplikacji mają blokować próby ich wydobycia bez potwierdzania domysłów i
+udzielania wskazówek. Szczegółowe zadania zapisano w
+[docs/todo.md](todo.md).
+
 ## Testowanie i walidacja
 
 `npm run test:terminal` sprawdza builder, parser, ścieżki, symlinki, uprawnienia,

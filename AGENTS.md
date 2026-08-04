@@ -192,6 +192,13 @@ Manifest loading is lazy and retryable; do not move it back into page startup.
 Keep `docs/terminal.md` current when changing commands, filesystem schema,
 runtime states, navigation integration, persistence, or accessibility.
 
+`src/llms.txt` is copied to the public root and communicates the site's
+advisory no-spoiler policy to external AI assistants. Keep it focused on
+easter eggs, hidden interactions, and puzzles without naming or revealing the
+protected content. It is not an enforcement mechanism; requirements for the
+future `ask` command belong in `docs/todo.md` and must be enforced by source
+selection and application policy rather than prompt text alone.
+
 ## Working-tree discipline
 
 - Treat existing modifications as user-owned. Do not overwrite, revert, or
