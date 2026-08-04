@@ -405,7 +405,31 @@ anulowanie nawigacji, fallbacki, lazy loading manifestu oraz retry shella.
 uruchamia wszystkie trzy zestawy. Po `npm run build`, `npm run test:smoke`
 weryfikuje pojedynczy boot i kolejność skryptów w wygenerowanym HTML.
 
-Zmiany interakcji lub CSS wymagają dodatkowo sprawdzenia w przeglądarce:
+`npm run test:e2e` uruchamia trzy projekty Playwrighta: Chromium desktop,
+Chromium na emulowanym Pixelu 7 oraz WebKit na emulowanym iPhonie 16 Pro w
+portrait. Suite przechodzi przez publiczne trasy z sitemap, kontroluje miękką
+nawigację i historię, lazy manifest, retry, komendy `cd` i `open`, Tab, Escape,
+klik poza terminalem, fokus i stany ARIA. Kontrolowane opóźnienia i błędy
+odpowiedzi sprawdzają zasadę latest-wins oraz twardy fallback. Zewnętrzne
+żądania są zastępowane lokalnie, dzięki czemu wynik nie zależy od CDN-ów.
+Domyślny reduced motion skraca przebieg; osobny test sprawdza pełny lifecycle
+bootu. Artefakty błędów trafiają do ignorowanych `test-results/` i
+`playwright-report/`. `npm run test:e2e:iphone` uruchamia tylko projekt WebKit.
+
+Projekt WebKit emuluje silnik, viewport, ekran, user agent i dotyk iPhone'a, ale
+nie jest testem markowego Safari ani fizycznego urządzenia. Przed publikacją
+większych zmian mobilnych należy ręcznie sprawdzić na prawdziwym iPhonie:
+
+- dynamiczny viewport Safari i brak poziomego przewijania lub obciętej treści;
+- otwieranie i zamykanie drawera, backdrop oraz przejście wybranym linkiem;
+- scroll strony, stopkę oraz zachowanie przy zwijaniu i rozwijaniu paska Safari;
+- aktywację terminala, fokus inputa i jego widoczność nad klawiaturą ekranową;
+- `cd`, `open`, zwijanie terminala dotknięciem poza nim oraz back/forward;
+- jasny i ciemny motyw oraz systemowe reduced motion.
+
+Pełna walidacja bez regeneracji mediów jest dostępna jako `npm run check`.
+
+Automatyzacja nie zastępuje ręcznego sprawdzenia zmian interakcji lub CSS:
 
 - desktop i mobile;
 - jasny i ciemny motyw;

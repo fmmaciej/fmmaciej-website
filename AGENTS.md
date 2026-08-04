@@ -44,7 +44,11 @@ Use the lockfile and install dependencies with:
 
 ```bash
 npm ci
+npx playwright install chromium webkit
 ```
+
+The second command installs the browser binary required by the E2E suite in
+Playwright's system cache; it is not stored in this repository.
 
 Useful commands:
 
@@ -60,6 +64,13 @@ Useful commands:
   initialization and retry, binding cleanup, and boot lifecycle.
 - `npm run test:smoke` checks the generated `www/index.html`; run it after a
   successful build.
+- `npm run test:e2e` starts Eleventy's local server and runs the Playwright
+  projects for Chromium desktop, Chromium mobile, and WebKit on an emulated
+  iPhone. `npm run test:e2e:iphone` runs only the WebKit/iPhone project,
+  `npm run test:e2e:headed` shows the browsers, and `npm run test:e2e:ui` opens
+  Playwright's interactive UI.
+- `npm run check` runs the Node suites, build, generated-site smoke test,
+  Playwright E2E suite, and `git diff --check` without regenerating music media.
 - `npm run clean` removes `www/`.
 - `npm run rebuild` removes `www/`, regenerates music assets/data and the press
   kit, then performs the Eleventy build. It can make broad source-tree changes;
@@ -68,9 +79,13 @@ Useful commands:
   regenerate the corresponding media. These commands require the local
   scripts and `originals/` directories under ignored `tools/`/asset paths.
 
-There is no configured lint command or real-browser automation suite. The
-tracked Node suites run through `npm test`; the smoke suite additionally
-requires a current build. The ignored local tooling includes catalogue
+There is no configured lint command. The tracked Node suites run through
+`npm test`; the generated HTML smoke suite additionally requires a current
+build. Playwright tests live under `tests/e2e/`, use reduced motion by default,
+and keep ignored screenshots, traces, videos, and an HTML report only for
+diagnosing failures. The WebKit/iPhone project emulates the engine, viewport,
+touch, and user agent; it is not a physical iPhone or branded Safari. The
+ignored local tooling includes catalogue
 synchronization tests under `tools/tests/test_sync_music.py`; run them with:
 
 ```bash
@@ -79,9 +94,9 @@ python3 -m unittest discover -s tools/tests -v
 
 For normal template, CSS, JavaScript, or content changes, `npm run build` is the
 minimum validation. Run `npm test` for shared data or browser-runtime changes.
-For terminal or navigation work, also run `npm run test:smoke` after the build.
-Inspect the affected generated page in a browser when layout, interaction,
-responsive behavior, accessibility, history, or focus may have changed.
+For terminal, navigation, accessibility, history, or focus work, run
+`npm run check`. Playwright covers representative browser behavior, but visual
+layout and behavior on physical devices still require manual inspection.
 
 Do not run `npm run deploy`, `npm run deploy:ovh`, or push the `ovh-deploy`
 branch unless the user explicitly requests a deployment. Deployment performs

@@ -31,6 +31,8 @@ node_modules/
 tmp/
 tools/
 www/
+playwright-report/
+test-results/
 
 # Node / JS
 npm-debug.log*

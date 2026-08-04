@@ -5,6 +5,7 @@
     "main": "index.js",
     "devDependencies": {
         "@11ty/eleventy": "^3.1.2",
+        "@playwright/test": "^1.62.1",
         "markdown-it-link-attributes": "^4.0.1"
     },
     "scripts": {
@@ -24,7 +25,13 @@
         "test:terminal": "node --test tests/terminal.test.js tests/terminal-idle.test.js tests/terminal-matrix.test.js",
         "test:runtime": "node --test tests/runtime-reliability.test.js",
         "test:smoke": "node --test tests/build-smoke.test.js",
+        "test:e2e": "playwright test",
+        "test:e2e:iphone": "playwright test --project=webkit-iphone",
+        "test:e2e:headed": "playwright test --headed",
+        "test:e2e:ui": "playwright test --ui",
         "test": "npm run test:data && npm run test:terminal && npm run test:runtime",
+
+        "check": "npm test && npm run build && npm run test:smoke && npm run test:e2e && git diff --check",
 
         "push": "git push",
         "deploy:check": "./tools/build_check.sh",

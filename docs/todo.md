@@ -32,11 +32,17 @@ przyszłe `ask` nie może traktować jej jako mechanizmu bezpieczeństwa.
   oba motywy, reduced motion, fokus, Tab completion, Escape, klik poza terminal,
   `cd`, `open`, hash navigation, back/forward oraz powtarzane kliknięcie linku
   prowadzącego do aktualnej strony.
-- [ ] Sprawdzić scenariusze z throttlingiem i offline: wolny manifest, pierwszy
-  błąd i udany retry, anulowanie wolniejszej nawigacji A przez szybszą B oraz
-  twardy fallback po błędzie dokumentu lub assetu.
+- [x] Zautomatyzować kontrolowane błędy i opóźnienia: pierwszy błąd manifestu z
+  udanym retry, anulowanie wolniejszej nawigacji A przez szybszą B oraz twardy
+  fallback po błędzie dokumentu.
+- [ ] Dokończyć ręczne QA sieciowe: wolny manifest, tryb offline oraz twardy
+  fallback po błędzie wymaganego assetu.
 - [ ] Potwierdzić brak reflow w idle/loading/error i poprawne nakładanie active
   shell na typowych szerokościach ekranu.
+- [ ] Poprawić komfort aktywacji shella w Safari na fizycznym iPhonie: ustawić
+  dla fokusowanego inputa co najmniej `16px` bez blokowania zoomu dostępności,
+  zweryfikować zachowanie `65dvh` przy klawiaturze i dynamicznym viewporcie oraz
+  dodać regresyjny test WebKit i ręczne QA bez niechcianego skalowania strony.
 
 ## P1 — jedno źródło prawdy i testy integracyjne
 
@@ -56,7 +62,7 @@ przyszłe `ask` nie może traktować jej jako mechanizmu bezpieczeństwa.
 - [ ] Dodać test integracyjny rzeczywistego manifestu Eleventy: brak draftów,
   zgodność liczby projektów i katalogów muzycznych, poprawne route/hash oraz
   brak niepublicznych treści.
-- [ ] Dodać real-browser smoke suite dla nawigacji, lifecycle shella, fokusu i
+- [x] Dodać real-browser smoke suite dla nawigacji, lifecycle shella, fokusu i
   ARIA. Zachować ją małą; nie zastępować nią szybkich testów `node:test`.
 
 ## P2 — granice modułów i wydajność
@@ -101,8 +107,10 @@ przyszłe `ask` nie może traktować jej jako mechanizmu bezpieczeństwa.
   sprawdzić loader również w trybie reduced motion.
 - [ ] Uporządkować globalne API `window.*` pod jednym namespace, zachowując
   klasyczne skrypty i brak bundlera.
-- [ ] Dodać jedno polecenie typu `npm run check`, które uruchamia testy, build,
+- [x] Dodać jedno polecenie typu `npm run check`, które uruchamia testy, build,
   smoke test i kontrole repozytorium bez regeneracji katalogów muzycznych.
+- [ ] Uruchamiać `npm run check` w GitHub Actions dla pull requestów i zmian na
+  głównej gałęzi, instalując w CI Chromium i WebKit wymagane przez Playwright.
 
 ## Zasady realizacji
 

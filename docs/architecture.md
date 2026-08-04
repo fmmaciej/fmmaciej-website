@@ -277,6 +277,7 @@ Najważniejsze polecenia:
 | Polecenie | Zastosowanie |
 | --- | --- |
 | `npm ci` | Instalacja zależności zgodnie z lockfile. |
+| `npx playwright install chromium webkit` | Instalacja Chromium i WebKit wymaganych przez E2E. |
 | `npm run dev` | Serwer developerski Eleventy z obserwowaniem zmian. |
 | `npm run build` | Standardowy build `src/` → `www/` i zapis hasha źródeł. |
 | `npm test` | Wszystkie testy danych, terminala i runtime. |
@@ -284,12 +285,26 @@ Najważniejsze polecenia:
 | `npm run test:terminal` | Testy filesystemu, komend, sesji, selektora idle, profili, schedulera, modelu Matrixa i spójności treści. |
 | `npm run test:runtime` | Testy anulowania/fallbacku nawigacji, lazy init, retry i bootu. |
 | `npm run test:smoke` | Kontrola wygenerowanego HTML po `npm run build`. |
+| `npm run test:e2e` | Testy Playwright w Chromium desktop/mobile i WebKit/iPhone. |
+| `npm run test:e2e:iphone` | Wyłącznie projekt WebKit z emulowanym iPhone 16 Pro. |
+| `npm run test:e2e:headed` / `test:e2e:ui` | Widoczna przeglądarka lub interaktywny runner do diagnozy E2E. |
+| `npm run check` | Testy Node, build, smoke, E2E i kontrola `git diff --check`. |
 | `npm run rebuild` | Pełna regeneracja mediów, danych, press kitu i strony. |
 | `python3 -m unittest discover -s tools/tests -v` | Lokalne testy synchronizacji katalogów. |
 
-Po zmianach wizualnych lub interakcyjnych sam build nie wystarcza — należy
-sprawdzić stronę w przeglądarce, w tym mobile, jasny/ciemny motyw, klawiaturę i
-ograniczenie ruchu.
+Szybkie testy `node:test` chronią czyste modele i koordynatory, smoke sprawdza
+wygenerowany HTML, a `tests/e2e/` weryfikuje rzeczywiste trasy, nawigację,
+terminal, fokus, ARIA, motyw i reduced motion. Projekty obejmują Chromium na
+desktopie i emulowanym Pixelu 7 oraz WebKit na emulowanym iPhonie 16 Pro w
+portrait. Playwright uruchamia Eleventy na `127.0.0.1:8080`, nie korzysta z
+zewnętrznej sieci i zapisuje ignorowane `test-results/` oraz
+`playwright-report/` do diagnozy błędów. Nie używa golden screenshotów.
+
+Emulacja iPhone'a ustawia WebKit, viewport, ekran, user agent i obsługę dotyku,
+ale nie zastępuje Safari uruchomionego na fizycznym urządzeniu.
+
+Po zmianach wizualnych sam build i E2E nie wystarczają — należy nadal sprawdzić
+layout w przeglądarce, szczególnie na fizycznym urządzeniu.
 
 Publikacja jest oddzielona od builda. `deploy:check` wymaga gałęzi `main`,
 czystego drzewa, zgodności z `origin/main` i aktualnego `www/build.txt`.
