@@ -159,11 +159,7 @@
     }
 
     function sameDocument(currentValue, targetValue) {
-        const current = new URL(currentValue, location.href);
-        const target = new URL(targetValue, current);
-        return current.origin === target.origin
-            && current.pathname === target.pathname
-            && current.search === target.search;
+        return window.terminalActionUtils?.isSameDocumentUrl?.(currentValue, targetValue) || false;
     }
 
     function dispatchNavigated(targetUrl, context) {

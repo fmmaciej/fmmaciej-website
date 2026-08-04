@@ -139,11 +139,12 @@ window.initTerminal = function initTerminal(root = document){
             return;
         }
 
-        for (let index = 0; index < command.length; index += 1) {
+        let expected = '';
+        for (const character of Array.from(command)) {
             throwIfAborted(signal);
-            const expected = command.slice(0, index);
             if (!typed.textContent.startsWith(expected)) typed.textContent = expected;
-            typed.textContent += command.charAt(index);
+            typed.textContent += character;
+            expected += character;
             await abortableDelay(typingDelayMs, signal);
         }
     }

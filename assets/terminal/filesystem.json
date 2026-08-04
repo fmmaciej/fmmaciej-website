@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentId": "af416674c4dfc9d2",
+  "contentId": "0ea03932a4e64886",
   "user": {
     "name": "fm",
     "group": "fm",
@@ -25,6 +25,16 @@
       "group": "root",
       "modified": "2026-01-01T00:00:00.000Z",
       "size": 0
+    },
+    {
+      "path": "/bin/🐇",
+      "type": "symlink",
+      "mode": "lrwxrwxrwx",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "target": "/usr/bin/🐇",
+      "size": 13
     },
     {
       "path": "/bin/cat",
@@ -9343,6 +9353,16 @@
       "owner": "root",
       "group": "root",
       "modified": "2026-01-01T00:00:00.000Z",
+      "size": 0
+    },
+    {
+      "path": "/usr/bin/🐇",
+      "type": "executable",
+      "mode": "-r-xr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "content": "",
       "size": 0
     },
     {
