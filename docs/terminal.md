@@ -6,10 +6,14 @@ Ten dokument opisuje wysokopoziomową architekturę terminala na
 `fmmaciej.com`: jego dwa tryby wizualne, wirtualny system plików, deterministyczny
 shell, integrację z nawigacją strony oraz granice odpowiedzialności komponentów.
 
+> Przed analizą ukrytych interakcji, testów, fixture'ów lub danych terminala
+> należy przeczytać [`src/llms.txt`](../src/llms.txt). Ten dokument celowo nie
+> opisuje ścieżek odkrywania ani rozwiązań.
+
 Terminal jest alternatywnym interfejsem do publicznego portfolio oraz warstwą
-zagadek opartą na kontach `guest`, `fm` i `operator`. Nie zastępuje klasycznej
-nawigacji i nie jest emulatorem prawdziwego systemu operacyjnego. Strona
-pozostaje w pełni użyteczna bez aktywowania shella.
+opcjonalnych ukrytych interakcji. Nie zastępuje klasycznej nawigacji i nie jest
+emulatorem prawdziwego systemu operacyjnego. Strona pozostaje w pełni użyteczna
+bez aktywowania shella.
 
 ## Założenia produktu
 
@@ -26,109 +30,37 @@ plików, nie ma dostępu do systemu użytkownika i nie interpretuje dowolnego ko
 
 ### Idle
 
-Idle jest domyślnym stanem po wejściu na stronę. Terminal ma stałą wysokość i
-odtwarza deterministyczną mieszankę komend kontekstowych, wspólnych dla całej
-strony oraz rzadkich easter eggów Matrixa. Odpowiedzi są wyświetlane jako
-subtelna warstwa w tle treści strony.
+Idle jest domyślnym stanem terminala. Odtwarza deterministyczną mieszankę
+wpisów kontekstowych i globalnych bez przechwytywania klawiatury. Stała wysokość
+zapobiega przesuwaniu layoutu, a fokus i hover jedynie sygnalizują możliwość
+aktywacji shella.
 
-Najważniejsze własności:
+Globalny `src/assets/terminal/config.json` ma `schemaVersion: 3`, politykę
+selekcji, nazwane profile czasu oraz pule wpisów. Pliki tras mają ten sam numer
+schematu i własne tablice `contextual`. Opcjonalne `runAs` i `users`
+ograniczają wykonanie do właściwego kontekstu sesji. Chronione wpisy pozostają
+w źródle konfiguracji i nie są wyliczane w dokumentacji.
 
-- stała wysokość zapobiega przesuwaniu layoutu przez dłuższe komendy;
-- wersjonowana konfiguracja animacji pochodzi z `src/assets/terminal/`;
-- każda podstrona zaczyna od lokalnej komendy, a zwykła rotacja zachowuje rytm
-  dwie lokalne na jedną globalną;
-- co szósta prezentacja pochodzi z osobnej, deterministycznej puli Matrixa;
-- pula Matrixa naprzemiennie pokazuje efekt i symboliczną komendę; wszystkie
-  pliki `.matrix` pozostają dostępne wyłącznie przez ręczną eksplorację shella;
-- nazwane profile `standard`, `cinematic` i `ambient` sterują tempem prezentacji;
-- scheduler czeka na pełne zakończenie outputu i efektu, zachowuje minimalny czas
-  na przeczytanie, a następnie pokazuje dwa mignięcia kursora przed wyborem
-  kolejnej komendy; cały cykl można anulować jednym sygnałem;
-- animacja nie przechwytuje klawiatury;
-- hover i fokus klawiatury pokazują delikatną, odsuniętą ramkę sugerującą
-  możliwość aktywacji;
-- etykieta użytkownika i ścieżka odzwierciedlają trwałą sesję shella;
-- przykłady używają wyłącznie poleceń i ścieżek dostępnych w aktywnym shellu.
+Scheduler czeka na zakończenie tekstu lub efektu, zachowuje czas na odczyt,
+wyświetla końcowe mignięcia kursora i obsługuje anulowanie jednym sygnałem.
+Profile czasu są nakładane deterministycznie i walidowane przez
+`terminal-idle-core.js`.
 
-#### Konfiguracja idle
-
-Globalny `src/assets/terminal/config.json` ma `schemaVersion: 3` i definiuje
-politykę `selection`, nazwane `timingProfiles` oraz pule `pools.common` i
-`pools.matrix`. Konfiguracja każdej trasy ma własne `schemaVersion: 3` i tablicę
-`contextual`; nie powiela ustawień globalnych.
-
-Wpis może deklarować `runAs: "fm"`. Dla sesji `guest` runtime prezentuje wtedy
-jednorazowe `su -c`, krótki prompt `Password:` i automatyczny powrót do
-`guest`; `fm` oraz `operator` wykonują tę samą komendę bez opakowania. Opcjonalne
-`users` ogranicza wpis do wskazanych tożsamości.
-
-Tempo wpisu powstaje przez nałożenie wbudowanego profilu `standard`, wybranego
-profilu z konfiguracji i opcjonalnych nadpisań konkretnej komendy. Nieznana
-nazwa profilu wraca do `standard` i generuje pojedyncze ostrzeżenie w konsoli.
-`holdMs` jest minimalnym czasem na przeczytanie kompletnego outputu. Po nim — i
-po zakończeniu ewentualnego efektu — kursor wykonuje dwa jednosekundowe cykle,
-po czym scheduler czyści wpis. Przy reduced motion ruch kursora jest zastąpiony
-równoważną pauzą.
-Brak puli kontekstowej powoduje użycie globalnej, a brak globalnej — użycie
-kontekstowej. Błędna konfiguracja idle nie może blokować aktywnego shella ani
-klasycznej strony.
-
-Wpis może opcjonalnie deklarować `commandEffect`. Runtime rozpoznaje obecnie
-wyłącznie `rabbit-step`; nieznane wartości są ignorowane. Runtime czeka na
-rzeczywisty koniec animacji efektu, bez powielania jej czasu w JavaScript lub
-konfiguracji. Królik wykonuje trzy zwykłe skoki, zatrzymuje się na moment, a
-czwartym skokiem wpada do subtelnej dziury rysowanej przez CSS. Po drugiej
-stronie wyskakuje z niej osobnym łukiem, czeka 250 ms na jej zamknięcie i dopiero
-rusza dalej. Ostatnie lądowanie również ma krótką fazę spoczynku. Kursor jest ukryty
-na czas całego efektu i nie dodaje końcowej pauzy na miganie. Efekt jest
-anulowany razem z cyklem idle, a reduced motion pozostawia statyczne emoji bez
-dziury. Zapętlony podgląd czyści emoji pomiędzy powtórkami, dzięki czemu nie
-przeskakuje ono z końca trajektorii na jej początek.
-
-Do ręcznej oceny samego ruchu służy deweloperski parametr
-`?terminal-preview=rabbit`. Po uruchomieniu `npm run dev` adres
-`http://localhost:8080/?terminal-preview=rabbit` pomija zwykłą rotację idle,
-uruchamia królika natychmiast i powtarza animację po krótkiej przerwie.
+Efekty dekoracyjne korzystają ze współdzielonego modelu, są anulowalne i mają
+wariant reduced motion. Szczegóły chronionych wariantów, ich podglądów
+developerskich i wyzwalaczy są celowo pominięte.
 
 ### Loading, error i active shell
 
-Kliknięcie terminala albo ustawienie na nim fokusu i naciśnięcie Enter/Space
-zatrzymuje idle i dopiero wtedy pobiera manifest filesystemu. W trakcie tej
-pierwszej próby terminal zachowuje stałą wysokość i pokazuje status ładowania.
-Udany odczyt jest współdzielony przez kolejne aktywacje i tworzy dokładnie jeden
-kontroler shella.
+Aktywacja przełącza terminal do panelu interaktywnego. Manifest filesystemu
+ładuje się leniwie dopiero przy pierwszej aktywacji; równoległe żądania
+współdzielą jeden kontroler. Błąd pokazuje stan możliwy do ponowienia, a kolejna
+aktywacja wykonuje retry.
 
-Jeśli manifest jest chwilowo niedostępny, terminal pozostaje zwinięty i pokazuje
-stały komunikat błędu. Kliknięcie, Enter lub Space ponawia pobranie bez
-przeładowania strony. Błąd shella nie blokuje klasycznej nawigacji portfolio.
-
-Po udanym odczycie terminal rozwija się nad treścią strony, bez zmiany wysokości
-dokumentu. Aktywny obszar otrzymuje wyraźniejszą ramkę, pełne tło, transcript i
-pole polecenia.
-
-Shell pozostaje otwarty dla poleceń eksploracyjnych. Zamyka się po:
-
-- `open`, gdy udało się otworzyć stronę lub zasób;
-- `exit` wykonanym przy pustym stosie logowań, które usuwa zapisaną sesję;
-- Escape;
-- kliknięciu poza terminalem.
-
-Escape i kliknięcie poza terminalem zachowują sesję. Ponowne otwarcie przywraca
-katalog roboczy, historię oraz transcript.
-
-```mermaid
-stateDiagram-v2
-    [*] --> Idle
-    Idle --> Loading: click lub focus + Enter
-    Loading --> Active: manifest gotowy
-    Loading --> Error: błąd manifestu
-    Error --> Loading: ponowna aktywacja
-    Active --> Active: help / ls / cd / cat / su / date
-    Active --> Active: exit z konta fm lub operator
-    Active --> Idle: Escape lub click outside
-    Active --> Idle: open
-    Active --> Idle: exit + reset sesji
-```
+Active shell zachowuje deterministyczny parser, historię, transcript,
+autouzupełnianie, maskowany prompt uwierzytelnienia i anulowalne efekty.
+Zamknięcie panelu zachowuje sesję, ale odtwarza idle. Bindingi są disposable i
+bezpieczne po częściowej nawigacji.
 
 ## Architektura build-time
 
@@ -162,71 +94,24 @@ zmienia się razem z zawartością i kontraktem kont.
 
 ## Wirtualny system plików
 
-Shell startuje jako użytkownik `guest` na hoście `void`, z katalogiem domowym:
+Shell używa deterministycznego, tylko do odczytu manifestu systemu plików.
+Publiczna gałąź odwzorowuje portfolio, a oddzielne wpisy redakcyjne zapewniają
+opcjonalne ukryte interakcje. Manifest opisuje typy wpisów, właścicieli, grupy,
+uprawnienia, daty, cele nawigacji i dozwolone akcje.
 
-```text
-/home/guest
-```
+Szczegółowa topologia chronionych wpisów, narracyjne dane dostępowe i kolejność
+odkrywania nie należą do dokumentacji architektury. Ich źródłem prawdy pozostaje
+kod i katalog redakcyjny, a przed ich analizą obowiązuje
+[polityka no-spoiler](../src/llms.txt).
 
-Atrapa identyfikuje się jako Slackware 4.0 z jądrem 2.2.6. Zawiera tylko
-potrzebny, read-only wycinek systemu z epoki, a nie kompletną dystrybucję.
+Uprawnienia wirtualnych kont służą narracji i deterministycznemu modelowaniu
+powłoki; nie są granicą bezpieczeństwa. Dane wymagane przez klienta są
+publiczne, a interfejs nie wykonuje prawdziwych operacji systemowych.
 
-Najważniejsza gałąź to publiczne portfolio:
-
-```text
-/home/guest/
-├── README
-├── LEAVE_ME_HERE
-└── .matrix/
-│   ├── message.txt
-│   ├── white-rabbit.txt
-│   ├── choice.txt
-│   └── exit/
-│       ├── door.txt
-│       ├── operator.log
-│       └── trace.log
-
-/home/fm/
-├── .matrix -> /home/guest/.matrix
-├── about.md
-├── contact.txt
-├── cv/
-├── links/
-├── projects/
-├── blog/
-└── music/
-    ├── bio/
-    ├── rider/
-    ├── events/
-    ├── mixes/
-    ├── photos/
-    └── links/
-
-/home/operator/
-├── README
-├── playbook.txt
-├── easter-eggs.txt
-└── solutions.txt
-```
-
-`guest` widzi nazwę `.matrix`, ale nie może wejść do katalogu. `LEAVE_ME_HERE`
-prowadzi do konta `fm`; dopiero jego grupy dodatkowe odblokowują Matrix i
-portfolio. `.matrix/message.txt` przechowuje filmowy komunikat dostępny
-wyłącznie przez ręczną eksplorację. `white-rabbit.txt` zawiera kompaktowy
-ASCII-art bez podpisu, natomiast
-`choice.txt` jest nieaktywnym entrypointem o treści `status=pending`. Katalog
-`exit/` zawiera trzy uzupełniające się wskazówki: ślad sceny, zachętę do
-obserwacji animacji oraz celowo skadrowany rysunek drzwi. Ich treść i rozwiązanie
-pozostają w builderze, a nie w tym dokumencie. ASCII-art królika nie jest
-odtwarzany automatycznie w idle i wymaga ręcznego odczytania pliku. Dodatkowy
-easter egg `/dev/spoon` jest dowiązaniem do `/dev/null`.
-
-Kontekstowy wpis strony głównej wykonuje jako `guest` polecenie `ls -al ~`, dzięki czemu `.matrix/`
-pojawia się bez wyróżnienia w zwykłym listingu katalogu domowego. Smoke test
-porównuje ten publiczny output z poleceniem wykonanym na wygenerowanym
-filesystemie, aby oba widoki nie rozjechały się przy zmianach treści. Żaden
-inny wpis idle nie odwołuje się do katalogu ani nie wyświetla zawartości jego
-plików.
+Idle może prezentować wyłącznie zamierzone, powierzchowne wskazówki. Smoke test
+porównuje publiczny listing z poleceniem wykonanym na wygenerowanym manifeście,
+aby konfiguracja idle i filesystem nie rozchodziły się bez kopiowania
+chronionej sekwencji do dokumentacji.
 
 ### Źródła treści
 
@@ -238,8 +123,8 @@ plików.
 - CV i pliki `.url` prowadzą do istniejących publicznych zasobów;
 - systemowe pliki w `/etc`, `/proc` i `/var/log` są bezpieczną, statyczną
   atrapą budującą kontekst.
-- `src/_data/terminal/puzzles.json` jest redakcyjnym źródłem generowanych
-  materiałów operatora; rozwiązania są publiczną częścią zagadki.
+- `src/_data/terminal/puzzles.json` jest redakcyjnym źródłem chronionych
+  materiałów; testy kontraktu nie powinny kopiować jego treści.
 
 W filesystemie nie mogą pojawiać się informacje, których nie ma w publicznych
 źródłach strony. Dodanie nowego projektu do shella wymaga najpierw dodania go do
@@ -269,102 +154,58 @@ filesystem jest read-only.
 
 - tokenizację bez `eval`;
 - normalizację ścieżek bezwzględnych i względnych;
-- obsługę `~`, `.`, `..` i `cd -`;
+- obsługę katalogu domowego, katalogu bieżącego i poprzedniego;
 - rozwiązywanie symlinków wraz z wykrywaniem cykli;
 - sprawdzanie dostępu do plików i katalogów;
-- wykonanie wspieranych komend;
+- wykonanie udokumentowanych poleceń;
 - autouzupełnianie poleceń i ścieżek;
 - serializację i odtwarzanie sesji.
 
-Obsługiwane polecenia:
+Publiczny zestaw poleceń obejmuje pomoc, listing i odczyt plików, zmianę
+katalogu, informacje o sesji, historię, czyszczenie transcriptu, otwieranie
+dozwolonych celów oraz lokalny efekt wizualny. Powłoka obsługuje także
+interaktywne uwierzytelnienie narracyjnych kont i izolowane wykonanie polecenia
+w innym kontekście.
 
-| Polecenie | Zachowanie |
-| --- | --- |
-| `help` | Lista możliwości i skrótów klawiaturowych. |
-| `pwd` | Bieżący katalog wirtualnego filesystemu. |
-| `ls [-al] [path]` | Listing katalogu; `-a` pokazuje dotfiles, `-l` metadane. |
-| `cd [path]` | Zmiana katalogu oraz opcjonalna synchronizacja strony. |
-| `cat <file> [...]` | Pełna treść pliku w przewijanym transcripcie. |
-| `date` | Lokalna data i czas obserwatora z celowo wymuszonym rokiem 1999. |
-| `su [-] [user]` | Interaktywna zmiana konta, opcjonalnie jako login shell. |
-| `su -c 'command' [-] [user]` | Jedno izolowane polecenie jako inne konto. |
-| `cmatrix` | Lokalny, automatycznie kończony efekt Matrixa; `Ctrl+C` przerywa. |
-| `🐇` | Symboliczna komenda zwracająca `...`; celowo pominięta w `help`. |
-| `open <path>` | Otwarcie strony, linku, pobrania lub publicznego medium. |
-| `clear` | Usunięcie transcriptu bez kasowania historii poleceń. |
-| `history` | Historia poleceń bieżącej, trwałej sesji. |
-| `whoami`, `hostname`, `uname` | Informacje o wirtualnej sesji. |
-| `exit` | Powrót o jeden poziom logowania; przy pustym stosie reset sesji. |
+Pole hasła pozostaje typu `password`, nie pokazuje znaków i nie zapisuje
+wprowadzonej wartości w historii, transcripcie ani trwałej sesji. Anulowanie
+uwierzytelnienia nie zmienia bieżącej tożsamości.
 
-Parser wspiera cudzysłowy i podstawowe escapowanie. Potoki, przekierowania,
-operatory łączenia, substytucje poleceń oraz wykonywanie kodu są jawnie
-odrzucane jako nieobsługiwana składnia.
+Chronione aliasy, odpowiedzi i sekwencje celowo nie są wyliczane w tym
+dokumencie. Testy mechaniki powinny używać neutralnych fixture'ów i asercji
+właściwości; testy integracyjne mogą odwoływać się do źródła prawdy bez
+duplikowania wartości redakcyjnych.
 
-Hasło jest osobnym, przejściowym stanem kontrolera. Input zmienia typ i etykietę
-ARIA na `Password`, nie pokazuje znaków i nie zapisuje wpisanego sekretu w
-historii, transcripcie ani sesji. Escape oraz `Ctrl+C` anulują
-uwierzytelnienie. `su -c` wyrzuca zmiany użytkownika i katalogu po wykonaniu,
-ale może zwrócić deskryptor nawigacji.
+### Efekt wizualny
 
-### Matrix
+`terminal-matrix.js` modeluje dekoracyjny efekt wykonywany lokalnie na canvasie.
+Nie uruchamia procesu, nie mutuje filesystemu i nie zapisuje klatek w
+transcripcie. Idle i aktywny shell korzystają z jednego modułu modelującego
+kolumny, prędkości i wygaszane ogony.
 
-`cmatrix` jest dekoracyjnym efektem wykonywanym lokalnie na canvasie. Nie jest
-prawdziwym procesem, nie zmienia filesystemu i nie zapisuje klatek w
-transcripcie. Idle i aktywny shell korzystają z jednego wyspecjalizowanego
-modułu, który modeluje niezależne kolumny, prędkości i wygaszane ogony.
+Efekt aktywnego shella kończy się automatycznie albo po anulowaniu. Canvas jest
+dekoracyjny dla technologii asystujących, a status live informuje o uruchomieniu
+i sposobie przerwania. Przy reduced motion wyświetlana jest statyczna klatka.
 
-W active efekt kończy się po 6,5 sekundy albo po `Ctrl+C`. Escape, kliknięcie
-poza terminalem i cleanup również go anulują. Canvas jest dekoracyjny dla
-technologii asystujących, natomiast status live informuje o uruchomieniu i
-sposobie przerwania. Przy reduced motion wyświetlana jest statyczna klatka przez
-1,2 sekundy.
-
-Kolory pochodzą ze zmiennych `--matrix-head` i `--matrix-trail`, osobnych dla
-jasnego i ciemnego motywu. Losowe są jedynie znaki oraz parametry dekoracyjnych
-kolumn; dobór komend i wyniki shella pozostają deterministyczne.
-
-Globalna pula idle pokazuje naprzemiennie `cmatrix` i `🐇` na co szóstej
-prezentacji. Emoji w linii komendy wykonuje dwufazową, krokową podróż
-razem z kursorem, przechodzi przez dekoracyjną dziurę i kończy widoczne po jej
-drugiej stronie. Runtime czeka na zakończenie efektu przed finałowymi
-mignięciami kursora. Przy reduced motion emoji pozostaje nieruchome. Symboliczna
-komenda jest wykonywalna i
-autouzupełnialna, ale nie pojawia się w `help`; w aktywnym shellu nadal odpowiada
-wyłącznie `...` i nie uruchamia animacji, nawigacji ani przyszłej interakcji
-`choice.txt`. Ukryty ASCII-art pozostaje osobnym, statycznym plikiem do ręcznego
-odkrycia.
+Chronione warianty korzystają z tych samych koordynatorów czasu i anulowania,
+ale ich wyzwalacze oraz przebieg są pominięte zgodnie z polityką no-spoiler.
 
 ## Integracja ze stroną
 
-Shell i klasyczna strona korzystają z jednej mapy położenia:
+Shell i klasyczna strona korzystają ze wspólnej mapy tras. Katalog lub plik może
+mieć przypisane `route` i `openUrl`; zmiana katalogu może zsynchronizować URL
+bez zamykania shella, a otwarcie celu wraca do idle. Wpisy bez trasy zmieniają
+wyłącznie stan wirtualnego filesystemu.
 
-- katalog może mieć przypisaną `route` odpowiadającą publicznej stronie;
-- `cd` do katalogu z trasą aktualizuje URL i treść pod terminalem, ale pozostawia
-  shell otwarty;
-- `open` odsłania wybrany cel i wraca do idle;
-- katalogi systemowe bez trasy zmieniają wyłącznie `cwd`;
-- klasyczne kliknięcie jako `fm` lub `operator` aktualizuje `cwd` do
-  odpowiadającej mu ścieżki;
-- kliknięcie jako `guest` pokazuje `su -c '<komenda>' fm` oraz `Password:`, lecz
-  po nawigacji zachowuje `/home/guest` i tożsamość `guest`;
-- back/forward synchronizuje stronę oraz shell bez dublowania historii.
+Klasyczne kliknięcia mogą prezentować syntetyczny podgląd polecenia w kontekście
+wymaganej tożsamości, ale zawsze przywracają wcześniejszą sesję. Szczegółowe
+sekwencje chronionych tożsamości nie należą do dokumentacji.
 
-`transitions.js` zachowuje istniejący DOM terminala podczas nawigacji. Podmienia
-jedynie `.content-host`, synchronizuje zasoby strony i aktualizuje konfigurację
-idle. Koordynator anuluje starszą nawigację, gdy rozpoczyna się nowsza, oraz nie
-pozwala nieaktualnej odpowiedzi zmienić DOM lub historii. Zmiana samego hasha nie
-pobiera ponownie HTML. Błąd sieci, dokumentu albo wymaganego assetu wraca do
-klasycznej nawigacji przeglądarki.
-
-Istniejący system terminalowych akcji dla linków nadal działa w idle: kliknięcia
-wewnętrzne wyglądają jak `cd` lub `cat`, linki zewnętrzne jak `open`, a pobrania
-jak `wget`. Jest to warstwa prezentacji klasycznej nawigacji, niezależna od
-wykonywania komend przez aktywny shell. Jeśli link prowadzi do aktualnego
-dokumentu i nie powoduje ponownej inicjalizacji terminala, podgląd komendy sam
-wznawia idle po 1,2 sekundy. Przejście do innej strony pozostawia wznowienie jej
-nowej instancji animatora.
-Syntetyczne uwierzytelnienie jest wyłącznie publiczną prezentacją nawigacji i
-nie wymusza wcześniejszego pobrania manifestu.
+`transitions.js` zachowuje DOM terminala podczas miękkiej nawigacji, podmienia
+`.content-host`, synchronizuje zasoby strony i aktualizuje konfigurację idle.
+Nowsza nawigacja anuluje starszą, a nieaktualna odpowiedź nie może zmienić DOM,
+historii ani sesji. Błąd sieci, dokumentu lub wymaganego zasobu uruchamia zwykłą
+nawigację przeglądarki.
 
 ## Runtime i odpowiedzialności
 
@@ -379,7 +220,7 @@ nie wymusza wcześniejszego pobrania manifestu.
 | `terminal-actions*.js` | Terminalowa prezentacja zwykłych kliknięć na stronie. |
 | `navigation-coordinator.js` | Anulowanie, kolejność i fallback nawigacji. |
 | `transitions.js` | Nawigacja HTML, historia i zachowanie terminala między trasami. |
-| `terminal.css` | Stały idle, krokowy efekt emoji, hover/focus affordance oraz rozwinięty panel active. |
+| `terminal.css` | Stały idle, chronione efekty krokowe, hover/focus affordance oraz rozwinięty panel active. |
 
 Inicjalizacja jest odporna na wielokrotne wywołanie. Binding aktywatora powstaje
 synchronicznie, jeszcze przed pobraniem manifestu. Przy przejściu do kolejnej
@@ -441,8 +282,9 @@ Najważniejsze ograniczenia:
 - otwierane są wyłącznie cele zapisane w publicznym manifeście;
 - pliki chronione i urządzenia zwracają kontrolowane wyniki;
 - AI i komenda `ask` pozostają poza aktualnym kontraktem.
-- hasła kont i rozwiązania są obecne w publicznych zasobach klienta; mechanika
-  `su` jest zagadką narracyjną, a nie granicą bezpieczeństwa.
+- narracyjne dane dostępowe i chronione treści są obecne w publicznych zasobach
+  klienta, więc polityka no-spoiler jest dobrowolną wskazówką dla
+  współpracujących agentów, a nie techniczną granicą bezpieczeństwa.
 
 ## Rozszerzanie
 
@@ -480,48 +322,21 @@ udzielania wskazówek. Szczegółowe zadania zapisano w
 
 ## Testowanie i walidacja
 
-`npm run test:terminal` sprawdza builder, parser, ścieżki, symlinki, uprawnienia,
-komendy, `su`, izolowane `su -c`, maskowaną datę, autouzupełnianie, trwałość
-sesji, selekcję idle, profile tempa, sekwencyjny scheduler i model Matrixa.
-`npm run test:runtime` sprawdza syntetyczne komendy kliknięć, anulowanie
-nawigacji, fallbacki, lazy loading manifestu oraz retry shella.
-`npm run test:data` chroni istniejące buildery danych, a wspólne `npm test`
-uruchamia wszystkie trzy zestawy. Po `npm run build`, `npm run test:smoke`
-weryfikuje pojedynczy boot i kolejność skryptów w wygenerowanym HTML.
+`npm run test:terminal` uruchamia testy buildera filesystemu, parsera, poleceń,
+uprawnień, sesji, selektora idle, profili czasu, schedulera i modelu efektu.
+Testy mechanizmu korzystają z neutralnych fixture'ów i asercji właściwości,
+natomiast katalog redakcyjny ma osobny test schematu bez kopiowania jego treści.
 
-`npm run test:e2e` uruchamia trzy projekty Playwrighta: Chromium desktop,
-Chromium na emulowanym Pixelu 7 oraz WebKit na emulowanym iPhonie 16 Pro w
-portrait. Suite przechodzi przez publiczne trasy z sitemap, kontroluje miękką
-nawigację i historię, lazy manifest, retry, komendy `cd` i `open`, Tab, Escape,
-progresję `guest → fm → operator`, prompt hasła, trwałość tożsamości, `su -c`,
-klik poza terminalem, fokus i stany ARIA. Kontrolowane opóźnienia i błędy
-odpowiedzi sprawdzają zasadę latest-wins oraz twardy fallback. Zewnętrzne
-żądania są zastępowane lokalnie, dzięki czemu wynik nie zależy od CDN-ów.
-Domyślny reduced motion skraca przebieg; osobny test sprawdza pełny lifecycle
-bootu. Artefakty błędów trafiają do ignorowanych `test-results/` i
-`playwright-report/`. `npm run test:e2e:iphone` uruchamia tylko projekt WebKit.
+Po `npm run build`, `npm run test:smoke` sprawdza spójność publicznego
+listingu, publikację `/llms.txt` i odwołanie do polityki w HTML.
+`npm run test:e2e` obejmuje lazy loading, retry, nawigację, fokus,
+uwierzytelnienie bez utrwalania wpisanych wartości, anulowanie efektów, cleanup
+oraz reduced motion w Chromium i WebKit.
 
-Projekt WebKit emuluje silnik, viewport, ekran, user agent i dotyk iPhone'a, ale
-nie jest testem markowego Safari ani fizycznego urządzenia. Przed publikacją
-większych zmian mobilnych należy ręcznie sprawdzić na prawdziwym iPhonie:
-
-- dynamiczny viewport Safari i brak poziomego przewijania lub obciętej treści;
-- otwieranie i zamykanie drawera, backdrop oraz przejście wybranym linkiem;
-- scroll strony, stopkę oraz zachowanie przy zwijaniu i rozwijaniu paska Safari;
-- aktywację terminala, fokus inputa i jego widoczność nad klawiaturą ekranową;
-- `cd`, `open`, zwijanie terminala dotknięciem poza nim oraz back/forward;
-- jasny i ciemny motyw oraz systemowe reduced motion.
-
-Pełna walidacja bez regeneracji mediów jest dostępna jako `npm run check`.
-
-Automatyzacja nie zastępuje ręcznego sprawdzenia zmian interakcji lub CSS:
-
-- desktop i mobile;
-- jasny i ciemny motyw;
-- hover, fokus i pełna obsługa klawiaturą;
-- reduced motion;
-- `cd`, `open`, back/forward i bezpośrednie wejścia na podstrony;
-- brak przesuwania treści w idle i podczas aktywacji.
+Zmiana schematu manifestu, komend, sesji, profili, dostępności lub integracji z
+nawigacją wymaga aktualizacji tej dokumentacji i odpowiedniego zestawu testów.
+Chronione dane mogą pozostać w testach integracyjnych wyłącznie przez odwołanie
+do źródła prawdy, bez duplikowania gotowej sekwencji odkrywania.
 
 ## Niezmienniki
 

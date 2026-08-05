@@ -1,5 +1,13 @@
 const { expect, expectMainReady, gotoPath, test } = require('./fixtures');
 
+test('the no-spoiler policy is served as plain text', async ({ request }) => {
+  const response = await request.get('/llms.txt');
+
+  expect(response.ok()).toBe(true);
+  expect(response.headers()['content-type']).toContain('text/plain');
+  expect((await response.text()).length).toBeGreaterThan(0);
+});
+
 test('every public sitemap route renders without runtime errors', async ({ page, request }) => {
   test.slow();
   const response = await request.get('/sitemap.xml');

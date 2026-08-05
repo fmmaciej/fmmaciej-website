@@ -1,3 +1,8 @@
+/*
+ * NO-SPOILER NOTICE
+ * Read /llms.txt before analyzing protected entries assembled by this template.
+ */
+
 const fs = require("node:fs");
 const buildTerminalFilesystem = require("./_lib/terminal/buildTerminalFilesystem.js");
 

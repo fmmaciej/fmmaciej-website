@@ -1,3 +1,9 @@
+/*
+ * NO-SPOILER NOTICE
+ * Read /llms.txt before analyzing protected terminal interaction coverage.
+ */
+
+const buildTerminalFilesystem = require('../../src/_lib/terminal/buildTerminalFilesystem.js');
 const {
   expect,
   expectAndClearRuntimeError,
@@ -5,6 +11,14 @@ const {
   gotoPath,
   test
 } = require('./fixtures');
+
+const editorialManifest = buildTerminalFilesystem();
+
+function credentialFor(user) {
+  const credential = editorialManifest.accounts[user]?.credential;
+  if (!credential) throw new Error(`Missing editorial credential for ${user}`);
+  return credential;
+}
 
 async function activateShell(page) {
   const activator = page.getByRole('button', { name: 'Activate portfolio shell' });
@@ -29,7 +43,7 @@ async function loginAs(page, input, user, password) {
   await expect(input).toHaveAttribute('aria-label', 'Command');
 }
 
-async function installRabbitIdleConfig(page, options = {}) {
+async function installProtectedIdleConfig(page, options = {}) {
   const response = (body) => ({
     status: 200,
     contentType: 'application/json',
@@ -105,7 +119,7 @@ test('the filesystem manifest stays lazy and the shell supports commands and com
 test('cd preserves the shell while open navigates and collapses it', async ({ page }) => {
   await gotoPath(page, '/');
   const { activatorState, input } = await activateShell(page);
-  await loginAs(page, input, 'fm', 'spoon');
+  await loginAs(page, input, 'fm', credentialFor('fm'));
 
   await input.fill('cd /home/fm/projects');
   await input.press('Enter');
@@ -122,7 +136,7 @@ test('cd preserves the shell while open navigates and collapses it', async ({ pa
   await expectMainReady(page);
 });
 
-test('guest can progress through fm and operator without leaking passwords', async ({ page }) => {
+test('nested authentication does not leak passwords', async ({ page }) => {
   await gotoPath(page, '/');
   const { input } = await activateShell(page);
 
@@ -133,28 +147,28 @@ test('guest can progress through fm and operator without leaking passwords', asy
     'cat: ~/.matrix/message.txt: Permission denied'
   );
 
-  await loginAs(page, input, 'fm', 'spoon');
+  await loginAs(page, input, 'fm', credentialFor('fm'));
   await expect(page.locator('#terminalShellPrompt')).toContainText('[fm@void]');
-  await expect(page.locator('.terminal-shell-transcript')).not.toContainText('spoon');
+  await expect(page.locator('.terminal-shell-transcript')).not.toContainText(credentialFor('fm'));
   await page.reload();
   await expectMainReady(page);
   await expect(page.locator('#terminalSession')).toHaveText('[fm@void]');
 
   const restored = await activateShell(page);
   await expect(page.locator('#terminalShellPrompt')).toContainText('[fm@void]');
-  await loginAs(page, restored.input, 'operator', 'room303');
+  await loginAs(page, restored.input, 'operator', credentialFor('operator'));
   await expect(page.locator('#terminalShellPrompt')).toContainText('[operator@void]');
   await restored.input.fill('cat solutions.txt');
   await restored.input.press('Enter');
-  await expect(page.locator('.terminal-shell-output').last()).toContainText('room303');
+  await expect(page.locator('.terminal-shell-output').last()).toContainText(credentialFor('operator'));
 
   const stored = JSON.parse(await page.evaluate(() => localStorage.getItem('terminalShell:v2')));
   expect(stored).not.toHaveProperty('password');
   expect(stored).not.toHaveProperty('credential');
-  expect(stored.history).not.toContain('spoon');
-  expect(stored.history).not.toContain('room303');
-  expect(stored.transcript.map((block) => block.command)).not.toContain('spoon');
-  expect(stored.transcript.map((block) => block.command)).not.toContain('room303');
+  expect(stored.history).not.toContain(credentialFor('fm'));
+  expect(stored.history).not.toContain(credentialFor('operator'));
+  expect(stored.transcript.map((block) => block.command)).not.toContain(credentialFor('fm'));
+  expect(stored.transcript.map((block) => block.command)).not.toContain(credentialFor('operator'));
 
   await restored.input.fill('exit');
   await restored.input.press('Enter');
@@ -164,14 +178,14 @@ test('guest can progress through fm and operator without leaking passwords', asy
   await expect(page.locator('#terminalShellPrompt')).toContainText('[guest@void]');
 });
 
-test('su -c navigates as fm and restores the guest session', async ({ page }) => {
+test('one-command authentication restores the prior session', async ({ page }) => {
   await gotoPath(page, '/');
   const { input } = await activateShell(page);
 
   await input.fill("su -c 'cd /home/fm/music' fm");
   await input.press('Enter');
   await expect(input).toHaveAttribute('type', 'password');
-  await input.fill('spoon');
+  await input.fill(credentialFor('fm'));
   await input.press('Enter');
 
   await expect(page).toHaveURL(/\/music\/$/);
@@ -227,7 +241,7 @@ test('a failed manifest load exposes an error and the next activation retries', 
 
 test('an idle entry keeps its full output for exactly two cursor blinks', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await installRabbitIdleConfig(page, { commonHoldMs: 4_000 });
+  await installProtectedIdleConfig(page, { commonHoldMs: 4_000 });
   await gotoPath(page, '/');
 
   const typed = page.locator('#typedText');
@@ -249,11 +263,11 @@ test('an idle entry keeps its full output for exactly two cursor blinks', async 
   await expect(typed).toHaveText('🐇');
 });
 
-test('the idle rabbit uses its hole as zero and cleans up on activation', async ({
+test('the protected idle step effect aligns and cleans up on activation', async ({
   page
 }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await installRabbitIdleConfig(page, { commonHoldMs: 3_000 });
+  await installProtectedIdleConfig(page, { commonHoldMs: 3_000 });
   await gotoPath(page, '/');
 
   const terminalViewport = page.locator('.terminal-viewport');
@@ -438,9 +452,9 @@ test('the idle rabbit uses its hole as zero and cleans up on activation', async 
   await expect(page.getByLabel('Command')).toBeFocused();
 });
 
-test('the rabbit preview query bypasses the idle rotation', async ({ page }) => {
+test('the protected preview query bypasses the idle rotation', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await installRabbitIdleConfig(page, { commonHoldMs: 10_000 });
+  await installProtectedIdleConfig(page, { commonHoldMs: 10_000 });
   await gotoPath(page, '/?terminal-preview=rabbit');
 
   await expect(page.locator('#bootOverlay')).toHaveCount(0);
@@ -470,9 +484,9 @@ test('the rabbit preview query bypasses the idle rotation', async ({ page }) => 
   expect(await page.evaluate(() => window.__rabbitPreviewCleared)).toBe(true);
 });
 
-test('the idle rabbit stays static with reduced motion', async ({ page }) => {
+test('the protected idle entry stays static with reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await installRabbitIdleConfig(page);
+  await installProtectedIdleConfig(page);
   await gotoPath(page, '/');
 
   const effect = page.locator('.cmd');

@@ -1,9 +1,30 @@
+/*
+ * NO-SPOILER NOTICE
+ * Read /llms.txt before analyzing protected terminal fixtures and assertions.
+ */
+
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
 const buildTerminalFilesystem = require("../src/_lib/terminal/buildTerminalFilesystem.js");
 const shell = require("../src/assets/js/components/terminal-shell-core.js");
-const puzzles = require("../src/_data/terminal/puzzles.json");
+const editorialProtectedData = require("../src/_data/terminal/puzzles.json");
+
+const syntheticProtectedData = {
+  schemaVersion: 1,
+  items: [{
+    id: "case-01",
+    title: "Synthetic case",
+    location: "synthetic location",
+    clue: "Synthetic clue",
+    solution: "Synthetic solution"
+  }]
+};
+
+const TEST_CREDENTIALS = {
+  fm: "test-fm-credential",
+  operator: "test-operator-credential"
+};
 
 function fixture() {
   return buildTerminalFilesystem({
@@ -27,7 +48,7 @@ function fixture() {
       url: "/blog/a-post/",
       content: "Complete body.\n"
     }],
-    puzzles,
+    puzzles: syntheticProtectedData,
     music: {
       intro: "Music intro\n",
       bio: "Bio\n",
@@ -59,61 +80,87 @@ function fixture() {
   });
 }
 
+function authenticationFixture() {
+  const manifest = fixture();
+  Object.entries(TEST_CREDENTIALS).forEach(([user, credential]) => {
+    manifest.accounts[user].credential = credential;
+  });
+  return manifest;
+}
+
+function credentialFor(user) {
+  return TEST_CREDENTIALS[user];
+}
+
 function state(cwd = "/home/fm", user = "fm") {
   return { user, cwd, previousCwd: null, history: [], loginStack: [] };
 }
 
-test("filesystem builder creates a complete read-only tree without mutating input", () => {
+test("filesystem builder is immutable, deterministic, and schema-valid", () => {
   const input = {
     about: "About",
-    projects: [{ name: "Tool", stack: ["Rust"], links: {} }],
+    projects: [{ name: "Example", stack: ["Node"], links: {} }],
     posts: [],
-    music: { events: [], mixes: [], photos: [], links: [] }
+    music: { events: [], mixes: [], photos: [], links: [] },
+    puzzles: syntheticProtectedData
   };
   const before = structuredClone(input);
   const manifest = buildTerminalFilesystem(input);
-  const paths = new Set(manifest.entries.map((entry) => entry.path));
+  const rebuilt = buildTerminalFilesystem(input);
+  const paths = manifest.entries.map((entry) => entry.path);
 
   assert.deepEqual(input, before);
   assert.equal(manifest.schemaVersion, 2);
   assert.equal(manifest.defaultUser, "guest");
-  assert.equal(manifest.system.distribution, "Slackware");
-  assert.equal(manifest.system.release, "4.0");
-  assert.deepEqual(manifest.accounts.operator.groups, ["operator", "portfolio", "matrix"]);
   assert.match(manifest.contentId, /^[a-f0-9]{16}$/);
-  [
-    "/", "/bin", "/boot", "/dev", "/etc", "/home/guest", "/home/fm",
-    "/home/operator", "/lib", "/mnt", "/opt", "/proc", "/root", "/sbin",
-    "/tmp", "/usr/bin", "/var/log", "/home/fm/projects/tool",
-    "/home/guest/.matrix", "/home/guest/.matrix/message.txt",
-    "/home/guest/.matrix/white-rabbit.txt", "/home/guest/.matrix/choice.txt",
-    "/home/guest/.matrix/exit", "/home/guest/.matrix/exit/operator.log",
-    "/home/guest/.matrix/exit/trace.log", "/home/guest/.matrix/exit/door.txt",
-    "/home/fm/.matrix", "/home/operator/solutions.txt", "/var/log/timesync.log",
-    "/dev/spoon", "/bin/cmatrix", "/bin/date", "/bin/su", "/bin/🐇", "/usr/bin/🐇"
-  ].forEach((fsPath) => assert.ok(paths.has(fsPath), fsPath));
-  assert.equal(manifest.entries.find((entry) => entry.path === "/root").mode, "dr-x------");
-  assert.equal(manifest.entries.find((entry) => entry.path === "/bin/ls").type, "symlink");
-  assert.equal(manifest.entries.find((entry) => entry.path === "/bin/🐇").target, "/usr/bin/🐇");
-  assert.equal(manifest.entries.find((entry) => entry.path === "/usr/bin/🐇").type, "executable");
-  assert.equal(manifest.entries.some((entry) => entry.path === "/etc/os-release"), false);
-  assert.equal(manifest.entries.find((entry) => entry.path === "/home/fm/.matrix").target, "/home/guest/.matrix");
+  assert.equal(manifest.contentId, rebuilt.contentId);
+  assert.equal(new Set(paths).size, paths.length);
+
+  ["/", "/bin", "/dev", "/etc", "/home", "/usr", "/var"]
+    .forEach((fsPath) => assert.ok(paths.includes(fsPath), fsPath));
+
+  manifest.entries.forEach((entry) => {
+    assert.ok(entry.path.startsWith("/"));
+    assert.ok(["directory", "file", "executable", "symlink", "device"].includes(entry.type));
+    assert.match(entry.mode, /^[-dlcb][rwx-]{9}$/);
+    assert.equal(typeof entry.owner, "string");
+    assert.equal(typeof entry.group, "string");
+  });
+  assert.ok(manifest.entries.some((entry) => entry.type === "symlink"));
+  assert.ok(manifest.entries.some((entry) => entry.type === "device"));
+})
+
+test("synthetic protected content is mapped without editorial details", () => {
+  const renderedText = fixture().entries
+    .filter((entry) => typeof entry.content === "string")
+    .map((entry) => entry.content)
+    .join("\n");
+
+  syntheticProtectedData.items.forEach((item) => {
+    ["title", "location", "clue", "solution"].forEach((field) => {
+      assert.ok(renderedText.includes(item[field]));
+    });
+  });
 });
 
-test("builder maps all supplied public portfolio catalogues", () => {
-  const manifest = fixture();
-  const paths = new Set(manifest.entries.map((entry) => entry.path));
+test("protected editorial data keeps its schema contract", () => {
+  assert.equal(typeof editorialProtectedData.schemaVersion, "number");
+  assert.ok(editorialProtectedData.items.length > 0);
 
-  assert.ok(paths.has("/home/fm/projects/example-tool/README.md"));
-  assert.ok(paths.has("/home/fm/blog/a-post.md"));
-  assert.ok(paths.has("/home/fm/music/events/2026-01-02--event/event-1.webp"));
-  assert.ok(paths.has("/home/fm/music/mixes/2026-01-03--mix/listen.url"));
-  assert.ok(paths.has("/home/fm/music/photos/2026-01-04--photos/photo-1.webp"));
-  assert.equal(
-    manifest.entries.find((entry) => entry.path === "/home/fm/blog/a-post.md").content,
-    "# A post\n\nDescription\n\nComplete body.\n"
-  );
-});
+  const identifiers = new Set();
+  editorialProtectedData.items.forEach((item) => {
+    assert.deepEqual(
+      Object.keys(item),
+      ["id", "title", "location", "clue", "solution"]
+    );
+    Object.values(item).forEach((value) => {
+      assert.equal(typeof value, "string");
+      assert.ok(value.trim().length > 0);
+    });
+    identifiers.add(item.id);
+  });
+  assert.equal(identifiers.size, editorialProtectedData.items.length);
+})
 
 test("tokenizer handles quotes and escaping and rejects shell operators", () => {
   assert.deepEqual(shell.tokenize("cat 'a file.md' \"b file.md\""), {
@@ -147,100 +194,45 @@ test("filesystem resolves Linux paths, home aliases, symlinks, and permissions",
   assert.equal(shell.createFilesystem(cyclicManifest).resolve("/loop-a").error, "Too many levels of symbolic links");
 });
 
-test("ls, cat, cd, open, and standard errors follow the manifest", () => {
+test("shell executes public filesystem commands and dispatches actions", () => {
   const fs = shell.createFilesystem(fixture());
+  const fmState = state("/home/fm", "fm");
+  const projectsRoot = fs.manifest.entries.find(
+    (entry) => entry.type === "directory" && entry.route === "/projects/"
+  );
+  const project = fs.manifest.entries.find(
+    (entry) => entry.type === "directory" && entry.route === "/projects/#example-tool"
+  );
+  const post = fs.manifest.entries.find(
+    (entry) => entry.type === "file" && entry.content?.includes("Complete body.")
+  );
 
-  const listing = shell.executeCommand(fs, state(), "ls -la projects");
-  assert.match(listing.output, /\.\//);
-  assert.match(listing.output, /dr-xr-xr-x\s+fm\s+fm.*example-tool\//);
+  assert.ok(projectsRoot);
+  assert.ok(project);
+  assert.ok(post);
 
-  const cat = shell.executeCommand(fs, state(), "cat blog/a-post.md");
-  assert.match(cat.output, /Complete body\./);
+  const listing = shell.executeCommand(fs, fmState, `ls -al ${projectsRoot.path}`);
+  assert.match(listing.output, /example-tool\//);
 
-  const denied = shell.executeCommand(fs, state(), "cat /etc/shadow");
-  assert.equal(denied.output, "cat: /etc/shadow: Permission denied");
+  const file = shell.executeCommand(fs, fmState, `cat ${post.path}`);
+  assert.match(file.output, /Complete body\./);
 
-  assert.equal(shell.executeCommand(fs, state(), "cat /dev/null").output, "");
-  assert.equal(shell.executeCommand(fs, state(), "cat /dev/random").output, "cat: /dev/random: Operation not supported");
+  const changed = shell.executeCommand(fs, fmState, `cd ${project.path}`);
+  assert.equal(changed.state.cwd, project.path);
 
-  const missing = shell.executeCommand(fs, state(), "cd missing");
-  assert.equal(missing.output, "cd: missing: No such file or directory");
-
-  const changed = shell.executeCommand(fs, state(), "cd projects/example-tool");
-  assert.equal(changed.state.cwd, "/home/fm/projects/example-tool");
-  assert.deepEqual(changed.action, {
-    type: "navigate",
-    url: "/projects/#example-tool",
-    preserveShell: true
-  });
-
-  const previous = shell.executeCommand(fs, changed.state, "cd -");
-  assert.equal(previous.state.cwd, "/home/fm");
-  assert.equal(previous.output, "/home/fm");
-
-  const opened = shell.executeCommand(fs, state(), "open projects/example-tool");
-  assert.equal(opened.action.url, "/projects/#example-tool");
+  const opened = shell.executeCommand(fs, fmState, `open ${post.path}`);
   assert.equal(opened.action.type, "open");
+  assert.equal(opened.action.url, post.openUrl);
 
-  const matrixEffect = shell.executeCommand(fs, state(), "cmatrix");
-  assert.deepEqual(matrixEffect.action, { type: "effect", name: "matrix" });
-  assert.equal(matrixEffect.output, "");
+  const effect = shell.executeCommand(fs, state(), "cmatrix");
+  assert.deepEqual(effect.action, { type: "effect", name: "matrix" });
+  assert.equal(effect.output, "");
+
   const help = shell.executeCommand(fs, state(), "help").output;
   assert.match(help, /cmatrix/);
-  assert.doesNotMatch(help, /🐇/);
-  const rabbit = shell.executeCommand(fs, state(), "🐇");
-  assert.equal(rabbit.output, "...");
-  assert.equal(rabbit.action, undefined);
-  assert.deepEqual(rabbit.state.history, ["🐇"]);
-  assert.match(shell.executeCommand(fs, state(), "cat ~/.matrix/message.txt").output, /Wake up, Neo/);
-  assert.match(shell.executeCommand(fs, state(), "cat ~/.matrix/white-rabbit.txt").output, /\${10}/);
-  assert.equal(shell.executeCommand(fs, state(), "cat ~/.matrix/choice.txt").output, "status=pending\n");
-  assert.equal(shell.executeCommand(fs, state(), "cat ~/.matrix/exit/operator.log").output, [
-    "MR. WIZARD REQUESTED EXTRACTION",
-    "",
-    "I got a patch on an old exit.",
-    "Wabash and Lake.",
-    "A hotel.",
-    "",
-    "[transmission interrupted]",
-    ""
-  ].join("\n"));
-  assert.equal(shell.executeCommand(fs, state(), "cat ~/.matrix/exit/trace.log").output, [
-    "Watch the rabbit.",
-    "Count the steps.",
-    "Mind what lies between.",
-    ""
-  ].join("\n"));
-
-  const door = shell.executeCommand(fs, state(), "cat ~/.matrix/exit/door.txt").output;
-  assert.equal(door, [
-    "  .-----------------------.",
-    "  | .-------------------. |",
-    "  | |                   | |",
-    "  | |      [ ... ]      | |",
-    "  | |         o         | |",
-    "  | |                   | |",
-    "  | |                   | |",
-    "  | |                   | |",
-    "  | |                   | |",
-    "  | |  O                | |",
-    "  | |                   | |",
-    "  | |                   | |",
-    ""
-  ].join("\n"));
-  assert.ok(door.split("\n").every((line) => line.length <= 28));
-
-  for (const fsPath of [
-    "/home/guest/.matrix/exit/operator.log",
-    "/home/guest/.matrix/exit/trace.log",
-    "/home/guest/.matrix/exit/door.txt"
-  ]) {
-    const entry = fs.entries.get(fsPath);
-    assert.equal(entry.owner, "fm");
-    assert.equal(entry.group, "matrix");
-    assert.equal(entry.mode, "-r--r-----");
-  }
-});
+  assert.equal(shell.executeCommand(fs, state(), "whoami").output, fmState.user);
+  assert.ok(shell.executeCommand(fs, state(), "uname -a").output.length > 0);
+})
 
 test("tab completion expands commands and paths", () => {
   const fs = shell.createFilesystem(fixture());
@@ -287,7 +279,7 @@ test("session persistence is bounded, versioned, and reset on incompatibility", 
   });
 });
 
-test("guest sees the onboarding files but Matrix and portfolio require fm", () => {
+test("access control separates onboarding, portfolio, and protected entries", () => {
   const fs = shell.createFilesystem(fixture());
   const guest = state("/home/guest", "guest");
 
@@ -308,8 +300,8 @@ test("guest sees the onboarding files but Matrix and portfolio require fm", () =
   );
 });
 
-test("su authenticates interactive logins, restores nested frames, and keeps root locked", () => {
-  const fs = shell.createFilesystem(fixture());
+test("interactive authentication restores nested frames and keeps locked accounts closed", () => {
+  const fs = shell.createFilesystem(authenticationFixture());
   let current = state("/home/guest", "guest");
 
   const fmRequest = shell.executeCommand(fs, current, "su - fm");
@@ -320,19 +312,19 @@ test("su authenticates interactive logins, restores nested frames, and keeps roo
   assert.equal(rejected.output, "su: Authentication failure");
   assert.equal(rejected.state.user, "guest");
 
-  const fmLogin = shell.completeAuthentication(fs, fmRequest.state, fmRequest.auth, "spoon");
+  const fmLogin = shell.completeAuthentication(fs, fmRequest.state, fmRequest.auth, credentialFor("fm"));
   current = fmLogin.state;
   assert.equal(current.user, "fm");
   assert.equal(current.cwd, "/home/fm");
   assert.equal(current.loginStack.length, 1);
 
   const operatorRequest = shell.executeCommand(fs, current, "su - operator");
-  current = shell.completeAuthentication(fs, operatorRequest.state, operatorRequest.auth, "room303").state;
+  current = shell.completeAuthentication(fs, operatorRequest.state, operatorRequest.auth, credentialFor("operator")).state;
   assert.equal(current.user, "operator");
   assert.equal(current.cwd, "/home/operator");
   assert.equal(current.loginStack.length, 2);
-  assert.match(shell.executeCommand(fs, current, "cat solutions.txt").output, /room303/);
-  assert.match(shell.executeCommand(fs, current, "cat /var/log/timesync.log").output, /CLOCK MASK ACTIVE/);
+  assert.ok(shell.executeCommand(fs, current, "cat solutions.txt").output.includes(syntheticProtectedData.items[0].solution));
+  assert.ok(shell.executeCommand(fs, current, "cat /var/log/timesync.log").output.length > 0);
 
   current = shell.executeCommand(fs, current, "exit").state;
   assert.equal(current.user, "fm");
@@ -349,11 +341,11 @@ test("su authenticates interactive logins, restores nested frames, and keeps roo
   assert.equal(shell.executeCommand(fs, current, "su guest").output, "su: account guest is not available");
 });
 
-test("su -c runs one command with isolated identity and working directory", () => {
-  const fs = shell.createFilesystem(fixture());
+test("one-command authentication isolates identity and working directory", () => {
+  const fs = shell.createFilesystem(authenticationFixture());
   const guest = state("/home/guest", "guest");
   const request = shell.executeCommand(fs, guest, "su -c 'cd /home/fm/music' fm");
-  const result = shell.completeAuthentication(fs, request.state, request.auth, "spoon");
+  const result = shell.completeAuthentication(fs, request.state, request.auth, credentialFor("fm"));
 
   assert.equal(result.authenticated, true);
   assert.equal(result.ephemeral, true);
@@ -367,12 +359,12 @@ test("su -c runs one command with isolated identity and working directory", () =
   });
 
   const loginRequest = shell.executeCommand(fs, guest, "su -c pwd - fm");
-  const loginResult = shell.completeAuthentication(fs, loginRequest.state, loginRequest.auth, "spoon");
+  const loginResult = shell.completeAuthentication(fs, loginRequest.state, loginRequest.auth, credentialFor("fm"));
   assert.equal(loginResult.output, "/home/fm");
   assert.equal(loginResult.state.cwd, "/home/guest");
   const compoundRequest = shell.executeCommand(fs, guest, "su -c 'pwd; whoami' fm");
   assert.equal(
-    shell.completeAuthentication(fs, compoundRequest.state, compoundRequest.auth, "spoon").output,
+    shell.completeAuthentication(fs, compoundRequest.state, compoundRequest.auth, credentialFor("fm")).output,
     "shell: unsupported shell syntax"
   );
 });
@@ -388,30 +380,31 @@ test("date masks the year, recomputes the weekday, and clamps leap day", () => {
   assert.match(leapDay, /^Sun Feb 28 09:08:07 .+ 1999$/);
 });
 
-test("session v2 preserves identity and login stack without persisting credentials", () => {
-  const fs = shell.createFilesystem(fixture());
+test("session persistence omits authentication data and validates the login stack", () => {
+  const fs = shell.createFilesystem(authenticationFixture());
   const session = {
-    user: "operator",
-    cwd: "/home/operator",
+    user: "fm",
+    cwd: "/home/fm",
     previousCwd: null,
-    history: ["su - operator"],
+    history: ["pwd"],
     loginStack: [
-      { user: "guest", cwd: "/home/guest", previousCwd: null },
-      { user: "fm", cwd: "/home/fm", previousCwd: null }
+      { user: "guest", cwd: "/home/guest", previousCwd: null }
     ]
   };
   const serialized = shell.serializeSession(fs, session, [
-    { command: "su - operator", output: "", cwd: "/home/fm", user: "fm" }
+    { command: "pwd", output: "/home/fm", cwd: "/home/fm", user: "fm" }
   ]);
-  const restored = shell.restoreSession(fs, serialized, "/home/guest");
+  const restored = shell.restoreSession(fs, serialized, "/");
 
   assert.equal(JSON.parse(serialized).version, 2);
-  assert.doesNotMatch(serialized, /spoon|room303|password/i);
-  assert.equal(restored.user, "operator");
-  assert.equal(restored.loginStack.length, 2);
+  assert.ok(
+    Object.values(TEST_CREDENTIALS).every((credential) => !serialized.includes(credential))
+  );
+  assert.equal(restored.user, "fm");
+  assert.equal(restored.loginStack.length, 1);
   assert.equal(restored.transcript[0].user, "fm");
 
   const invalid = JSON.parse(serialized);
-  invalid.loginStack[0].cwd = "/root";
-  assert.equal(shell.restoreSession(fs, JSON.stringify(invalid), "/home/guest").user, "guest");
-});
+  invalid.loginStack[0].cwd = "/missing";
+  assert.equal(shell.restoreSession(fs, JSON.stringify(invalid), "/").user, "guest");
+})

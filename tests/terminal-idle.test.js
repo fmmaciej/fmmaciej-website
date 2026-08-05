@@ -13,7 +13,7 @@ function deferred() {
   return { promise, resolve };
 }
 
-test('idle selector preserves the 2:1 normal rhythm and injects Matrix every sixth item', () => {
+test('idle selector preserves the 2:1 normal rhythm and injects the protected pool every sixth item', () => {
   const selector = idle.createCommandSelector({
     contextual: [{ id: 'c1' }, { id: 'c2' }],
     common: [{ id: 'g1' }],
@@ -162,24 +162,24 @@ test('terminal JSON files use the versioned global and contextual schemas', () =
   });
 });
 
-test('white rabbit artwork remains available in the filesystem but not in idle', () => {
+test('protected artwork remains filesystem-only', () => {
   const config = JSON.parse(fs.readFileSync(
     path.join(__dirname, '..', 'src', 'assets', 'terminal', 'config.json'),
     'utf8'
   ));
-  const manifestRabbit = buildTerminalFilesystem({}).entries.find(
+  const protectedArtwork = buildTerminalFilesystem({}).entries.find(
     (entry) => entry.path === '/home/guest/.matrix/white-rabbit.txt'
   );
 
   assert.equal(config.pools.matrix.some(
     (entry) => entry.cmd.endsWith('white-rabbit.txt')
   ), false);
-  assert.ok(manifestRabbit.content.split('\n').every((line) => line.length <= 28));
-  assert.match(manifestRabbit.content, /\${10}/);
-  assert.doesNotMatch(manifestRabbit.content, /Follow the white rabbit/);
+  assert.ok(protectedArtwork.content.split('\n').every((line) => line.length <= 28));
+  assert.match(protectedArtwork.content, /\${10}/);
+  assert.ok(protectedArtwork.content.split('\n').length > 3);
 });
 
-test('only the symbolic rabbit idle entry enables the rabbit step effect', () => {
+test('only the protected symbolic entry enables its step effect', () => {
   const config = JSON.parse(fs.readFileSync(
     path.join(__dirname, '..', 'src', 'assets', 'terminal', 'config.json'),
     'utf8'
@@ -199,7 +199,7 @@ test('only the symbolic rabbit idle entry enables the rabbit step effect', () =>
   }]);
 });
 
-test('Matrix files stay exploratory and the symbolic response remains consistent', () => {
+test('protected files stay exploratory and the symbolic response remains consistent', () => {
   const config = JSON.parse(fs.readFileSync(
     path.join(__dirname, '..', 'src', 'assets', 'terminal', 'config.json'),
     'utf8'
@@ -208,20 +208,20 @@ test('Matrix files stay exploratory and the symbolic response remains consistent
   const manifestMessage = manifest.entries.find(
     (entry) => entry.path === '/home/guest/.matrix/message.txt'
   );
-  const idleRabbit = config.pools.matrix.find((entry) => entry.cmd === '🐇');
+  const protectedIdleEntry = config.pools.matrix.find((entry) => entry.commandEffect);
   const filesystem = shell.createFilesystem(manifest);
-  const shellRabbit = shell.executeCommand(
+  const protectedShellResponse = shell.executeCommand(
     filesystem,
     { user: 'fm', cwd: '/home/fm', previousCwd: null, history: [], loginStack: [] },
     '🐇'
   );
 
   assert.equal(config.pools.matrix.some((entry) => entry.cmd.includes('.matrix')), false);
-  assert.match(manifestMessage.content, /Wake up, Neo/);
-  assert.equal(idleRabbit.output.join('\n'), shellRabbit.output);
+  assert.ok(manifestMessage.content.trim().length > 0);
+  assert.equal(protectedIdleEntry.output.join('\n'), protectedShellResponse.output);
 });
 
-test('ls -al home is the only idle hint that exposes the Matrix directory', () => {
+test('only the designated home listing exposes the protected directory', () => {
   const terminalRoot = path.join(__dirname, '..', 'src', 'assets', 'terminal');
   const files = [
     'config.json', 'default.json', 'projects.json', 'blog.json',
@@ -261,7 +261,7 @@ test('idle entries can be filtered by session user without revealing unavailable
   assert.equal(selector.next().cmd, 'fm-only');
 });
 
-test('portfolio contextual idle commands declare the fm execution identity', () => {
+test('portfolio contextual idle commands declare their required execution identity', () => {
   const terminalRoot = path.join(__dirname, '..', 'src', 'assets', 'terminal');
   const contextualFiles = [
     'projects.json', 'blog.json', 'music/music.json', 'music/bio.json',

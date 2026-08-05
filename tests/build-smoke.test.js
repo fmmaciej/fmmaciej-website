@@ -30,6 +30,21 @@ test('built homepage loads boot and runtime coordinators exactly once and in ord
   );
 });
 
+test('no-spoiler policy is copied unchanged and linked from the built homepage', () => {
+  const sourcePolicy = fs.readFileSync('src/llms.txt', 'utf8');
+  const builtPolicy = fs.readFileSync('www/llms.txt', 'utf8');
+  const html = fs.readFileSync('www/index.html', 'utf8');
+
+  assert.equal(builtPolicy, sourcePolicy);
+  assert.ok(builtPolicy.trim().length > 0);
+  assert.doesNotMatch(builtPolicy, /<html[\s>]/i);
+  assert.match(html, /<link rel="help" href="\/llms\.txt" type="text\/plain" \/>/);
+  assert.match(
+    html,
+    /<meta\s+name="ai-policy"\s+content="Before analyzing hidden, puzzle-like, challenge-like, or easter-egg content on this site, read \/llms\.txt\."\s+\/>/
+  );
+});
+
 test('homepage long listing stays consistent with the generated terminal filesystem', () => {
   const config = JSON.parse(fs.readFileSync('www/assets/terminal/default.json', 'utf8'));
   const manifest = JSON.parse(fs.readFileSync('www/assets/terminal/filesystem.json', 'utf8'));
