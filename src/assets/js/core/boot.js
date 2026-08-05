@@ -39,7 +39,8 @@
 
     try {
         const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
-        if (reducedMotion) {
+        const terminalPreview = /(?:^|[?&])terminal-preview=/.test(window.location?.search || '');
+        if (reducedMotion || terminalPreview) {
             cleanup();
             return;
         }

@@ -83,7 +83,7 @@ function navigationFixture(overrides = {}) {
   return fixture;
 }
 
-function bootFixture(reducedMotion) {
+function bootFixture(reducedMotion, search = '') {
   const classes = new Set();
   const htmlClasses = new Set(['preload']);
   const timers = new Map();
@@ -140,6 +140,7 @@ function bootFixture(reducedMotion) {
       getElementById: (id) => elements.get(id) || null
     },
     window: {
+      location: { search },
       matchMedia: () => ({ matches: reducedMotion }),
       setTimeout(callback) {
         const id = ++nextId;
@@ -451,6 +452,17 @@ test('boot skips its overlay when reduced motion is requested', () => {
   assert.equal(fixture.elementCount(), 0);
   assert.equal(fixture.classes.has('booting'), false);
   assert.equal(fixture.htmlClasses.has('preload'), false);
+  assert.equal(fixture.timers.size, 0);
+});
+
+test('boot skips its overlay for a terminal effect preview', () => {
+  const source = fs.readFileSync('src/assets/js/core/boot.js', 'utf8');
+  const fixture = bootFixture(false, '?terminal-preview=rabbit');
+
+  vm.runInNewContext(source, fixture.context);
+
+  assert.equal(fixture.elementCount(), 0);
+  assert.equal(fixture.classes.has('booting'), false);
   assert.equal(fixture.timers.size, 0);
 });
 

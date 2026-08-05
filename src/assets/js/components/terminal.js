@@ -20,6 +20,7 @@ window.initTerminal = function initTerminal(root = document){
 
     const cfgPath = termBox.getAttribute('data-terminal') || '/assets/terminal/default.json';
     const defaultsUrl = '/assets/terminal/config.json';
+    const terminalPreview = new URLSearchParams(window.location.search).get('terminal-preview');
     const idleCore = window.terminalIdleCore;
     const matrix = window.terminalMatrix;
     const initController = new AbortController();
@@ -287,7 +288,7 @@ window.initTerminal = function initTerminal(root = document){
         }
     }
 
-    async function playEntry(entry, signal, profiles, unknownProfiles) {
+    async function playEntry(entry, signal, profiles, unknownProfiles, options = {}) {
         const timing = idleCore.resolveTiming(profiles, entry, (profileName) => {
             if (unknownProfiles.has(profileName)) return;
             unknownProfiles.add(profileName);
@@ -338,7 +339,9 @@ window.initTerminal = function initTerminal(root = document){
                 abortableDelay(effective.holdMs, signal),
                 waitForPromise(commandEffect.finished, signal)
             ]);
-            await playCursorBlinks(signal, reduced);
+            if (!options.skipCursorBlinks && entry?.commandEffect !== 'rabbit-step') {
+                await playCursorBlinks(signal, reduced);
+            }
         } finally {
             clearCursorBlink();
             commandEffect.stop();
@@ -431,10 +434,32 @@ window.initTerminal = function initTerminal(root = document){
         });
         const profiles = globalConfig.timingProfiles || {};
         const unknownProfiles = new Set();
+        const previewEntry = terminalPreview === 'rabbit'
+            ? globalConfig.pools?.matrix?.find((entry) => entry.commandEffect === 'rabbit-step')
+            : null;
+        const previewCommand = previewEntry
+            ? {
+                ...previewEntry,
+                typingDelayMs: 0,
+                preDelayMs: 0,
+                charDelayMs: 0,
+                linePauseMs: 0,
+                holdMs: 0
+            }
+            : null;
 
         idleScheduler = idleCore.createSequentialScheduler({
-            select: () => selector.next(),
-            play: (entry, signal) => playEntry(entry, signal, profiles, unknownProfiles),
+            select: () => previewCommand || selector.next(),
+            play: async (entry, signal) => {
+                await playEntry(entry, signal, profiles, unknownProfiles, {
+                    skipCursorBlinks: Boolean(previewCommand)
+                });
+                if (previewCommand) {
+                    typed.textContent = '';
+                    layer.textContent = '';
+                    await abortableDelay(350, signal);
+                }
+            },
             onError: (error) => console.warn('[terminal] idle sequence failed', error)
         });
         restartCycle = (delayMs = 1200) => {

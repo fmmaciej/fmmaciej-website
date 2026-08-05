@@ -300,7 +300,9 @@ test('the idle rabbit uses its hole as zero and cleans up on activation', async 
       const holeStyle = getComputedStyle(element, '::after');
       return {
         motionX: motionRect.x,
+        motionY: motionRect.y,
         typedX: typedRect.x,
+        typedScaleX: new DOMMatrixReadOnly(getComputedStyle(typedElement).transform).a,
         cursorX: cursorRect.x,
         typedOpacity: Number(getComputedStyle(typedElement).opacity),
         cursorOpacity: Number(getComputedStyle(cursorElement).opacity),
@@ -311,16 +313,22 @@ test('the idle rabbit uses its hole as zero and cleans up on activation', async 
     };
 
     const start = sample(0);
-    const first = sample(451);
-    const second = sample(901);
-    const third = sample(1_351);
-    const entered = sample(1_800);
+    const firstApex = sample(225);
+    const first = sample(450);
+    const second = sample(900);
+    const third = sample(1_350);
+    const entryStart = sample(1_500);
+    const entryApex = sample(1_725);
     const holeReady = sample(1_801);
-    const beforeExit = sample(2_103);
-    const exited = sample(2_553);
-    const fourth = sample(3_004);
-    const fifth = sample(3_454);
-    const sixth = sample(3_903);
+    const entered = sample(1_950);
+    const beforeExit = sample(2_250);
+    const exitApex = sample(2_475);
+    const exited = sample(2_700);
+    const exitSettled = sample(2_950);
+    const afterFirst = sample(3_400);
+    const afterSecond = sample(3_850);
+    const afterThird = sample(4_300);
+    const finalSettled = sample(4_600);
     return {
       timings: {
         path: pathAnimation.effect.getTiming(),
@@ -328,47 +336,65 @@ test('the idle rabbit uses its hole as zero and cleans up on activation', async 
         hole: holeAnimation.effect.getTiming()
       },
       start,
+      firstApex,
       first,
       second,
       third,
-      entered,
+      entryStart,
+      entryApex,
       holeReady,
+      entered,
       beforeExit,
+      exitApex,
       exited,
-      fourth,
-      fifth,
-      sixth,
+      exitSettled,
+      afterFirst,
+      afterSecond,
+      afterThird,
+      finalSettled,
       documentFitsViewport: document.documentElement.scrollWidth <= document.documentElement.clientWidth
     };
   });
 
   expect(measurements.missingAnimation, JSON.stringify(measurements)).toBeUndefined();
   expect(measurements.timings.path).toMatchObject({
-    duration: 3_903,
+    duration: 4_600,
     delay: 0,
     fill: 'forwards'
   });
   expect(measurements.timings.portal).toMatchObject({
-    duration: 1_203,
-    delay: 1_350,
+    duration: 1_200,
+    delay: 1_500,
     fill: 'forwards'
   });
   expect(measurements.timings.hole).toMatchObject({
-    duration: 450,
+    duration: 1_500,
     delay: 1_350,
     fill: 'forwards'
   });
   const hopDistance = measurements.first.motionX - measurements.start.motionX;
   expect(hopDistance).toBeGreaterThan(20);
+  expect(measurements.start.motionY - measurements.firstApex.motionY).toBeGreaterThan(3);
+  expect(measurements.first.motionY).toBeCloseTo(measurements.start.motionY, 1);
+  expect(measurements.entryStart.motionX).toBeCloseTo(measurements.third.motionX, 1);
+  expect(measurements.entryStart.motionY).toBeCloseTo(measurements.third.motionY, 1);
+  expect(measurements.entryStart.motionY - measurements.entryApex.motionY).toBeGreaterThan(3);
+  expect(measurements.entered.motionY).toBeCloseTo(measurements.start.motionY, 1);
+  expect(measurements.beforeExit.motionY - measurements.exitApex.motionY).toBeGreaterThan(3);
+  expect(measurements.exited.motionY).toBeCloseTo(measurements.start.motionY, 1);
+  expect(measurements.exitSettled.motionX).toBeCloseTo(measurements.exited.motionX, 1);
+  expect(measurements.exitSettled.motionY).toBeCloseTo(measurements.exited.motionY, 1);
   [
     ['second', 2],
     ['third', 3],
+    ['entryStart', 3],
     ['entered', 4],
     ['beforeExit', 4],
     ['exited', 5],
-    ['fourth', 6],
-    ['fifth', 7],
-    ['sixth', 8]
+    ['exitSettled', 5],
+    ['afterFirst', 6],
+    ['afterSecond', 7],
+    ['afterThird', 8]
   ].forEach(([name, hops]) => {
     expect(
       measurements[name].motionX - measurements.start.motionX,
@@ -378,32 +404,70 @@ test('the idle rabbit uses its hole as zero and cleans up on activation', async 
       1
     );
   });
-  expect(measurements.sixth.typedX - measurements.start.typedX).toBeCloseTo(
-    measurements.sixth.cursorX - measurements.start.cursorX,
+  expect(measurements.afterThird.typedX - measurements.start.typedX).toBeCloseTo(
+    measurements.afterThird.cursorX - measurements.start.cursorX,
     1
   );
+  expect(measurements.start.typedScaleX).toBeLessThan(-0.9);
+  expect(measurements.afterThird.typedScaleX).toBeLessThan(-0.9);
   expect(measurements.holeReady.holeContent).not.toBe('none');
   expect(measurements.holeReady.holeOpacity).toBeGreaterThan(0.5);
-  expect(measurements.sixth.holeOpacity).toBeCloseTo(measurements.holeReady.holeOpacity, 2);
+  expect(measurements.afterThird.holeOpacity).toBeLessThan(0.05);
   expect(measurements.third.typedOpacity).toBe(1);
   expect(measurements.entered.typedOpacity).toBeLessThan(0.05);
   expect(measurements.beforeExit.typedOpacity).toBeLessThan(0.05);
   expect(measurements.exited.typedOpacity).toBeGreaterThan(0.95);
-  expect(measurements.sixth.typedOpacity).toBe(1);
-  expect(measurements.sixth.cursorOpacity).toBe(1);
-  expect(measurements.sixth.viewportHeight).toBeCloseTo(measurements.start.viewportHeight, 1);
+  expect(measurements.afterThird.typedOpacity).toBe(1);
+  expect(measurements.start.cursorOpacity).toBe(0);
+  expect(measurements.afterThird.cursorOpacity).toBe(0);
+  expect(measurements.finalSettled.motionX).toBeCloseTo(measurements.afterThird.motionX, 1);
+  expect(measurements.finalSettled.motionY).toBeCloseTo(measurements.afterThird.motionY, 1);
+  expect(measurements.afterThird.viewportHeight).toBeCloseTo(measurements.start.viewportHeight, 1);
   expect(measurements.documentFitsViewport).toBe(true);
   await expect(terminalViewport).toBeVisible();
-  await expect(cursor).toBeVisible();
+  await expect(cursor).toHaveCSS('opacity', '0');
 
   await page.getByRole('button', { name: 'Activate portfolio shell' }).click();
   await expect(effect).not.toHaveClass(/\bis-rabbit-step\b/);
   await expect(motion).toHaveCSS('transform', 'none');
   await expect(typed).toHaveCSS('opacity', '1');
+  await expect(cursor).toHaveCSS('opacity', '1');
   await expect.poll(() => effect.evaluate((element) => {
     return getComputedStyle(element, '::after').content;
   })).toBe('none');
   await expect(page.getByLabel('Command')).toBeFocused();
+});
+
+test('the rabbit preview query bypasses the idle rotation', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await installRabbitIdleConfig(page, { commonHoldMs: 10_000 });
+  await gotoPath(page, '/?terminal-preview=rabbit');
+
+  await expect(page.locator('#bootOverlay')).toHaveCount(0);
+  await expect(page.locator('#typedText')).toHaveText('🐇');
+  await expect(page.locator('.cmd')).toHaveClass(/\bis-rabbit-step\b/);
+  await expect(page.locator('.terminal-overlay .layer')).toHaveText('...');
+
+  await page.locator('.cmd').evaluate((element) => {
+    window.__rabbitPreviewStarts = 1;
+    window.__rabbitPreviewCleared = false;
+    let wasActive = element.classList.contains('is-rabbit-step');
+    new MutationObserver(() => {
+      const isActive = element.classList.contains('is-rabbit-step');
+      if (isActive && !wasActive) window.__rabbitPreviewStarts += 1;
+      if (!isActive && wasActive) {
+        queueMicrotask(() => {
+          window.__rabbitPreviewCleared = element.querySelector('#typedText').textContent === '';
+        });
+      }
+      wasActive = isActive;
+    }).observe(element, { attributes: true, attributeFilter: ['class'] });
+  });
+  await expect.poll(
+    () => page.evaluate(() => window.__rabbitPreviewStarts),
+    { timeout: 6_000 }
+  ).toBeGreaterThan(1);
+  expect(await page.evaluate(() => window.__rabbitPreviewCleared)).toBe(true);
 });
 
 test('the idle rabbit stays static with reduced motion', async ({ page }) => {

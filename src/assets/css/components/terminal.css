@@ -6,72 +6,153 @@
 
 @keyframes terminal-rabbit-path {
     0% {
-        transform: translateX(0);
-        animation-timing-function: steps(3, end);
-    }
-
-    34.588778% {
-        transform: translateX(9ch);
-        animation-timing-function: ease-in;
-    }
-
-    46.11837% {
-        transform: translateX(12ch);
-        animation-timing-function: linear;
-    }
-
-    53.88163% {
-        transform: translateX(12ch);
+        transform: translate(0, 0);
         animation-timing-function: ease-out;
     }
 
-    65.411222% {
-        transform: translateX(15ch);
-        animation-timing-function: steps(3, end);
+    4.891304% {
+        transform: translate(1.5ch, -.38em);
+        animation-timing-function: ease-in;
     }
 
+    9.782609% {
+        transform: translate(3ch, 0);
+        animation-timing-function: ease-out;
+    }
+
+    14.673913% {
+        transform: translate(4.5ch, -.38em);
+        animation-timing-function: ease-in;
+    }
+
+    19.565217% {
+        transform: translate(6ch, 0);
+        animation-timing-function: ease-out;
+    }
+
+    24.456522% {
+        transform: translate(7.5ch, -.38em);
+        animation-timing-function: ease-in;
+    }
+
+    29.347826% {
+        transform: translate(9ch, 0);
+    }
+
+    32.608696% {
+        transform: translate(9ch, 0);
+        animation-timing-function: ease-out;
+    }
+
+    37.5% {
+        transform: translate(10.5ch, -.38em);
+        animation-timing-function: ease-in;
+    }
+
+    42.391304% {
+        transform: translate(12ch, 0);
+    }
+
+    48.913043% {
+        transform: translate(12ch, 0);
+        animation-timing-function: ease-out;
+    }
+
+    53.804348% {
+        transform: translate(13.5ch, -.38em);
+        animation-timing-function: ease-in;
+    }
+
+    58.695652% {
+        transform: translate(15ch, 0);
+    }
+
+    64.130435% {
+        transform: translate(15ch, 0);
+        animation-timing-function: ease-out;
+    }
+
+    69.021739% {
+        transform: translate(16.5ch, -.38em);
+        animation-timing-function: ease-in;
+    }
+
+    73.913043% {
+        transform: translate(18ch, 0);
+        animation-timing-function: ease-out;
+    }
+
+    78.804348% {
+        transform: translate(19.5ch, -.38em);
+        animation-timing-function: ease-in;
+    }
+
+    83.695652% {
+        transform: translate(21ch, 0);
+        animation-timing-function: ease-out;
+    }
+
+    88.586957% {
+        transform: translate(22.5ch, -.38em);
+        animation-timing-function: ease-in;
+    }
+
+    93.478261%,
     100% {
-        transform: translateX(24ch);
+        transform: translate(24ch, 0);
     }
 }
 
 @keyframes terminal-rabbit-portal {
     0% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scaleX(-1) scale(1);
     }
 
-    16% {
+    18.75% {
         opacity: 1;
-        transform: translateY(-.28em) scale(.95);
+        transform: translateY(-.28em) scaleX(-1) scale(.95);
     }
 
-    37.406484%,
-    62.593516% {
+    37.5%,
+    62.5% {
         opacity: 0;
-        transform: translateY(.35em) scale(.15);
+        transform: translateY(.35em) scaleX(-1) scale(.15);
     }
 
-    84% {
+    81.25% {
         opacity: 1;
-        transform: translateY(-.28em) scale(.95);
+        transform: translateY(-.28em) scaleX(-1) scale(.95);
     }
 
     100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scaleX(-1) scale(1);
     }
 }
 
 @keyframes terminal-rabbit-hole {
-    from {
+    0% {
         opacity: 0;
         transform: translateX(-.1ch) scaleX(.35);
+        animation-timing-function: ease-out;
     }
 
-    to {
+    20% {
         opacity: .65;
         transform: translateX(-.1ch) scaleX(1);
+        animation-timing-function: linear;
+    }
+
+    90% {
+        opacity: .65;
+        transform: translateX(-.1ch) scaleX(1);
+        animation-timing-function: ease-in;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-.1ch) scaleX(.35);
     }
 }
 
@@ -235,12 +316,18 @@
 .cmd.is-rabbit-step .terminal-command-motion {
     position: relative;
     z-index: 1;
-    animation: terminal-rabbit-path 3.903s linear 1 forwards !important;
+    animation: terminal-rabbit-path 4.6s linear 1 forwards !important;
 }
 
 .cmd.is-rabbit-step .typed {
+    display: inline-block;
+    transform: scaleX(-1);
     transform-origin: center bottom;
-    animation: terminal-rabbit-portal 1.203s linear 1.35s 1 forwards !important;
+    animation: terminal-rabbit-portal 1.2s linear 1.5s 1 forwards !important;
+}
+
+.cmd.is-rabbit-step #cursor {
+    opacity: 0;
 }
 
 .cmd.is-rabbit-step::after {
@@ -256,7 +343,7 @@
     opacity: 0;
     box-shadow: inset 0 0 .3em currentColor;
     pointer-events: none;
-    animation: terminal-rabbit-hole .45s ease-out 1.35s 1 forwards !important;
+    animation: terminal-rabbit-hole 1.5s linear 1.35s 1 forwards !important;
 }
 
 #cursor {

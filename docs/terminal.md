@@ -76,11 +76,19 @@ klasycznej strony.
 Wpis może opcjonalnie deklarować `commandEffect`. Runtime rozpoznaje obecnie
 wyłącznie `rabbit-step`; nieznane wartości są ignorowane. Runtime czeka na
 rzeczywisty koniec animacji efektu, bez powielania jej czasu w JavaScript lub
-konfiguracji. Królik porusza się skokowo w dwóch
-fazach, przechodzi przez subtelną dziurę rysowaną przez CSS i kończy widoczny po
-jej drugiej stronie. Kursor podąża za jego ruchem, a dziura pozostaje do końca
-wpisu. Efekt jest anulowany razem z cyklem idle, a reduced motion pozostawia
-statyczne emoji bez dziury.
+konfiguracji. Królik wykonuje trzy zwykłe skoki, zatrzymuje się na moment, a
+czwartym skokiem wpada do subtelnej dziury rysowanej przez CSS. Po drugiej
+stronie wyskakuje z niej osobnym łukiem, czeka 250 ms na jej zamknięcie i dopiero
+rusza dalej. Ostatnie lądowanie również ma krótką fazę spoczynku. Kursor jest ukryty
+na czas całego efektu i nie dodaje końcowej pauzy na miganie. Efekt jest
+anulowany razem z cyklem idle, a reduced motion pozostawia statyczne emoji bez
+dziury. Zapętlony podgląd czyści emoji pomiędzy powtórkami, dzięki czemu nie
+przeskakuje ono z końca trajektorii na jej początek.
+
+Do ręcznej oceny samego ruchu służy deweloperski parametr
+`?terminal-preview=rabbit`. Po uruchomieniu `npm run dev` adres
+`http://localhost:8080/?terminal-preview=rabbit` pomija zwykłą rotację idle,
+uruchamia królika natychmiast i powtarza animację po krótkiej przerwie.
 
 ### Loading, error i active shell
 
