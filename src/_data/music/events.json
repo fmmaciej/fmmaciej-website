@@ -8,8 +8,8 @@
       "slug": "techno",
       "date": "2026-09-26",
       "section": "upcoming",
-      "title": "Techno",
-      "place": "Warszawa",
+      "title": "Vinyl only",
+      "place": "Warszawa, Mastak",
       "coverId": null
     },
     {
@@ -18,7 +18,7 @@
       "date": "2026-09-12",
       "section": "upcoming",
       "title": "Drum & Bass",
-      "place": "Łódź",
+      "place": "Łódź, Willa",
       "coverId": null
     },
     {
@@ -26,8 +26,8 @@
       "slug": "audio_river",
       "date": "2026-07-11",
       "section": "archive",
-      "title": "AudioRiver",
-      "place": null,
+      "title": "Audio River 2026",
+      "place": "Łódź, Łódzkie Błonia",
       "coverId": "20260711__audio_river__01"
     },
     {
@@ -36,7 +36,7 @@
       "date": "2026-06-06",
       "section": "archive",
       "title": "BackToTheGame",
-      "place": null,
+      "place": "Łódź, P29",
       "coverId": "20260606__back_to_the_game__01"
     },
     {
@@ -45,7 +45,7 @@
       "date": "2026-04-25",
       "section": "archive",
       "title": "CzwarteUrodzinyWilli",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20260425__czwarte_urodziny_willi__01"
     },
     {
@@ -54,7 +54,7 @@
       "date": "2026-04-17",
       "section": "archive",
       "title": "Subterra2.0",
-      "place": null,
+      "place": "Warszawa, Mastak",
       "coverId": "20260417__subterra_2_0__01"
     },
     {
@@ -63,7 +63,7 @@
       "date": "2026-03-27",
       "section": "archive",
       "title": "SektaSelektaTakeover",
-      "place": null,
+      "place": "Kraków, Sekta Selekta",
       "coverId": "20260327__sekta_selekta_takeover__01"
     },
     {
@@ -72,7 +72,7 @@
       "date": "2026-03-21",
       "section": "archive",
       "title": "PowitanieWiosny",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20260321__powitanie_wiosny__01"
     },
     {
@@ -81,7 +81,7 @@
       "date": "2026-03-07",
       "section": "archive",
       "title": "PrivatePress",
-      "place": null,
+      "place": "Łódź, Basement",
       "coverId": "20260307__private_press__01"
     },
     {
@@ -90,7 +90,7 @@
       "date": "2026-02-12",
       "section": "archive",
       "title": "KarnawałowyBalMaskowy",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20260212__karnawalowy_bal_maskowy__01"
     },
     {
@@ -99,7 +99,7 @@
       "date": "2026-01-24",
       "section": "archive",
       "title": "Proper",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20260124__proper__01"
     },
     {
@@ -108,7 +108,7 @@
       "date": "2025-12-31",
       "section": "archive",
       "title": "NewYearsWillaOnTour",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20251231__new_years_willa_on_tour__01"
     },
     {
@@ -117,7 +117,7 @@
       "date": "2025-10-11",
       "section": "archive",
       "title": "WillaTechnoDancing",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20251011__willa_techno_dancing__01"
     },
     {
@@ -126,7 +126,7 @@
       "date": "2025-03-29",
       "section": "archive",
       "title": "WillaTechnoDancing",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20250329__willa_techno_dancing__01"
     },
     {
@@ -135,7 +135,7 @@
       "date": "2025-03-22",
       "section": "archive",
       "title": "PowitanieWiosny",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20250322__powitanie_wiosny__01"
     },
     {
@@ -144,7 +144,7 @@
       "date": "2025-03-21",
       "section": "archive",
       "title": "Subterra",
-      "place": null,
+      "place": "Łódź, P29",
       "coverId": "20250321__subterra__01"
     },
     {
@@ -153,7 +153,7 @@
       "date": "2025-02-15",
       "section": "archive",
       "title": "KarnawalowyBalMaskowy",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20250215__karnawalowy_bal_maskowy__01"
     },
     {
@@ -162,7 +162,7 @@
       "date": "2024-12-31",
       "section": "archive",
       "title": "NewYearsWilla",
-      "place": null,
+      "place": "Łódź, Willa",
       "coverId": "20241231__new_years_willa__01"
     },
     {
