@@ -1,15 +1,17 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/projects",
+            "cmd": "ls /home/fm/projects",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "cv/  discogsupdate/  listify/  netbox-cli/  netframetool/  picturesforweb/  rdma-driver-tool/"
             ]
         },
         {
-            "cmd": "cat ~/projects/listify/README.md",
+            "cmd": "cat /home/fm/projects/listify/README.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "# Listify",
@@ -21,7 +23,8 @@
             ]
         },
         {
-            "cmd": "ls ~/projects/listify/links",
+            "cmd": "ls /home/fm/projects/listify/links",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "docs.url  download.url  repo.url"

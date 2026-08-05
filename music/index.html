@@ -76,7 +76,7 @@
                         <nav class="terminal-path" id="terminalPath" aria-label="Current path"></nav><span id="terminalPathSuffix" class="terminal-path-suffix"></span>
                     </div>
                     <div class="terminal-meta">
-                        <span class="terminal-session">[fm@void]</span>
+                        <span class="terminal-session" id="terminalSession">[guest@void]</span>
                         <span id="terminalClock" class="terminal-clock"></span>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                     aria-expanded="false"
                     aria-controls="terminalShellPanel"
                     aria-label="Activate portfolio shell">
-                    <span class="prompt-mark">&gt;</span><span class="cmd"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span>
+                    <span class="prompt-mark">&gt;</span><span class="cmd"><span class="terminal-command-motion"><span id="typedText" class="typed"></span><span id="cursor" class="cursor"></span></span></span>
                     <span class="terminal-shell-status" id="terminalShellStatus" role="status" aria-live="polite" hidden></span>
                 </div>
                 <div class="terminal-shell-panel" id="terminalShellPanel" hidden>
@@ -105,7 +105,7 @@
                         aria-relevant="additions text"></div>
                     <form class="terminal-shell-form" id="terminalShellForm">
                         <label class="terminal-shell-label" for="terminalShellInput">Command</label>
-                        <span class="terminal-shell-prompt" id="terminalShellPrompt">[fm@void] ~ &gt;</span>
+                        <span class="terminal-shell-prompt" id="terminalShellPrompt">[guest@void] ~ &gt;</span>
                         <input
                             class="terminal-shell-input"
                             id="terminalShellInput"

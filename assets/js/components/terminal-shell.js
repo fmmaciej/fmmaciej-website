@@ -1,6 +1,8 @@
 (() => {
     const MANIFEST_URL = '/assets/terminal/filesystem.json';
-    const STORAGE_KEY = 'terminalShell:v1';
+    const STORAGE_KEY = 'terminalShell:v2';
+    const LEGACY_STORAGE_KEY = 'terminalShell:v1';
+    const DEFAULT_SNAPSHOT = { user: 'guest', cwd: '/home/guest' };
     let runtime = null;
     let currentBinding = null;
 
@@ -18,6 +20,32 @@
             return null;
         }
     }
+
+    function readSessionSnapshot() {
+        const serialized = readStoredSession();
+        if (!serialized) return { ...DEFAULT_SNAPSHOT };
+        try {
+            const parsed = JSON.parse(serialized);
+            if (parsed.version !== 2) return { ...DEFAULT_SNAPSHOT };
+            if (!['guest', 'fm', 'operator'].includes(parsed.user)) return { ...DEFAULT_SNAPSHOT };
+            if (typeof parsed.cwd !== 'string' || !parsed.cwd.startsWith('/')) return { ...DEFAULT_SNAPSHOT };
+            return { user: parsed.user, cwd: parsed.cwd };
+        } catch (_) {
+            return { ...DEFAULT_SNAPSHOT };
+        }
+    }
+
+    function removeLegacySession() {
+        try {
+            localStorage.removeItem(LEGACY_STORAGE_KEY);
+        } catch (_) {}
+    }
+
+    function dispatchSessionChanged(snapshot = readSessionSnapshot()) {
+        window.dispatchEvent(new CustomEvent('terminal:session-changed', { detail: snapshot }));
+    }
+
+    window.getTerminalSessionSnapshot = readSessionSnapshot;
 
     function writeStoredSession(value) {
         try {
@@ -43,12 +71,14 @@
         constructor(manifest, onStateChange) {
             this.core = window.terminalShellCore;
             this.filesystem = this.core.createFilesystem(manifest);
-            const fallbackCwd = this.filesystem.pathForRoute(location.href);
+            const fallbackCwd = this.filesystem.pathForRoute(location.href, this.filesystem.defaultUser);
             const restored = this.core.restoreSession(this.filesystem, readStoredSession(), fallbackCwd);
             this.state = {
+                user: restored.user,
                 cwd: restored.cwd,
                 previousCwd: restored.previousCwd,
-                history: restored.history
+                history: restored.history,
+                loginStack: restored.loginStack
             };
             this.transcript = restored.transcript;
             this.active = false;
@@ -59,6 +89,8 @@
             this.options = null;
             this.onStateChange = onStateChange;
             this.effect = null;
+            this.pendingAuth = null;
+            this.persist();
         }
 
         bind(options) {
@@ -71,6 +103,7 @@
             this.form = this.termBox.querySelector('#terminalShellForm');
             this.input = this.termBox.querySelector('#terminalShellInput');
             this.prompt = this.termBox.querySelector('#terminalShellPrompt');
+            this.inputLabel = this.termBox.querySelector('label[for="terminalShellInput"]');
             this.pathEl = this.termBox.querySelector('#terminalPath');
             this.effectStatus = this.termBox.querySelector('#terminalShellEffectStatus');
 
@@ -94,6 +127,7 @@
 
             this.renderTranscript();
             this.renderPrompt();
+            this.renderInputMode();
             if (this.active) {
                 this.termBox.classList.add('is-shell-active');
                 this.panel.hidden = false;
@@ -109,6 +143,7 @@
 
         unbind() {
             this.cancelEffect('dispose');
+            this.cancelAuthentication();
             this.bindingCleanup.splice(0).forEach((cleanup) => {
                 try { cleanup(); } catch (_) {}
             });
@@ -135,6 +170,7 @@
         collapse(options = {}) {
             if (!this.active) return;
             this.cancelEffect('collapse');
+            this.cancelAuthentication();
             this.active = false;
             this.termBox.classList.remove('is-shell-active');
             this.panel.hidden = true;
@@ -153,8 +189,23 @@
 
         renderPrompt() {
             if (!this.prompt) return;
-            const path = this.core.shellPromptPath(this.state.cwd, this.filesystem.user.home);
-            this.prompt.textContent = `[${this.filesystem.user.name}@${this.filesystem.user.host}] ${path} >`;
+            if (this.pendingAuth) {
+                this.prompt.textContent = 'Password:';
+                return;
+            }
+            const user = this.filesystem.account(this.state.user);
+            const host = this.filesystem.manifest?.system?.hostname || 'void';
+            const path = this.core.shellPromptPath(this.state.cwd, user.home);
+            this.prompt.textContent = `[${user.name}@${host}] ${path} >`;
+        }
+
+        renderInputMode() {
+            if (!this.input) return;
+            const authenticating = !!this.pendingAuth;
+            this.input.type = authenticating ? 'password' : 'text';
+            this.input.autocomplete = authenticating ? 'current-password' : 'off';
+            this.input.setAttribute('aria-label', authenticating ? 'Password' : 'Command');
+            if (this.inputLabel) this.inputLabel.textContent = authenticating ? 'Password' : 'Command';
         }
 
         renderTranscript() {
@@ -166,8 +217,10 @@
                 if (block.command) {
                     const command = document.createElement('pre');
                     command.className = 'terminal-shell-command';
-                    const promptPath = this.core.shellPromptPath(block.cwd, this.filesystem.user.home);
-                    command.textContent = `[fm@void] ${promptPath} > ${block.command}`;
+                    const user = this.filesystem.account(block.user);
+                    const host = this.filesystem.manifest?.system?.hostname || 'void';
+                    const promptPath = this.core.shellPromptPath(block.cwd, user.home);
+                    command.textContent = `[${user.name}@${host}] ${promptPath} > ${block.command}`;
                     wrapper.append(command);
                 }
                 if (block.output) {
@@ -191,20 +244,27 @@
 
         persist() {
             writeStoredSession(this.core.serializeSession(this.filesystem, this.state, this.transcript));
+            dispatchSessionChanged({ user: this.state.user, cwd: this.state.cwd });
         }
 
-        appendBlock(command, output, cwd = this.state.cwd) {
-            this.transcript.push({ command, output: output || '', cwd });
+        appendBlock(command, output, cwd = this.state.cwd, user = this.state.user) {
+            this.transcript.push({ command, output: output || '', cwd, user });
             this.renderTranscript();
         }
 
         async runInput() {
+            if (this.pendingAuth) {
+                await this.submitAuthentication();
+                return;
+            }
+
             const line = this.input.value.trim();
             this.input.value = '';
             this.lastCompletionKey = '';
             if (!line) return;
 
             const cwd = this.state.cwd;
+            const user = this.state.user;
             const result = this.core.executeCommand(this.filesystem, this.state, line);
             this.state = result.state;
             this.historyIndex = this.state.history.length;
@@ -214,17 +274,32 @@
                 this.transcript = [];
                 this.renderTranscript();
             } else if (!result.exit) {
-                this.appendBlock(line, result.output, cwd);
+                this.appendBlock(line, result.output, cwd, user);
+            }
+
+            if (result.auth) {
+                this.pendingAuth = result.auth;
+                this.renderPrompt();
+                this.renderInputMode();
+                this.persist();
+                this.input.focus({ preventScroll: true });
+                return;
             }
 
             if (result.exit) {
                 removeStoredSession();
                 this.transcript = [];
-                const fallback = this.filesystem.pathForRoute(location.href);
-                this.state = { cwd: fallback, previousCwd: null, history: [] };
+                this.state = {
+                    user: this.filesystem.defaultUser,
+                    cwd: this.filesystem.account(this.filesystem.defaultUser).home,
+                    previousCwd: null,
+                    history: [],
+                    loginStack: []
+                };
                 this.historyIndex = 0;
                 this.renderTranscript();
                 this.renderPrompt();
+                dispatchSessionChanged({ user: this.state.user, cwd: this.state.cwd });
                 this.collapse();
                 return;
             }
@@ -236,8 +311,8 @@
             if (result.action?.type === 'navigate') {
                 await this.navigate(result.action.url, {
                     pushHistory: true,
-                    preserveShell: true,
-                    shellPath: this.state.cwd
+                    preserveShell: result.action.preserveShell !== false,
+                    shellPath: result.action.ephemeral ? null : this.state.cwd
                 });
                 this.input.focus({ preventScroll: true });
             } else if (result.action?.type === 'open') {
@@ -245,6 +320,52 @@
             } else if (result.action?.type === 'effect' && result.action.name === 'matrix') {
                 await this.runMatrixEffect();
             }
+        }
+
+        async submitAuthentication() {
+            const request = this.pendingAuth;
+            const password = this.input.value;
+            this.input.value = '';
+            this.pendingAuth = null;
+            const result = this.core.completeAuthentication(
+                this.filesystem,
+                this.state,
+                request,
+                password
+            );
+            this.state = result.state;
+            this.historyIndex = this.state.history.length;
+            this.historyDraft = '';
+            this.renderInputMode();
+            this.renderPrompt();
+
+            if (result.output) this.appendBlock('', result.output, this.state.cwd, this.state.user);
+            this.renderShellPath();
+            this.persist();
+
+            if (result.action?.type === 'navigate') {
+                await this.navigate(result.action.url, {
+                    pushHistory: true,
+                    preserveShell: false,
+                    shellPath: null
+                });
+            } else if (result.action?.type === 'open') {
+                await this.openAction(result.action);
+            } else if (result.action?.type === 'effect' && result.action.name === 'matrix') {
+                await this.runMatrixEffect();
+            }
+            if (this.active) this.input.focus({ preventScroll: true });
+        }
+
+        cancelAuthentication(output = '') {
+            if (!this.pendingAuth) return false;
+            this.pendingAuth = null;
+            if (this.input) this.input.value = '';
+            this.renderInputMode();
+            this.renderPrompt();
+            if (output) this.appendBlock('', output, this.state.cwd, this.state.user);
+            this.persist();
+            return true;
         }
 
         async runMatrixEffect() {
@@ -342,6 +463,10 @@
         onInputKeydown(event) {
             if (event.key === 'Escape') {
                 event.preventDefault();
+                if (this.cancelAuthentication()) {
+                    this.input.focus({ preventScroll: true });
+                    return;
+                }
                 this.collapse();
                 return;
             }
@@ -361,17 +486,20 @@
             }
             if (event.ctrlKey && event.key.toLowerCase() === 'c') {
                 event.preventDefault();
+                if (this.cancelAuthentication('^C')) return;
                 this.input.value = '';
                 this.lastCompletionKey = '';
                 return;
             }
             if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+                if (this.pendingAuth) return;
                 event.preventDefault();
                 this.navigateHistory(event.key === 'ArrowUp' ? -1 : 1);
                 return;
             }
             if (event.key === 'Tab') {
                 event.preventDefault();
+                if (this.pendingAuth) return;
                 this.completeInput();
             }
         }
@@ -389,7 +517,12 @@
 
         completeInput() {
             const before = this.input.value;
-            const completion = this.core.completeInput(this.filesystem, before, this.state.cwd);
+            const completion = this.core.completeInput(
+                this.filesystem,
+                before,
+                this.state.cwd,
+                this.state.user
+            );
             const completionKey = `${before}\u0000${completion.candidates.join('\u0000')}`;
             if (this.lastCompletionKey === completionKey && completion.candidates.length > 1) {
                 this.appendBlock('', completion.candidates.join('  '), this.state.cwd);
@@ -403,10 +536,16 @@
         onNavigated(event) {
             const shellPath = event.detail?.shellPath;
             if (shellPath) {
-                this.state.cwd = shellPath;
+                const resolved = this.filesystem.resolve(shellPath, this.state.cwd, { user: this.state.user });
+                if (!resolved.error && this.filesystem.canEnter(resolved.entry, this.state.user)) {
+                    this.state.cwd = resolved.path;
+                }
             } else {
-                this.state.cwd = this.filesystem.pathForRoute(location.href);
-                this.state.previousCwd = null;
+                const routePath = this.filesystem.pathForRoute(location.href, this.state.user);
+                if (routePath !== this.filesystem.account(this.state.user).home || this.state.user !== 'guest') {
+                    this.state.cwd = routePath;
+                    this.state.previousCwd = null;
+                }
             }
             this.renderPrompt();
             if (this.active) this.renderShellPath();
@@ -419,6 +558,7 @@
         const coordinatorCore = window.terminalShellCoordinatorCore;
         if (!window.terminalShellCore || !coordinatorCore) return null;
 
+        removeLegacySession();
         runtime = coordinatorCore.createTerminalShellCoordinator({
             loadManifest,
             createController: (manifest) => {

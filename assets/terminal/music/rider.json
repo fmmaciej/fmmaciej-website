@@ -1,13 +1,15 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/music/rider",
+            "cmd": "ls /home/fm/music/rider",
+            "runAs": "fm",
             "type": "text",
             "output": ["README.md"]
         },
         {
-            "cmd": "cat ~/music/rider/README.md",
+            "cmd": "cat /home/fm/music/rider/README.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "# Rider",

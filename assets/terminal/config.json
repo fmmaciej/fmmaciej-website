@@ -1,28 +1,28 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "selection": {
         "contextualPerCommon": 2,
         "easterEggEvery": 6
     },
     "timingProfiles": {
         "standard": {
-            "typingDelayMs": 22,
-            "preDelayMs": 180,
-            "charDelayMs": 2,
-            "linePauseMs": 90,
-            "holdMs": 1400
+            "typingDelayMs": 30,
+            "preDelayMs": 250,
+            "charDelayMs": 4,
+            "linePauseMs": 120,
+            "holdMs": 500
         },
         "cinematic": {
-            "typingDelayMs": 42,
-            "preDelayMs": 650,
-            "charDelayMs": 45,
-            "linePauseMs": 850,
-            "holdMs": 2200
+            "typingDelayMs": 50,
+            "preDelayMs": 700,
+            "charDelayMs": 50,
+            "linePauseMs": 900,
+            "holdMs": 700
         },
         "ambient": {
-            "typingDelayMs": 28,
-            "preDelayMs": 250,
-            "holdMs": 700,
+            "typingDelayMs": 35,
+            "preDelayMs": 350,
+            "holdMs": 600,
             "durationMs": 6500,
             "frameDelayMs": 85
         }
@@ -33,13 +33,13 @@
                 "cmd": "uname -a",
                 "type": "text",
                 "output": [
-                    "Linux void 6.10.12_1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux"
+                    "Linux void 2.2.6 #20 Tue Apr 27 15:23:25 CDT 1999 i686 unknown"
                 ]
             },
             {
                 "cmd": "whoami",
                 "type": "text",
-                "output": ["fm"]
+                "output": ["guest"]
             },
             {
                 "cmd": "hostname",
@@ -51,14 +51,14 @@
                 "type": "text",
                 "output": [
                     "fmmaciej.com virtual shell",
-                    "Read-only portfolio filesystem. Type help to begin."
+                    "Read-only filesystem. Type help to begin."
                 ]
             },
             {
                 "cmd": "cat /proc/version",
                 "type": "text",
                 "output": [
-                    "Linux version 6.10.12_1 (void@fmmaciej.com) #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux"
+                    "Linux version 2.2.6 (root@zap) (gcc version egcs-2.91.66 19990314 (egcs-1.1.2 release)) #20 Tue Apr 27 15:23:25 CDT 1999"
                 ]
             },
             {
@@ -67,18 +67,25 @@
                 "output": [
                     "Portfolio shell — read-only",
                     "",
-                    "help                 show available commands",
-                    "pwd                  print working directory",
-                    "ls [-al] [path]       list directory contents",
-                    "cd [path]             change directory",
-                    "cat <file> [...]      print complete file contents",
-                    "cmatrix               run a local Matrix effect",
-                    "open <path>           open a page, link, or download",
-                    "clear                 clear the transcript",
-                    "history               show command history",
-                    "whoami | hostname     show session information",
-                    "uname [-a]            show virtual system information",
-                    "exit                  end and forget this shell session",
+                    "help                         show available commands",
+                    "pwd                          print working directory",
+                    "ls [-al] [path]               list directory contents",
+                    "cd [path]                     change directory",
+                    "cat <file> [...]              print complete file contents",
+                    "date                          show the simulated system date",
+                    "su [-] [user]                 switch to another account",
+                    "su -c 'command' [-] [user]    run one command as another account",
+                    "cmatrix                       run a local Matrix effect",
+                    "open <path>                   open a page, link, or download",
+                    "clear                         clear the transcript",
+                    "history                       show command history",
+                    "whoami | hostname             show session information",
+                    "uname [-a]                    show virtual system information",
+                    "exit                          leave one login level or close the shell",
+                    "",
+                    "Examples:",
+                    "  su - fm",
+                    "  su -c 'cd /home/fm/music' fm",
                     "",
                     "Tab completes paths. ↑/↓ browse history. Esc returns to idle."
                 ]
@@ -91,19 +98,9 @@
                 "timingProfile": "ambient"
             },
             {
-                "cmd": "cat ~/.matrix/message.txt",
-                "type": "text",
-                "timingProfile": "cinematic",
-                "output": [
-                    "Wake up, Neo...",
-                    "The Matrix has you...",
-                    "Follow the white rabbit.",
-                    "Knock, knock, Neo."
-                ]
-            },
-            {
                 "cmd": "🐇",
                 "type": "text",
+                "commandEffect": "rabbit-step",
                 "timingProfile": "cinematic",
                 "output": [
                     "..."

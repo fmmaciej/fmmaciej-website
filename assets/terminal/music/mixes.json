@@ -1,15 +1,17 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/music/mixes",
+            "cmd": "ls /home/fm/music/mixes",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "2026-02-01--mwtg-498/  2026-04-03--unknown-stories-with-fm/  ..."
             ]
         },
         {
-            "cmd": "cat ~/music/mixes/2026-02-01--mwtg-498/README.md",
+            "cmd": "cat /home/fm/music/mixes/2026-02-01--mwtg-498/README.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "# FM | MWTG #498",

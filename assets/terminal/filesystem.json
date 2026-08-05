@@ -1,11 +1,121 @@
 {
-  "schemaVersion": 1,
-  "contentId": "0ea03932a4e64886",
-  "user": {
-    "name": "fm",
-    "group": "fm",
-    "host": "void",
-    "home": "/home/fm"
+  "schemaVersion": 2,
+  "contentId": "1af2bfaadedd54aa",
+  "system": {
+    "hostname": "void",
+    "distribution": "Slackware",
+    "release": "4.0",
+    "kernel": "2.2.6",
+    "machine": "i686"
+  },
+  "defaultUser": "guest",
+  "accounts": {
+    "guest": {
+      "name": "guest",
+      "uid": 1000,
+      "gid": 1000,
+      "group": "guest",
+      "groups": [
+        "guest"
+      ],
+      "home": "/home/guest",
+      "shell": "/bin/bash",
+      "credential": null,
+      "locked": false,
+      "su": false
+    },
+    "fm": {
+      "name": "fm",
+      "uid": 1001,
+      "gid": 1001,
+      "group": "fm",
+      "groups": [
+        "fm",
+        "portfolio",
+        "matrix"
+      ],
+      "home": "/home/fm",
+      "shell": "/bin/bash",
+      "credential": "spoon",
+      "locked": false,
+      "su": true
+    },
+    "operator": {
+      "name": "operator",
+      "uid": 303,
+      "gid": 303,
+      "group": "operator",
+      "groups": [
+        "operator",
+        "portfolio",
+        "matrix"
+      ],
+      "home": "/home/operator",
+      "shell": "/bin/bash",
+      "credential": "room303",
+      "locked": false,
+      "su": true
+    },
+    "root": {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "group": "root",
+      "groups": [
+        "root"
+      ],
+      "home": "/root",
+      "shell": "/bin/bash",
+      "credential": null,
+      "locked": true,
+      "su": true
+    }
+  },
+  "groups": {
+    "root": {
+      "name": "root",
+      "gid": 0,
+      "members": [
+        "root"
+      ]
+    },
+    "operator": {
+      "name": "operator",
+      "gid": 303,
+      "members": [
+        "operator"
+      ]
+    },
+    "guest": {
+      "name": "guest",
+      "gid": 1000,
+      "members": [
+        "guest"
+      ]
+    },
+    "fm": {
+      "name": "fm",
+      "gid": 1001,
+      "members": [
+        "fm"
+      ]
+    },
+    "portfolio": {
+      "name": "portfolio",
+      "gid": 1100,
+      "members": [
+        "fm",
+        "operator"
+      ]
+    },
+    "matrix": {
+      "name": "matrix",
+      "gid": 1101,
+      "members": [
+        "fm",
+        "operator"
+      ]
+    }
   },
   "entries": [
     {
@@ -23,7 +133,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -32,7 +142,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/🐇",
       "size": 13
     },
@@ -42,7 +152,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/cat",
       "size": 12
     },
@@ -52,7 +162,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/clear",
       "size": 14
     },
@@ -62,9 +172,19 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/cmatrix",
       "size": 16
+    },
+    {
+      "path": "/bin/date",
+      "type": "symlink",
+      "mode": "lrwxrwxrwx",
+      "owner": "root",
+      "group": "root",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "target": "/usr/bin/date",
+      "size": 13
     },
     {
       "path": "/bin/help",
@@ -72,7 +192,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/help",
       "size": 13
     },
@@ -82,7 +202,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/history",
       "size": 16
     },
@@ -92,7 +212,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/hostname",
       "size": 17
     },
@@ -102,7 +222,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/ls",
       "size": 11
     },
@@ -112,7 +232,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/open",
       "size": 13
     },
@@ -122,7 +242,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/pwd",
       "size": 12
     },
@@ -132,8 +252,18 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/sh",
+      "size": 11
+    },
+    {
+      "path": "/bin/su",
+      "type": "symlink",
+      "mode": "lrwxrwxrwx",
+      "owner": "root",
+      "group": "root",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "target": "/usr/bin/su",
       "size": 11
     },
     {
@@ -142,7 +272,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/uname",
       "size": 14
     },
@@ -152,7 +282,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/usr/bin/whoami",
       "size": 15
     },
@@ -162,7 +292,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -171,7 +301,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -180,7 +310,7 @@
       "mode": "crw-rw-rw-",
       "owner": "root",
       "group": "tty",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "deviceBehavior": "null",
       "size": 0
     },
@@ -190,7 +320,7 @@
       "mode": "crw-rw-rw-",
       "owner": "root",
       "group": "tty",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "deviceBehavior": "unsupported",
       "size": 0
     },
@@ -200,7 +330,7 @@
       "mode": "lrwxrwxrwx",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "target": "/dev/null",
       "size": 9
     },
@@ -210,7 +340,7 @@
       "mode": "crw-rw-rw-",
       "owner": "root",
       "group": "tty",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "deviceBehavior": "unsupported",
       "size": 0
     },
@@ -220,7 +350,7 @@
       "mode": "crw-rw-rw-",
       "owner": "root",
       "group": "tty",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "deviceBehavior": "unsupported",
       "size": 0
     },
@@ -230,8 +360,18 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
+    },
+    {
+      "path": "/etc/group",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "root",
+      "group": "root",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "root:x:0:root\noperator:x:303:operator\nguest:x:1000:guest\nfm:x:1001:fm\nportfolio:x:1100:fm,operator\nmatrix:x:1101:fm,operator\n",
+      "size": 125
     },
     {
       "path": "/etc/hostname",
@@ -239,9 +379,19 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "void\n",
       "size": 5
+    },
+    {
+      "path": "/etc/issue",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "root",
+      "group": "root",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "Welcome to Linux 2.2.6 (tty1)\n\n",
+      "size": 31
     },
     {
       "path": "/etc/motd",
@@ -249,19 +399,9 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "content": "fmmaciej.com virtual shell\nRead-only portfolio filesystem. Type help to begin.\n",
-      "size": 79
-    },
-    {
-      "path": "/etc/os-release",
-      "type": "file",
-      "mode": "-r--r--r--",
-      "owner": "root",
-      "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "content": "NAME=\"Void\"\nID=\"void\"\nPRETTY_NAME=\"Void Linux (portfolio edition)\"\nHOME_URL=\"https://voidlinux.org/\"\n",
-      "size": 101
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "fmmaciej.com virtual shell\nRead-only filesystem. Type help to begin.\n",
+      "size": 69
     },
     {
       "path": "/etc/passwd",
@@ -269,9 +409,9 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "content": "root:x:0:0:root:/root:/bin/sh\nfm:x:1000:1000:FM:/home/fm:/bin/sh\n",
-      "size": 65
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "root:x:0:0:root:/root:/bin/bash\noperator:x:303:303:System Operator:/home/operator:/bin/bash\nguest:x:1000:1000:Guest:/home/guest:/bin/bash\nfm:x:1001:1001:FM:/home/fm:/bin/bash\n",
+      "size": 175
     },
     {
       "path": "/etc/shadow",
@@ -279,7 +419,7 @@
       "mode": "-r--------",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -289,9 +429,19 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "/bin/sh\n/bin/bash\n",
       "size": 18
+    },
+    {
+      "path": "/etc/slackware-version",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "root",
+      "group": "root",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "Slackware 4.0\n",
+      "size": 14
     },
     {
       "path": "/home",
@@ -305,9 +455,9 @@
     {
       "path": "/home/fm",
       "type": "directory",
-      "mode": "dr-xr-xr-x",
+      "mode": "dr-xr-x---",
       "owner": "fm",
-      "group": "fm",
+      "group": "portfolio",
       "modified": "2026-09-26T00:00:00.000Z",
       "route": "/",
       "size": 0
@@ -343,42 +493,13 @@
     },
     {
       "path": "/home/fm/.matrix",
-      "type": "directory",
-      "mode": "dr-xr-xr-x",
+      "type": "symlink",
+      "mode": "lrwxrwxrwx",
       "owner": "fm",
-      "group": "fm",
+      "group": "matrix",
       "modified": "2026-03-10T00:00:00.000Z",
-      "size": 0
-    },
-    {
-      "path": "/home/fm/.matrix/choice.txt",
-      "type": "file",
-      "mode": "-r--r--r--",
-      "owner": "fm",
-      "group": "fm",
-      "modified": "2026-03-10T00:00:00.000Z",
-      "content": "status=pending\n",
-      "size": 15
-    },
-    {
-      "path": "/home/fm/.matrix/message.txt",
-      "type": "file",
-      "mode": "-r--r--r--",
-      "owner": "fm",
-      "group": "fm",
-      "modified": "2026-03-10T00:00:00.000Z",
-      "content": "Wake up, Neo...\nThe Matrix has you...\nFollow the white rabbit.\nKnock, knock, Neo.\n",
-      "size": 82
-    },
-    {
-      "path": "/home/fm/.matrix/white-rabbit.txt",
-      "type": "file",
-      "mode": "-r--r--r--",
-      "owner": "fm",
-      "group": "fm",
-      "modified": "2026-03-10T00:00:00.000Z",
-      "content": "        \"e.  \"$$$.\n         ^$$bc \"$$b\n           ^\"*$$c$$F\n                ^\"3$\n       .....   .z$$$$\"$.\n    .d$$$$$$$$$$$$$$$$$$%\n   J$$$$$$$$$$$$$$$$$\"\n  4$$$$$$$$$$$$$$$$$$\n  $$$$$$$$$$$$$$$$$$$\n  *$$$$$$$$$$$$$$$$\"\n . $$$$$$$$$$$$$$$F\n'$$$$$$$$$$$$$\"  *$.\n  \"\"\"\"\"\"\"\"\"\"\"\"\"   \"\"\"\"\n",
-      "size": 284
+      "target": "/home/guest/.matrix",
+      "size": 19
     },
     {
       "path": "/home/fm/.profile",
@@ -595,7 +716,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "route": "/music/bio/",
       "size": 0
     },
@@ -605,7 +726,7 @@
       "mode": "-r--r--r--",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "Stripped down to the basics, but with the details that matter most.\n\n# FM Bio\n\n## One-liner\n\nVinyl DJ since 2008, forged in the raw energy of dark drum and bass and his techstep mix series, now diving into the depths of techno and electro as a resident at Willa in Łódź.\n\n## Short\n\nCollecting vinyl since 2008, I debuted on the scene in 2010 with a sound rooted in dark and raw drum and bass. After a series of techstep mixes, I released my final dnb set in 2016 for NFSOP. I co-hosted the TechBreak radio show on break.fm, a project dedicated to late 90s and early 2000s techstep. Since then, my style has evolved toward slower tempos, exploring techno, electro, and related genres always anchored by the authenticity of vinyl. Currently, I’m a resident DJ at Willa in Łódź, refining my craft with every set.\n\n## Extended\n\nCollecting vinyl records since 2008, I made my debut on the scene in 2010. My early years were rooted in dark, raw sounds - neurofunk, technoid, amen breaks - culminating in techstep drum and bass. My love for drum and bass runs deep, dating back to the late '90s, and it shaped my approach to music selection. I’ve always sought out lesser-known artists, a hallmark of my mixes for those who take the time to listen.\n\nBetween 2012 and 2013, together with DJ Still, I co-hosted a radio show called TechBreak on  break.fm, an online station born from the legacy of the legendary Polish drum and bass forum dnb.pl. The show aired every other Tuesday for a year, spanning 23 episodes that highlighted the raw, dark energy of late 90s and early 2000s techstep and drum and bass. We invited Polish DJs devoted to that sound, creating a platform where underground selectors could share their passion. The full archive of TechBreak remains available at  mixcloud.com/techbreak, a time capsule of that uncompromising era.\n\nIn 2016, I released my final drum and bass mix as a podcast for Neurofunk Society of Poland (youtube.com/@nfsop3511). As time passed, my musical tastes matured, leading to a slower tempo and an exploration of techno, electro, and similar genres. My mixes, still infused with the same fervor and energy, are now characterized by intricate and nuanced rhythms, yet always anchored by the timeless appeal of vinyl records.\n\nCurrently, I’m a resident DJ at Willa in Łódź, continuing to refine my craft with every set.\n",
       "route": "/music/bio/",
       "openUrl": "/music/bio/",
@@ -7083,7 +7204,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "route": "/music/links/",
       "size": 0
     },
@@ -7093,7 +7214,7 @@
       "mode": "-r--r--r--",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "https://www.mixcloud.com/gsound/\n# have a listen to his mixes - worth it\n",
       "openUrl": "https://www.mixcloud.com/gsound/",
       "size": 73
@@ -7104,7 +7225,7 @@
       "mode": "-r--r--r--",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "https://soundcloud.com/skffmusic\n# a talented techno producer\n",
       "openUrl": "https://soundcloud.com/skffmusic",
       "size": 62
@@ -7115,7 +7236,7 @@
       "mode": "-r--r--r--",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "https://www.skylarkmusicstore.com\n# a place to dig for records and music gear\n",
       "openUrl": "https://www.skylarkmusicstore.com",
       "size": 78
@@ -7126,7 +7247,7 @@
       "mode": "-r--r--r--",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "https://www.facebook.com/Willa.w.parku.lodz/\n# a great spot to party or simply hang out\n",
       "openUrl": "https://www.facebook.com/Willa.w.parku.lodz/",
       "size": 88
@@ -8397,7 +8518,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "2025-03-21T00:00:00.000Z",
       "route": "/music/photos/",
       "size": 0
     },
@@ -8689,7 +8810,7 @@
       "mode": "-r--r--r--",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "Two things that really drew me to vinyl were the expense and the inconvenience.\n\nAll mixes and events are archived here.\n\nFeel free to download my press kit, which contains [/bio](/music/bio/), [/rider](/music/rider/), and [/photos](/music/photos/).\n",
       "route": "/music/",
       "openUrl": "/music/",
@@ -8701,7 +8822,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "route": "/music/rider/",
       "size": 0
     },
@@ -8711,7 +8832,7 @@
       "mode": "-r--r--r--",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "My basic technical and hospitality requirements.  \nI keep it minimal, but a few details are crucial to ensure a smooth performance.\n\n# FM Rider\n\n## Technical\n\n- 2 × Technics SL-1200/1210 turntables in excellent condition\n- High-quality DJ mixer\n- Optional: Pioneer CDJ / XDJ-1000 mk2\n- Stable and solid booth table - must minimize vibrations\n- Preferred: concrete slab under each turntable for stability\n- Needles and slipmats: I bring my own\n\n## Monitoring\n\n- I primarily play on headphones\n- Booth monitors are not required\n\n## Hospitality\n\n- Still or sparkling mineral water, sufficient supply for the duration of the performance\n- No alcohol or additional hospitality requirements\n",
       "route": "/music/rider/",
       "openUrl": "/music/rider/",
@@ -8723,7 +8844,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "fm",
       "group": "fm",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "2025-01-01T00:00:00.000Z",
       "route": "/projects/",
       "size": 0
     },
@@ -9200,30 +9321,178 @@
       "size": 15
     },
     {
+      "path": "/home/guest",
+      "type": "directory",
+      "mode": "dr-xr-xr-x",
+      "owner": "guest",
+      "group": "guest",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "size": 0
+    },
+    {
+      "path": "/home/guest/.matrix",
+      "type": "directory",
+      "mode": "dr-xr-x---",
+      "owner": "fm",
+      "group": "matrix",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "size": 0
+    },
+    {
+      "path": "/home/guest/.matrix/choice.txt",
+      "type": "file",
+      "mode": "-r--r-----",
+      "owner": "fm",
+      "group": "matrix",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "status=pending\n",
+      "size": 15
+    },
+    {
+      "path": "/home/guest/.matrix/exit",
+      "type": "directory",
+      "mode": "dr-xr-x---",
+      "owner": "fm",
+      "group": "matrix",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "size": 0
+    },
+    {
+      "path": "/home/guest/.matrix/exit/door.txt",
+      "type": "file",
+      "mode": "-r--r-----",
+      "owner": "fm",
+      "group": "matrix",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "  .-----------------------.\n  | .-------------------. |\n  | |                   | |\n  | |      [ ... ]      | |\n  | |         o         | |\n  | |                   | |\n  | |                   | |\n  | |                   | |\n  | |                   | |\n  | |  O                | |\n  | |                   | |\n  | |                   | |\n",
+      "size": 336
+    },
+    {
+      "path": "/home/guest/.matrix/exit/operator.log",
+      "type": "file",
+      "mode": "-r--r-----",
+      "owner": "fm",
+      "group": "matrix",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "MR. WIZARD REQUESTED EXTRACTION\n\nI got a patch on an old exit.\nWabash and Lake.\nA hotel.\n\n[transmission interrupted]\n",
+      "size": 117
+    },
+    {
+      "path": "/home/guest/.matrix/exit/trace.log",
+      "type": "file",
+      "mode": "-r--r-----",
+      "owner": "fm",
+      "group": "matrix",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "Watch the rabbit.\nCount the steps.\nMind what lies between.\n",
+      "size": 59
+    },
+    {
+      "path": "/home/guest/.matrix/message.txt",
+      "type": "file",
+      "mode": "-r--r-----",
+      "owner": "fm",
+      "group": "matrix",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "Wake up, Neo...\nThe Matrix has you...\nFollow the white rabbit.\nKnock, knock, Neo.\n",
+      "size": 82
+    },
+    {
+      "path": "/home/guest/.matrix/white-rabbit.txt",
+      "type": "file",
+      "mode": "-r--r-----",
+      "owner": "fm",
+      "group": "matrix",
+      "modified": "2026-03-10T00:00:00.000Z",
+      "content": "        \"e.  \"$$$.\n         ^$$bc \"$$b\n           ^\"*$$c$$F\n                ^\"3$\n       .....   .z$$$$\"$.\n    .d$$$$$$$$$$$$$$$$$$%\n   J$$$$$$$$$$$$$$$$$\"\n  4$$$$$$$$$$$$$$$$$$\n  $$$$$$$$$$$$$$$$$$$\n  *$$$$$$$$$$$$$$$$\"\n . $$$$$$$$$$$$$$$F\n'$$$$$$$$$$$$$\"  *$.\n  \"\"\"\"\"\"\"\"\"\"\"\"\"   \"\"\"\"\n",
+      "size": 284
+    },
+    {
+      "path": "/home/guest/.profile",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "guest",
+      "group": "guest",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "export PAGER=less\n",
+      "size": 18
+    },
+    {
+      "path": "/home/guest/LEAVE_ME_HERE",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "fm",
+      "group": "portfolio",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "login: fm\npassword: spoon\n",
+      "size": 26
+    },
+    {
+      "path": "/home/guest/README",
+      "type": "file",
+      "mode": "-r--r--r--",
+      "owner": "guest",
+      "group": "guest",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "Welcome, guest.\nThe filesystem is read-only. Try help and ls -la.\n",
+      "size": 66
+    },
+    {
+      "path": "/home/operator",
+      "type": "directory",
+      "mode": "dr-x------",
+      "owner": "operator",
+      "group": "operator",
+      "modified": "1999-05-23T03:03:00.000Z",
+      "size": 0
+    },
+    {
+      "path": "/home/operator/easter-eggs.txt",
+      "type": "file",
+      "mode": "-r--------",
+      "owner": "operator",
+      "group": "operator",
+      "modified": "1999-05-23T03:03:00.000Z",
+      "content": "[shell] The active shell\nLocation: terminal prompt\nThe decorative terminal is also an interactive, persistent shell.\n\n[leave-me-here] LEAVE_ME_HERE\nLocation: /home/guest/LEAVE_ME_HERE\nA conspicuously named file is left in the guest home directory.\n\n[delegated-navigation] Borrowed navigation\nLocation: mouse-driven portfolio navigation\nWhile guest is active, ordinary page clicks briefly borrow the fm account.\n\n[matrix] The Matrix directory\nLocation: /home/guest/.matrix\nThe hidden directory is visible to guest but sealed until the fm login.\n\n[rabbit] Follow the white rabbit\nLocation: /home/guest/.matrix/white-rabbit.txt\nThe rabbit appears both as a file and as a symbolic terminal command.\n\n[choice] The pending choice\nLocation: /home/guest/.matrix/choice.txt\nA future entrypoint exists but reports only a pending state.\n\n[spoon] There is no spoon\nLocation: /dev/spoon\nA device with an impossible name points somewhere familiar.\n\n[exit] The old exit\nLocation: /home/guest/.matrix/exit\nThree files describe a hotel, a trace and a door.\n\n[operator] Operator access\nLocation: /home/operator\nThe extraction trail leads to a privileged but non-root account.\n\n[slackware] Slackware 4.0\nLocation: /etc/slackware-version\nThe machine announces software from 1999.\n\n[clock] The falsified clock\nLocation: /var/log/timesync.log\nThe header and the date command disagree about the year.\n\n[root] The sealed root account\nLocation: /root\nThe last conventional escalation path exists but refuses authentication.\n",
+      "size": 1499
+    },
+    {
+      "path": "/home/operator/playbook.txt",
+      "type": "file",
+      "mode": "-r--------",
+      "owner": "operator",
+      "group": "operator",
+      "modified": "1999-05-23T03:03:00.000Z",
+      "content": "01. The active shell — terminal prompt\n02. LEAVE_ME_HERE — /home/guest/LEAVE_ME_HERE\n03. Borrowed navigation — mouse-driven portfolio navigation\n04. The Matrix directory — /home/guest/.matrix\n05. Follow the white rabbit — /home/guest/.matrix/white-rabbit.txt\n06. The pending choice — /home/guest/.matrix/choice.txt\n07. There is no spoon — /dev/spoon\n08. The old exit — /home/guest/.matrix/exit\n09. Operator access — /home/operator\n10. Slackware 4.0 — /etc/slackware-version\n11. The falsified clock — /var/log/timesync.log\n12. The sealed root account — /root\n",
+      "size": 582
+    },
+    {
+      "path": "/home/operator/README",
+      "type": "file",
+      "mode": "-r--------",
+      "owner": "operator",
+      "group": "operator",
+      "modified": "1999-05-23T03:03:00.000Z",
+      "content": "OPERATOR ARCHIVE\n\nplaybook.txt lists the intended route.\neaster-eggs.txt is the complete catalogue.\nsolutions.txt contains exact answers and credentials.\n\nThis archive is static. It does not track completed steps.\n",
+      "size": 214
+    },
+    {
+      "path": "/home/operator/solutions.txt",
+      "type": "file",
+      "mode": "-r--------",
+      "owner": "operator",
+      "group": "operator",
+      "modified": "1999-05-23T03:03:00.000Z",
+      "content": "[shell] The active shell\nLocation: terminal prompt\nActivate the prompt and use help, ls, cd, cat, open, history, date, uname and su.\n\n[leave-me-here] LEAVE_ME_HERE\nLocation: /home/guest/LEAVE_ME_HERE\ncat ~/LEAVE_ME_HERE reveals login fm and password spoon; run su - fm.\n\n[delegated-navigation] Borrowed navigation\nLocation: mouse-driven portfolio navigation\nA click displays su -c '<portfolio command>' fm and Password:, performs the public action, then restores guest without changing its cwd.\n\n[matrix] The Matrix directory\nLocation: /home/guest/.matrix\nAs fm, read ~/.matrix/message.txt and follow the white rabbit.\n\n[rabbit] Follow the white rabbit\nLocation: /home/guest/.matrix/white-rabbit.txt\nRun the hidden command 🐇; cmatrix is the related visual effect.\n\n[choice] The pending choice\nLocation: /home/guest/.matrix/choice.txt\ncat ~/.matrix/choice.txt returns status=pending; the interaction is intentionally inactive in this version.\n\n[spoon] There is no spoon\nLocation: /dev/spoon\nls -l /dev/spoon shows a symlink to /dev/null; cat /dev/spoon returns nothing.\n\n[exit] The old exit\nLocation: /home/guest/.matrix/exit\nCombine operator.log, trace.log and door.txt. The account is operator and the password is room303.\n\n[operator] Operator access\nLocation: /home/operator\nRun su - operator and enter room303. The operator home contains the complete playbook and solutions.\n\n[slackware] Slackware 4.0\nLocation: /etc/slackware-version\nRead /etc/slackware-version, /etc/issue and /proc/version; uname -a reports Linux 2.2.6.\n\n[clock] The falsified clock\nLocation: /var/log/timesync.log\ndate keeps the visitor's local month, day and time but forces 1999. The operator-only log confirms deliberate clock masking.\n\n[root] The sealed root account\nLocation: /root\nsu and su - target root, but root is intentionally locked in this version of the simulation.\n",
+      "size": 1857
+    },
+    {
       "path": "/lib",
       "type": "directory",
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "size": 0
-    },
-    {
-      "path": "/lib64",
-      "type": "directory",
-      "mode": "dr-xr-xr-x",
-      "owner": "root",
-      "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "size": 0
-    },
-    {
-      "path": "/media",
-      "type": "directory",
-      "mode": "dr-xr-xr-x",
-      "owner": "root",
-      "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9232,7 +9501,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9241,7 +9510,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9250,7 +9519,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9259,9 +9528,9 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "content": "processor\t: 0\nmodel name\t: Virtual portfolio CPU\ncpu cores\t: 1\n\n",
-      "size": 64
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "processor\t: 0\nmodel name\t: Pentium II (Deschutes)\ncpu MHz\t\t: 300.684\n\n",
+      "size": 70
     },
     {
       "path": "/proc/uptime",
@@ -9269,7 +9538,7 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "86400.00 82000.00\n",
       "size": 18
     },
@@ -9279,9 +9548,9 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "content": "Linux version 6.10.12_1 (void@fmmaciej.com) #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux\n",
-      "size": 84
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "Linux version 2.2.6 (root@zap) (gcc version egcs-2.91.66 19990314 (egcs-1.1.2 release)) #20 Tue Apr 27 15:23:25 CDT 1999\n",
+      "size": 121
     },
     {
       "path": "/root",
@@ -9289,16 +9558,7 @@
       "mode": "dr-x------",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "size": 0
-    },
-    {
-      "path": "/run",
-      "type": "directory",
-      "mode": "dr-xr-xr-x",
-      "owner": "root",
-      "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9307,25 +9567,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "size": 0
-    },
-    {
-      "path": "/srv",
-      "type": "directory",
-      "mode": "dr-xr-xr-x",
-      "owner": "root",
-      "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "size": 0
-    },
-    {
-      "path": "/sys",
-      "type": "directory",
-      "mode": "dr-xr-xr-x",
-      "owner": "root",
-      "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9334,7 +9576,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9343,7 +9585,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9352,7 +9594,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9361,7 +9603,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9371,7 +9613,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9381,7 +9623,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9391,7 +9633,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9401,7 +9643,17 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "",
+      "size": 0
+    },
+    {
+      "path": "/usr/bin/date",
+      "type": "executable",
+      "mode": "-r-xr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9411,7 +9663,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9421,7 +9673,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9431,7 +9683,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9441,7 +9693,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9451,7 +9703,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9461,7 +9713,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9471,7 +9723,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9481,7 +9733,17 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "",
+      "size": 0
+    },
+    {
+      "path": "/usr/bin/su",
+      "type": "executable",
+      "mode": "-r-xr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9491,7 +9753,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9501,7 +9763,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9511,7 +9773,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9520,7 +9782,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9529,7 +9791,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9538,7 +9800,7 @@
       "mode": "-r-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "",
       "size": 0
     },
@@ -9548,7 +9810,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9557,25 +9819,16 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T03:03:00.000Z",
       "size": 0
     },
     {
-      "path": "/var/cache",
+      "path": "/var/adm",
       "type": "directory",
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "size": 0
-    },
-    {
-      "path": "/var/lib",
-      "type": "directory",
-      "mode": "dr-xr-xr-x",
-      "owner": "root",
-      "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     },
     {
@@ -9584,7 +9837,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T03:03:00.000Z",
       "size": 0
     },
     {
@@ -9593,9 +9846,9 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "content": "[ OK ] runit: portfolio filesystem mounted read-only\n[ OK ] terminal: idle animator ready\n[ OK ] shell: deterministic commands ready\n",
-      "size": 133
+      "modified": "1999-05-23T00:00:00.000Z",
+      "content": "Linux version 2.2.6 (root@zap) #20 Tue Apr 27 15:23:25 CDT 1999\nCalibrating delay loop... 599.65 BogoMIPS\nChecking root filesystem:\n/dev/hda1: clean, 18421/131072 files, 79143/262144 blocks\nMounting local filesystems:\nStarting system logger:  /usr/sbin/syslogd\nStarting kernel logger:  /usr/sbin/klogd\nGoing multiuser...\n",
+      "size": 321
     },
     {
       "path": "/var/log/site.log",
@@ -9603,9 +9856,28 @@
       "mode": "-r--r--r--",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "content": "fmmaciej.com — served plain & simple\n",
       "size": 39
+    },
+    {
+      "path": "/var/log/timesync.log",
+      "type": "file",
+      "mode": "-r--r-----",
+      "owner": "operator",
+      "group": "operator",
+      "modified": "1999-05-23T03:03:00.000Z",
+      "content": "CLOCK MASK ACTIVE\n\nCalendar year pinned to 1999 for unprivileged processes.\nHeader clock remains attached to observer-local time.\nFuture-dated artefacts are simulation leakage, not filesystem corruption.\n",
+      "size": 204
+    },
+    {
+      "path": "/var/spool",
+      "type": "directory",
+      "mode": "dr-xr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "1999-05-23T00:00:00.000Z",
+      "size": 0
     },
     {
       "path": "/var/tmp",
@@ -9613,7 +9885,7 @@
       "mode": "dr-xr-xr-x",
       "owner": "root",
       "group": "root",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "modified": "1999-05-23T00:00:00.000Z",
       "size": 0
     }
   ]

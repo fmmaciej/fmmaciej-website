@@ -1,15 +1,17 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/music/events",
+            "cmd": "ls /home/fm/music/events",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "2026-07-11--audio-river/  2026-09-12--drum-bass/  2026-09-26--techno/  ..."
             ]
         },
         {
-            "cmd": "cat ~/music/events/2026-07-11--audio-river/README.md",
+            "cmd": "cat /home/fm/music/events/2026-07-11--audio-river/README.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "# AudioRiver",

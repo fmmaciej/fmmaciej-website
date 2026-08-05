@@ -1,13 +1,15 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/music/bio",
+            "cmd": "ls /home/fm/music/bio",
+            "runAs": "fm",
             "type": "text",
             "output": ["README.md"]
         },
         {
-            "cmd": "cat ~/music/bio/README.md",
+            "cmd": "cat /home/fm/music/bio/README.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "# Bio",

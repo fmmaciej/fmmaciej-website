@@ -48,9 +48,8 @@
     }
 
     function toShellPath(pathname) {
-        return buildTerminalPath(pathname)
-            .map((part) => part.label)
-            .join('');
+        const parts = buildTerminalPath(pathname);
+        return parts[parts.length - 1]?.shellPath || '/home/fm';
     }
 
     function buildShellPathFromLabels(labels = []) {

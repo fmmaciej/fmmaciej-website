@@ -1,13 +1,15 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "pwd",
+            "cmd": "cd /home/fm/music/events",
+            "runAs": "fm",
             "type": "text",
-            "output": ["/home/fm/music/events"]
+            "output": []
         },
         {
-            "cmd": "ls ~/music/events",
+            "cmd": "ls /home/fm/music/events",
+            "runAs": "fm",
             "type": "text",
             "output": ["Select an event directory to inspect its README.md and public media."]
         }

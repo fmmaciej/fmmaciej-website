@@ -314,6 +314,7 @@
 
                 if (window.playTerminalCommand && action.command) {
                     window.playTerminalCommand(action.command, {
+                        passwordPrompt: action.passwordPrompt,
                         resumeCycleAfterMs: action.resumeCycleAfterMs || 0
                     });
                     return;
@@ -324,6 +325,7 @@
 
             if (window.playTerminalCommand && action.command) {
                 window.playTerminalCommand(action.command, {
+                    passwordPrompt: action.passwordPrompt,
                     resumeCycleAfterMs: action.resumeCycleAfterMs || 0
                 }).then(runAction);
                 return;
