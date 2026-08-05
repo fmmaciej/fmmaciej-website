@@ -25,6 +25,11 @@ Aktualny kontrakt subsystemu opisuje [docs/terminal.md](terminal.md).
   lokalnym `tools/README_owner_proof.md`.
 - [x] Dodać dla proof doradcze nagłówki `no-store` w publikowanym `.htaccess` i
   test smoke potwierdzający politykę, nagłówki oraz brak proof w zwykłym buildzie.
+- [x] Dodać lokalny tryb współtworzenia chronionych treści: ignorowany token,
+  publiczny digest SHA-256, bezpieczny `llm-maintainer:check`, human-only
+  init/rotację/revoke oraz testy bez ujawniania wartości tokenu.
+- [ ] Aktywować lokalny tryb ręcznym `npm run llm-maintainer:init` i zatwierdzić
+  wyłącznie wygenerowany publiczny digest; lokalny token ma pozostać ignorowany.
 - [ ] Wykonać produkcyjną próbę end-to-end na OVH z nowym challenge: wygenerować
   lokalny plik, wysłać go ręcznie, potwierdzić HTTPS `200`, canonical origin,
   dokładne body i nagłówki cache, przeprowadzić jednokrotną weryfikację, a potem
@@ -34,6 +39,8 @@ Aktualny kontrakt subsystemu opisuje [docs/terminal.md](terminal.md).
 Owner proof pozostaje dobrowolnym protokołem dla współpracujących modeli i
 dowodzi wyłącznie bieżącej kontroli nad deploymentem. Nie jest formalnym
 uwierzytelnieniem ani zamiennikiem filtrów wymaganych przez przyszłe `ask`.
+Lokalny tryb maintenera jest odrębną zdolnością bieżącego worktree i służy
+wyłącznie do prac nad chronioną treścią, bez uprawnień publikacyjnych.
 
 ## Warunek rozpoczęcia prac nad `ask` — polityka bez spoilerów
 

@@ -76,6 +76,10 @@ test('no-spoiler policy is copied unchanged and signaled from every public entry
   assert.ok(builtPolicy.includes('expires 10 minutes after it is generated'));
   assert.ok(builtPolicy.includes('mark the challenge used before performing any network request'));
   assert.ok(builtPolicy.includes('current deployment of the domain at that moment'));
+  assert.ok(builtPolicy.includes('npm run --silent llm-maintainer:check'));
+  assert.ok(builtPolicy.includes('single output line `AUTHORIZED`'));
+  assert.ok(builtPolicy.includes('current conversation and the current working tree'));
+  assert.ok(builtPolicy.includes('does not authorize deployment'));
   assert.match(
     html,
     /<head>\s*<!--[\s\S]*?https:\/\/www\.fmmaciej\.com\/llms\.txt[\s\S]*?-->\s*<meta charset="utf-8" \/>/
@@ -107,6 +111,8 @@ test('no-spoiler policy is copied unchanged and signaled from every public entry
     /Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"/
   );
   assert.equal(fs.existsSync('www/.well-known/llm-owner-proof.txt'), false);
+  assert.equal(fs.existsSync('www/.llm-maintainer-key'), false);
+  assert.equal(fs.existsSync('www/tools/.llm-maintainer-key'), false);
 });
 
 test('terminal JSON resources publish policy metadata as their first field', () => {

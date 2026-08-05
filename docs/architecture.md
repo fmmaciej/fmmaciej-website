@@ -284,11 +284,12 @@ Najważniejsze polecenia:
 | `npx playwright install chromium webkit` | Instalacja Chromium i WebKit wymaganych przez E2E. |
 | `npm run dev` | Serwer developerski Eleventy z obserwowaniem zmian. |
 | `npm run build` | Standardowy build `src/` → `www/` i zapis hasha źródeł. |
-| `npm test` | Wszystkie testy danych, terminala, runtime i lokalnego owner proof. |
+| `npm test` | Wszystkie testy danych, terminala, runtime, owner proof i lokalnego trybu maintenera. |
 | `npm run test:data` | Testy czystych builderów i adapterów danych. |
 | `npm run test:terminal` | Testy filesystemu, komend, sesji, selektora idle, profili, schedulera, modelu Matrixa i spójności treści. |
 | `npm run test:runtime` | Testy anulowania/fallbacku nawigacji, lazy init, retry i bootu. |
 | `npm run test:owner-proof` | Testy walidacji, eksportu i idempotentnego czyszczenia lokalnego owner proof. |
+| `npm run test:llm-maintainer` | Testy generowania, lokalnej weryfikacji, rotacji, odwołania i izolacji tokenu maintenera. |
 | `npm run test:smoke` | Kontrola wygenerowanego HTML oraz publikacji i odwołań do `/llms.txt` po `npm run build`. |
 | `npm run test:e2e` | Testy Playwright w Chromium desktop/mobile i WebKit/iPhone. |
 | `npm run test:e2e:iphone` | Wyłącznie projekt WebKit z emulowanym iPhone 16 Pro. |
@@ -323,6 +324,13 @@ operator wysyła wyłącznie plik proof ręcznie przez FTP/SFTP do document root
 domeny. Zapobiega to zapisaniu challenge w źródłach lub historii gałęzi
 `ovh-deploy`. Prosta instrukcja operatora pozostaje lokalnie w
 `tools/README_owner_proof.md`.
+
+Lokalny tryb maintenera jest odrębny od owner proof. Human-only komenda tworzy
+256-bitowy token w ignorowanym `tools/.llm-maintainer-key`, a repozytorium
+przechowuje wyłącznie jego SHA-256. Agent może uruchomić tylko niemodyfikujący
+`npm run --silent llm-maintainer:check`; sukces zezwala na współtworzenie
+chronionej treści w bieżącej rozmowie i worktree, ale nie na deployment ani
+dostęp do zewnętrznych kont. Czysty klon i zwykły build nie zawierają tokenu.
 
 ## Typowe punkty rozszerzania
 
