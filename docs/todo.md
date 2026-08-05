@@ -88,7 +88,7 @@ przekazywać chronionych źródeł do modelu po samej deklaracji użytkownika.
   autouzupełniania oraz atrap `/bin` i `/usr/bin`. Rejestr musi zawierać jawne
   metadane widoczności dla każdego z tych interfejsów, aby komendy-easter eggi
   mogły działać i podlegać completion bez pojawiania się w `help`.
-- [ ] Zdefiniować ogólny kontrakt rendererów obejmujący start, asynchroniczne
+- [x] Zdefiniować ogólny kontrakt rendererów obejmujący start, asynchroniczne
   zakończenie, anulowanie i reduced motion; włączyć do niego wyspecjalizowany
   helper Matrixa bez zmiany zachowania `cmatrix`.
 - [ ] Wydzielić publiczny profil z kontaktem, CV i linkami. Layout, treść strony

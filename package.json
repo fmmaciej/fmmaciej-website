@@ -25,7 +25,7 @@
         "generate:instagram": "node scripts/generate-instagram.js",
         "test:data": "node --test tests/data-builders.test.js",
         "test:instagram": "node --test tests/instagram-events.test.js tests/instagram-story.test.js",
-        "test:terminal": "node --test tests/terminal.test.js tests/terminal-idle.test.js tests/terminal-matrix.test.js",
+        "test:terminal": "node --test tests/terminal.test.js tests/terminal-idle.test.js tests/terminal-matrix.test.js tests/terminal-ascii-video.test.js",
         "test:runtime": "node --test tests/runtime-reliability.test.js",
         "test:owner-proof": "node --test tests/owner-proof.test.js",
         "test:llm-maintainer": "node --test tests/llm-maintainer.test.js",

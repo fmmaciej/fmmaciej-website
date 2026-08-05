@@ -94,7 +94,9 @@ publiczne treści, przekazuje je do buildera i publikuje wynik jako:
 Manifest w schemacie 2 ma `contentId`, metadane systemu, `defaultUser`, mapy
 `accounts` i `groups` oraz listę wpisów. Konta zawierają UID/GID, katalog
 domowy, powłokę, grupy dodatkowe i dane zagadki uwierzytelniania. `contentId`
-zmienia się razem z zawartością i kontraktem kont.
+zmienia się razem z zawartością i kontraktem kont. Plik może opcjonalnie mieć
+deskryptor `media`; `ascii-video` przechowuje klatki, czas klatki i czas
+zatrzymania finału bez zmiany wersji kompatybilnego schematu.
 
 ## Wirtualny system plików
 
@@ -224,6 +226,7 @@ nawigację przeglądarki.
 | `terminal.js` | Animator idle, ścieżka strony, zegar, output w tle i lifecycle. |
 | `terminal-idle-core.js` | Selekcja pul, profile tempa i sekwencyjny scheduler idle. |
 | `terminal-matrix.js` | Współdzielony model i canvas dekoracyjnego efektu Matrixa. |
+| `terminal-ascii-video.js` | Anulowalne odtwarzanie tekstowych klatek z obsługą reduced motion. |
 | `terminal-shell-core.js` | Czysta logika filesystemu, parsera, komend i sesji. |
 | `terminal-shell-coordinator.js` | Współdzielone ładowanie manifestu i stany runtime. |
 | `terminal-shell.js` | DOM aktywnego shella, fokus, klawiatura, transcript i akcje. |
@@ -241,6 +244,13 @@ aktualnym DOM i nie tworzy równoległych cykli animacji.
 załadowaniu dokumentu, ale nie podczas częściowej nawigacji. Idempotentny
 kontroler chroni przed wieloma overlayami i czyści wszystkie timery; reduced
 motion pomija animowaną sekwencję.
+
+Efekty aktywnego shella korzystają ze wspólnego kontraktu `start`, `finished`
+i `cancel`. Shell blokuje input, ustawia `aria-busy`, publikuje tekstowy status
+i anuluje efekt przy przerwaniu, zwinięciu, zmianie bindingu lub nawigacji.
+`cmatrix` zachowuje dotychczasowy canvas, natomiast `xanim` odtwarza pliki z
+deskryptorem `ascii-video` i po zakończeniu zapisuje ostatnią klatkę w
+transcripcie. Przy reduced motion od razu pokazuje dostępny finał.
 
 ## Trwała sesja
 
@@ -269,7 +279,7 @@ powodują bezpieczny reset do `/home/guest`. Stary klucz v1 jest usuwany.
 - Tab przenosi fokus na aktywator, Enter/Space otwiera shell;
 - w aktywnym shellu Tab autouzupełnia, strzałki przeglądają historię;
 - Escape zwija terminal albo anuluje prompt hasła, `Ctrl+L` czyści transcript,
-  a `Ctrl+C` czyści input, anuluje hasło albo przerywa aktywny `cmatrix`;
+  a `Ctrl+C` czyści input, anuluje hasło albo przerywa aktywny efekt;
 - aktywator utrzymuje `aria-expanded`, transcript ma semantykę logu, a input
   posiada etykietę dla technologii asystujących;
 - fokus nie jest zamykany w terminalu jak w modalu;
@@ -306,14 +316,16 @@ bazy danych.
 
 ### Nowa komenda deterministyczna
 
-Komenda powinna zostać dodana do czystego rdzenia, `help`, autouzupełniania oraz
-atrapy katalogów poleceń. Musi zwracać tekst lub jawny deskryptor akcji, a jej
-zachowanie wymaga testów jednostkowych.
+Komenda powinna zostać dodana do czystego rdzenia, autouzupełniania oraz atrapy
+katalogów poleceń. Zwykłe komendy trafiają również do `help`, natomiast
+zamierzone komendy ukryte mogą pozostać wyłącznie w completion. Komenda musi
+zwracać tekst lub jawny deskryptor akcji, a jej zachowanie wymaga testów
+jednostkowych.
 
 Obecnie miejsca te są synchronizowane ręcznie. Następny refaktor ma zastąpić je
-rejestrem komend oraz ogólnym kontraktem rendererów. Do tego czasu nowe efekty
-nie powinny rozszerzać wyspecjalizowanego helpera Matrixa o niepowiązane typy.
-Szczegółowy zakres dalszych porządków znajduje się w
+rejestrem komend. Renderery mają już ogólny kontrakt lifecycle; nowe efekty
+powinny dostarczać osobny helper zamiast rozszerzać wyspecjalizowany moduł
+Matrixa. Szczegółowy zakres dalszych porządków znajduje się w
 [docs/todo.md](todo.md).
 
 ### Przyszłe `ask`
@@ -333,7 +345,8 @@ udzielania wskazówek. Szczegółowe zadania zapisano w
 ## Testowanie i walidacja
 
 `npm run test:terminal` uruchamia testy buildera filesystemu, parsera, poleceń,
-uprawnień, sesji, selektora idle, profili czasu, schedulera i modelu efektu.
+uprawnień, sesji, selektora idle, profili czasu, schedulera oraz rendererów
+Matrixa i ASCII video.
 Testy mechanizmu korzystają z neutralnych fixture'ów i asercji właściwości,
 natomiast katalog redakcyjny ma osobny test schematu bez kopiowania jego treści.
 

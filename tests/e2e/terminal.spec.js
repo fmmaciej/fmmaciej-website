@@ -100,6 +100,23 @@ async function installProtectedIdleConfig(page, options = {}) {
   });
 }
 
+async function installVideoManifest(page, timing = {}) {
+  const manifest = structuredClone(editorialManifest);
+  const hotel = manifest.entries.find(
+    (entry) => entry.path === '/home/guest/.matrix/exit/hotel.avi'
+  );
+  if (!hotel?.media) throw new Error('Missing editorial ASCII video');
+  Object.assign(hotel.media, timing);
+  await page.route('**/assets/terminal/filesystem.json', (route) => {
+    return route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify(manifest)
+    });
+  });
+  return hotel.media.frames;
+}
+
 test('the filesystem manifest stays lazy and the shell supports commands and completion', async ({ page }) => {
   const manifestRequests = [];
   page.on('request', (request) => {
@@ -183,6 +200,80 @@ test('nested authentication does not leak passwords', async ({ page }) => {
   await restored.input.fill('exit');
   await restored.input.press('Enter');
   await expect(page.locator('#terminalShellPrompt')).toContainText('[guest@void]');
+});
+
+test('xanim plays the protected clip and persists its final frame', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  const frames = await installVideoManifest(page, { frameDurationMs: 500, finalHoldMs: 500 });
+  await gotoPath(page, '/');
+  const { input } = await activateShell(page);
+  await loginAs(page, input, 'fm', credentialFor('fm'));
+
+  await input.fill('cd ~/.matrix/exit');
+  await input.press('Enter');
+  await input.fill('xanim hotel.avi');
+  await input.press('Enter');
+
+  const panel = page.locator('#terminalShellPanel');
+  const surface = page.locator('.terminal-ascii-video');
+  await expect(surface).toBeVisible();
+  await expect(input).toHaveAttribute('readonly', '');
+  await expect(panel).toHaveAttribute('aria-busy', 'true');
+  await expect(page.locator('#terminalShellEffectStatus')).toHaveText(
+    'xanim playing hotel.avi; press Control+C to stop'
+  );
+  const fits = await surface.evaluate((element) => ({
+    horizontal: element.scrollWidth <= element.clientWidth,
+    vertical: element.scrollHeight <= element.clientHeight
+  }));
+  expect(fits).toEqual({ horizontal: true, vertical: true });
+
+  await expect(surface).toHaveCount(0, { timeout: 4_000 });
+  await expect(page.locator('.terminal-shell-output').last()).toHaveText(frames.at(-1));
+  await expect(input).not.toHaveAttribute('readonly', '');
+  await expect(panel).not.toHaveAttribute('aria-busy', 'true');
+  await expect(page.locator('#terminalShellEffectStatus')).toHaveText('');
+
+  const stored = JSON.parse(await page.evaluate(() => localStorage.getItem('terminalShell:v2')));
+  expect(stored.transcript.at(-1).output).toBe(frames.at(-1));
+});
+
+test('xanim supports interruption and cleans up when the shell collapses', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await installVideoManifest(page, { frameDurationMs: 1000, finalHoldMs: 3000 });
+  await gotoPath(page, '/');
+  const { activatorState, input } = await activateShell(page);
+  await loginAs(page, input, 'fm', credentialFor('fm'));
+  await input.fill('xanim ~/.matrix/exit/hotel.avi');
+  await input.press('Enter');
+  await expect(page.locator('.terminal-ascii-video')).toBeVisible();
+
+  await input.press('Control+C');
+  await expect(page.locator('.terminal-ascii-video')).toHaveCount(0);
+  await expect(page.locator('.terminal-shell-output').last()).toHaveText('^C');
+  await expect(input).not.toHaveAttribute('readonly', '');
+
+  await input.fill('xanim ~/.matrix/exit/hotel.avi');
+  await input.press('Enter');
+  await expect(page.locator('.terminal-ascii-video')).toBeVisible();
+  await input.press('Escape');
+  await expect(page.locator('.terminal-ascii-video')).toHaveCount(0);
+  await expect(activatorState).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#terminalShellPanel')).toBeHidden();
+});
+
+test('xanim exposes the final clue without motion when reduced motion is requested', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const frames = await installVideoManifest(page);
+  await gotoPath(page, '/');
+  const { input } = await activateShell(page);
+  await loginAs(page, input, 'fm', credentialFor('fm'));
+  await input.fill('xanim ~/.matrix/exit/hotel.avi');
+  await input.press('Enter');
+
+  await expect(page.locator('.terminal-ascii-video')).toHaveCount(0);
+  await expect(page.locator('.terminal-shell-output').last()).toHaveText(frames.at(-1));
+  await expect(input).not.toHaveAttribute('readonly', '');
 });
 
 test('one-command authentication restores the prior session', async ({ page }) => {
@@ -288,9 +379,12 @@ test('a long idle command is limited to one visible line', async ({ page }) => {
     const viewport = element.closest('.terminal-viewport');
     const viewportRect = viewport.getBoundingClientRect();
     const style = getComputedStyle(typedElement);
+    const typedRect = typedElement.getBoundingClientRect();
     return {
       lineHeight: Number.parseFloat(getComputedStyle(element).lineHeight),
       height: commandRect.height,
+      typedLineHeight: Number.parseFloat(style.lineHeight),
+      typedHeight: typedRect.height,
       commandFitsViewport: commandRect.right <= viewportRect.right + 1,
       typedOverflow: typedElement.scrollWidth > typedElement.clientWidth,
       typedWhiteSpace: style.whiteSpace,
@@ -299,7 +393,7 @@ test('a long idle command is limited to one visible line', async ({ page }) => {
     };
   });
 
-  expect(measurements.height).toBeLessThanOrEqual(measurements.lineHeight + 1);
+  expect(measurements.typedHeight).toBeLessThanOrEqual(measurements.typedLineHeight + 1);
   expect(measurements.commandFitsViewport).toBe(true);
   expect(measurements.typedOverflow).toBe(true);
   expect(measurements.typedWhiteSpace).toBe('nowrap');

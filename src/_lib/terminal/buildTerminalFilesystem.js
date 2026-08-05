@@ -51,6 +51,65 @@ const GROUPS = {
   matrix: { name: "matrix", gid: 1101, members: ["fm", "operator"] }
 };
 
+const EXIT_DOOR_FRAMES = Object.freeze([
+  [
+    "  .-----------------------.",
+    "  | .-------------------. |",
+    "  | |                   | |",
+    "  | |      [ ... ]      | |",
+    "  | |         o         | |",
+    "  | |                   | |",
+    "  | |                   | |",
+    "  | |                   | |",
+    "  | |                   | |",
+    "  | |  O                | |",
+    "  | |                   | |",
+    "  | |                   | |"
+  ].join("\n"),
+  [
+    "  .-----------------------.",
+    "  | .-------------------. |",
+    "  | |    |              | |",
+    "  | |    |     [ ... ]  | |",
+    "  | |    |        o     | |",
+    "  | |    |              | |",
+    "  | |    |              | |",
+    "  | |    |              | |",
+    "  | |    |  O           | |",
+    "  | |   /|              | |",
+    "  | |    |              | |",
+    "  | |    |              | |"
+  ].join("\n"),
+  [
+    "  .-----------------------.",
+    "  | .-------------------. |",
+    "  | |              |    | |",
+    "  | |              | |  | |",
+    "  | |              |  o|| |",
+    "  | |       _____  |    | |",
+    "  | |      (.---.)-|    | |",
+    "  | |     / /:::\\ _|O   | |",
+    "  | |    / '-----' |    | |",
+    "  | |   /__________|    | |",
+    "  | |        |     |    | |",
+    "  | |        |     |    | |"
+  ].join("\n"),
+  [
+    "  .-----------------------.",
+    "  | .-------------------. |",
+    "  | |                  || |",
+    "  | |                  || |",
+    "  | |                  || |",
+    "  | |       _____      || |",
+    "  | |      (.---.)-._.-|| |",
+    "  | |     / /:::\\ _.---|| |",
+    "  | |    / '-----'     || |",
+    "  | |   /______________|| |",
+    "  | |        |         || |",
+    "  | |        |         || |"
+  ].join("\n")
+]);
+
 function normalizeFsPath(value) {
   if (!value) return "/";
   const normalized = path.posix.normalize(value.startsWith("/") ? value : `/${value}`);
@@ -88,9 +147,14 @@ function buildTerminalFilesystem(input = {}) {
     ["content", "target", "route", "openUrl", "download", "deviceBehavior"].forEach((key) => {
       if (entry[key] !== undefined && entry[key] !== null) normalized[key] = entry[key];
     });
+    if (entry.media !== undefined && entry.media !== null) {
+      normalized.media = structuredClone(entry.media);
+    }
 
     if (entry.type === "file" || entry.type === "executable") {
-      normalized.size = textSize(entry.content);
+      normalized.size = entry.media?.type === "ascii-video"
+        ? textSize((entry.media.frames || []).join("\f"))
+        : textSize(entry.content);
     } else if (entry.type === "symlink") {
       normalized.size = textSize(entry.target);
     } else {
@@ -154,7 +218,7 @@ function buildTerminalFilesystem(input = {}) {
   directory("/", { mode: "dr-xr-xr-x" });
   [
     "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/mnt", "/opt", "/proc",
-    "/sbin", "/tmp", "/usr", "/usr/bin", "/usr/lib", "/usr/local", "/usr/local/bin",
+    "/sbin", "/tmp", "/usr", "/usr/X11R6", "/usr/X11R6/bin", "/usr/bin", "/usr/lib", "/usr/local", "/usr/local/bin",
     "/usr/share", "/var", "/var/adm", "/var/log", "/var/spool", "/var/tmp"
   ].forEach((fsPath) => directory(fsPath));
   directory("/root", { mode: "dr-x------" });
@@ -214,6 +278,7 @@ function buildTerminalFilesystem(input = {}) {
   ["cd", "exit"].forEach((command) => executable(`/usr/bin/${command}`));
   symlink("/bin/sh", "/usr/bin/sh");
   executable("/usr/bin/sh");
+  executable("/usr/X11R6/bin/xanim");
   executable("/usr/local/bin/open");
 
   directory("/home/guest", { owner: "guest", group: "guest", modified: GUEST_DATE, mode: "dr-xr-xr-x" });
@@ -265,6 +330,7 @@ function buildTerminalFilesystem(input = {}) {
     "I got a patch on an old exit.",
     "Wabash and Lake.",
     "A hotel.",
+    "Recovered footage. The old X display still has XAnim.",
     "",
     "[transmission interrupted]",
     ""
@@ -275,21 +341,21 @@ function buildTerminalFilesystem(input = {}) {
     "Mind what lies between.",
     ""
   ].join("\n"), { owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----" });
-  file("/home/guest/.matrix/exit/door.txt", [
-    "  .-----------------------.",
-    "  | .-------------------. |",
-    "  | |                   | |",
-    "  | |      [ ... ]      | |",
-    "  | |         o         | |",
-    "  | |                   | |",
-    "  | |                   | |",
-    "  | |                   | |",
-    "  | |                   | |",
-    "  | |  O                | |",
-    "  | |                   | |",
-    "  | |                   | |",
-    ""
-  ].join("\n"), { owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----" });
+  file("/home/guest/.matrix/exit/door.txt", `${EXIT_DOOR_FRAMES[0]}\n`, {
+    owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----"
+  });
+  file("/home/guest/.matrix/exit/hotel.avi", "", {
+    owner: "fm",
+    group: "matrix",
+    modified: FM_DATE,
+    mode: "-r--r-----",
+    media: {
+      type: "ascii-video",
+      frames: EXIT_DOOR_FRAMES,
+      frameDurationMs: 700,
+      finalHoldMs: 2000
+    }
+  });
   symlink("/home/fm/.matrix", "/home/guest/.matrix", { owner: "fm", group: "matrix", modified: FM_DATE });
 
   file("/home/fm/about.md", source.about || "", {

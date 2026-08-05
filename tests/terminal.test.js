@@ -135,6 +135,16 @@ test("filesystem builder is immutable, deterministic, and schema-valid", () => {
   });
   assert.ok(manifest.entries.some((entry) => entry.type === "symlink"));
   assert.ok(manifest.entries.some((entry) => entry.type === "device"));
+
+  const door = manifest.entries.find((entry) => entry.path.endsWith("/.matrix/exit/door.txt"));
+  const hotel = manifest.entries.find((entry) => entry.path.endsWith("/.matrix/exit/hotel.avi"));
+  assert.ok(door);
+  assert.ok(hotel);
+  assert.equal(hotel.media.type, "ascii-video");
+  assert.equal(hotel.media.frames.length, 4);
+  assert.equal(door.content, `${hotel.media.frames[0]}\n`);
+  assert.equal(hotel.size, Buffer.byteLength(hotel.media.frames.join("\f"), "utf8"));
+  assert.ok(manifest.entries.some((entry) => entry.path === "/usr/X11R6/bin/xanim"));
 })
 
 test("synthetic protected content is mapped without editorial details", () => {
@@ -235,8 +245,21 @@ test("shell executes public filesystem commands and dispatches actions", () => {
   assert.deepEqual(effect.action, { type: "effect", name: "matrix" });
   assert.equal(effect.output, "");
 
+  const hotel = fs.manifest.entries.find((entry) => entry.path.endsWith("/.matrix/exit/hotel.avi"));
+  const video = shell.executeCommand(fs, fmState, `xanim ${hotel.path}`);
+  assert.deepEqual(video.action, {
+    type: "effect",
+    name: "ascii-video",
+    path: hotel.path,
+    frames: hotel.media.frames,
+    frameDurationMs: 700,
+    finalHoldMs: 2000
+  });
+  assert.equal(video.output, "");
+
   const help = shell.executeCommand(fs, state(), "help").output;
   assert.match(help, /cmatrix/);
+  assert.doesNotMatch(help, /xanim/);
   assert.equal(shell.executeCommand(fs, state(), "whoami").output, fmState.user);
   assert.ok(shell.executeCommand(fs, state(), "uname -a").output.length > 0);
 })
@@ -250,6 +273,10 @@ test("tab completion expands commands and paths", () => {
   assert.deepEqual(shell.completeInput(fs, "cma", "/home/fm"), {
     value: "cmatrix ",
     candidates: ["cmatrix"]
+  });
+  assert.deepEqual(shell.completeInput(fs, "xan", "/home/fm"), {
+    value: "xanim ",
+    candidates: ["xanim"]
   });
   assert.deepEqual(shell.completeInput(fs, "🐇", "/home/fm"), {
     value: "🐇 ",
@@ -304,6 +331,43 @@ test("access control separates onboarding, portfolio, and protected entries", ()
   assert.equal(
     shell.executeCommand(fs, guest, "cd /home/fm/projects").output,
     "cd: /home/fm/projects: Permission denied"
+  );
+});
+
+test("xanim validates operands, paths, permissions, media, and binary cat output", () => {
+  const fs = shell.createFilesystem(fixture());
+  const fm = state("/home/fm", "fm");
+  const guest = state("/home/guest", "guest");
+  const hotelPath = "/home/guest/.matrix/exit/hotel.avi";
+
+  assert.equal(shell.executeCommand(fs, fm, "xanim").output, "xanim: missing operand");
+  assert.equal(
+    shell.executeCommand(fs, fm, `xanim ${hotelPath} door.txt`).output,
+    "xanim: too many operands"
+  );
+  assert.equal(
+    shell.executeCommand(fs, fm, "xanim /missing.avi").output,
+    "xanim: /missing.avi: No such file or directory"
+  );
+  assert.equal(
+    shell.executeCommand(fs, fm, "xanim /home/fm").output,
+    "xanim: /home/fm: Is a directory"
+  );
+  assert.equal(
+    shell.executeCommand(fs, fm, "xanim /home/fm/about.md").output,
+    "xanim: /home/fm/about.md: unsupported media format"
+  );
+  assert.equal(
+    shell.executeCommand(fs, guest, `xanim ${hotelPath}`).output,
+    `xanim: ${hotelPath}: Permission denied`
+  );
+  assert.equal(
+    shell.executeCommand(fs, fm, `cat ${hotelPath}`).output,
+    `cat: ${hotelPath}: binary output suppressed`
+  );
+  assert.equal(
+    shell.executeCommand(fs, fm, `open ${hotelPath}`).output,
+    `open: ${hotelPath}: No application is associated with this path`
   );
 });
 

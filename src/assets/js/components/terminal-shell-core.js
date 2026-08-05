@@ -17,7 +17,7 @@
 })(typeof window !== 'undefined' ? window : null, function terminalShellCoreFactory() {
     const COMMANDS = [
         'cat', 'cd', 'clear', 'cmatrix', 'date', 'exit', 'help', 'history',
-        'hostname', 'ls', 'open', 'pwd', 'su', 'uname', 'whoami', '🐇'
+        'hostname', 'ls', 'open', 'pwd', 'su', 'uname', 'whoami', 'xanim', '🐇'
     ];
     const SESSION_VERSION = 2;
     const MAX_HISTORY = 100;
@@ -556,6 +556,32 @@
             return { state: nextState, output: sections.join('\n\n') };
         }
 
+        if (command === 'xanim') {
+            if (!args.length) return { state: nextState, output: 'xanim: missing operand' };
+            if (args.length > 1) return { state: nextState, output: 'xanim: too many operands' };
+            const target = args[0];
+            const resolved = filesystem.resolve(target, nextState.cwd, { user: active.name });
+            if (resolved.error) return fail(target, resolved.error);
+            const entry = resolved.entry;
+            if (entry.type === 'directory') return fail(target, 'Is a directory');
+            if (!filesystem.canRead(entry, active)) return fail(target, 'Permission denied');
+            if (entry.media?.type !== 'ascii-video' || !Array.isArray(entry.media.frames)) {
+                return fail(target, 'unsupported media format');
+            }
+            return {
+                state: nextState,
+                output: '',
+                action: {
+                    type: 'effect',
+                    name: 'ascii-video',
+                    path: resolved.path,
+                    frames: entry.media.frames.map(String),
+                    frameDurationMs: Number(entry.media.frameDurationMs) || 700,
+                    finalHoldMs: Number(entry.media.finalHoldMs) || 2000
+                }
+            };
+        }
+
         if (command === 'cat') {
             if (!args.length) return { state: nextState, output: 'cat: missing operand' };
             const output = [];
@@ -568,6 +594,7 @@
                 const entry = resolved.entry;
                 if (entry.type === 'directory') output.push(`cat: ${target}: Is a directory`);
                 else if (!filesystem.canRead(entry, active)) output.push(`cat: ${target}: Permission denied`);
+                else if (entry.media) output.push(`cat: ${target}: binary output suppressed`);
                 else if (entry.type === 'device' && entry.deviceBehavior === 'null') output.push('');
                 else if (entry.type === 'device') output.push(`cat: ${target}: Operation not supported`);
                 else output.push(entry.content || '');

@@ -58,8 +58,8 @@
       "id": "exit",
       "title": "The old exit",
       "location": "/home/guest/.matrix/exit",
-      "clue": "Three files describe a hotel, a trace and a door.",
-      "solution": "Combine operator.log, trace.log and door.txt. The account is operator and the password is room303."
+      "clue": "Logs, a door and recovered footage point to an old hotel exit.",
+      "solution": "Combine operator.log and trace.log, inspect door.txt, then run xanim hotel.avi. The account is operator and the password is room303."
     },
     {
       "id": "operator",

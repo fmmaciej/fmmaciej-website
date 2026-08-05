@@ -40,9 +40,14 @@ test('built homepage loads boot and runtime coordinators exactly once and in ord
   assert.equal(count(/\/assets\/js\/components\/terminal-shell-coordinator\.js/g), 1);
   assert.equal(count(/\/assets\/js\/components\/terminal-idle-core\.js/g), 1);
   assert.equal(count(/\/assets\/js\/components\/terminal-matrix\.js/g), 1);
+  assert.equal(count(/\/assets\/js\/components\/terminal-ascii-video\.js/g), 1);
   assert.equal(count(/\/assets\/js\/core\/navigation-coordinator\.js/g), 1);
   assert.ok(
     html.indexOf('/assets/js/components/terminal-matrix.js')
+      < html.indexOf('/assets/js/components/terminal-shell.js')
+  );
+  assert.ok(
+    html.indexOf('/assets/js/components/terminal-ascii-video.js')
       < html.indexOf('/assets/js/components/terminal-shell.js')
   );
   assert.ok(
@@ -183,12 +188,14 @@ test('repository entry points and protected sources lead with the canonical poli
     'src/assets/js/components/terminal-actions.js',
     'src/assets/js/components/terminal-idle-core.js',
     'src/assets/js/components/terminal-matrix.js',
+    'src/assets/js/components/terminal-ascii-video.js',
     'src/assets/js/components/terminal-shell-core.js',
     'src/assets/js/components/terminal-shell.js',
     'src/assets/js/components/terminal.js',
     'tests/build-smoke.test.js',
     'tests/terminal.test.js',
     'tests/terminal-idle.test.js',
+    'tests/terminal-ascii-video.test.js',
     'tests/terminal-matrix.test.js'
   ];
   const e2eProtectedSources = fs.readdirSync('tests/e2e')
@@ -223,4 +230,12 @@ test('homepage long listing stays consistent with the generated terminal filesys
 
   assert.equal(listing.output.join('\n'), result.output);
   assert.match(result.output, /^dr-xr-x---.*\.matrix\/$/m);
+
+  const door = manifest.entries.find((entry) => entry.path.endsWith('/.matrix/exit/door.txt'));
+  const hotel = manifest.entries.find((entry) => entry.path.endsWith('/.matrix/exit/hotel.avi'));
+  assert.ok(door);
+  assert.ok(hotel);
+  assert.equal(hotel.media.type, 'ascii-video');
+  assert.equal(hotel.media.frames.length, 4);
+  assert.equal(door.content, `${hotel.media.frames[0]}\n`);
 });

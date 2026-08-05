@@ -10,6 +10,9 @@ async function openDrawer(page) {
   await menu.click();
   await expect(menu).toHaveAttribute('aria-expanded', 'true');
   await expect(drawer).toHaveAttribute('aria-hidden', 'false');
+  await expect.poll(() => drawer.evaluate((element) => {
+    return Math.abs(element.getBoundingClientRect().left) < 1;
+  })).toBe(true);
   return { drawer, menu };
 }
 
