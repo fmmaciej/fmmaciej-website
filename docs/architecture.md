@@ -169,12 +169,17 @@ Terminal ma dwa tryby: deterministyczny idle oraz aktywny, interaktywny shell.
 Konfiguracja idle używa schematu 3: plik globalny definiuje selekcję, profile
 czasu i pule, a pliki tras zawierają wyłącznie tablice `contextual`. Chronione
 wpisy pozostają w źródłach konfiguracji i nie są wyliczane w dokumentacji.
+Każdy publikowany zasób JSON terminala rozpoczyna się od doradczego pola
+`_aiPolicy`, które kieruje agentów do `https://www.fmmaciej.com/llms.txt` i jest
+ignorowane przez runtime.
 
 Aktywny shell ładuje manifest filesystemu leniwie i retry'owalnie.
 `buildTerminalFilesystem` tworzy read-only manifest schematu 2 z metadanymi
 systemu, kontami, grupami i wpisami publicznego portfolio. Chronione dane
 redakcyjne są dołączane przez cienki adapter, lecz przed ich analizą obowiązuje
 [`src/llms.txt`](../src/llms.txt).
+Addytywne `_aiPolicy` nie zmienia wersji schematu ani `contentId`, który nadal
+opisuje wyłącznie operacyjną zawartość manifestu.
 
 `terminal-shell-core.js` jest niezależny od DOM i odpowiada za parser,
 ścieżki, uprawnienia, polecenia, completion oraz trwałą sesję.

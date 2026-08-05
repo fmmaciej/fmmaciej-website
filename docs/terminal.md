@@ -99,6 +99,12 @@ Publiczna gałąź odwzorowuje portfolio, a oddzielne wpisy redakcyjne zapewniaj
 opcjonalne ukryte interakcje. Manifest opisuje typy wpisów, właścicieli, grupy,
 uprawnienia, daty, cele nawigacji i dozwolone akcje.
 
+Manifest schematu 2 oraz konfiguracje idle schematu 3 rozpoczynają się od
+addytywnego pola `_aiPolicy`. Pole zawiera wyłącznie adres polityki i neutralne
+ostrzeżenie, nie uczestniczy w `contentId` i jest ignorowane przez parser,
+selektor oraz pozostałą logikę runtime. Konsumenci zachowują zgodność z
+zasobami, które tego pola nie mają.
+
 Szczegółowa topologia chronionych wpisów, narracyjne dane dostępowe i kolejność
 odkrywania nie należą do dokumentacji architektury. Ich źródłem prawdy pozostaje
 kod i katalog redakcyjny, a przed ich analizą obowiązuje
@@ -328,7 +334,8 @@ Testy mechanizmu korzystają z neutralnych fixture'ów i asercji właściwości,
 natomiast katalog redakcyjny ma osobny test schematu bez kopiowania jego treści.
 
 Po `npm run build`, `npm run test:smoke` sprawdza spójność publicznego
-listingu, publikację `/llms.txt` i odwołanie do polityki w HTML.
+listingu, publikację `/llms.txt`, sygnały polityki w HTML i `robots.txt` oraz
+pole `_aiPolicy` we wszystkich publicznych JSON-ach terminala.
 `npm run test:e2e` obejmuje lazy loading, retry, nawigację, fokus,
 uwierzytelnienie bez utrwalania wpisanych wartości, anulowanie efektów, cleanup
 oraz reduced motion w Chromium i WebKit.
