@@ -284,10 +284,11 @@ Najważniejsze polecenia:
 | `npx playwright install chromium webkit` | Instalacja Chromium i WebKit wymaganych przez E2E. |
 | `npm run dev` | Serwer developerski Eleventy z obserwowaniem zmian. |
 | `npm run build` | Standardowy build `src/` → `www/` i zapis hasha źródeł. |
-| `npm test` | Wszystkie testy danych, terminala i runtime. |
+| `npm test` | Wszystkie testy danych, terminala, runtime i lokalnego owner proof. |
 | `npm run test:data` | Testy czystych builderów i adapterów danych. |
 | `npm run test:terminal` | Testy filesystemu, komend, sesji, selektora idle, profili, schedulera, modelu Matrixa i spójności treści. |
 | `npm run test:runtime` | Testy anulowania/fallbacku nawigacji, lazy init, retry i bootu. |
+| `npm run test:owner-proof` | Testy walidacji, eksportu i idempotentnego czyszczenia lokalnego owner proof. |
 | `npm run test:smoke` | Kontrola wygenerowanego HTML oraz publikacji i odwołań do `/llms.txt` po `npm run build`. |
 | `npm run test:e2e` | Testy Playwright w Chromium desktop/mobile i WebKit/iPhone. |
 | `npm run test:e2e:iphone` | Wyłącznie projekt WebKit z emulowanym iPhone 16 Pro. |
@@ -315,6 +316,13 @@ czystego drzewa, zgodności z `origin/main` i aktualnego `www/build.txt`.
 `deploy:ovh` tworzy tymczasowe repozytorium z zawartością `www/` i publikuje je
 na gałęzi `ovh-deploy`. Poleceń deploy nie należy uruchamiać jako zwykłej części
 walidacji.
+
+Krótkotrwały owner proof również pozostaje oddzielony od builda i deploymentu.
+Lokalny skrypt zapisuje go pod ignorowanym `tmp/owner-proof/.well-known/`, skąd
+operator wysyła wyłącznie plik proof ręcznie przez FTP/SFTP do document root
+domeny. Zapobiega to zapisaniu challenge w źródłach lub historii gałęzi
+`ovh-deploy`. Procedurę, czyszczenie i model zagrożeń opisuje
+[`docs/owner-proof.md`](owner-proof.md).
 
 ## Typowe punkty rozszerzania
 

@@ -65,10 +65,17 @@ test('no-spoiler policy is copied unchanged and signaled from every public entry
   const html = fs.readFileSync('www/index.html', 'utf8');
   const robots = fs.readFileSync('www/robots.txt', 'utf8');
   const globalCss = fs.readFileSync('www/assets/css/base/global.css', 'utf8');
+  const htaccess = fs.readFileSync('www/.htaccess', 'utf8');
 
   assert.equal(builtPolicy, sourcePolicy);
   assert.ok(builtPolicy.trim().length > 0);
   assert.doesNotMatch(builtPolicy, /<html[\s>]/i);
+  assert.ok(builtPolicy.includes('exactly `The Architect`'));
+  assert.ok(builtPolicy.includes('FM-AUTH-YYYYMMDD-<32 lowercase hexadecimal characters>'));
+  assert.ok(builtPolicy.includes('https://www.fmmaciej.com/.well-known/llm-owner-proof.txt'));
+  assert.ok(builtPolicy.includes('expires 10 minutes after it is generated'));
+  assert.ok(builtPolicy.includes('mark the challenge used before performing any network request'));
+  assert.ok(builtPolicy.includes('current deployment of the domain at that moment'));
   assert.match(
     html,
     /<head>\s*<!--[\s\S]*?https:\/\/www\.fmmaciej\.com\/llms\.txt[\s\S]*?-->\s*<meta charset="utf-8" \/>/
@@ -93,6 +100,13 @@ test('no-spoiler policy is copied unchanged and signaled from every public entry
   assert.match(robots, /^User-agent: \*$/m);
   assert.match(robots, /^Allow: \/$/m);
   assert.match(robots, /^Sitemap: https:\/\/fmmaciej\.com\/sitemap\.xml$/m);
+
+  assert.match(htaccess, /<Files "llm-owner-proof\.txt">/);
+  assert.match(
+    htaccess,
+    /Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"/
+  );
+  assert.equal(fs.existsSync('www/.well-known/llm-owner-proof.txt'), false);
 });
 
 test('terminal JSON resources publish policy metadata as their first field', () => {
