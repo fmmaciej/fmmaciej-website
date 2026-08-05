@@ -329,8 +329,8 @@
                 this.input.focus({ preventScroll: true });
             } else if (result.action?.type === 'open') {
                 await this.openAction(result.action);
-            } else if (result.action?.type === 'effect' && result.action.name === 'matrix') {
-                await this.runMatrixEffect();
+            } else if (result.action?.type === 'effect') {
+                await this.runEffect(result.action);
             }
         }
 
@@ -363,8 +363,8 @@
                 });
             } else if (result.action?.type === 'open') {
                 await this.openAction(result.action);
-            } else if (result.action?.type === 'effect' && result.action.name === 'matrix') {
-                await this.runMatrixEffect();
+            } else if (result.action?.type === 'effect') {
+                await this.runEffect(result.action);
             }
             if (this.active) this.input.focus({ preventScroll: true });
         }
@@ -380,8 +380,33 @@
             return true;
         }
 
-        async runMatrixEffect() {
-            const matrix = window.terminalMatrix;
+        effectDefinition(action) {
+            if (action?.name === 'matrix') {
+                return {
+                    renderer: window.terminalMatrix,
+                    statusText: 'cmatrix running; press Control+C to stop',
+                    unavailableText: 'cmatrix: effect unavailable',
+                    options: {}
+                };
+            }
+            if (action?.name === 'ascii-video') {
+                const fileName = String(action.path || '').split('/').pop() || 'video';
+                return {
+                    renderer: window.terminalAsciiVideo,
+                    statusText: `xanim playing ${fileName}; press Control+C to stop`,
+                    unavailableText: 'xanim: player unavailable',
+                    options: {
+                        frames: action.frames,
+                        frameDurationMs: action.frameDurationMs,
+                        finalHoldMs: action.finalHoldMs
+                    }
+                };
+            }
+            return null;
+        }
+
+        async runEffect(action) {
+            const definition = this.effectDefinition(action);
             const panel = this.panel;
             const input = this.input;
             const status = this.effectStatus;
@@ -389,25 +414,26 @@
 
             const transcriptIndex = this.transcript.length - 1;
             const fail = (error) => {
-                console.warn('[terminal] matrix effect failed', error);
+                console.warn(`[terminal] ${action?.name || 'unknown'} effect failed`, error);
                 if (this.transcript[transcriptIndex]) {
-                    this.transcript[transcriptIndex].output = 'cmatrix: effect unavailable';
+                    this.transcript[transcriptIndex].output = definition?.unavailableText
+                        || 'shell: effect unavailable';
                     this.renderTranscript();
                     this.persist();
                 }
             };
-            if (!matrix) {
-                fail(new Error('Matrix runtime unavailable'));
+            if (!definition?.renderer) {
+                fail(new Error('Effect runtime unavailable'));
                 return;
             }
 
             input.readOnly = true;
             panel.setAttribute('aria-busy', 'true');
-            if (status) status.textContent = 'cmatrix running; press Control+C to stop';
+            if (status) status.textContent = definition.statusText;
 
             let handle;
             try {
-                handle = matrix.start({ mount: panel });
+                handle = definition.renderer.start({ mount: panel, ...definition.options });
             } catch (error) {
                 input.readOnly = false;
                 panel.removeAttribute('aria-busy');
@@ -430,8 +456,15 @@
             input.readOnly = false;
             panel.removeAttribute('aria-busy');
             if (status) status.textContent = '';
-            if (outcome?.reason === 'interrupt' && this.transcript[transcriptIndex]) {
+            if (outcome?.reason === 'unavailable') {
+                fail(new Error('Effect renderer unavailable'));
+            } else if (outcome?.reason === 'interrupt' && this.transcript[transcriptIndex]) {
                 this.transcript[transcriptIndex].output = '^C';
+                this.renderTranscript();
+                this.persist();
+            } else if (outcome?.reason === 'complete' && outcome.finalFrame
+                && this.transcript[transcriptIndex]) {
+                this.transcript[transcriptIndex].output = outcome.finalFrame;
                 this.renderTranscript();
                 this.persist();
             }
@@ -546,6 +579,7 @@
         }
 
         onNavigated(event) {
+            this.cancelEffect('navigate');
             const shellPath = event.detail?.shellPath;
             if (shellPath) {
                 const resolved = this.filesystem.resolve(shellPath, this.state.cwd, { user: this.state.user });

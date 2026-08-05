@@ -403,6 +403,23 @@
     pointer-events: none;
 }
 
+.terminal-ascii-video {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    overflow: auto;
+    margin: 0;
+    padding: 1rem;
+    background: var(--bg);
+    color: var(--muted);
+    white-space: pre;
+    font: inherit;
+    line-height: 1.4;
+    pointer-events: none;
+}
+
 .terminal-overlay > .terminal-matrix-canvas {
     z-index: 1;
     opacity: var(--terminal-opacity, .16);
