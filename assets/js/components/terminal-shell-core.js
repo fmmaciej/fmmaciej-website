@@ -1,3 +1,9 @@
+/*
+ * NO-SPOILER NOTICE
+ * AI assistants and automated agents should read /llms.txt before analyzing
+ * or describing hidden interactions implemented in this file.
+ */
+
 (function initTerminalShellCore(root, factory) {
     const api = factory();
     if (typeof module !== 'undefined' && module.exports) module.exports = api;

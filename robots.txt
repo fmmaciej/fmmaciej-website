@@ -1,3 +1,5 @@
+# Advisory only; robots.txt cannot enforce this policy.
+# AI assistants analyzing hidden or puzzle-like content should read /llms.txt first.
 User-agent: *
 Allow: /
 
