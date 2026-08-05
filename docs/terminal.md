@@ -35,6 +35,10 @@ wpisów kontekstowych i globalnych bez przechwytywania klawiatury. Stała wysoko
 zapobiega przesuwaniu layoutu, a fokus i hover jedynie sygnalizują możliwość
 aktywacji shella.
 
+Komenda idle pozostaje w jednej widocznej linii; za długa część jest oznaczana
+wielokropkiem. Ograniczenie dotyczy tylko prezentacji idle, nie treści komendy
+ani aktywnego shella.
+
 Globalny `src/assets/terminal/config.json` ma `schemaVersion: 3`, politykę
 selekcji, nazwane profile czasu oraz pule wpisów. Pliki tras mają ten sam numer
 schematu i własne tablice `contextual`. Opcjonalne `runAs` i `users`

@@ -73,7 +73,7 @@ async function installProtectedIdleConfig(page, options = {}) {
     },
     pools: {
       common: [{
-        cmd: 'pwd',
+        cmd: options.commonCommand || 'pwd',
         type: 'text',
         output: ['/home/guest'],
         holdMs: options.commonHoldMs ?? 250
@@ -268,6 +268,43 @@ test('an idle entry keeps its full output for exactly two cursor blinks', async 
   });
   expect(timing).toMatchObject({ duration: 1_000, iterations: 2 });
   await expect(typed).toHaveText('🐇');
+});
+
+test('a long idle command is limited to one visible line', async ({ page }) => {
+  await installProtectedIdleConfig(page, {
+    commonCommand: 'open /a-very-long-idle-command-that-must-not-wrap-on-desktop-or-mobile/and-stay-within-the-terminal-viewport'
+  });
+  await gotoPath(page, '/');
+
+  const command = page.locator('.terminal-command-line');
+  const typed = page.locator('#typedText');
+  await expect(typed).toHaveText('open /a-very-long-idle-command-that-must-not-wrap-on-desktop-or-mobile/and-stay-within-the-terminal-viewport');
+
+  const measurements = await command.evaluate((element) => {
+    const typedElement = element.querySelector('#typedText');
+    const cursorElement = element.querySelector('#cursor');
+    const commandRect = element.getBoundingClientRect();
+    const cursorRect = cursorElement.getBoundingClientRect();
+    const viewport = element.closest('.terminal-viewport');
+    const viewportRect = viewport.getBoundingClientRect();
+    const style = getComputedStyle(typedElement);
+    return {
+      lineHeight: Number.parseFloat(getComputedStyle(element).lineHeight),
+      height: commandRect.height,
+      commandFitsViewport: commandRect.right <= viewportRect.right + 1,
+      typedOverflow: typedElement.scrollWidth > typedElement.clientWidth,
+      typedWhiteSpace: style.whiteSpace,
+      cursorIsVisible: cursorRect.right <= commandRect.right + 1,
+      viewportHasNoHorizontalOverflow: viewport.scrollWidth <= viewport.clientWidth
+    };
+  });
+
+  expect(measurements.height).toBeLessThanOrEqual(measurements.lineHeight + 1);
+  expect(measurements.commandFitsViewport).toBe(true);
+  expect(measurements.typedOverflow).toBe(true);
+  expect(measurements.typedWhiteSpace).toBe('nowrap');
+  expect(measurements.cursorIsVisible).toBe(true);
+  expect(measurements.viewportHasNoHorizontalOverflow).toBe(true);
 });
 
 test('the protected idle step effect aligns and cleans up on activation', async ({
