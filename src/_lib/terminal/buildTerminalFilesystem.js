@@ -1,8 +1,38 @@
 const crypto = require("node:crypto");
 const path = require("node:path");
 
-const SYSTEM_DATE = "2026-01-01T00:00:00.000Z";
+const SYSTEM_DATE = "1999-05-23T00:00:00.000Z";
+const GUEST_DATE = "1999-05-23T00:00:00.000Z";
 const FM_DATE = "2026-03-10T00:00:00.000Z";
+const OPERATOR_DATE = "1999-05-23T03:03:00.000Z";
+
+const ACCOUNTS = {
+  guest: {
+    name: "guest", uid: 1000, gid: 1000, group: "guest", groups: ["guest"],
+    home: "/home/guest", shell: "/bin/bash", credential: null, locked: false, su: false
+  },
+  fm: {
+    name: "fm", uid: 1001, gid: 1001, group: "fm", groups: ["fm", "portfolio", "matrix"],
+    home: "/home/fm", shell: "/bin/bash", credential: "spoon", locked: false, su: true
+  },
+  operator: {
+    name: "operator", uid: 303, gid: 303, group: "operator", groups: ["operator", "portfolio", "matrix"],
+    home: "/home/operator", shell: "/bin/bash", credential: "room303", locked: false, su: true
+  },
+  root: {
+    name: "root", uid: 0, gid: 0, group: "root", groups: ["root"],
+    home: "/root", shell: "/bin/bash", credential: null, locked: true, su: true
+  }
+};
+
+const GROUPS = {
+  root: { name: "root", gid: 0, members: ["root"] },
+  operator: { name: "operator", gid: 303, members: ["operator"] },
+  guest: { name: "guest", gid: 1000, members: ["guest"] },
+  fm: { name: "fm", gid: 1001, members: ["fm"] },
+  portfolio: { name: "portfolio", gid: 1100, members: ["fm", "operator"] },
+  matrix: { name: "matrix", gid: 1101, members: ["fm", "operator"] }
+};
 
 function normalizeFsPath(value) {
   if (!value) return "/";
@@ -106,35 +136,52 @@ function buildTerminalFilesystem(input = {}) {
 
   directory("/", { mode: "dr-xr-xr-x" });
   [
-    "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/lib64", "/media", "/mnt",
-    "/opt", "/proc", "/run", "/sbin", "/srv", "/sys", "/tmp", "/usr", "/usr/bin",
-    "/usr/lib", "/usr/local", "/usr/local/bin", "/usr/share", "/var", "/var/cache",
-    "/var/lib", "/var/log", "/var/tmp"
+    "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/mnt", "/opt", "/proc",
+    "/sbin", "/tmp", "/usr", "/usr/bin", "/usr/lib", "/usr/local", "/usr/local/bin",
+    "/usr/share", "/var", "/var/adm", "/var/log", "/var/spool", "/var/tmp"
   ].forEach((fsPath) => directory(fsPath));
   directory("/root", { mode: "dr-x------" });
 
   file("/etc/hostname", "void\n");
-  file("/etc/motd", "fmmaciej.com virtual shell\nRead-only portfolio filesystem. Type help to begin.\n");
-  file("/etc/os-release", [
-    'NAME="Void"',
-    'ID="void"',
-    'PRETTY_NAME="Void Linux (portfolio edition)"',
-    'HOME_URL="https://voidlinux.org/"',
-    ""
-  ].join("\n"));
+  file("/etc/motd", "fmmaciej.com virtual shell\nRead-only filesystem. Type help to begin.\n");
+  file("/etc/slackware-version", "Slackware 4.0\n");
+  file("/etc/issue", "Welcome to Linux 2.2.6 (tty1)\n\n");
   file("/etc/passwd", [
-    "root:x:0:0:root:/root:/bin/sh",
-    "fm:x:1000:1000:FM:/home/fm:/bin/sh",
+    "root:x:0:0:root:/root:/bin/bash",
+    "operator:x:303:303:System Operator:/home/operator:/bin/bash",
+    "guest:x:1000:1000:Guest:/home/guest:/bin/bash",
+    "fm:x:1001:1001:FM:/home/fm:/bin/bash",
     ""
   ].join("\n"));
+  file("/etc/group", Object.values(GROUPS).map((group) => (
+    `${group.name}:x:${group.gid}:${group.members.join(",")}`
+  )).join("\n") + "\n");
   file("/etc/shells", "/bin/sh\n/bin/bash\n");
   file("/etc/shadow", "", { mode: "-r--------" });
 
-  file("/proc/version", "Linux version 6.10.12_1 (void@fmmaciej.com) #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux\n");
-  file("/proc/cpuinfo", "processor\t: 0\nmodel name\t: Virtual portfolio CPU\ncpu cores\t: 1\n\n");
+  file("/proc/version", "Linux version 2.2.6 (root@zap) (gcc version egcs-2.91.66 19990314 (egcs-1.1.2 release)) #20 Tue Apr 27 15:23:25 CDT 1999\n");
+  file("/proc/cpuinfo", "processor\t: 0\nmodel name\t: Pentium II (Deschutes)\ncpu MHz\t\t: 300.684\n\n");
   file("/proc/uptime", "86400.00 82000.00\n");
-  file("/var/log/boot.log", "[ OK ] runit: portfolio filesystem mounted read-only\n[ OK ] terminal: idle animator ready\n[ OK ] shell: deterministic commands ready\n");
+  file("/var/log/boot.log", [
+    "Linux version 2.2.6 (root@zap) #20 Tue Apr 27 15:23:25 CDT 1999",
+    "Calibrating delay loop... 599.65 BogoMIPS",
+    "Checking root filesystem:",
+    "/dev/hda1: clean, 18421/131072 files, 79143/262144 blocks",
+    "Mounting local filesystems:",
+    "Starting system logger:  /usr/sbin/syslogd",
+    "Starting kernel logger:  /usr/sbin/klogd",
+    "Going multiuser...",
+    ""
+  ].join("\n"));
   file("/var/log/site.log", "fmmaciej.com — served plain & simple\n");
+  file("/var/log/timesync.log", [
+    "CLOCK MASK ACTIVE",
+    "",
+    "Calendar year pinned to 1999 for unprivileged processes.",
+    "Header clock remains attached to observer-local time.",
+    "Future-dated artefacts are simulation leakage, not filesystem corruption.",
+    ""
+  ].join("\n"), { mode: "-r--r-----", owner: "operator", group: "operator", modified: OPERATOR_DATE });
 
   device("/dev/null", "null");
   device("/dev/tty", "unsupported");
@@ -142,7 +189,7 @@ function buildTerminalFilesystem(input = {}) {
   device("/dev/random", "unsupported");
   symlink("/dev/spoon", "/dev/null");
 
-  const commands = ["cat", "clear", "cmatrix", "help", "history", "hostname", "ls", "open", "pwd", "uname", "whoami", "🐇"];
+  const commands = ["cat", "clear", "cmatrix", "date", "help", "history", "hostname", "ls", "open", "pwd", "su", "uname", "whoami", "🐇"];
   commands.forEach((command) => {
     executable(`/usr/bin/${command}`);
     symlink(`/bin/${command}`, `/usr/bin/${command}`);
@@ -152,21 +199,30 @@ function buildTerminalFilesystem(input = {}) {
   executable("/usr/bin/sh");
   executable("/usr/local/bin/open");
 
-  directory("/home/fm", { owner: "fm", group: "fm", modified: FM_DATE, route: "/" });
+  directory("/home/guest", { owner: "guest", group: "guest", modified: GUEST_DATE, mode: "dr-xr-xr-x" });
+  file("/home/guest/README", "Welcome, guest.\nThe filesystem is read-only. Try help and ls -la.\n", {
+    owner: "guest", group: "guest", modified: GUEST_DATE
+  });
+  file("/home/guest/.profile", "export PAGER=less\n", { owner: "guest", group: "guest", modified: GUEST_DATE });
+  file("/home/guest/LEAVE_ME_HERE", "login: fm\npassword: spoon\n", {
+    owner: "fm", group: "portfolio", modified: GUEST_DATE
+  });
+
+  directory("/home/fm", { owner: "fm", group: "portfolio", modified: FM_DATE, route: "/", mode: "dr-xr-x---" });
   directory("/home/fm/.config", { owner: "fm", group: "fm", modified: FM_DATE });
   file("/home/fm/.profile", "export EDITOR=vim\nexport PAGER=less\n", { owner: "fm", group: "fm", modified: FM_DATE });
   file("/home/fm/.gitconfig", "[user]\n\tname = FM\n[init]\n\tdefaultBranch = main\n", { owner: "fm", group: "fm", modified: FM_DATE });
   file("/home/fm/.config/terminal.conf", "mode=portfolio\nfilesystem=read-only\n", { owner: "fm", group: "fm", modified: FM_DATE });
 
-  directory("/home/fm/.matrix", { owner: "fm", group: "fm", modified: FM_DATE });
-  file("/home/fm/.matrix/message.txt", [
+  directory("/home/guest/.matrix", { owner: "fm", group: "matrix", modified: FM_DATE, mode: "dr-xr-x---" });
+  file("/home/guest/.matrix/message.txt", [
     "Wake up, Neo...",
     "The Matrix has you...",
     "Follow the white rabbit.",
     "Knock, knock, Neo.",
     ""
-  ].join("\n"), { owner: "fm", group: "fm", modified: FM_DATE });
-  file("/home/fm/.matrix/white-rabbit.txt", [
+  ].join("\n"), { owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----" });
+  file("/home/guest/.matrix/white-rabbit.txt", [
     "        \"e.  \"$$$.",
     "         ^$$bc \"$$b",
     "           ^\"*$$c$$F",
@@ -181,10 +237,43 @@ function buildTerminalFilesystem(input = {}) {
     "'$$$$$$$$$$$$$\"  *$.",
     "  \"\"\"\"\"\"\"\"\"\"\"\"\"   \"\"\"\"",
     ""
-  ].join("\n"), { owner: "fm", group: "fm", modified: FM_DATE });
-  file("/home/fm/.matrix/choice.txt", "status=pending\n", {
-    owner: "fm", group: "fm", modified: FM_DATE
+  ].join("\n"), { owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----" });
+  file("/home/guest/.matrix/choice.txt", "status=pending\n", {
+    owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----"
   });
+  directory("/home/guest/.matrix/exit", { owner: "fm", group: "matrix", modified: FM_DATE, mode: "dr-xr-x---" });
+  file("/home/guest/.matrix/exit/operator.log", [
+    "MR. WIZARD REQUESTED EXTRACTION",
+    "",
+    "I got a patch on an old exit.",
+    "Wabash and Lake.",
+    "A hotel.",
+    "",
+    "[transmission interrupted]",
+    ""
+  ].join("\n"), { owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----" });
+  file("/home/guest/.matrix/exit/trace.log", [
+    "Watch the rabbit.",
+    "Count the steps.",
+    "Mind what lies between.",
+    ""
+  ].join("\n"), { owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----" });
+  file("/home/guest/.matrix/exit/door.txt", [
+    "  .-----------------------.",
+    "  | .-------------------. |",
+    "  | |                   | |",
+    "  | |      [ ... ]      | |",
+    "  | |         o         | |",
+    "  | |                   | |",
+    "  | |                   | |",
+    "  | |                   | |",
+    "  | |                   | |",
+    "  | |  O                | |",
+    "  | |                   | |",
+    "  | |                   | |",
+    ""
+  ].join("\n"), { owner: "fm", group: "matrix", modified: FM_DATE, mode: "-r--r-----" });
+  symlink("/home/fm/.matrix", "/home/guest/.matrix", { owner: "fm", group: "matrix", modified: FM_DATE });
 
   file("/home/fm/about.md", source.about || "", {
     owner: "fm", group: "fm", modified: FM_DATE, route: "/", openUrl: "/"
@@ -337,6 +426,42 @@ function buildTerminalFilesystem(input = {}) {
     });
   });
 
+  const puzzleItems = Array.isArray(source.puzzles?.items) ? source.puzzles.items : [];
+  const renderPuzzleSection = (item, field) => [
+    `[${item.id || "unknown"}] ${item.title || "Untitled"}`,
+    `Location: ${item.location || "unknown"}`,
+    String(item[field] || ""),
+    ""
+  ].join("\n");
+  const playbook = puzzleItems.map((item, index) => (
+    `${String(index + 1).padStart(2, "0")}. ${item.title || item.id} — ${item.location || "unknown"}`
+  )).join("\n") + (puzzleItems.length ? "\n" : "");
+  const catalogue = puzzleItems.map((item) => renderPuzzleSection(item, "clue")).join("\n");
+  const solutions = puzzleItems.map((item) => renderPuzzleSection(item, "solution")).join("\n");
+
+  directory("/home/operator", {
+    owner: "operator", group: "operator", modified: OPERATOR_DATE, mode: "dr-x------"
+  });
+  file("/home/operator/README", [
+    "OPERATOR ARCHIVE",
+    "",
+    "playbook.txt lists the intended route.",
+    "easter-eggs.txt is the complete catalogue.",
+    "solutions.txt contains exact answers and credentials.",
+    "",
+    "This archive is static. It does not track completed steps.",
+    ""
+  ].join("\n"), { owner: "operator", group: "operator", modified: OPERATOR_DATE, mode: "-r--------" });
+  file("/home/operator/playbook.txt", playbook, {
+    owner: "operator", group: "operator", modified: OPERATOR_DATE, mode: "-r--------"
+  });
+  file("/home/operator/easter-eggs.txt", catalogue, {
+    owner: "operator", group: "operator", modified: OPERATOR_DATE, mode: "-r--------"
+  });
+  file("/home/operator/solutions.txt", solutions, {
+    owner: "operator", group: "operator", modified: OPERATOR_DATE, mode: "-r--------"
+  });
+
   const allEntries = Array.from(entries.values());
   allEntries
     .filter((entry) => entry.type === "directory")
@@ -353,12 +478,25 @@ function buildTerminalFilesystem(input = {}) {
     });
 
   const ordered = allEntries.sort((a, b) => a.path.localeCompare(b.path));
-  const contentId = crypto.createHash("sha256").update(JSON.stringify(ordered)).digest("hex").slice(0, 16);
+  const contentId = crypto.createHash("sha256").update(JSON.stringify({
+    accounts: ACCOUNTS,
+    groups: GROUPS,
+    entries: ordered
+  })).digest("hex").slice(0, 16);
 
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     contentId,
-    user: { name: "fm", group: "fm", host: "void", home: "/home/fm" },
+    system: {
+      hostname: "void",
+      distribution: "Slackware",
+      release: "4.0",
+      kernel: "2.2.6",
+      machine: "i686"
+    },
+    defaultUser: "guest",
+    accounts: structuredClone(ACCOUNTS),
+    groups: structuredClone(GROUPS),
     entries: ordered
   };
 }

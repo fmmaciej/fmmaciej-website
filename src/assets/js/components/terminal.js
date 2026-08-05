@@ -6,8 +6,10 @@ window.initTerminal = function initTerminal(root = document){
     if (!typed) return;
 
     const cursorEl = termBox.querySelector('#cursor');
+    const commandEffectEl = termBox.querySelector('.cmd');
     const pathEl = termBox.querySelector('#terminalPath');
     const clockEl = termBox.querySelector('#terminalClock');
+    const sessionEl = termBox.querySelector('#terminalSession');
     const locationEl = termBox.querySelector('.terminal-location');
     const host = root.querySelector('.content-host') || document.body;
     if (!host) return;
@@ -22,6 +24,10 @@ window.initTerminal = function initTerminal(root = document){
     const matrix = window.terminalMatrix;
     const initController = new AbortController();
     let disposed = false;
+
+    function sessionSnapshot() {
+        return window.getTerminalSessionSnapshot?.() || { user: 'guest', cwd: '/home/guest' };
+    }
 
     const overlay = document.createElement('div');
     overlay.className = 'terminal-overlay';
@@ -75,6 +81,14 @@ window.initTerminal = function initTerminal(root = document){
 
     function renderTerminalPath() {
         if (!pathEl) return;
+        const snapshot = sessionSnapshot();
+        const pageParts = buildTerminalPath(window.location.pathname);
+        const expectedPagePath = pageParts.at(-1)?.shellPath || '/home/fm';
+        if (snapshot.cwd !== expectedPagePath) {
+            pathEl.textContent = snapshot.cwd;
+            annotateTerminalPathLinks();
+            return;
+        }
         const customPathSource = getCustomPathSource();
         if (customPathSource) {
             pathEl.innerHTML = customPathSource.innerHTML;
@@ -83,8 +97,7 @@ window.initTerminal = function initTerminal(root = document){
             return;
         }
 
-        const parts = buildTerminalPath(window.location.pathname);
-        pathEl.innerHTML = parts
+        pathEl.innerHTML = pageParts
             .map((part) => `<a href="${part.href}" title="Jump to: ${part.title || part.label.replace(/^\//, '')}" data-shell-path="${part.shellPath || ''}">${part.label}</a>`)
             .join('');
         annotateTerminalPathLinks();
@@ -102,10 +115,16 @@ window.initTerminal = function initTerminal(root = document){
         if (clockEl) clockEl.textContent = formatClock();
     }
 
+    function renderSessionSnapshot() {
+        const snapshot = sessionSnapshot();
+        if (sessionEl) sessionEl.textContent = `[${snapshot.user}@void]`;
+        if (!window.isTerminalShellActive?.()) renderTerminalPath();
+    }
+
     positionOverlayBelowTerminal();
     setFooterVar();
     requestAnimationFrame(positionOverlayBelowTerminal);
-    renderTerminalPath();
+    renderSessionSnapshot();
     updateClock();
 
     const onResize = () => {
@@ -122,13 +141,106 @@ window.initTerminal = function initTerminal(root = document){
     let manualController = null;
     let shellBinding = null;
     let pathObserver = null;
+    let commandEffectOwner = null;
+    let cursorBlinkOwner = null;
+    const onSessionChanged = () => {
+        renderSessionSnapshot();
+        if (!window.isTerminalShellBusy?.()) restartCycle?.(200);
+    };
+    window.addEventListener('terminal:session-changed', onSessionChanged);
     const clockHandle = window.setInterval(updateClock, 30000);
+    const CURSOR_BLINK_PAUSE_MS = 2000;
+
+    const COMMAND_EFFECT_CLASSES = {
+        'rabbit-step': 'is-rabbit-step'
+    };
+
+    function clearCommandEffect(owner = null) {
+        if (owner && commandEffectOwner !== owner) return;
+        commandEffectOwner = null;
+        if (!commandEffectEl) return;
+        Object.values(COMMAND_EFFECT_CLASSES).forEach((className) => {
+            commandEffectEl.classList.remove(className);
+        });
+    }
+
+    function startCommandEffect(effectName, reduced) {
+        clearCommandEffect();
+        const className = COMMAND_EFFECT_CLASSES[effectName];
+        if (!commandEffectEl || !className || reduced) {
+            return { finished: Promise.resolve(), stop: () => {} };
+        }
+
+        const owner = {};
+        commandEffectOwner = owner;
+        commandEffectEl.classList.add(className);
+        const animations = commandEffectEl.getAnimations({ subtree: true });
+        const finished = Promise.allSettled(
+            animations.map((animation) => animation.finished)
+        ).then(() => {});
+        return {
+            finished,
+            stop: () => clearCommandEffect(owner)
+        };
+    }
 
     function throwIfAborted(signal) {
         if (!signal?.aborted) return;
         const error = new Error('aborted');
         error.name = 'AbortError';
         throw error;
+    }
+
+    function waitForPromise(promise, signal) {
+        if (!signal) return promise;
+        throwIfAborted(signal);
+        return new Promise((resolve, reject) => {
+            const cleanup = () => signal.removeEventListener('abort', onAbort);
+            const onAbort = () => {
+                cleanup();
+                const error = new Error('aborted');
+                error.name = 'AbortError';
+                reject(error);
+            };
+            signal.addEventListener('abort', onAbort, { once: true });
+            promise.then(
+                (value) => {
+                    cleanup();
+                    resolve(value);
+                },
+                (error) => {
+                    cleanup();
+                    reject(error);
+                }
+            );
+        });
+    }
+
+    function clearCursorBlink(owner = null) {
+        if (owner && cursorBlinkOwner !== owner) return;
+        cursorBlinkOwner = null;
+        cursorEl?.classList.remove('is-idle-blinking');
+    }
+
+    async function playCursorBlinks(signal, reduced) {
+        clearCursorBlink();
+        if (!cursorEl || reduced) {
+            await abortableDelay(CURSOR_BLINK_PAUSE_MS, signal);
+            return;
+        }
+
+        const owner = {};
+        cursorBlinkOwner = owner;
+        cursorEl.classList.add('is-idle-blinking');
+        const animation = cursorEl.getAnimations().find(
+            (item) => item.animationName === 'terminal-cursor-blink'
+        );
+        try {
+            if (animation) await waitForPromise(animation.finished, signal);
+            else await abortableDelay(CURSOR_BLINK_PAUSE_MS, signal);
+        } finally {
+            clearCursorBlink(owner);
+        }
     }
 
     async function typeCommand(command, typingDelayMs, signal){
@@ -186,27 +298,51 @@ window.initTerminal = function initTerminal(root = document){
             ? { ...timing, typingDelayMs: 0, preDelayMs: 0, charDelayMs: 0, linePauseMs: 0 }
             : timing;
 
-        layer.textContent = '';
-        await typeCommand(entry?.cmd || '', effective.typingDelayMs, signal);
-        await abortableDelay(effective.preDelayMs, signal);
-        throwIfAborted(signal);
-
-        if (entry?.type === 'matrix' && matrix) {
-            const effect = matrix.start({
-                mount: overlay,
-                durationMs: reduced ? 1200 : effective.durationMs,
-                frameDelayMs: effective.frameDelayMs,
-                reducedDurationMs: 1200,
-                reducedMotion: reduced,
-                signal
-            });
-            await effect.finished;
-            throwIfAborted(signal);
-        } else {
-            await typeOverlay(entry?.output || '', effective, signal);
+        const presentation = window.terminalActions?.presentCommand?.(
+            entry?.cmd || '',
+            entry?.runAs,
+            sessionSnapshot()
+        ) || { command: entry?.cmd || '', passwordPrompt: false };
+        const snapshot = sessionSnapshot();
+        let entryOutput = entry?.output || '';
+        if (!entry?.runAs && entry?.cmd === 'whoami') entryOutput = [snapshot.user];
+        if (!entry?.runAs && entry?.cmd === 'pwd') entryOutput = [snapshot.cwd];
+        if (presentation.passwordPrompt) {
+            entryOutput = ['Password:', ...(Array.isArray(entryOutput) ? entryOutput : [entryOutput])];
         }
 
-        await abortableDelay(effective.holdMs, signal);
+        let commandEffect = { finished: Promise.resolve(), stop: () => {} };
+        try {
+            layer.textContent = '';
+            await typeCommand(presentation.command, effective.typingDelayMs, signal);
+            commandEffect = startCommandEffect(entry?.commandEffect, reduced);
+            await abortableDelay(effective.preDelayMs, signal);
+            throwIfAborted(signal);
+
+            if (entry?.type === 'matrix' && matrix) {
+                const effect = matrix.start({
+                    mount: overlay,
+                    durationMs: reduced ? 1200 : effective.durationMs,
+                    frameDelayMs: effective.frameDelayMs,
+                    reducedDurationMs: 1200,
+                    reducedMotion: reduced,
+                    signal
+                });
+                await effect.finished;
+                throwIfAborted(signal);
+            } else {
+                await typeOverlay(entryOutput, effective, signal);
+            }
+
+            await Promise.all([
+                abortableDelay(effective.holdMs, signal),
+                waitForPromise(commandEffect.finished, signal)
+            ]);
+            await playCursorBlinks(signal, reduced);
+        } finally {
+            clearCursorBlink();
+            commandEffect.stop();
+        }
     }
 
     async function fetchJSON(url) {
@@ -224,6 +360,8 @@ window.initTerminal = function initTerminal(root = document){
         idleScheduler?.stop();
         manualController?.abort();
         manualController = null;
+        clearCursorBlink();
+        clearCommandEffect();
     }
 
     async function playTerminalCommand(command, options = {}) {
@@ -235,6 +373,10 @@ window.initTerminal = function initTerminal(root = document){
         try {
             await typeCommand(command, options.typingMs ?? 10, controller.signal);
             await abortableDelay(isReducedMotion() ? 0 : options.pauseMs ?? 120, controller.signal);
+            if (options.passwordPrompt) {
+                layer.textContent = 'Password:';
+                await abortableDelay(isReducedMotion() ? 0 : options.passwordPauseMs ?? 220, controller.signal);
+            }
         } catch (error) {
             if (error?.name !== 'AbortError') console.warn('[terminal] command preview failed', error);
             return;
@@ -269,12 +411,12 @@ window.initTerminal = function initTerminal(root = document){
         ]);
         if (disposed || initController.signal.aborted) return;
 
-        const globalConfig = loadedGlobal?.schemaVersion === 2 ? loadedGlobal : {};
-        const pageConfig = loadedPage?.schemaVersion === 2 ? loadedPage : {};
-        if (loadedGlobal && loadedGlobal.schemaVersion !== 2) {
+        const globalConfig = loadedGlobal?.schemaVersion === 3 ? loadedGlobal : {};
+        const pageConfig = loadedPage?.schemaVersion === 3 ? loadedPage : {};
+        if (loadedGlobal && loadedGlobal.schemaVersion !== 3) {
             console.warn('[terminal] unsupported global idle configuration');
         }
-        if (loadedPage && loadedPage.schemaVersion !== 2) {
+        if (loadedPage && loadedPage.schemaVersion !== 3) {
             console.warn('[terminal] unsupported contextual idle configuration');
         }
 
@@ -284,7 +426,8 @@ window.initTerminal = function initTerminal(root = document){
             common: globalConfig.pools?.common,
             matrix: globalConfig.pools?.matrix,
             contextualPerCommon: selection.contextualPerCommon,
-            easterEggEvery: selection.easterEggEvery
+            easterEggEvery: selection.easterEggEvery,
+            getUser: () => sessionSnapshot().user
         });
         const profiles = globalConfig.timingProfiles || {};
         const unknownProfiles = new Set();
@@ -318,6 +461,7 @@ window.initTerminal = function initTerminal(root = document){
         shellBinding = null;
         pathObserver?.disconnect();
         window.removeEventListener('resize', onResize);
+        window.removeEventListener('terminal:session-changed', onSessionChanged);
         overlay.remove();
         if (window.playTerminalCommand === playTerminalCommand) delete window.playTerminalCommand;
     };

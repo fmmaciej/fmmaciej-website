@@ -1,8 +1,9 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/music/photos",
+            "cmd": "ls /home/fm/music/photos",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "2022-10-29--halloween/  2023-04-22--portrait/  2023-10-31--not-so-abandoned-willa/",
@@ -10,7 +11,8 @@
             ]
         },
         {
-            "cmd": "cat ~/music/photos/2025-03-21--subterra/README.md",
+            "cmd": "cat /home/fm/music/photos/2025-03-21--subterra/README.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "# Subterra",

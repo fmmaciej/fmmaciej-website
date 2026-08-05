@@ -51,6 +51,7 @@ module.exports = class TerminalFilesystemTemplate {
       ],
       projects: data.projects?.items || [],
       posts,
+      puzzles: data.terminalPuzzles,
       music: {
         intro: [readText("src/music/_content/intro/index.md"), readText("src/music/_content/outro/index.md")].join("\n"),
         bio: [readText("src/music/_content/intro/bio.md"), readText("src/music/_content/pages/bio.md")].join("\n"),

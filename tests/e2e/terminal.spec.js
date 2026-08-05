@@ -9,12 +9,74 @@ const {
 async function activateShell(page) {
   const activator = page.getByRole('button', { name: 'Activate portfolio shell' });
   await activator.click();
-  const input = page.getByLabel('Command');
+  const input = page.locator('#terminalShellInput');
   await expect(input).toBeVisible();
   await expect(input).toBeFocused();
+  await expect(page.getByLabel('Command')).toHaveCount(1);
   const activatorState = page.locator('#terminalActivator');
   await expect(activatorState).toHaveAttribute('aria-expanded', 'true');
   return { activator, activatorState, input };
+}
+
+async function loginAs(page, input, user, password) {
+  await input.fill(`su - ${user}`);
+  await input.press('Enter');
+  await expect(input).toHaveAttribute('type', 'password');
+  await expect(input).toHaveAttribute('aria-label', 'Password');
+  await input.fill(password);
+  await input.press('Enter');
+  await expect(input).toHaveAttribute('type', 'text');
+  await expect(input).toHaveAttribute('aria-label', 'Command');
+}
+
+async function installRabbitIdleConfig(page, options = {}) {
+  const response = (body) => ({
+    status: 200,
+    contentType: 'application/json',
+    body: JSON.stringify(body)
+  });
+  const globalConfig = {
+    schemaVersion: 3,
+    selection: {
+      contextualPerCommon: 1,
+      easterEggEvery: 2
+    },
+    timingProfiles: {
+      standard: {
+        typingDelayMs: 0,
+        preDelayMs: 0,
+        charDelayMs: 0,
+        linePauseMs: 0,
+        holdMs: 0
+      }
+    },
+    pools: {
+      common: [{
+        cmd: 'pwd',
+        type: 'text',
+        output: ['/home/guest'],
+        holdMs: options.commonHoldMs ?? 250
+      }],
+      matrix: [{
+        cmd: '🐇',
+        type: 'text',
+        commandEffect: 'rabbit-step',
+        output: ['...'],
+        typingDelayMs: 0,
+        preDelayMs: 0,
+        charDelayMs: 0,
+        linePauseMs: 0,
+        holdMs: 5_000
+      }]
+    }
+  };
+
+  await page.route('**/assets/terminal/config.json', (route) => {
+    return route.fulfill(response(globalConfig));
+  });
+  await page.route('**/assets/terminal/default.json', (route) => {
+    return route.fulfill(response({ schemaVersion: 3, contextual: [] }));
+  });
 }
 
 test('the filesystem manifest stays lazy and the shell supports commands and completion', async ({ page }) => {
@@ -33,7 +95,7 @@ test('the filesystem manifest stays lazy and the shell supports commands and com
 
   await input.fill('pwd');
   await input.press('Enter');
-  await expect(page.locator('.terminal-shell-output').last()).toHaveText('/home/fm');
+  await expect(page.locator('.terminal-shell-output').last()).toHaveText('/home/guest');
 
   await input.fill('pw');
   await input.press('Tab');
@@ -43,6 +105,7 @@ test('the filesystem manifest stays lazy and the shell supports commands and com
 test('cd preserves the shell while open navigates and collapses it', async ({ page }) => {
   await gotoPath(page, '/');
   const { activatorState, input } = await activateShell(page);
+  await loginAs(page, input, 'fm', 'spoon');
 
   await input.fill('cd /home/fm/projects');
   await input.press('Enter');
@@ -57,6 +120,65 @@ test('cd preserves the shell while open navigates and collapses it', async ({ pa
   await expect(activatorState).toHaveAttribute('aria-expanded', 'false');
   await expect(page.locator('#terminalShellPanel')).toBeHidden();
   await expectMainReady(page);
+});
+
+test('guest can progress through fm and operator without leaking passwords', async ({ page }) => {
+  await gotoPath(page, '/');
+  const { input } = await activateShell(page);
+
+  await expect(page.locator('#terminalShellPrompt')).toContainText('[guest@void]');
+  await input.fill('cat ~/.matrix/message.txt');
+  await input.press('Enter');
+  await expect(page.locator('.terminal-shell-output').last()).toHaveText(
+    'cat: ~/.matrix/message.txt: Permission denied'
+  );
+
+  await loginAs(page, input, 'fm', 'spoon');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('[fm@void]');
+  await expect(page.locator('.terminal-shell-transcript')).not.toContainText('spoon');
+  await page.reload();
+  await expectMainReady(page);
+  await expect(page.locator('#terminalSession')).toHaveText('[fm@void]');
+
+  const restored = await activateShell(page);
+  await expect(page.locator('#terminalShellPrompt')).toContainText('[fm@void]');
+  await loginAs(page, restored.input, 'operator', 'room303');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('[operator@void]');
+  await restored.input.fill('cat solutions.txt');
+  await restored.input.press('Enter');
+  await expect(page.locator('.terminal-shell-output').last()).toContainText('room303');
+
+  const stored = JSON.parse(await page.evaluate(() => localStorage.getItem('terminalShell:v2')));
+  expect(stored).not.toHaveProperty('password');
+  expect(stored).not.toHaveProperty('credential');
+  expect(stored.history).not.toContain('spoon');
+  expect(stored.history).not.toContain('room303');
+  expect(stored.transcript.map((block) => block.command)).not.toContain('spoon');
+  expect(stored.transcript.map((block) => block.command)).not.toContain('room303');
+
+  await restored.input.fill('exit');
+  await restored.input.press('Enter');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('[fm@void]');
+  await restored.input.fill('exit');
+  await restored.input.press('Enter');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('[guest@void]');
+});
+
+test('su -c navigates as fm and restores the guest session', async ({ page }) => {
+  await gotoPath(page, '/');
+  const { input } = await activateShell(page);
+
+  await input.fill("su -c 'cd /home/fm/music' fm");
+  await input.press('Enter');
+  await expect(input).toHaveAttribute('type', 'password');
+  await input.fill('spoon');
+  await input.press('Enter');
+
+  await expect(page).toHaveURL(/\/music\/$/);
+  await expect(page.locator('#terminalShellPrompt')).toContainText('[guest@void]');
+  await expect(page.locator('#terminalPath')).toHaveText('/home/guest');
+  const snapshot = await page.evaluate(() => window.getTerminalSessionSnapshot());
+  expect(snapshot).toEqual({ user: 'guest', cwd: '/home/guest' });
 });
 
 test('Escape restores activator focus and an outside click collapses without doing so', async ({ page }) => {
@@ -101,4 +223,202 @@ test('a failed manifest load exposes an error and the next activation retries', 
   await expect(status).toBeHidden();
   expect(manifestAttempts).toBe(2);
   expectAndClearRuntimeError(runtimeErrors, /503 \(Service Unavailable\)/);
+});
+
+test('an idle entry keeps its full output for exactly two cursor blinks', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await installRabbitIdleConfig(page, { commonHoldMs: 4_000 });
+  await gotoPath(page, '/');
+
+  const typed = page.locator('#typedText');
+  const cursor = page.locator('#cursor');
+  await expect(page.locator('html')).not.toHaveClass(/\bpreload\b/);
+  await expect(typed).toHaveText('pwd');
+  await expect(page.locator('.terminal-overlay .layer')).toHaveText('/home/guest');
+  await expect(cursor).toHaveClass(/\bis-idle-blinking\b/);
+
+  const timing = await cursor.evaluate((element) => {
+    const animation = element.getAnimations().find(
+      (item) => item.animationName === 'terminal-cursor-blink'
+    );
+    const result = animation.effect.getTiming();
+    animation.finish();
+    return result;
+  });
+  expect(timing).toMatchObject({ duration: 1_000, iterations: 2 });
+  await expect(typed).toHaveText('🐇');
+});
+
+test('the idle rabbit uses its hole as zero and cleans up on activation', async ({
+  page
+}) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await installRabbitIdleConfig(page, { commonHoldMs: 3_000 });
+  await gotoPath(page, '/');
+
+  const terminalViewport = page.locator('.terminal-viewport');
+  const effect = page.locator('.cmd');
+  const motion = page.locator('.terminal-command-motion');
+  const typed = page.locator('#typedText');
+  const cursor = page.locator('#cursor');
+
+  await expect(typed).toHaveText('🐇');
+  await expect(effect).toHaveClass(/\bis-rabbit-step\b/);
+  await expect(page.locator('.terminal-overlay .layer')).toHaveText('...');
+
+  const measurements = await effect.evaluate((element) => {
+    const motionElement = element.querySelector('.terminal-command-motion');
+    const typedElement = element.querySelector('#typedText');
+    const cursorElement = element.querySelector('#cursor');
+    const viewport = element.closest('.terminal-viewport');
+    const pathAnimation = motionElement.getAnimations()[0];
+    const portalAnimation = typedElement.getAnimations()[0];
+    const holeAnimation = document.getAnimations().find(
+      (animation) => animation.animationName === 'terminal-rabbit-hole'
+    );
+    if (!pathAnimation || !portalAnimation || !holeAnimation) {
+      return {
+        missingAnimation: true,
+        className: element.className,
+        reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        pathAnimations: motionElement.getAnimations().length,
+        portalAnimations: typedElement.getAnimations().length,
+        holeAnimations: element.getAnimations().length
+      };
+    }
+
+    const animations = [pathAnimation, portalAnimation, holeAnimation];
+    animations.forEach((animation) => animation.pause());
+
+    const sample = (currentTime) => {
+      animations.forEach((animation) => {
+        animation.currentTime = currentTime;
+      });
+      const motionRect = motionElement.getBoundingClientRect();
+      const typedRect = typedElement.getBoundingClientRect();
+      const cursorRect = cursorElement.getBoundingClientRect();
+      const holeStyle = getComputedStyle(element, '::after');
+      return {
+        motionX: motionRect.x,
+        typedX: typedRect.x,
+        cursorX: cursorRect.x,
+        typedOpacity: Number(getComputedStyle(typedElement).opacity),
+        cursorOpacity: Number(getComputedStyle(cursorElement).opacity),
+        holeOpacity: Number(holeStyle.opacity),
+        holeContent: holeStyle.content,
+        viewportHeight: viewport.getBoundingClientRect().height
+      };
+    };
+
+    const start = sample(0);
+    const first = sample(451);
+    const second = sample(901);
+    const third = sample(1_351);
+    const entered = sample(1_800);
+    const holeReady = sample(1_801);
+    const beforeExit = sample(2_103);
+    const exited = sample(2_553);
+    const fourth = sample(3_004);
+    const fifth = sample(3_454);
+    const sixth = sample(3_903);
+    return {
+      timings: {
+        path: pathAnimation.effect.getTiming(),
+        portal: portalAnimation.effect.getTiming(),
+        hole: holeAnimation.effect.getTiming()
+      },
+      start,
+      first,
+      second,
+      third,
+      entered,
+      holeReady,
+      beforeExit,
+      exited,
+      fourth,
+      fifth,
+      sixth,
+      documentFitsViewport: document.documentElement.scrollWidth <= document.documentElement.clientWidth
+    };
+  });
+
+  expect(measurements.missingAnimation, JSON.stringify(measurements)).toBeUndefined();
+  expect(measurements.timings.path).toMatchObject({
+    duration: 3_903,
+    delay: 0,
+    fill: 'forwards'
+  });
+  expect(measurements.timings.portal).toMatchObject({
+    duration: 1_203,
+    delay: 1_350,
+    fill: 'forwards'
+  });
+  expect(measurements.timings.hole).toMatchObject({
+    duration: 450,
+    delay: 1_350,
+    fill: 'forwards'
+  });
+  const hopDistance = measurements.first.motionX - measurements.start.motionX;
+  expect(hopDistance).toBeGreaterThan(20);
+  [
+    ['second', 2],
+    ['third', 3],
+    ['entered', 4],
+    ['beforeExit', 4],
+    ['exited', 5],
+    ['fourth', 6],
+    ['fifth', 7],
+    ['sixth', 8]
+  ].forEach(([name, hops]) => {
+    expect(
+      measurements[name].motionX - measurements.start.motionX,
+      JSON.stringify(measurements)
+    ).toBeCloseTo(
+      hopDistance * hops,
+      1
+    );
+  });
+  expect(measurements.sixth.typedX - measurements.start.typedX).toBeCloseTo(
+    measurements.sixth.cursorX - measurements.start.cursorX,
+    1
+  );
+  expect(measurements.holeReady.holeContent).not.toBe('none');
+  expect(measurements.holeReady.holeOpacity).toBeGreaterThan(0.5);
+  expect(measurements.sixth.holeOpacity).toBeCloseTo(measurements.holeReady.holeOpacity, 2);
+  expect(measurements.third.typedOpacity).toBe(1);
+  expect(measurements.entered.typedOpacity).toBeLessThan(0.05);
+  expect(measurements.beforeExit.typedOpacity).toBeLessThan(0.05);
+  expect(measurements.exited.typedOpacity).toBeGreaterThan(0.95);
+  expect(measurements.sixth.typedOpacity).toBe(1);
+  expect(measurements.sixth.cursorOpacity).toBe(1);
+  expect(measurements.sixth.viewportHeight).toBeCloseTo(measurements.start.viewportHeight, 1);
+  expect(measurements.documentFitsViewport).toBe(true);
+  await expect(terminalViewport).toBeVisible();
+  await expect(cursor).toBeVisible();
+
+  await page.getByRole('button', { name: 'Activate portfolio shell' }).click();
+  await expect(effect).not.toHaveClass(/\bis-rabbit-step\b/);
+  await expect(motion).toHaveCSS('transform', 'none');
+  await expect(typed).toHaveCSS('opacity', '1');
+  await expect.poll(() => effect.evaluate((element) => {
+    return getComputedStyle(element, '::after').content;
+  })).toBe('none');
+  await expect(page.getByLabel('Command')).toBeFocused();
+});
+
+test('the idle rabbit stays static with reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await installRabbitIdleConfig(page);
+  await gotoPath(page, '/');
+
+  const effect = page.locator('.cmd');
+  const motion = page.locator('.terminal-command-motion');
+  await expect(page.locator('#typedText')).toHaveText('🐇');
+  await expect(page.locator('.terminal-overlay .layer')).toHaveText('...');
+  await expect(effect).not.toHaveClass(/\bis-rabbit-step\b/);
+  await expect.poll(() => motion.evaluate((element) => element.getAnimations().length)).toBe(0);
+  await expect(motion).toHaveCSS('transform', 'none');
+  await expect.poll(() => effect.evaluate((element) => {
+    return getComputedStyle(element, '::after').content;
+  })).toBe('none');
 });

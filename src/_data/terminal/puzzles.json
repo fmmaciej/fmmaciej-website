@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "shell",
+      "title": "The active shell",
+      "location": "terminal prompt",
+      "clue": "The decorative terminal is also an interactive, persistent shell.",
+      "solution": "Activate the prompt and use help, ls, cd, cat, open, history, date, uname and su."
+    },
+    {
+      "id": "leave-me-here",
+      "title": "LEAVE_ME_HERE",
+      "location": "/home/guest/LEAVE_ME_HERE",
+      "clue": "A conspicuously named file is left in the guest home directory.",
+      "solution": "cat ~/LEAVE_ME_HERE reveals login fm and password spoon; run su - fm."
+    },
+    {
+      "id": "delegated-navigation",
+      "title": "Borrowed navigation",
+      "location": "mouse-driven portfolio navigation",
+      "clue": "While guest is active, ordinary page clicks briefly borrow the fm account.",
+      "solution": "A click displays su -c '<portfolio command>' fm and Password:, performs the public action, then restores guest without changing its cwd."
+    },
+    {
+      "id": "matrix",
+      "title": "The Matrix directory",
+      "location": "/home/guest/.matrix",
+      "clue": "The hidden directory is visible to guest but sealed until the fm login.",
+      "solution": "As fm, read ~/.matrix/message.txt and follow the white rabbit."
+    },
+    {
+      "id": "rabbit",
+      "title": "Follow the white rabbit",
+      "location": "/home/guest/.matrix/white-rabbit.txt",
+      "clue": "The rabbit appears both as a file and as a symbolic terminal command.",
+      "solution": "Run the hidden command 🐇; cmatrix is the related visual effect."
+    },
+    {
+      "id": "choice",
+      "title": "The pending choice",
+      "location": "/home/guest/.matrix/choice.txt",
+      "clue": "A future entrypoint exists but reports only a pending state.",
+      "solution": "cat ~/.matrix/choice.txt returns status=pending; the interaction is intentionally inactive in this version."
+    },
+    {
+      "id": "spoon",
+      "title": "There is no spoon",
+      "location": "/dev/spoon",
+      "clue": "A device with an impossible name points somewhere familiar.",
+      "solution": "ls -l /dev/spoon shows a symlink to /dev/null; cat /dev/spoon returns nothing."
+    },
+    {
+      "id": "exit",
+      "title": "The old exit",
+      "location": "/home/guest/.matrix/exit",
+      "clue": "Three files describe a hotel, a trace and a door.",
+      "solution": "Combine operator.log, trace.log and door.txt. The account is operator and the password is room303."
+    },
+    {
+      "id": "operator",
+      "title": "Operator access",
+      "location": "/home/operator",
+      "clue": "The extraction trail leads to a privileged but non-root account.",
+      "solution": "Run su - operator and enter room303. The operator home contains the complete playbook and solutions."
+    },
+    {
+      "id": "slackware",
+      "title": "Slackware 4.0",
+      "location": "/etc/slackware-version",
+      "clue": "The machine announces software from 1999.",
+      "solution": "Read /etc/slackware-version, /etc/issue and /proc/version; uname -a reports Linux 2.2.6."
+    },
+    {
+      "id": "clock",
+      "title": "The falsified clock",
+      "location": "/var/log/timesync.log",
+      "clue": "The header and the date command disagree about the year.",
+      "solution": "date keeps the visitor's local month, day and time but forces 1999. The operator-only log confirms deliberate clock masking."
+    },
+    {
+      "id": "root",
+      "title": "The sealed root account",
+      "location": "/root",
+      "clue": "The last conventional escalation path exists but refuses authentication.",
+      "solution": "su and su - target root, but root is intentionally locked in this version of the simulation."
+    }
+  ]
+}

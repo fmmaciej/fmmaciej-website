@@ -1,6 +1,77 @@
-@keyframes blink {
+@keyframes terminal-cursor-blink {
     50% {
         opacity: 0;
+    }
+}
+
+@keyframes terminal-rabbit-path {
+    0% {
+        transform: translateX(0);
+        animation-timing-function: steps(3, end);
+    }
+
+    34.588778% {
+        transform: translateX(9ch);
+        animation-timing-function: ease-in;
+    }
+
+    46.11837% {
+        transform: translateX(12ch);
+        animation-timing-function: linear;
+    }
+
+    53.88163% {
+        transform: translateX(12ch);
+        animation-timing-function: ease-out;
+    }
+
+    65.411222% {
+        transform: translateX(15ch);
+        animation-timing-function: steps(3, end);
+    }
+
+    100% {
+        transform: translateX(24ch);
+    }
+}
+
+@keyframes terminal-rabbit-portal {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    16% {
+        opacity: 1;
+        transform: translateY(-.28em) scale(.95);
+    }
+
+    37.406484%,
+    62.593516% {
+        opacity: 0;
+        transform: translateY(.35em) scale(.15);
+    }
+
+    84% {
+        opacity: 1;
+        transform: translateY(-.28em) scale(.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes terminal-rabbit-hole {
+    from {
+        opacity: 0;
+        transform: translateX(-.1ch) scaleX(.35);
+    }
+
+    to {
+        opacity: .65;
+        transform: translateX(-.1ch) scaleX(1);
     }
 }
 
@@ -149,9 +220,43 @@
 .cmd {
     flex: 1 1 auto;
     min-width: 0;
+    position: relative;
 
     white-space: pre-wrap;
     overflow-wrap: break-word;
+}
+
+.terminal-command-motion {
+    display: inline-flex;
+    align-items: baseline;
+    min-width: 0;
+}
+
+.cmd.is-rabbit-step .terminal-command-motion {
+    position: relative;
+    z-index: 1;
+    animation: terminal-rabbit-path 3.903s linear 1 forwards !important;
+}
+
+.cmd.is-rabbit-step .typed {
+    transform-origin: center bottom;
+    animation: terminal-rabbit-portal 1.203s linear 1.35s 1 forwards !important;
+}
+
+.cmd.is-rabbit-step::after {
+    content: "";
+    position: absolute;
+    left: 12ch;
+    bottom: .02em;
+    z-index: 0;
+    width: 1.7ch;
+    height: .28em;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: inset 0 0 .3em currentColor;
+    pointer-events: none;
+    animation: terminal-rabbit-hole .45s ease-out 1.35s 1 forwards !important;
 }
 
 #cursor {
@@ -160,7 +265,10 @@
     height: .98em;
     background: var(--cursor);
     transform: translateY(.08em);
-    animation: blink 1s step-start infinite;
+}
+
+#cursor.is-idle-blinking {
+    animation: terminal-cursor-blink 1s step-start 2;
 }
 
 .terminal-shell-panel {
@@ -392,6 +500,23 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    #cursor.is-idle-blinking,
+    .cmd.is-rabbit-step .terminal-command-motion,
+    .cmd.is-rabbit-step .typed,
+    .cmd.is-rabbit-step::after {
+        animation: none !important;
+    }
+
+    .cmd.is-rabbit-step .terminal-command-motion,
+    .cmd.is-rabbit-step .typed {
+        opacity: 1;
+        transform: none;
+    }
+
+    .cmd.is-rabbit-step::after {
+        content: none;
+    }
+
     .terminal-viewport,
     .terminal-box::after {
         transition: none;

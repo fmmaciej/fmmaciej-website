@@ -169,15 +169,28 @@ Terminal ma dwa tryby: pasywny animator idle oraz aktywny, deterministyczny
 shell. Idle miesza komendy kontekstowe z globalnymi, resetuje cykl przy zmianie
 trasy i zaczyna od lokalnego przykładu. Zwykła rotacja zachowuje proporcję dwie
 komendy lokalne na jedną globalną, a co szósta prezentacja pochodzi z osobnej
-puli Matrixa. Pula rotuje efekt, cinematic message i symboliczną komendę;
-ASCII-art pozostaje treścią do ręcznego odkrycia. Nazwane profile sterują
-tempem, a sekwencyjny scheduler czeka na pełne zakończenie outputu lub efektu i
-pozwala anulować cały cykl.
+puli Matrixa. Pula naprzemiennie pokazuje efekt i symboliczną komendę; emoji tej
+ostatniej wykonuje dwufazowy ruch wraz z kursorem, znika w
+dekoracyjnym przejściu CSS i pojawia się po jego drugiej stronie. ASCII-art oraz
+wszystkie pliki `.matrix` pozostają statyczną treścią do ręcznego odkrycia.
+Jedyną wskazówką idle ujawniającą ten katalog jest zwykły listing `ls -al ~` na
+stronie głównej.
+Opcjonalne `commandEffect` deklaruje efekt konkretnego wpisu bez zmiany jego
+outputu; nieznane wartości są ignorowane, reduced motion pomija ruch i
+dekorację, a lifecycle idle usuwa klasę efektu przy anulowaniu. Nazwane profile
+sterują tempem oraz minimalnym czasem odczytu. Sekwencyjny scheduler czeka na
+pełne zakończenie outputu i wszystkich animacji efektu, następnie uruchamia dwa
+finałowe mignięcia kursora i dopiero wybiera kolejny wpis. Czas efektu pochodzi
+wyłącznie z CSS, a cały cykl pozostaje anulowalny jednym sygnałem. Przy reduced
+motion miganie zastępuje równoważna pauza.
 
-Idle nadal tłumaczy zwykłe kliknięcia na `cd`, `cat`, `open` lub `wget`. Active
-udostępnia read-only, linuksowy filesystem zbudowany z publicznych treści
-strony, historię, autouzupełnianie i nawigację za pomocą komend. `cmatrix`
-korzysta w obu trybach ze wspólnego, wyspecjalizowanego helpera canvas.
+Idle nadal tłumaczy zwykłe kliknięcia na `cd`, `cat`, `open` lub `wget`.
+Początkowa sesja `guest` prezentuje akcje portfolio jako jednorazowe
+`su -c '<komenda>' fm` z syntetycznym promptem hasła; `fm` i `operator`
+wykonują je bez opakowania. Active udostępnia read-only filesystem Slackware
+4.0, historię, autouzupełnianie, `date`, interaktywne `su`, stos logowań oraz
+nawigację za pomocą komend. `cmatrix` korzysta w obu trybach ze wspólnego,
+wyspecjalizowanego helpera canvas.
 
 Manifest filesystemu powstaje podczas builda przez czysty builder w
 `src/_lib/terminal/` i jest publikowany jako
@@ -185,6 +198,13 @@ Manifest filesystemu powstaje podczas builda przez czysty builder w
 między trasami zamiast tworzyć komponent od nowa. Manifest jest pobierany lazy
 przy pierwszej aktywacji. Współdzielony koordynator zapewnia pojedynczą
 inicjalizację, trwały stan błędu i retry bez przeładowania strony.
+
+Schemat manifestu 2 zawiera konta, grupy i systemowe metadane obok płaskiego
+filesystemu. Redakcyjny `src/_data/terminal/puzzles.json` zasila generowane,
+chronione pliki operatora. Sesja `terminalShell:v2` przechowuje aktualną
+tożsamość i stos logowań, ale nigdy wpisanych haseł. Wszystkie hasła i
+rozwiązania są mimo to publiczną treścią zagadki po stronie klienta, a nie
+mechanizmem bezpieczeństwa.
 
 Pełny opis subsystemu, komend, trwałości sesji i granic bezpieczeństwa znajduje
 się w [docs/terminal.md](terminal.md).

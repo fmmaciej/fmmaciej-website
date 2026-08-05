@@ -5,23 +5,23 @@
 })(typeof window !== 'undefined' ? window : null, function terminalIdleCoreFactory() {
     const DEFAULT_TIMING_PROFILES = {
         standard: {
-            typingDelayMs: 22,
-            preDelayMs: 180,
-            charDelayMs: 2,
-            linePauseMs: 90,
-            holdMs: 1400
+            typingDelayMs: 30,
+            preDelayMs: 250,
+            charDelayMs: 4,
+            linePauseMs: 120,
+            holdMs: 500
         },
         cinematic: {
-            typingDelayMs: 42,
-            preDelayMs: 650,
-            charDelayMs: 45,
-            linePauseMs: 850,
-            holdMs: 2200
+            typingDelayMs: 50,
+            preDelayMs: 700,
+            charDelayMs: 50,
+            linePauseMs: 900,
+            holdMs: 700
         },
         ambient: {
-            typingDelayMs: 28,
-            preDelayMs: 250,
-            holdMs: 700,
+            typingDelayMs: 35,
+            preDelayMs: 350,
+            holdMs: 600,
             durationMs: 6500,
             frameDelayMs: 85
         }
@@ -95,12 +95,24 @@
         let displayed = 0;
         let normalIndex = 0;
 
+        function isAvailable(item) {
+            if (!Array.isArray(item?.users) || !item.users.length) return true;
+            return item.users.includes(options.getUser?.() || 'guest');
+        }
+
         function take(poolName) {
-            const pool = poolName === 'contextual' ? contextual : common;
+            const pool = poolName === 'contextual'
+                ? contextual
+                : poolName === 'matrix'
+                    ? matrix
+                    : common;
             if (!pool.length) return null;
-            const item = pool[cursors[poolName] % pool.length];
-            cursors[poolName] += 1;
-            return item;
+            for (let offset = 0; offset < pool.length; offset += 1) {
+                const item = pool[cursors[poolName] % pool.length];
+                cursors[poolName] += 1;
+                if (isAvailable(item)) return item;
+            }
+            return null;
         }
 
         return {
@@ -109,9 +121,8 @@
                 displayed += 1;
 
                 if (matrix.length && displayed % easterEggEvery === 0) {
-                    const item = matrix[cursors.matrix % matrix.length];
-                    cursors.matrix += 1;
-                    return item;
+                    const item = take('matrix');
+                    if (item) return item;
                 }
 
                 const preferred = normalPattern[normalIndex % normalPattern.length];

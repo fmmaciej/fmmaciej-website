@@ -1,18 +1,24 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
             "cmd": "pwd",
             "type": "text",
             "output": [
-                "/home/fm"
+                "/home/guest"
             ]
         },
         {
-            "cmd": "ls -a ~",
+            "cmd": "ls -al ~",
+            "users": ["guest"],
             "type": "text",
             "output": [
-                "./  ../  .config/  .gitconfig  .matrix/  .profile  about.md  blog/  contact.txt  cv/  links/  music/  projects/"
+                "dr-xr-xr-x  guest    guest           0 2026-03-10 ./",
+                "dr-xr-xr-x  root     root            0 2026-09-26 ../",
+                "dr-xr-x---  fm       matrix          0 2026-03-10 .matrix/",
+                "-r--r--r--  guest    guest          18 1999-05-23 .profile",
+                "-r--r--r--  fm       portfolio      26 1999-05-23 LEAVE_ME_HERE",
+                "-r--r--r--  guest    guest          66 1999-05-23 README"
             ]
         }
     ]

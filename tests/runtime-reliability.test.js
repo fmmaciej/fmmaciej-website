@@ -6,11 +6,16 @@ const vm = require('node:vm');
 const navigation = require('../src/assets/js/core/navigation-coordinator.js');
 const shellRuntime = require('../src/assets/js/components/terminal-shell-coordinator.js');
 
-function terminalActionsFixture(currentHref = 'https://example.com/music/') {
+function terminalActionsFixture(currentHref = 'https://example.com/music/', user = 'guest') {
   const context = {
     URL,
     location: new URL(currentHref),
-    window: {}
+    window: {
+      getTerminalSessionSnapshot: () => ({
+        user,
+        cwd: user === 'guest' ? '/home/guest' : `/home/${user}`
+      })
+    }
   };
   vm.runInNewContext(
     fs.readFileSync('src/assets/js/components/terminal-actions-utils.js', 'utf8'),
@@ -80,6 +85,7 @@ function navigationFixture(overrides = {}) {
 
 function bootFixture(reducedMotion) {
   const classes = new Set();
+  const htmlClasses = new Set(['preload']);
   const timers = new Map();
   const frames = new Map();
   const elements = new Map();
@@ -119,6 +125,11 @@ function bootFixture(reducedMotion) {
   const context = {
     console: { warn() {} },
     document: {
+      documentElement: {
+        classList: {
+          remove: (...names) => names.forEach((name) => htmlClasses.delete(name))
+        }
+      },
       body: {
         classList: bodyClassList,
         appendChild(element) {
@@ -149,6 +160,7 @@ function bootFixture(reducedMotion) {
     context,
     elementCount: () => elementCount,
     frames,
+    htmlClasses,
     timers
   };
 }
@@ -200,6 +212,23 @@ test('terminal link actions resume idle only when a transition keeps the current
   assert.equal(native.resumeCycleAfterMs, 1200);
 
   assert.equal(resolve('#section'), null);
+});
+
+test('guest click previews use one-command su while fm and operator run directly', () => {
+  const guest = terminalActionsFixture('https://example.com/', 'guest');
+  const guestAction = guest.actions.resolveAction(
+    guest.anchor('/music/'),
+    guest.event
+  );
+  assert.equal(guestAction.command, "su -c 'cd /home/fm/music' fm");
+  assert.equal(guestAction.passwordPrompt, true);
+
+  for (const user of ['fm', 'operator']) {
+    const fixture = terminalActionsFixture('https://example.com/', user);
+    const action = fixture.actions.resolveAction(fixture.anchor('/music/'), fixture.event);
+    assert.equal(action.command, 'cd /home/fm/music');
+    assert.equal(action.passwordPrompt, false);
+  }
 });
 
 test('latest navigation wins and a stale response never commits', async () => {
@@ -405,6 +434,7 @@ test('boot is idempotent and cleanup removes pending work', () => {
 
   assert.equal(fixture.elementCount(), createdAfterFirstRun);
   assert.equal(fixture.classes.has('booting'), true);
+  assert.equal(fixture.htmlClasses.has('preload'), false);
   assert.ok(fixture.timers.size > 0);
   fixture.context.window.portfolioBootController.cleanup();
   assert.equal(fixture.classes.has('booting'), false);
@@ -420,5 +450,14 @@ test('boot skips its overlay when reduced motion is requested', () => {
 
   assert.equal(fixture.elementCount(), 0);
   assert.equal(fixture.classes.has('booting'), false);
+  assert.equal(fixture.htmlClasses.has('preload'), false);
   assert.equal(fixture.timers.size, 0);
+});
+
+test('boot sequence stays within the Slackware 4.0 system model', () => {
+  const source = fs.readFileSync('src/assets/js/core/boot.js', 'utf8');
+
+  assert.match(source, /Linux version 2\.2\.6/);
+  assert.match(source, /INIT: version 2\.76 booting/);
+  assert.doesNotMatch(source, /Void Linux|runit|x86_64|NVMe|nvme|ACPI|udev|Sway|pipewire/i);
 });

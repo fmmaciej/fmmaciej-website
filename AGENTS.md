@@ -191,21 +191,29 @@ The press-kit bundle uses `src/music/_content/notes/contact.md` and
 those fragments as unused merely because page templates do not import them.
 
 Terminal JSON files are public idle-animation data. `config.json` owns schema
-version 2, global timing profiles, selection policy, and the common/Matrix
-pools. Route files own only their versioned `contextual` arrays. Keep command
-paths and outputs executable by the active shell, preserve deterministic pool
-selection, and test every schema or profile change through
-`npm run test:terminal`. The Matrix message is currently duplicated between the
-idle configuration and `buildTerminalFilesystem`, while the symbolic command
-response is duplicated between the idle configuration and shell core. Keep
-those copies identical until the single-source backlog item is completed. The
-ASCII rabbit remains filesystem-only and must not be restored to automatic idle
-rotation. The terminal tests enforce these contracts.
+version 3, global timing profiles, selection policy, and the common/Matrix
+pools. Route files own only their versioned `contextual` arrays. `runAs` marks
+portfolio commands that require the `fm` identity, while optional `users`
+filters identity-specific entries. Keep command paths and outputs executable by
+the active shell, preserve deterministic pool selection, and test every schema or profile change through
+`npm run test:terminal`. Matrix files, including `message.txt` and the ASCII
+rabbit, remain filesystem-only and must not be restored to automatic idle
+rotation; `ls -al ~` is the sole idle hint exposing the directory. The symbolic
+command response is still duplicated between the idle configuration and shell
+core. Keep those copies identical until the single-source backlog item is
+completed. The terminal tests enforce these contracts.
 
 The interactive shell manifest follows the existing flow: public sources ->
 pure `buildTerminalFilesystem` builder -> thin Eleventy template ->
 `/assets/terminal/filesystem.json`. It remains deterministic and read-only.
 Manifest loading is lazy and retryable; do not move it back into page startup.
+Manifest schema 2 includes the Slackware system model, accounts, supplemental
+groups, and the default `guest` identity. The editorial puzzle catalogue under
+`src/_data/terminal/` generates the operator archive. Credentials and solutions
+are deliberately public client data and must never be treated as real secrets;
+entered passwords must still stay out of history, transcripts, and persisted
+session state. Session key `terminalShell:v2` owns the current identity and
+login stack.
 Keep `docs/terminal.md` current when changing commands, filesystem schema,
 runtime states, navigation integration, persistence, or accessibility.
 

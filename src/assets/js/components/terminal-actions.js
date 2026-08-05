@@ -22,28 +22,32 @@
             match: isMailLink,
             buildCommand: (anchor) => `mail ${getMailAddress(anchor)}`,
             mode: 'native',
-            resumeCycleAfterMs: 1200
+            resumeCycleAfterMs: 1200,
+            runAs: 'fm'
         },
         {
             name: 'download',
             match: isDownloadLink,
             buildCommand: (anchor) => `wget "${getDownloadDisplayPath(anchor)}"`,
             mode: 'native',
-            resumeCycleAfterMs: 1200
+            resumeCycleAfterMs: 1200,
+            runAs: 'fm'
         },
         {
             name: 'external-link',
             match: isOpenableWebLink,
             buildCommand: (anchor) => `open "${anchor.href}"`,
             mode: 'native',
-            resumeCycleAfterMs: 1200
+            resumeCycleAfterMs: 1200,
+            runAs: 'fm'
         },
         {
             name: 'blog-post',
             match: (anchor, event) => isInternalNav(anchor, event) && isBlogPostPath(new URL(anchor.href, location.href).pathname),
             buildCommand: (anchor) => `cat ${toBlogSourcePath(anchor)}`,
             mode: 'transition',
-            href: (anchor) => anchor.href
+            href: (anchor) => anchor.href,
+            runAs: 'fm'
         },
         {
             name: 'internal-navigation',
@@ -53,9 +57,26 @@
             },
             buildCommand: (anchor) => `cd ${resolveInternalShellPath(anchor)}`,
             mode: 'transition',
-            href: (anchor) => anchor.href
+            href: (anchor) => anchor.href,
+            runAs: 'fm'
         }
     ];
+
+    function quoteCommand(command) {
+        return `'${String(command || '').replace(/'/g, `'"'"'`)}'`;
+    }
+
+    function presentCommand(command, runAs, snapshot = window.getTerminalSessionSnapshot?.()) {
+        const user = snapshot?.user || 'guest';
+        if (!runAs || user === runAs || user === 'operator') {
+            return { command, passwordPrompt: false, runAs: null };
+        }
+        return {
+            command: `su -c ${quoteCommand(command)} ${runAs}`,
+            passwordPrompt: true,
+            runAs
+        };
+    }
 
     function resolveAction(anchor, event) {
         if (!anchor || anchor.dataset.terminalBypass === '1') return null;
@@ -71,9 +92,12 @@
                 ? SAME_DOCUMENT_RESUME_MS
                 : 0;
 
+        const presentation = presentCommand(action.buildCommand(anchor, event), action.runAs);
         return {
             name: action.name,
-            command: action.buildCommand(anchor, event),
+            command: presentation.command,
+            passwordPrompt: presentation.passwordPrompt,
+            runAs: presentation.runAs,
             mode: action.mode,
             href,
             resumeCycleAfterMs
@@ -106,6 +130,7 @@
         buildTerminalPath: buildTerminalPath || ((pathname) => [{ href: pathname || '/', label: pathname || '/home/fm' }]),
         buildShellPathFromLabels: buildShellPathFromLabels || ((labels = []) => labels),
         resolveAction,
+        presentCommand,
         triggerNativeLink,
         commands
     };

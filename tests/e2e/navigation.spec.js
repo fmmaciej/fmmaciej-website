@@ -6,6 +6,15 @@ const {
   test
 } = require('./fixtures');
 
+async function expectViewTransitionSettled(page) {
+  await page.waitForFunction(() => {
+    return document.getAnimations().every((animation) => {
+      const pseudoElement = animation.effect?.pseudoElement || '';
+      return !pseudoElement.startsWith('::view-transition');
+    });
+  });
+}
+
 test('desktop links support route changes, repeated clicks, and history', async ({ page }, testInfo) => {
   test.skip(testInfo.project.metadata.formFactor !== 'desktop', 'Desktop navigation only');
   await gotoPath(page, '/');
@@ -14,17 +23,45 @@ test('desktop links support route changes, repeated clicks, and history', async 
   await primary.getByRole('link', { name: '/projects' }).click();
   await expect(page).toHaveURL(/\/projects\/$/);
   await expectMainReady(page);
+  await expectViewTransitionSettled(page);
 
   await primary.getByRole('link', { name: '/projects' }).click();
   await expect(page).toHaveURL(/\/projects\/$/);
   await expect(page.locator('.proj-list')).toBeVisible();
+  await expectViewTransitionSettled(page);
 
   await primary.getByRole('link', { name: '/blog' }).click();
   await expect(page).toHaveURL(/\/blog\/$/);
+  await expectViewTransitionSettled(page);
   await page.goBack();
   await expect(page).toHaveURL(/\/projects\/$/);
+  await expectViewTransitionSettled(page);
   await page.goForward();
   await expect(page).toHaveURL(/\/blog\/$/);
+  await expectViewTransitionSettled(page);
+});
+
+test('guest navigation previews one-command su and returns to the guest session', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.metadata.formFactor !== 'desktop', 'Desktop navigation only');
+  const manifestRequests = [];
+  page.on('request', (request) => {
+    if (new URL(request.url()).pathname === '/assets/terminal/filesystem.json') {
+      manifestRequests.push(request.url());
+    }
+  });
+  await gotoPath(page, '/');
+
+  const link = page
+    .getByRole('navigation', { name: 'Primary navigation' })
+    .getByRole('link', { name: '/music' });
+  await link.click();
+
+  await expect(page.locator('#typedText')).toHaveText("su -c 'cd /home/fm/music' fm");
+  await expect(page.locator('.terminal-overlay .layer')).toHaveText('Password:');
+  await expect(page).toHaveURL(/\/music\/$/);
+  await expect(page.locator('#terminalSession')).toHaveText('[guest@void]');
+  await expect(page.locator('#terminalPath')).toHaveText('/home/guest');
+  expect(manifestRequests).toHaveLength(0);
 });
 
 test('opening a collection group synchronizes its hash', async ({ page }) => {

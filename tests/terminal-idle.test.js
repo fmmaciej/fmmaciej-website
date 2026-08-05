@@ -60,8 +60,8 @@ test('timing profiles use standard fallback, selected profile, overrides, and cl
     durationMs: -1
   }, (name) => warnings.push(name)), {
     typingDelayMs: 40,
-    preDelayMs: 180,
-    charDelayMs: 2,
+    preDelayMs: 250,
+    charDelayMs: 4,
     linePauseMs: 180,
     holdMs: 1500,
     frameDelayMs: 16,
@@ -125,14 +125,13 @@ test('sequential scheduler reports one broken entry and continues with the next 
 test('terminal JSON files use the versioned global and contextual schemas', () => {
   const terminalRoot = path.join(__dirname, '..', 'src', 'assets', 'terminal');
   const globalConfig = JSON.parse(fs.readFileSync(path.join(terminalRoot, 'config.json'), 'utf8'));
-  assert.equal(globalConfig.schemaVersion, 2);
+  assert.equal(globalConfig.schemaVersion, 3);
   assert.deepEqual(globalConfig.pools.matrix.map((entry) => entry.cmd), [
     'cmatrix',
-    'cat ~/.matrix/message.txt',
     '🐇'
   ]);
-  assert.equal(globalConfig.pools.matrix[2].timingProfile, 'cinematic');
-  assert.deepEqual(globalConfig.pools.matrix[2].output, ['...']);
+  assert.equal(globalConfig.pools.matrix[1].timingProfile, 'cinematic');
+  assert.deepEqual(globalConfig.pools.matrix[1].output, ['...']);
   assert.equal(globalConfig.pools.matrix.some(
     (entry) => entry.cmd === 'cat ~/.matrix/white-rabbit.txt'
   ), false);
@@ -146,8 +145,8 @@ test('terminal JSON files use the versioned global and contextual schemas', () =
   });
   const sequence = Array.from({ length: 18 }, () => selector.next().cmd);
   assert.equal(sequence[5], 'cmatrix');
-  assert.equal(sequence[11], 'cat ~/.matrix/message.txt');
-  assert.equal(sequence[17], '🐇');
+  assert.equal(sequence[11], '🐇');
+  assert.equal(sequence[17], 'cmatrix');
 
   const contextualFiles = [
     'default.json', 'projects.json', 'blog.json',
@@ -157,7 +156,7 @@ test('terminal JSON files use the versioned global and contextual schemas', () =
   ];
   contextualFiles.forEach((fileName) => {
     const config = JSON.parse(fs.readFileSync(path.join(terminalRoot, fileName), 'utf8'));
-    assert.equal(config.schemaVersion, 2, fileName);
+    assert.equal(config.schemaVersion, 3, fileName);
     assert.ok(Array.isArray(config.contextual), fileName);
     assert.equal('commands' in config, false, fileName);
   });
@@ -169,7 +168,7 @@ test('white rabbit artwork remains available in the filesystem but not in idle',
     'utf8'
   ));
   const manifestRabbit = buildTerminalFilesystem({}).entries.find(
-    (entry) => entry.path === '/home/fm/.matrix/white-rabbit.txt'
+    (entry) => entry.path === '/home/guest/.matrix/white-rabbit.txt'
   );
 
   assert.equal(config.pools.matrix.some(
@@ -180,24 +179,99 @@ test('white rabbit artwork remains available in the filesystem but not in idle',
   assert.doesNotMatch(manifestRabbit.content, /Follow the white rabbit/);
 });
 
-test('Matrix message and symbolic response stay consistent across idle and shell sources', () => {
+test('only the symbolic rabbit idle entry enables the rabbit step effect', () => {
+  const config = JSON.parse(fs.readFileSync(
+    path.join(__dirname, '..', 'src', 'assets', 'terminal', 'config.json'),
+    'utf8'
+  ));
+  const entries = [
+    ...(config.pools.common || []),
+    ...(config.pools.matrix || [])
+  ];
+  const animated = entries.filter((entry) => entry.commandEffect !== undefined);
+
+  assert.deepEqual(animated, [{
+    cmd: '🐇',
+    type: 'text',
+    commandEffect: 'rabbit-step',
+    timingProfile: 'cinematic',
+    output: ['...']
+  }]);
+});
+
+test('Matrix files stay exploratory and the symbolic response remains consistent', () => {
   const config = JSON.parse(fs.readFileSync(
     path.join(__dirname, '..', 'src', 'assets', 'terminal', 'config.json'),
     'utf8'
   ));
   const manifest = buildTerminalFilesystem({});
-  const idleMessage = config.pools.matrix.find((entry) => entry.cmd.endsWith('message.txt'));
   const manifestMessage = manifest.entries.find(
-    (entry) => entry.path === '/home/fm/.matrix/message.txt'
+    (entry) => entry.path === '/home/guest/.matrix/message.txt'
   );
   const idleRabbit = config.pools.matrix.find((entry) => entry.cmd === '🐇');
   const filesystem = shell.createFilesystem(manifest);
   const shellRabbit = shell.executeCommand(
     filesystem,
-    { cwd: '/home/fm', previousCwd: null, history: [] },
+    { user: 'fm', cwd: '/home/fm', previousCwd: null, history: [], loginStack: [] },
     '🐇'
   );
 
-  assert.equal(`${idleMessage.output.join('\n')}\n`, manifestMessage.content);
+  assert.equal(config.pools.matrix.some((entry) => entry.cmd.includes('.matrix')), false);
+  assert.match(manifestMessage.content, /Wake up, Neo/);
   assert.equal(idleRabbit.output.join('\n'), shellRabbit.output);
+});
+
+test('ls -al home is the only idle hint that exposes the Matrix directory', () => {
+  const terminalRoot = path.join(__dirname, '..', 'src', 'assets', 'terminal');
+  const files = [
+    'config.json', 'default.json', 'projects.json', 'blog.json',
+    'music/music.json', 'music/bio.json', 'music/event.json',
+    'music/events.json', 'music/links.json', 'music/mixes.json',
+    'music/photos.json', 'music/rider.json'
+  ];
+  const entries = files.flatMap((fileName) => {
+    const config = JSON.parse(fs.readFileSync(path.join(terminalRoot, fileName), 'utf8'));
+    return [
+      ...(config.contextual || []),
+      ...(config.pools?.common || []),
+      ...(config.pools?.matrix || [])
+    ];
+  });
+  const hints = entries.filter((entry) => {
+    return `${entry.cmd || ''}\n${(entry.output || []).join('\n')}`.includes('.matrix');
+  });
+
+  assert.deepEqual(hints.map((entry) => entry.cmd), ['ls -al ~']);
+});
+
+test('idle entries can be filtered by session user without revealing unavailable hints', () => {
+  let user = 'guest';
+  const selector = idle.createCommandSelector({
+    contextual: [
+      { cmd: 'guest-only', users: ['guest'] },
+      { cmd: 'fm-only', users: ['fm'] }
+    ],
+    common: [],
+    matrix: [],
+    getUser: () => user
+  });
+
+  assert.equal(selector.next().cmd, 'guest-only');
+  user = 'fm';
+  assert.equal(selector.next().cmd, 'fm-only');
+});
+
+test('portfolio contextual idle commands declare the fm execution identity', () => {
+  const terminalRoot = path.join(__dirname, '..', 'src', 'assets', 'terminal');
+  const contextualFiles = [
+    'projects.json', 'blog.json', 'music/music.json', 'music/bio.json',
+    'music/event.json', 'music/events.json', 'music/links.json',
+    'music/mixes.json', 'music/photos.json', 'music/rider.json'
+  ];
+
+  contextualFiles.forEach((fileName) => {
+    const config = JSON.parse(fs.readFileSync(path.join(terminalRoot, fileName), 'utf8'));
+    assert.ok(config.contextual.every((entry) => entry.runAs === 'fm'), fileName);
+    assert.ok(config.contextual.every((entry) => !entry.cmd.includes('~/')), fileName);
+  });
 });

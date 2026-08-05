@@ -1,8 +1,9 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/blog",
+            "cmd": "ls /home/fm/blog",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "20250901-initial.md",
@@ -11,7 +12,8 @@
             ]
         },
         {
-            "cmd": "cat ~/blog/20250901-initial.md",
+            "cmd": "cat /home/fm/blog/20250901-initial.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "# Hello World",
@@ -20,7 +22,8 @@
             ]
         },
         {
-            "cmd": "open ~/blog/20260310-aidevs4-s01e02-zadanie.md",
+            "cmd": "open /home/fm/blog/20260310-aidevs4-s01e02-zadanie.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "Opening /blog/20260310_aidevs4_s01e02_zadanie/"

@@ -26,10 +26,22 @@ test('reduced motion skips the boot overlay', async ({ page }) => {
 test('normal motion shows and completes the boot sequence', async ({ page }, testInfo) => {
   test.skip(testInfo.project.metadata.formFactor !== 'desktop', 'Normal boot is covered once on desktop');
   await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.addInitScript(() => {
+    window.__bootOverlayObserved = false;
+    new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
+          if (node instanceof Element && (node.id === 'bootOverlay' || node.querySelector('#bootOverlay'))) {
+            window.__bootOverlayObserved = true;
+          }
+        }
+      }
+    }).observe(document, { childList: true, subtree: true });
+  });
   const response = await page.goto('/');
   expect(response.status()).toBeLessThan(400);
 
-  await expect(page.locator('#bootOverlay')).toBeVisible();
+  await expect.poll(() => page.evaluate(() => window.__bootOverlayObserved)).toBe(true);
   await expect(page.locator('#bootOverlay')).toHaveCount(0, { timeout: 5_000 });
   await expect(page.locator('body')).not.toHaveClass(/\bbooting\b/);
 });

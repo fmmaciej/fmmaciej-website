@@ -1,15 +1,17 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/music/links",
+            "cmd": "ls /home/fm/music/links",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "g-sound.url  skff.url  skylark.url  willa.url"
             ]
         },
         {
-            "cmd": "cat ~/music/links/skylark.url",
+            "cmd": "cat /home/fm/music/links/skylark.url",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "https://www.skylarkmusicstore.com",

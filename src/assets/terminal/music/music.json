@@ -1,15 +1,17 @@
 {
-    "schemaVersion": 2,
+    "schemaVersion": 3,
     "contextual": [
         {
-            "cmd": "ls ~/music",
+            "cmd": "ls /home/fm/music",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "README.md  bio/  events/  links/  mixes/  photos/  rider/"
             ]
         },
         {
-            "cmd": "cat ~/music/README.md",
+            "cmd": "cat /home/fm/music/README.md",
+            "runAs": "fm",
             "type": "text",
             "output": [
                 "Two things that really drew me to vinyl were the expense and the inconvenience.",
