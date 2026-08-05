@@ -8,18 +8,18 @@
       "slug": "techno",
       "date": "2026-09-26",
       "section": "upcoming",
-      "title": "Vinyl only",
+      "title": "TBA, Vinyl only",
       "place": "Warszawa, Mastak",
       "coverId": null
     },
     {
-      "id": "20260912__drum_bass",
-      "slug": "drum_bass",
+      "id": "20260912__totally_addicted_to_bass_talisa_b-day",
+      "slug": "totally_addicted_to_bass_talisa_b-day",
       "date": "2026-09-12",
       "section": "upcoming",
-      "title": "Drum & Bass",
+      "title": "Totally Addicted To Bass Talisa B day",
       "place": "Łódź, Willa",
-      "coverId": null
+      "coverId": "20260912__totally_addicted_to_bass_talisa_b-day__01"
     },
     {
       "id": "20260711__audio_river",
@@ -7778,23 +7778,23 @@
       "id": "20260711__audio_river__01",
       "groupId": "20260711__audio_river",
       "seq": 1,
-      "sourceHash": "sha256:0b6e387d78b04a39bfae0441324ed5cd5cad39a74946f4ea2d17331770657ca9",
+      "sourceHash": "sha256:8cd681c68ed48ad7b4fc2416a615e532fed59fd345f94e6c147a05ab803d6006",
       "image": {
         "variants": {
           "480": {
             "src": "20260711__audio_river__01-480.webp",
             "width": 480,
-            "height": 600
+            "height": 480
           },
           "960": {
             "src": "20260711__audio_river__01-960.webp",
             "width": 960,
-            "height": 1200
+            "height": 960
           },
           "1600": {
             "src": "20260711__audio_river__01-1600.webp",
             "width": 1600,
-            "height": 2000
+            "height": 1600
           }
         }
       }
@@ -7804,23 +7804,257 @@
       "id": "20260711__audio_river__02",
       "groupId": "20260711__audio_river",
       "seq": 2,
-      "sourceHash": "sha256:7b490b2c0d329c4fa2a8973764fa23e2e0d8ffcf1689f5e4d9a040e90783f89e",
+      "sourceHash": "sha256:77d9fd98cf9a9e24a78c0da411ed5fb42339fa9ad8d8df5ae1d35bda44f5be8e",
       "image": {
         "variants": {
           "480": {
             "src": "20260711__audio_river__02-480.webp",
             "width": 480,
-            "height": 600
+            "height": 532
           },
           "960": {
             "src": "20260711__audio_river__02-960.webp",
             "width": 960,
-            "height": 1200
+            "height": 1064
           },
           "1600": {
             "src": "20260711__audio_river__02-1600.webp",
             "width": 1600,
+            "height": 1774
+          }
+        }
+      }
+    },
+    {
+      "id": "20260711__audio_river__03",
+      "groupId": "20260711__audio_river",
+      "seq": 3,
+      "sourceHash": "sha256:ce96db3814acd5f3c0e3eaa14ea5c5e889414bab9bd284994639bbe8a574158b",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260711__audio_river__03-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260711__audio_river__03-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260711__audio_river__03-1600.webp",
+            "width": 1600,
             "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "id": "20260711__audio_river__04",
+      "groupId": "20260711__audio_river",
+      "seq": 4,
+      "sourceHash": "sha256:dd0a857d4af680291226c3d97b997b825c5d08bc36ef3c42d0bb3a1294dd13cb",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260711__audio_river__04-480.webp",
+            "width": 480,
+            "height": 543
+          },
+          "960": {
+            "src": "20260711__audio_river__04-960.webp",
+            "width": 960,
+            "height": 1087
+          },
+          "1600": {
+            "src": "20260711__audio_river__04-1600.webp",
+            "width": 1600,
+            "height": 1813
+          }
+        }
+      }
+    },
+    {
+      "id": "20260711__audio_river__05",
+      "groupId": "20260711__audio_river",
+      "seq": 5,
+      "sourceHash": "sha256:1318ebfc81d4714100f299e25861df5bbc1a09ca896cf2980ec6b2d44683c492",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260711__audio_river__05-480.webp",
+            "width": 480,
+            "height": 853
+          },
+          "960": {
+            "src": "20260711__audio_river__05-960.webp",
+            "width": 960,
+            "height": 1706
+          },
+          "1600": {
+            "src": "20260711__audio_river__05-1600.webp",
+            "width": 1600,
+            "height": 2843
+          }
+        }
+      }
+    },
+    {
+      "id": "20260711__audio_river__06",
+      "groupId": "20260711__audio_river",
+      "seq": 6,
+      "sourceHash": "sha256:1e55ed31e44051acbdfb5ce72f1080c0a579e1b0d56eb25d8277ac20b30137dd",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260711__audio_river__06-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260711__audio_river__06-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260711__audio_river__06-1600.webp",
+            "width": 1600,
+            "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "id": "20260711__audio_river__07",
+      "groupId": "20260711__audio_river",
+      "seq": 7,
+      "sourceHash": "sha256:18964a4d77843c5f423de8f102f3862a8429576f37a9c1009d6a68054730ba01",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260711__audio_river__07-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260711__audio_river__07-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260711__audio_river__07-1600.webp",
+            "width": 1600,
+            "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20260711__audio_river__08",
+      "groupId": "20260711__audio_river",
+      "seq": 8,
+      "sourceHash": "sha256:7b490b2c0d329c4fa2a8973764fa23e2e0d8ffcf1689f5e4d9a040e90783f89e",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260711__audio_river__08-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260711__audio_river__08-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260711__audio_river__08-1600.webp",
+            "width": 1600,
+            "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20260711__audio_river__09",
+      "groupId": "20260711__audio_river",
+      "seq": 9,
+      "sourceHash": "sha256:0b6e387d78b04a39bfae0441324ed5cd5cad39a74946f4ea2d17331770657ca9",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260711__audio_river__09-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260711__audio_river__09-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260711__audio_river__09-1600.webp",
+            "width": 1600,
+            "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "id": "20260912__totally_addicted_to_bass_talisa_b-day__01",
+      "groupId": "20260912__totally_addicted_to_bass_talisa_b-day",
+      "seq": 1,
+      "sourceHash": "sha256:5abb1002b7ce5a936387dce8fba22c0b9224ee9a93c73a1c125ab311fcd28c73",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260912__totally_addicted_to_bass_talisa_b-day__01-480.webp",
+            "width": 480,
+            "height": 251
+          },
+          "960": {
+            "src": "20260912__totally_addicted_to_bass_talisa_b-day__01-960.webp",
+            "width": 960,
+            "height": 502
+          },
+          "1600": {
+            "src": "20260912__totally_addicted_to_bass_talisa_b-day__01-1600.webp",
+            "width": 1600,
+            "height": 837
+          }
+        }
+      }
+    },
+    {
+      "id": "20260912__totally_addicted_to_bass_talisa_b-day__02",
+      "groupId": "20260912__totally_addicted_to_bass_talisa_b-day",
+      "seq": 2,
+      "sourceHash": "sha256:324f653ad77e72c589af48fc8a8d4c3ae48a90d032c319cde29ae36ef87a1c4c",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260912__totally_addicted_to_bass_talisa_b-day__02-480.webp",
+            "width": 480,
+            "height": 479
+          },
+          "960": {
+            "src": "20260912__totally_addicted_to_bass_talisa_b-day__02-960.webp",
+            "width": 960,
+            "height": 959
+          },
+          "1600": {
+            "src": "20260912__totally_addicted_to_bass_talisa_b-day__02-1600.webp",
+            "width": 1600,
+            "height": 1598
           }
         }
       }
