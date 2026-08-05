@@ -321,8 +321,8 @@ Krótkotrwały owner proof również pozostaje oddzielony od builda i deployment
 Lokalny skrypt zapisuje go pod ignorowanym `tmp/owner-proof/.well-known/`, skąd
 operator wysyła wyłącznie plik proof ręcznie przez FTP/SFTP do document root
 domeny. Zapobiega to zapisaniu challenge w źródłach lub historii gałęzi
-`ovh-deploy`. Procedurę, czyszczenie i model zagrożeń opisuje
-[`docs/owner-proof.md`](owner-proof.md).
+`ovh-deploy`. Prosta instrukcja operatora pozostaje lokalnie w
+`tools/README_owner_proof.md`.
 
 ## Typowe punkty rozszerzania
 

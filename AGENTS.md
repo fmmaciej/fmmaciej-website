@@ -120,9 +120,9 @@ worktree, an up-to-date `origin/main`, and a build matching the committed
 `src` tree.
 
 Owner proof is deliberately excluded from `src/`, `www/`, and normal deploys.
-Follow `docs/owner-proof.md`; upload it manually, do not run a regular deploy
-during an active verification, and remove both local and remote copies after
-the single verification attempt.
+The local operator procedure lives only in `tools/README_owner_proof.md`.
+Upload the proof manually, do not run a regular deploy during an active
+verification, and remove both local and remote copies after the single attempt.
 
 ## Architecture and implementation conventions
 

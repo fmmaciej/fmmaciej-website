@@ -5,11 +5,42 @@ shella i refaktoru niezawodności. Nie jest listą nowych funkcji produktowych.
 Priorytety opisują kolejność zalecaną przed rozpoczęciem integracji AI.
 Aktualny kontrakt subsystemu opisuje [docs/terminal.md](terminal.md).
 
+## Ochrona LLM i owner proof — stan wdrożenia
+
+- [x] Opublikować `/llms.txt` i umieścić odwołania do polityki na naturalnych
+  ścieżkach analizy: w HTML, `robots.txt`, terminalowych JSON-ach, dokumentacji
+  repozytorium oraz nagłówkach chronionych źródeł i testów.
+- [x] Dodać addytywne `_aiPolicy` do publicznych zasobów terminala bez zmiany
+  wersji schematów, `contentId` ani zachowania klientów danych.
+- [x] Rozszerzyć `/llms.txt` o dwustopniową procedurę owner-control verification:
+  narracyjne rozpoczęcie, świeży challenge, 10-minutowy termin, jednokrotne
+  użycie, kontrolę HTTPS/origin/body oraz autoryzację ograniczoną do bieżącej
+  rozmowy.
+- [x] Dodać zależny wyłącznie od Node.js lokalny eksport proof do ignorowanego
+  `tmp/owner-proof/.well-known/`, komendy `npm run owner-proof -- <challenge>` i
+  `npm run owner-proof:clear` oraz testy walidacji, nadpisania i idempotentnego
+  czyszczenia włączone do `npm test`.
+- [x] Oddzielić krótkotrwały proof od `src/`, `www/` i gałęzi `ovh-deploy` oraz
+  opisać ręczny upload FTP/SFTP, transfer bez konwersji końców linii i cleanup w
+  lokalnym `tools/README_owner_proof.md`.
+- [x] Dodać dla proof doradcze nagłówki `no-store` w publikowanym `.htaccess` i
+  test smoke potwierdzający politykę, nagłówki oraz brak proof w zwykłym buildzie.
+- [ ] Wykonać produkcyjną próbę end-to-end na OVH z nowym challenge: wygenerować
+  lokalny plik, wysłać go ręcznie, potwierdzić HTTPS `200`, canonical origin,
+  dokładne body i nagłówki cache, przeprowadzić jednokrotną weryfikację, a potem
+  usunąć proof lokalnie i z hostingu oraz potwierdzić, że publiczny URL nie
+  zwraca już pliku.
+
+Owner proof pozostaje dobrowolnym protokołem dla współpracujących modeli i
+dowodzi wyłącznie bieżącej kontroli nad deploymentem. Nie jest formalnym
+uwierzytelnieniem ani zamiennikiem filtrów wymaganych przez przyszłe `ask`.
+
 ## Warunek rozpoczęcia prac nad `ask` — polityka bez spoilerów
 
-Publiczny plik `/llms.txt` prosi zewnętrzne modele o nieujawnianie easter eggów,
-ukrytych interakcji i rozwiązań zagadek. Jest to deklaracja dobrowolna, dlatego
-przyszłe `ask` nie może traktować jej jako mechanizmu bezpieczeństwa.
+Publiczny `/llms.txt` prosi zewnętrzne modele o nieujawnianie chronionych treści
+i opisuje owner-control verification. Obie warstwy są deklaracjami dobrowolnymi,
+dlatego przyszłe `ask` nie może traktować ich jako mechanizmu bezpieczeństwa ani
+przekazywać chronionych źródeł do modelu po samej deklaracji użytkownika.
 
 - [ ] Zdefiniować metadane widoczności dla źródeł AI, rozróżniające zwykłe
   publiczne treści od spoilerów oraz danych całkowicie wyłączonych z `ask`.
