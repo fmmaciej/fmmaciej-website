@@ -164,7 +164,8 @@ test('nested authentication does not leak passwords', async ({ page }) => {
   await gotoPath(page, '/');
   const { input } = await activateShell(page);
 
-  await expect(page.locator('#terminalShellPrompt')).toContainText('[guest@void]');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('void:~$');
+  await expect(page.locator('#terminalSession')).toHaveText('[guest@void]');
   await input.fill('cat ~/.matrix/message.txt');
   await input.press('Enter');
   await expect(page.locator('.terminal-shell-output').last()).toHaveText(
@@ -172,16 +173,18 @@ test('nested authentication does not leak passwords', async ({ page }) => {
   );
 
   await loginAs(page, input, 'fm', credentialFor('fm'));
-  await expect(page.locator('#terminalShellPrompt')).toContainText('[fm@void]');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('void:~$');
+  await expect(page.locator('#terminalSession')).toHaveText('[fm@void]');
   await expect(page.locator('.terminal-shell-transcript')).not.toContainText(credentialFor('fm'));
   await page.reload();
   await expectMainReady(page);
   await expect(page.locator('#terminalSession')).toHaveText('[fm@void]');
 
   const restored = await activateShell(page);
-  await expect(page.locator('#terminalShellPrompt')).toContainText('[fm@void]');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('void:~$');
   await loginAs(page, restored.input, 'operator', credentialFor('operator'));
-  await expect(page.locator('#terminalShellPrompt')).toContainText('[operator@void]');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('void:~$');
+  await expect(page.locator('#terminalSession')).toHaveText('[operator@void]');
   await restored.input.fill('cat solutions.txt');
   await restored.input.press('Enter');
   await expect(page.locator('.terminal-shell-output').last()).toContainText(credentialFor('operator'));
@@ -196,10 +199,12 @@ test('nested authentication does not leak passwords', async ({ page }) => {
 
   await restored.input.fill('exit');
   await restored.input.press('Enter');
-  await expect(page.locator('#terminalShellPrompt')).toContainText('[fm@void]');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('void:~$');
+  await expect(page.locator('#terminalSession')).toHaveText('[fm@void]');
   await restored.input.fill('exit');
   await restored.input.press('Enter');
-  await expect(page.locator('#terminalShellPrompt')).toContainText('[guest@void]');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('void:~$');
+  await expect(page.locator('#terminalSession')).toHaveText('[guest@void]');
 });
 
 test('xanim plays the protected clip and persists its final frame', async ({ page }) => {
@@ -287,7 +292,7 @@ test('one-command authentication restores the prior session', async ({ page }) =
   await input.press('Enter');
 
   await expect(page).toHaveURL(/\/music\/$/);
-  await expect(page.locator('#terminalShellPrompt')).toContainText('[guest@void]');
+  await expect(page.locator('#terminalShellPrompt')).toContainText('void:~$');
   await expect(page.locator('#terminalPath')).toHaveText('/home/guest');
   const snapshot = await page.evaluate(() => window.getTerminalSessionSnapshot());
   expect(snapshot).toEqual({ user: 'guest', cwd: '/home/guest' });

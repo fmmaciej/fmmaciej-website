@@ -219,14 +219,168 @@ function buildTerminalFilesystem(input = {}) {
   [
     "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/mnt", "/opt", "/proc",
     "/sbin", "/tmp", "/usr", "/usr/X11R6", "/usr/X11R6/bin", "/usr/bin", "/usr/lib", "/usr/local", "/usr/local/bin",
-    "/usr/share", "/var", "/var/adm", "/var/log", "/var/spool", "/var/tmp"
+    "/usr/share", "/var", "/var/adm", "/var/log", "/var/log/packages", "/var/spool", "/var/tmp",
+    "/etc/rc.d", "/etc/X11"
   ].forEach((fsPath) => directory(fsPath));
   directory("/root", { mode: "dr-x------" });
 
-  file("/etc/hostname", "void\n");
-  file("/etc/motd", "fmmaciej.com virtual shell\nRead-only filesystem. Type help to begin.\n");
+  file("/etc/HOSTNAME", "void\n");
   file("/etc/slackware-version", "Slackware 4.0\n");
-  file("/etc/issue", "Welcome to Linux 2.2.6 (tty1)\n\n");
+  file("/etc/issue", "Welcome to Linux 2.2.6\n\n");
+  file("/etc/motd", "Linux 2.2.6.\n");
+  file("/etc/inittab", [
+    "# These are the default runlevels in Slackware:",
+    "# 0 = halt, 1 = single user, 3 = multiuser, 4 = X11, 6 = reboot.",
+    "id:3:initdefault:",
+    "si:S:sysinit:/etc/rc.d/rc.S",
+    "rc:2345:wait:/etc/rc.d/rc.M",
+    "ca::ctrlaltdel:/sbin/shutdown -t5 -r now",
+    "l0:0:wait:/etc/rc.d/rc.0",
+    "l6:6:wait:/etc/rc.d/rc.6",
+    "x1:4:wait:/etc/rc.d/rc.4",
+    "c1:12345:respawn:/sbin/agetty 38400 tty1 linux",
+    "",
+  ].join("\n"));
+  file("/etc/fstab", [
+    "/dev/hda1        /                ext2        defaults         1   1",
+    "/dev/hda2        swap             swap        defaults         0   0",
+    "/dev/cdrom       /mnt/cdrom       iso9660     noauto,owner,ro  0   0",
+    "/dev/fd0         /mnt/floppy      auto        noauto,owner     0   0",
+    "",
+  ].join("\n"));
+  file("/etc/lilo.conf", [
+    "boot = /dev/hda",
+    "prompt",
+    "timeout = 50",
+    "vga = normal",
+    "image = /boot/vmlinuz",
+    "  root = /dev/hda1",
+    "  label = Linux",
+    "  read-only",
+    "",
+  ].join("\n"));
+  file("/etc/hosts", [
+    "127.0.0.1       localhost",
+    "192.168.0.40    void",
+    "",
+  ].join("\n"));
+  file("/etc/host.conf", "order hosts,bind\nmulti on\n");
+  file("/etc/resolv.conf", "search localdomain\nnameserver 192.168.0.1\n");
+  file("/etc/rc.d/rc.S", [
+    "#!/bin/sh",
+    "# rc.S is executed by init(8) when the system boots.",
+    "# Setup /etc/issue and /etc/motd to reflect the current kernel level:",
+    "echo > /etc/issue",
+    "echo Welcome to Linux `/bin/uname -a | /bin/cut -d\\  -f3`. >> /etc/issue",
+    "echo >> /etc/issue",
+    "echo \"`/bin/uname -a | /bin/cut -d\\  -f1,3`.\" > /etc/motd",
+    "",
+  ].join("\n"), { mode: "-r-xr-xr-x" });
+  file("/etc/rc.d/rc.M", [
+    "#!/bin/sh",
+    "# rc.M is executed by init(8) for the multi-user run levels.",
+    "if [ ! -r /etc/HOSTNAME ]; then",
+    "  echo \"darkstar.example.net\" > /etc/HOSTNAME",
+    "fi",
+    "/bin/hostname `cat /etc/HOSTNAME | cut -f1 -d .`",
+    "if [ -x /etc/rc.d/rc.inet1 ]; then",
+    "  . /etc/rc.d/rc.inet1",
+    "  . /etc/rc.d/rc.inet2",
+    "fi",
+    "",
+  ].join("\n"), { mode: "-r-xr-xr-x" });
+  file("/etc/rc.d/rc.K", [
+    "#!/bin/sh",
+    "# rc.K is executed when leaving a multi-user run level.",
+    "if [ -x /usr/sbin/syslogd ]; then",
+    "  killall syslogd",
+    "fi",
+    "",
+  ].join("\n"), { mode: "-r-xr-xr-x" });
+  file("/etc/rc.d/rc.4", [
+    "#!/bin/sh",
+    "# rc.4 starts the X display manager for run level 4.",
+    "if [ -x /usr/X11R6/bin/kdm ]; then",
+    "  exec /usr/X11R6/bin/kdm -nodaemon",
+    "fi",
+    "exec /usr/X11R6/bin/xdm -nodaemon",
+    "",
+  ].join("\n"), { mode: "-r-xr-xr-x" });
+  file("/etc/rc.d/rc.6", [
+    "#!/bin/sh",
+    "# rc.6 is executed by init(8) on shutdown and reboot.",
+    "sync",
+    "/sbin/swapoff -a",
+    "/bin/umount -a",
+    "",
+  ].join("\n"), { mode: "-r-xr-xr-x" });
+  file("/etc/rc.d/rc.0", [
+    "#!/bin/sh",
+    "# rc.0 is executed by init(8) when the system halts.",
+    "sync",
+    "/sbin/swapoff -a",
+    "/bin/umount -a",
+    "/sbin/halt -f -h",
+    "",
+  ].join("\n"), { mode: "-r-xr-xr-x" });
+  file("/etc/rc.d/rc.inet1", [
+    "#!/bin/sh",
+    "# Basic network configuration for eth0.",
+    "IPADDR=\"192.168.0.40\"",
+    "NETMASK=\"255.255.255.0\"",
+    "GATEWAY=\"192.168.0.1\"",
+    "/sbin/ifconfig lo 127.0.0.1",
+    "/sbin/route add -net 127.0.0.0 netmask 255.0.0.0 lo",
+    "/sbin/ifconfig eth0 ${IPADDR} netmask ${NETMASK}",
+    "/sbin/route add default gw ${GATEWAY}",
+    "",
+  ].join("\n"), { mode: "-r-xr-xr-x" });
+  file("/etc/rc.d/rc.inet2", [
+    "#!/bin/sh",
+    "# Start network services configured for this machine.",
+    "if [ -x /usr/sbin/syslogd ]; then",
+    "  /usr/sbin/syslogd",
+    "fi",
+    "",
+  ].join("\n"), { mode: "-r-xr-xr-x" });
+  file("/etc/X11/XF86Config", [
+    "Section \"Files\"",
+    "    RgbPath     \"/usr/X11R6/lib/X11/rgb\"",
+    "    FontPath    \"unix/:7100\"",
+    "EndSection",
+    "",
+    "Section \"Keyboard\"",
+    "    Protocol    \"Standard\"",
+    "    XkbRules    \"xfree86\"",
+    "    XkbModel    \"pc101\"",
+    "EndSection",
+    "",
+    "Section \"Pointer\"",
+    "    Protocol    \"PS/2\"",
+    "    Device      \"/dev/psaux\"",
+    "EndSection",
+    "",
+    "Section \"Monitor\"",
+    "    Identifier  \"Generic SVGA\"",
+    "    HorizSync   31.5 - 48.5",
+    "    VertRefresh 50-90",
+    "EndSection",
+    "",
+    "Section \"Device\"",
+    "    Identifier  \"Generic SVGA\"",
+    "    Driver      \"svga\"",
+    "EndSection",
+    "",
+    "Section \"Screen\"",
+    "    Driver      \"svga\"",
+    "    Device      \"Generic SVGA\"",
+    "    Monitor     \"Generic SVGA\"",
+    "    Subsection \"Display\"",
+    "        Modes \"1024x768\" \"800x600\" \"640x480\"",
+    "    EndSubsection",
+    "EndSection",
+    "",
+  ].join("\n"));
   file("/etc/passwd", [
     "root:x:0:0:root:/root:/bin/bash",
     "operator:x:303:303:System Operator:/home/operator:/bin/bash",
@@ -252,6 +406,51 @@ function buildTerminalFilesystem(input = {}) {
     "Starting system logger:  /usr/sbin/syslogd",
     "Starting kernel logger:  /usr/sbin/klogd",
     "Going multiuser...",
+    ""
+  ].join("\n"));
+  file("/var/log/packages/aaa_base", [
+    "PACKAGE NAME:     aaa_base",
+    "PACKAGE LOCATION: ./slakware/a1",
+    "PACKAGE DESCRIPTION:",
+    "aaa_base: aaa_base (basic filesystem directories and utilities)",
+    "FILE LIST:",
+    "./",
+    "etc/",
+    "usr/",
+    "var/",
+    ""
+  ].join("\n"));
+  file("/var/log/packages/bash", [
+    "PACKAGE NAME:     bash",
+    "PACKAGE LOCATION: ./slakware/a2",
+    "PACKAGE DESCRIPTION:",
+    "bash: bash (the GNU Bourne-Again SHell)",
+    "FILE LIST:",
+    "bin/bash",
+    "usr/doc/bash/",
+    ""
+  ].join("\n"));
+  file("/var/log/packages/etc", [
+    "PACKAGE NAME:     etc",
+    "PACKAGE LOCATION: ./slakware/a3",
+    "PACKAGE DESCRIPTION:",
+    "etc: etc (system configuration files)",
+    "FILE LIST:",
+    "etc/issue",
+    "etc/motd",
+    "etc/profile",
+    "etc/shells",
+    ""
+  ].join("\n"));
+  file("/var/log/packages/sysvinit", [
+    "PACKAGE NAME:     sysvinit",
+    "PACKAGE LOCATION: ./slakware/a11",
+    "PACKAGE DESCRIPTION:",
+    "sysvinit: sysvinit 2.76 (System V style init programs)",
+    "FILE LIST:",
+    "etc/inittab",
+    "etc/rc.d/rc.S",
+    "etc/rc.d/rc.M",
     ""
   ].join("\n"));
   file("/var/log/site.log", "fmmaciej.com — served plain & simple\n");

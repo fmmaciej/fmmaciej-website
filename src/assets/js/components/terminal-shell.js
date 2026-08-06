@@ -207,8 +207,7 @@
             }
             const user = this.filesystem.account(this.state.user);
             const host = this.filesystem.manifest?.system?.hostname || 'void';
-            const path = this.core.shellPromptPath(this.state.cwd, user.home);
-            this.prompt.textContent = `[${user.name}@${host}] ${path} >`;
+            this.prompt.textContent = this.core.formatShellPrompt(user, host, this.state.cwd);
         }
 
         renderInputMode() {
@@ -231,8 +230,8 @@
                     command.className = 'terminal-shell-command';
                     const user = this.filesystem.account(block.user);
                     const host = this.filesystem.manifest?.system?.hostname || 'void';
-                    const promptPath = this.core.shellPromptPath(block.cwd, user.home);
-                    command.textContent = `[${user.name}@${host}] ${promptPath} > ${block.command}`;
+                    const prompt = this.core.formatShellPrompt(user, host, block.cwd);
+                    command.textContent = `${prompt}${block.command}`;
                     wrapper.append(command);
                 }
                 if (block.output) {

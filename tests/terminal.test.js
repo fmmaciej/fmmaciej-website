@@ -147,6 +147,29 @@ test("filesystem builder is immutable, deterministic, and schema-valid", () => {
   assert.ok(manifest.entries.some((entry) => entry.path === "/usr/X11R6/bin/xanim"));
 })
 
+test("filesystem models a representative Slackware 4.0 system", () => {
+  const entries = new Map(fixture().entries.map((entry) => [entry.path, entry]));
+
+  [
+    "/etc/HOSTNAME", "/etc/inittab", "/etc/fstab", "/etc/lilo.conf",
+    "/etc/rc.d/rc.S", "/etc/rc.d/rc.M", "/etc/rc.d/rc.K", "/etc/rc.d/rc.4",
+    "/etc/rc.d/rc.0", "/etc/rc.d/rc.6", "/etc/rc.d/rc.inet1", "/etc/rc.d/rc.inet2",
+    "/etc/X11/XF86Config", "/var/log/packages/aaa_base", "/var/log/packages/sysvinit"
+  ].forEach((fsPath) => assert.ok(entries.has(fsPath), fsPath));
+
+  assert.equal(entries.has("/etc/hostname"), false);
+  assert.equal(entries.get("/etc/HOSTNAME").content, "void\n");
+  assert.equal(entries.get("/etc/issue").content, "Welcome to Linux 2.2.6\n\n");
+  assert.equal(entries.get("/etc/motd").content, "Linux 2.2.6.\n");
+  assert.match(entries.get("/etc/inittab").content, /id:3:initdefault:/);
+  assert.match(entries.get("/etc/X11/XF86Config").content, /Driver      \"svga\"/);
+  assert.match(entries.get("/var/log/packages/sysvinit").content, /sysvinit 2\.76/);
+
+  ["rc.S", "rc.M", "rc.K", "rc.4", "rc.0", "rc.6", "rc.inet1", "rc.inet2"].forEach((name) => {
+    assert.equal(entries.get(`/etc/rc.d/${name}`).mode, "-r-xr-xr-x");
+  });
+});
+
 test("synthetic protected content is mapped without editorial details", () => {
   const renderedText = fixture().entries
     .filter((entry) => typeof entry.content === "string")
@@ -188,6 +211,21 @@ test("tokenizer handles quotes and escaping and rejects shell operators", () => 
   assert.equal(shell.tokenize("cat file | less").error, "unsupported shell syntax");
   assert.equal(shell.tokenize("echo $(uname)").error, "unsupported shell syntax");
   assert.equal(shell.tokenize("cat 'file").error, "unterminated quote");
+});
+
+test("shell prompt follows the Slackware 4.0 Bash profile format", () => {
+  assert.equal(
+    shell.formatShellPrompt({ uid: 1000, home: "/home/guest" }, "void", "/home/guest"),
+    "void:~$ "
+  );
+  assert.equal(
+    shell.formatShellPrompt({ uid: 1000, home: "/home/guest" }, "void", "/etc"),
+    "void:/etc$ "
+  );
+  assert.equal(
+    shell.formatShellPrompt({ uid: 0, home: "/root" }, "void", "/root"),
+    "void:~# "
+  );
 });
 
 test("filesystem resolves Linux paths, home aliases, symlinks, and permissions", () => {

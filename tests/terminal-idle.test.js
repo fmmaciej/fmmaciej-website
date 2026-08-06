@@ -233,6 +233,20 @@ test('protected files stay exploratory and the symbolic response remains consist
   assert.equal(protectedIdleEntry.output.join('\n'), protectedShellResponse.output);
 });
 
+test('idle motd output stays consistent with the generated filesystem', () => {
+  const config = JSON.parse(fs.readFileSync(
+    path.join(__dirname, '..', 'src', 'assets', 'terminal', 'config.json'),
+    'utf8'
+  ));
+  const manifest = buildTerminalFilesystem({});
+  const motd = manifest.entries.find((entry) => entry.path === '/etc/motd');
+  const idleMotd = config.pools.common.find((entry) => entry.cmd === 'cat /etc/motd');
+
+  assert.ok(motd);
+  assert.ok(idleMotd);
+  assert.deepEqual(idleMotd.output, motd.content.trimEnd().split('\n'));
+});
+
 test('only the designated home listing exposes the protected directory', () => {
   const terminalRoot = path.join(__dirname, '..', 'src', 'assets', 'terminal');
   const files = [

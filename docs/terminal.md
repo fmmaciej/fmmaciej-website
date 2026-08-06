@@ -133,8 +133,10 @@ chronionej sekwencji do dokumentacji.
 - blog zawiera wyłącznie opublikowane wpisy, bez draftów i frontmatteru;
 - events, mixes i photos odwzorowują pełne publiczne katalogi oraz media;
 - CV i pliki `.url` prowadzą do istniejących publicznych zasobów;
-- systemowe pliki w `/etc`, `/proc` i `/var/log` są bezpieczną, statyczną
-  atrapą budującą kontekst.
+- systemowe pliki w `/etc`, `/proc` i `/var/log` są bezpieczną, statyczną,
+  reprezentatywną atrapą Slackware 4.0 z jądrem Linux 2.2.6. Odtwarzają
+  charakterystyczne pliki startowe, sieć, XFree86 i rejestr pakietów, ale nie
+  implementują uruchamiania usług ani zarządzania pakietami.
 - `src/_data/terminal/puzzles.json` jest redakcyjnym źródłem chronionych
   materiałów; testy kontraktu nie powinny kopiować jego treści.
 
@@ -159,6 +161,10 @@ Katalog `/root` oraz `/etc/shadow` demonstracyjnie egzekwują brak uprawnień.
 Uprawnienia uwzględniają właściciela, grupę podstawową i grupy dodatkowe;
 implementacja zachowuje bypass roota, choć konto root jest zablokowane. Cały
 filesystem jest read-only.
+
+Prompt aktywnej powłoki odwzorowuje domyślny Bash Slackware 4.0:
+`hostname:ścieżka$ ` dla zwykłego użytkownika oraz `hostname:ścieżka# ` dla
+roota. Zapis transkrypcji korzysta z tego samego formatera.
 
 ## Deterministyczny shell
 
