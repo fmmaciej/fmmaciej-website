@@ -30,6 +30,7 @@ src/assets/music/photos/originals/
 node_modules/
 tmp/
 tools/
+bible/
 www/
 playwright-report/
 test-results/
