@@ -337,6 +337,12 @@
         return cwd;
     }
 
+    function formatShellPrompt(account, host, cwd) {
+        const path = shellPromptPath(cwd, account?.home);
+        const suffix = account?.uid === 0 ? '#' : '$';
+        return `${host || 'void'}:${path}${suffix} `;
+    }
+
     function normalizeState(filesystem, state = {}) {
         const user = filesystem.accounts[state.user] ? state.user : filesystem.defaultUser;
         const active = filesystem.account(user);
@@ -848,6 +854,7 @@
         createFilesystem,
         dirname,
         executeCommand,
+        formatShellPrompt,
         formatSimulatedDate,
         joinPath,
         parseSuArgs,
