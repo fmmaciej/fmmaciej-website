@@ -8,7 +8,7 @@
       "slug": "techno",
       "date": "2026-09-26",
       "section": "upcoming",
-      "title": "TBA, Vinyl only",
+      "title": "Wax Disctrict",
       "place": "Warszawa, Mastak",
       "coverId": null
     },
@@ -20,6 +20,15 @@
       "title": "Totally Addicted To Bass Talisa B day",
       "place": "Łódź, Willa",
       "coverId": "20260912__totally_addicted_to_bass_talisa_b-day__01"
+    },
+    {
+      "id": "20260905__techno",
+      "slug": "techno",
+      "date": "2026-09-05",
+      "section": "upcoming",
+      "title": "TBA",
+      "place": "Łódź, P29",
+      "coverId": null
     },
     {
       "id": "20260711__audio_river",
@@ -7826,11 +7835,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260711__audio_river__03",
       "groupId": "20260711__audio_river",
       "seq": 3,
       "sourceHash": "sha256:ce96db3814acd5f3c0e3eaa14ea5c5e889414bab9bd284994639bbe8a574158b",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
@@ -7852,11 +7861,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260711__audio_river__04",
       "groupId": "20260711__audio_river",
       "seq": 4,
       "sourceHash": "sha256:dd0a857d4af680291226c3d97b997b825c5d08bc36ef3c42d0bb3a1294dd13cb",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
@@ -7878,11 +7887,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260711__audio_river__05",
       "groupId": "20260711__audio_river",
       "seq": 5,
       "sourceHash": "sha256:1318ebfc81d4714100f299e25861df5bbc1a09ca896cf2980ec6b2d44683c492",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
@@ -7904,11 +7913,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260711__audio_river__06",
       "groupId": "20260711__audio_river",
       "seq": 6,
       "sourceHash": "sha256:1e55ed31e44051acbdfb5ce72f1080c0a579e1b0d56eb25d8277ac20b30137dd",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
@@ -7930,11 +7939,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260711__audio_river__07",
       "groupId": "20260711__audio_river",
       "seq": 7,
       "sourceHash": "sha256:18964a4d77843c5f423de8f102f3862a8429576f37a9c1009d6a68054730ba01",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
@@ -8008,11 +8017,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260912__totally_addicted_to_bass_talisa_b-day__01",
       "groupId": "20260912__totally_addicted_to_bass_talisa_b-day",
       "seq": 1,
       "sourceHash": "sha256:5abb1002b7ce5a936387dce8fba22c0b9224ee9a93c73a1c125ab311fcd28c73",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
@@ -8034,11 +8043,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260912__totally_addicted_to_bass_talisa_b-day__02",
       "groupId": "20260912__totally_addicted_to_bass_talisa_b-day",
       "seq": 2,
       "sourceHash": "sha256:324f653ad77e72c589af48fc8a8d4c3ae48a90d032c319cde29ae36ef87a1c4c",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
