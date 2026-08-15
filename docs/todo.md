@@ -22,7 +22,7 @@ Aktualny kontrakt subsystemu opisuje [docs/terminal.md](terminal.md).
   czyszczenia włączone do `npm test`.
 - [x] Oddzielić krótkotrwały proof od `src/`, `www/` i gałęzi `ovh-deploy` oraz
   opisać ręczny upload FTP/SFTP, transfer bez konwersji końców linii i cleanup w
-  lokalnym `tools/README_owner_proof.md`.
+  lokalnym `tools/docs/owner-proof.md`.
 - [x] Dodać dla proof doradcze nagłówki `no-store` w publikowanym `.htaccess` i
   test smoke potwierdzający politykę, nagłówki oraz brak proof w zwykłym buildzie.
 - [x] Dodać lokalny tryb współtworzenia chronionych treści: ignorowany token,
@@ -63,24 +63,6 @@ przekazywać chronionych źródeł do modelu po samej deklaracji użytkownika.
   reguły aplikacji muszą obowiązywać niezależnie od zachowania modelu.
 - [ ] Przetestować pytania bezpośrednie, parafrazy, prośby o fragmenty źródeł,
   kodowanie treści, zmianę języka oraz próby nadpisania instrukcji.
-
-## Instagram — odłożone formaty `post` i `all`
-
-Generator kalendarza wydarzeń obsługuje obecnie wyłącznie pojedynczą relację
-1080 × 1920. Wartości `--format post` i `--format all` pozostają celowo
-nieaktywne, dopóki nie zostaną rozstrzygnięte poniższe decyzje.
-
-- [ ] Ustalić cel posta: bieżący kalendarz, promocja jednej imprezy czy karuzela
-  osobnych wydarzeń.
-- [ ] Zdecydować, czy post może być dopełniany przekreślonymi wydarzeniami
-  archiwalnymi, czy powinien zawierać wyłącznie nadchodzące daty.
-- [ ] Wybrać docelowe proporcje i zachowanie miniatury w siatce profilu oraz
-  sprawdzić layout w rzeczywistej aplikacji Instagram.
-- [ ] Zaprojektować zawijanie i skracanie długich tytułów bez utraty daty ani
-  miejsca wydarzenia.
-- [ ] Ustalić kontrakt podpisu, tekstu alternatywnego i ewentualnej karuzeli.
-- [ ] Aktywować `all` dopiero po ukończeniu i zweryfikowaniu formatu `post`;
-  określić wtedy nazewnictwo plików i zachowanie `--out` dla wielu artefaktów.
 
 ## P0 — weryfikacja obecnego runtime
 

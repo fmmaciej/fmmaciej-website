@@ -21,10 +21,9 @@
 
         "build": "eleventy && npm run build:hash",
         "rebuild": "npm run clean && npm run build:content && npm run build",
-        "generate:instagram-events": "node scripts/generate-instagram-events.js",
-        "generate:instagram": "node scripts/generate-instagram.js",
+        "generate:instagram": "node tools/instagram/generate.js",
         "test:data": "node --test tests/data-builders.test.js",
-        "test:instagram": "node --test tests/instagram-events.test.js tests/instagram-story.test.js",
+        "test:instagram": "node --test tools/instagram/tests/instagram-events.test.js tools/instagram/tests/instagram-story.test.js",
         "test:terminal": "node --test tests/terminal.test.js tests/terminal-idle.test.js tests/terminal-matrix.test.js tests/terminal-ascii-video.test.js",
         "test:runtime": "node --test tests/runtime-reliability.test.js",
         "test:owner-proof": "node --test tests/owner-proof.test.js",
@@ -34,7 +33,7 @@
         "test:e2e:iphone": "playwright test --project=webkit-iphone",
         "test:e2e:headed": "playwright test --headed",
         "test:e2e:ui": "playwright test --ui",
-        "test": "npm run test:data && npm run test:instagram && npm run test:terminal && npm run test:runtime && npm run test:owner-proof && npm run test:llm-maintainer",
+        "test": "npm run test:data && npm run test:terminal && npm run test:runtime && npm run test:owner-proof && npm run test:llm-maintainer",
 
         "check": "npm test && npm run build && npm run test:smoke && npm run test:e2e && git diff --check",
 

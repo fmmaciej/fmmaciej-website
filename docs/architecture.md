@@ -323,7 +323,7 @@ Lokalny skrypt zapisuje go pod ignorowanym `tmp/owner-proof/.well-known/`, skąd
 operator wysyła wyłącznie plik proof ręcznie przez FTP/SFTP do document root
 domeny. Zapobiega to zapisaniu challenge w źródłach lub historii gałęzi
 `ovh-deploy`. Prosta instrukcja operatora pozostaje lokalnie w
-`tools/README_owner_proof.md`.
+`tools/docs/owner-proof.md`.
 
 Lokalny tryb maintenera jest odrębny od owner proof. Human-only komenda tworzy
 256-bitowy token w ignorowanym `tools/.llm-maintainer-key`, a repozytorium

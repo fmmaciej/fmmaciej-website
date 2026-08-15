@@ -23,5 +23,5 @@ See [`AGENTS.md`](AGENTS.md) for repository conventions and
 For protected-content development, an agent can non-destructively verify local
 maintainer mode with `npm run --silent llm-maintainer:check`. Token
 initialization, rotation, and revocation are human-only operations documented
-locally in `tools/README_llm_maintainer.md`; the ignored token is never built or
+locally in `tools/docs/llm-maintainer.md`; the ignored token is never built or
 deployed.
