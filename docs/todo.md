@@ -64,6 +64,24 @@ przekazywać chronionych źródeł do modelu po samej deklaracji użytkownika.
 - [ ] Przetestować pytania bezpośrednie, parafrazy, prośby o fragmenty źródeł,
   kodowanie treści, zmianę języka oraz próby nadpisania instrukcji.
 
+## Instagram — odłożone formaty `post` i `all`
+
+Generator kalendarza wydarzeń obsługuje obecnie wyłącznie pojedynczą relację
+1080 × 1920. Wartości `--format post` i `--format all` pozostają celowo
+nieaktywne, dopóki nie zostaną rozstrzygnięte poniższe decyzje.
+
+- [ ] Ustalić cel posta: bieżący kalendarz, promocja jednej imprezy czy karuzela
+  osobnych wydarzeń.
+- [ ] Zdecydować, czy post może być dopełniany przekreślonymi wydarzeniami
+  archiwalnymi, czy powinien zawierać wyłącznie nadchodzące daty.
+- [ ] Wybrać docelowe proporcje i zachowanie miniatury w siatce profilu oraz
+  sprawdzić layout w rzeczywistej aplikacji Instagram.
+- [ ] Zaprojektować zawijanie i skracanie długich tytułów bez utraty daty ani
+  miejsca wydarzenia.
+- [ ] Ustalić kontrakt podpisu, tekstu alternatywnego i ewentualnej karuzeli.
+- [ ] Aktywować `all` dopiero po ukończeniu i zweryfikowaniu formatu `post`;
+  określić wtedy nazewnictwo plików i zachowanie `--out` dla wielu artefaktów.
+
 ## P0 — weryfikacja obecnego runtime
 
 - [ ] Przeprowadzić ręczne QA w prawdziwej przeglądarce na desktopie i mobile:

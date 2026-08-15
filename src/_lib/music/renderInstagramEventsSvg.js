@@ -1,3 +1,5 @@
+// Dormant feed-post prototype. Product decisions are tracked in docs/todo.md;
+// the public generator intentionally exposes only the Story workflow.
 const WIDTH = 1080;
 const HEIGHT = 1350;
 const LEFT = 72;

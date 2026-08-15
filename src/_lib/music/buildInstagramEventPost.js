@@ -1,3 +1,5 @@
+// Dormant feed-post prototype. Product decisions are tracked in docs/todo.md;
+// the public generator intentionally exposes only the Story workflow.
 const MAX_EVENTS = 4;
 
 const MONTHS = [
