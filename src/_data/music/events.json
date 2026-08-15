@@ -31,6 +31,15 @@
       "coverId": null
     },
     {
+      "id": "20260725__x-zodiak",
+      "slug": "x-zodiak",
+      "date": "2026-07-25",
+      "section": "archive",
+      "title": "LEM Release Party - X Zodiak",
+      "place": "Łódź, Willa",
+      "coverId": "20260725__x-zodiak__01"
+    },
+    {
       "id": "20260711__audio_river",
       "slug": "audio_river",
       "date": "2026-07-11",
@@ -8012,6 +8021,32 @@
             "src": "20260711__audio_river__09-1600.webp",
             "width": 1600,
             "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20260725__x-zodiak__01",
+      "groupId": "20260725__x-zodiak",
+      "seq": 1,
+      "sourceHash": "sha256:29e420dc00c658c45363665a89cc76ed526cbf28be13779207544f7dcc5f52ac",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260725__x-zodiak__01-480.webp",
+            "width": 480,
+            "height": 596
+          },
+          "960": {
+            "src": "20260725__x-zodiak__01-960.webp",
+            "width": 960,
+            "height": 1193
+          },
+          "1600": {
+            "src": "20260725__x-zodiak__01-1600.webp",
+            "width": 1600,
+            "height": 1989
           }
         }
       }
