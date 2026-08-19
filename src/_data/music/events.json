@@ -22,13 +22,22 @@
       "coverId": "20260912__totally_addicted_to_bass_talisa_b-day__01"
     },
     {
-      "id": "20260905__techno",
-      "slug": "techno",
+      "id": "20260905__za_wysokie_loty_zamkniecie_p29",
+      "slug": "za_wysokie_loty_zamkniecie_p29",
       "date": "2026-09-05",
       "section": "upcoming",
-      "title": "Weekend Zamknięcia",
-      "place": "Łódź, P29",
-      "coverId": null
+      "title": "Za Wysokie Loty Zamkniecie P29",
+      "place": null,
+      "coverId": "20260905__za_wysokie_loty_zamkniecie_p29__01"
+    },
+    {
+      "id": "20260828__parada-wolnosci-2026",
+      "slug": "parada-wolnosci-2026",
+      "date": "2026-08-28",
+      "section": "upcoming",
+      "title": "Parada wolnosci 2026",
+      "place": null,
+      "coverId": "20260828__parada-wolnosci-2026__01"
     },
     {
       "id": "20260725__x-zodiak",
@@ -8053,26 +8062,156 @@
     },
     {
       "alt": null,
+      "id": "20260828__parada-wolnosci-2026__01",
+      "groupId": "20260828__parada-wolnosci-2026",
+      "seq": 1,
+      "sourceHash": "sha256:7808573a1df106b0b1d4c7aef66779fe2d329b9c1b663ee3e9ac3ad2dd0455c9",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260828__parada-wolnosci-2026__01-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260828__parada-wolnosci-2026__01-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260828__parada-wolnosci-2026__01-1600.webp",
+            "width": 1600,
+            "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20260828__parada-wolnosci-2026__02",
+      "groupId": "20260828__parada-wolnosci-2026",
+      "seq": 2,
+      "sourceHash": "sha256:8309ef61472e2efad42c113e52ce78e622050c1a1c9dc14ba53dcaf1a3da6bf3",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260828__parada-wolnosci-2026__02-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260828__parada-wolnosci-2026__02-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260828__parada-wolnosci-2026__02-1600.webp",
+            "width": 1600,
+            "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
+      "id": "20260828__parada-wolnosci-2026__03",
+      "groupId": "20260828__parada-wolnosci-2026",
+      "seq": 3,
+      "sourceHash": "sha256:070151033ec0ea111638e6830b844d67ab34cfc7b79405bd98b73750c6f82659",
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260828__parada-wolnosci-2026__03-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260828__parada-wolnosci-2026__03-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260828__parada-wolnosci-2026__03-1600.webp",
+            "width": 1600,
+            "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "id": "20260905__za_wysokie_loty_zamkniecie_p29__01",
+      "groupId": "20260905__za_wysokie_loty_zamkniecie_p29",
+      "seq": 1,
+      "sourceHash": "sha256:c2327c341d081381f36480cdadbf297bfc15cfc0bba9298d3d05b6eac64ff1a3",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260905__za_wysokie_loty_zamkniecie_p29__01-480.webp",
+            "width": 480,
+            "height": 600
+          },
+          "960": {
+            "src": "20260905__za_wysokie_loty_zamkniecie_p29__01-960.webp",
+            "width": 960,
+            "height": 1200
+          },
+          "1600": {
+            "src": "20260905__za_wysokie_loty_zamkniecie_p29__01-1600.webp",
+            "width": 1600,
+            "height": 2000
+          }
+        }
+      }
+    },
+    {
+      "id": "20260905__za_wysokie_loty_zamkniecie_p29__02",
+      "groupId": "20260905__za_wysokie_loty_zamkniecie_p29",
+      "seq": 2,
+      "sourceHash": "sha256:2ebef47dd4825bc5c62eb058cdfce18639f90dd8720ea4df18ffe0c62de2c338",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260905__za_wysokie_loty_zamkniecie_p29__02-480.webp",
+            "width": 480,
+            "height": 251
+          },
+          "960": {
+            "src": "20260905__za_wysokie_loty_zamkniecie_p29__02-960.webp",
+            "width": 960,
+            "height": 502
+          },
+          "1600": {
+            "src": "20260905__za_wysokie_loty_zamkniecie_p29__02-1600.webp",
+            "width": 1600,
+            "height": 837
+          }
+        }
+      }
+    },
+    {
+      "alt": null,
       "id": "20260912__totally_addicted_to_bass_talisa_b-day__01",
       "groupId": "20260912__totally_addicted_to_bass_talisa_b-day",
       "seq": 1,
-      "sourceHash": "sha256:5abb1002b7ce5a936387dce8fba22c0b9224ee9a93c73a1c125ab311fcd28c73",
+      "sourceHash": "sha256:91feb8172c8869da81488fa95e81b0551506b21c5590b6885b770f527136fcac",
       "image": {
         "variants": {
           "480": {
             "src": "20260912__totally_addicted_to_bass_talisa_b-day__01-480.webp",
             "width": 480,
-            "height": 251
+            "height": 678
           },
           "960": {
             "src": "20260912__totally_addicted_to_bass_talisa_b-day__01-960.webp",
             "width": 960,
-            "height": 502
+            "height": 1357
           },
           "1600": {
             "src": "20260912__totally_addicted_to_bass_talisa_b-day__01-1600.webp",
             "width": 1600,
-            "height": 837
+            "height": 2262
           }
         }
       }
@@ -8082,7 +8221,7 @@
       "id": "20260912__totally_addicted_to_bass_talisa_b-day__02",
       "groupId": "20260912__totally_addicted_to_bass_talisa_b-day",
       "seq": 2,
-      "sourceHash": "sha256:324f653ad77e72c589af48fc8a8d4c3ae48a90d032c319cde29ae36ef87a1c4c",
+      "sourceHash": "sha256:dd61d19ad4e8658b9903a947b26b1c00d96ad9766da29a72550e6d4625a4e8f0",
       "image": {
         "variants": {
           "480": {
