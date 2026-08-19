@@ -31,6 +31,15 @@
       "coverId": "20260905__za_wysokie_loty_zamkniecie_p29__01"
     },
     {
+      "id": "20260828__parada-wolnosci-2026",
+      "slug": "parada-wolnosci-2026",
+      "date": "2026-08-28",
+      "section": "upcoming",
+      "title": "Parada wolnosci 2026",
+      "place": null,
+      "coverId": "20260828__parada-wolnosci-2026__01"
+    },
+    {
       "id": "20260725__x-zodiak",
       "slug": "x-zodiak",
       "date": "2026-07-25",
