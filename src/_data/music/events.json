@@ -9,17 +9,8 @@
       "date": "2026-09-26",
       "section": "upcoming",
       "title": "Wax District",
-      "place": null,
-      "coverId": "20260926__wax_district__01"
-    },
-    {
-      "id": "20260926__techno",
-      "slug": "techno",
-      "date": "2026-09-26",
-      "section": "upcoming",
-      "title": "Wax District",
       "place": "Warszawa, Mastak",
-      "coverId": null
+      "coverId": "20260926__wax_district__01"
     },
     {
       "id": "20260912__totally_addicted_to_bass_talisa_b-day",
