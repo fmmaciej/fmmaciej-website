@@ -4,6 +4,15 @@
   },
   "items": [
     {
+      "id": "20260926__wax_district",
+      "slug": "wax_district",
+      "date": "2026-09-26",
+      "section": "upcoming",
+      "title": "Wax District",
+      "place": null,
+      "coverId": "20260926__wax_district__01"
+    },
+    {
       "id": "20260926__techno",
       "slug": "techno",
       "date": "2026-09-26",
@@ -8139,11 +8148,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260905__za_wysokie_loty_zamkniecie_p29__01",
       "groupId": "20260905__za_wysokie_loty_zamkniecie_p29",
       "seq": 1,
       "sourceHash": "sha256:c2327c341d081381f36480cdadbf297bfc15cfc0bba9298d3d05b6eac64ff1a3",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
@@ -8165,11 +8174,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260905__za_wysokie_loty_zamkniecie_p29__02",
       "groupId": "20260905__za_wysokie_loty_zamkniecie_p29",
       "seq": 2,
       "sourceHash": "sha256:2ebef47dd4825bc5c62eb058cdfce18639f90dd8720ea4df18ffe0c62de2c338",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
@@ -8238,6 +8247,32 @@
             "src": "20260912__totally_addicted_to_bass_talisa_b-day__02-1600.webp",
             "width": 1600,
             "height": 1598
+          }
+        }
+      }
+    },
+    {
+      "id": "20260926__wax_district__01",
+      "groupId": "20260926__wax_district",
+      "seq": 1,
+      "sourceHash": "sha256:c7c4cf269c9f0ade89d38e39599de6323d275aa3ec263d3a76a956193ec8bc1a",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260926__wax_district__01-480.webp",
+            "width": 480,
+            "height": 640
+          },
+          "960": {
+            "src": "20260926__wax_district__01-960.webp",
+            "width": 960,
+            "height": 1280
+          },
+          "1600": {
+            "src": "20260926__wax_district__01-1600.webp",
+            "width": 1600,
+            "height": 2133
           }
         }
       }
