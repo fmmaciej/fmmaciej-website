@@ -13,6 +13,15 @@
       "coverId": "20260926__wax_district__01"
     },
     {
+      "id": "20260925__tba",
+      "slug": "tba",
+      "date": "2026-09-25",
+      "section": "upcoming",
+      "title": "TBA",
+      "place": "Warszawa, TBA",
+      "coverId": null
+    },
+    {
       "id": "20260912__totally_addicted_to_bass_talisa_b-day",
       "slug": "totally_addicted_to_bass_talisa_b-day",
       "date": "2026-09-12",
@@ -34,7 +43,7 @@
       "id": "20260828__parada-wolnosci-2026",
       "slug": "parada-wolnosci-2026",
       "date": "2026-08-28",
-      "section": "upcoming",
+      "section": "archive",
       "title": "Parada wolnosci 2026",
       "place": "Łódź, Pasaż Rubinsteina",
       "coverId": "20260828__parada-wolnosci-2026__01"
@@ -8243,11 +8252,11 @@
       }
     },
     {
+      "alt": null,
       "id": "20260926__wax_district__01",
       "groupId": "20260926__wax_district",
       "seq": 1,
       "sourceHash": "sha256:c7c4cf269c9f0ade89d38e39599de6323d275aa3ec263d3a76a956193ec8bc1a",
-      "alt": null,
       "image": {
         "variants": {
           "480": {
