@@ -4,37 +4,46 @@
   },
   "items": [
     {
+      "id": "20261031__halloween",
+      "slug": "tba",
+      "date": "2026-10-31",
+      "section": "upcoming",
+      "title": "TBA",
+      "place": "TBA",
+      "coverId": null
+    },
+    {
       "id": "20260926__wax_district",
       "slug": "wax_district",
       "date": "2026-09-26",
-      "section": "upcoming",
+      "section": "archive",
       "title": "Wax District",
       "place": "Warszawa, Mastak",
       "coverId": "20260926__wax_district__01"
     },
     {
-      "id": "20260925__tba",
-      "slug": "tba",
+      "id": "20260925__friday_at_mastak",
+      "slug": "friday_at_mastak",
       "date": "2026-09-25",
-      "section": "upcoming",
-      "title": "TBA",
-      "place": "Warszawa, TBA",
-      "coverId": null
+      "section": "archive",
+      "title": "Friday At Mastak",
+      "place": "Warszawa, Mastak",
+      "coverId": "20260925__friday_at_mastak__01"
     },
     {
-      "id": "20260919__sukiennik",
-      "slug": "sukiennik",
+      "id": "20260919__boom_sound_system_test_labirynt",
+      "slug": "boom_sound_system_test_labirynt",
       "date": "2026-09-19",
-      "section": "upcoming",
-      "title": "Boom Sound System Test",
-      "place": "Rąbień, Sukiennik",
-      "coverId": null
+      "section": "archive",
+      "title": "Boom Sound System Test Labirynt",
+      "place": "Rąbień AB, Willa Sukiennik",
+      "coverId": "20260919__boom_sound_system_test_labirynt__01"
     },
     {
       "id": "20260912__totally_addicted_to_bass_talisa_b-day",
       "slug": "totally_addicted_to_bass_talisa_b-day",
       "date": "2026-09-12",
-      "section": "upcoming",
+      "section": "archive",
       "title": "Totally Addicted To Bass Talisa B-day",
       "place": "Łódź, Willa",
       "coverId": "20260912__totally_addicted_to_bass_talisa_b-day__01"
@@ -43,7 +52,7 @@
       "id": "20260905__za_wysokie_loty_zamkniecie_p29",
       "slug": "za_wysokie_loty_zamkniecie_p29",
       "date": "2026-09-05",
-      "section": "upcoming",
+      "section": "archive",
       "title": "Za Wysokie Loty Zamkniecie P29",
       "place": "Łódź, P29",
       "coverId": "20260905__za_wysokie_loty_zamkniecie_p29__01"
@@ -8256,6 +8265,58 @@
             "src": "20260912__totally_addicted_to_bass_talisa_b-day__02-1600.webp",
             "width": 1600,
             "height": 1598
+          }
+        }
+      }
+    },
+    {
+      "id": "20260919__boom_sound_system_test_labirynt__01",
+      "groupId": "20260919__boom_sound_system_test_labirynt",
+      "seq": 1,
+      "sourceHash": "sha256:0939fe231b779a5647153d2821eb778588d3cc86933fc0a0c7a512e06ccd2b96",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260919__boom_sound_system_test_labirynt__01-480.webp",
+            "width": 480,
+            "height": 480
+          },
+          "960": {
+            "src": "20260919__boom_sound_system_test_labirynt__01-960.webp",
+            "width": 960,
+            "height": 960
+          },
+          "1600": {
+            "src": "20260919__boom_sound_system_test_labirynt__01-1600.webp",
+            "width": 1600,
+            "height": 1600
+          }
+        }
+      }
+    },
+    {
+      "id": "20260925__friday_at_mastak__01",
+      "groupId": "20260925__friday_at_mastak",
+      "seq": 1,
+      "sourceHash": "sha256:0f4ae05944409c8b79e1aea1065481d89ae939bc8f01a2d1ff0279464ec375a6",
+      "alt": null,
+      "image": {
+        "variants": {
+          "480": {
+            "src": "20260925__friday_at_mastak__01-480.webp",
+            "width": 480,
+            "height": 640
+          },
+          "960": {
+            "src": "20260925__friday_at_mastak__01-960.webp",
+            "width": 960,
+            "height": 1280
+          },
+          "1600": {
+            "src": "20260925__friday_at_mastak__01-1600.webp",
+            "width": 1600,
+            "height": 2133
           }
         }
       }
